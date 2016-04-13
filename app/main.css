@@ -1,0 +1,7 @@
+body {
+    color: #f00;
+    font-size: 12px;
+    font-weight: bold;
+    background: #ff0;
+    background: url(./img/sprite.png);
+}
