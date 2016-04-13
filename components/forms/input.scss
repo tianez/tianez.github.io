@@ -1,0 +1,109 @@
+
+.form-group {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    padding: 0 15px;
+    margin-bottom: 15px;
+    .form-label {
+        color: #333;
+        font-size: 14px;
+        line-height: 32px;
+        height: 32px;
+        display: block;
+    }
+    .form-control {
+        position: relative;
+    }
+    .form-input,.form-textarea {
+        display: block;
+        width: 100%;
+        margin: 0;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+        -moz-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    }
+    .form-input {
+        height: 34px;
+    }
+    .form-textarea {
+        max-width: 100%;
+        min-width: 100%;
+        min-height: 72px;
+        word-wrap: break-word;
+        overflow-x: hidden;
+        overflow-y: auto;
+        _overflow-y: visible;
+    }
+    .form-range {
+        width: 100%;
+        margin: 0;
+        display: block;
+        height: 34px;
+        padding: 6px 0;
+    }
+    .form-help {
+        display: block;
+        margin: 5px 0;
+        color: #737373;
+        font-size: 14px;
+    }
+    .form-ico {
+        display: block;
+        position: absolute;
+        z-index: 3;
+        float: right;
+        right: 8px;
+        margin: 10px 2px 4px 10px;
+        min-width: 16px;
+        height: 16px;
+        line-height: 16px;
+        color: #ccc;
+        font-style: normal;
+    }
+}
+@media screen and (min-width: 480px) {
+.form-horizontal {
+    .form-label {
+        padding-right: 10px;
+        float: left;
+        width: 100px;
+        text-align: right;
+        position: absolute;
+        top: 0;
+    }
+    .form-control { 
+        padding-left: 100px;
+    }
+}
+}
+
+.has-error,.has-warning {
+    .form-input,.form-textarea {
+        color: #a94442;
+        border-color: #ebccd1;
+    }
+    .form-label,.form-ico,.form-help {
+        color: #a94442;
+    }
+}
+
+.has-success {
+    .form-control {
+        color: #3c763d;
+        border-color: #3c763d;
+    }
+    .i ,.help-block {
+        color: #3c763d;
+    }
+}
