@@ -31,11 +31,13 @@ module.exports = {
                 loader: 'style!css!sass'
             }, { //图片
                 test: /\.(png|jpg)$/,
-                loader: 'url?limit=25000'
+                // loader: 'url?limit=25000',
+                loader: 'url?limit=25000&name=app/img/[name].[ext]',
+                
             }
         ]
     },
     plugins: [
-        new ExtractTextPlugin("app/css/app.css")
+        new ExtractTextPlugin("app.css")
     ]
 }

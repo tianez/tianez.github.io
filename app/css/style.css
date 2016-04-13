@@ -1,10 +1,10 @@
-@import '../../bower_components/normalize-css/normalize.css';
 h1 {
   font-size: 24px;
 }
 body {
   color: #000;
   font-size: 12px;
+  background: url(../images/1.jpg);
 }
 body .h2 {
   position: relative;
