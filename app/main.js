@@ -1,7 +1,9 @@
 'use strict'
 
 import React from 'react'
-import './main.scss'
+import Header from './layout/Header'
+import Footer from './layout/Footer'
+
 export default class Main extends React.Component {
     constructor() {
         super();
@@ -10,10 +12,10 @@ export default class Main extends React.Component {
         // sessionStorage.name = 'sdsd'
     }
     componentWillMount() {
-        
+ 
     }
     componentDidMount() {
-        
+
     }
     shouldComponentUpdate() {
         return true
@@ -21,11 +23,9 @@ export default class Main extends React.Component {
     render() {
         return (
             <div className = "container" >
-                <section className = "jumbotron" >
-                    <h3 className = "jumbotron-heading" >你好</h3>
-                </section>
-                <h1><i className="fa fa-home animated infinite bounce"></i>Hello</h1>
+                <Header />
                 {this.props.children}
+                <Footer />
             </div>
         )
     }

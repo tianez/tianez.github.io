@@ -43,14 +43,14 @@ export default class Main extends React.Component {
     }
     render() {
         return (
-            <div className = "container" >
+            <main className = "container" >
                 <section className = "jumbotron" >
                     <h3 className = "jumbotron-heading" >这是首页212</h3>
                 </section>
                 <Input value="sdeds" />
                 <Textarea value="987654" />
                 <Range />
-            </div>
+            </main>
         )
     }
 }

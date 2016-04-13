@@ -27,6 +27,10 @@ ReactDom.render((
         history: hashHistory
     },
         React.createElement(Route, {
+            path: "add2",
+            component: Add
+        }),
+        React.createElement(Route, {
             path: "/",
             component: Main,
             onEnter: redirectToLogin
@@ -47,6 +51,7 @@ ReactDom.render((
                 component: NoMatch
             })
         )
+
     )
 ),
     document.getElementById('app')

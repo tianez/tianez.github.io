@@ -99,11 +99,11 @@
 }
 
 .has-success {
-    .form-control {
+    .form-input,.form-textarea {
         color: #3c763d;
         border-color: #3c763d;
     }
-    .i ,.help-block {
+    .form-ico ,.form-help {
         color: #3c763d;
     }
 }

@@ -1,13 +1,30 @@
-h1 {
-  font-size: 24px;
+@import '../../bower_components/normalize-css/normalize.css';
+* {
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
 }
 body {
-  color: #000;
-  font-size: 12px;
-  background: url(../images/1.jpg);
+  font-size: 1.4rem;
 }
-body .h2 {
-  position: relative;
-  font-size: 26px;
-  margin: 0;
+.fixed-bottom {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+}
+#header {
+  background: #f3f3f3;
+}
+#header .pure-menu-link {
+  padding: 1rem 2rem;
+}
+#header .active {
+  background: #1f8dd6;
+  color: #fff;
+}
+#footer {
+  background: #111;
+  color: #7f8c8d;
 }
