@@ -31,7 +31,7 @@ export default class Main extends React.Component {
 
                 // Calling the end function will send the request
             })
-       request
+        request
             .post('https://d.apicloud.com/mcm/api/article')
             .set('X-APICloud-AppId', 'A6984077246442')
             .set('X-APICloud-AppKey', key)
@@ -43,7 +43,7 @@ export default class Main extends React.Component {
     }
     render() {
         return (
-            <main className = "container" >
+            <main id='main' className = "main container" >
                 <section className = "jumbotron" >
                     <h3 className = "jumbotron-heading" >这是首页212</h3>
                 </section>

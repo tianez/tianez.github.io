@@ -8,6 +8,13 @@ html {
 body {
   font-size: 1.4rem;
 }
+.container {
+  width: 1180px;
+  margin: 0 auto;
+}
+.pure-menu-fixed ~ .main {
+  padding-top: 3.4rem;
+}
 .fixed-bottom {
   position: fixed;
   width: 100%;

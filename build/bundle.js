@@ -25514,7 +25514,7 @@
 	        value: function render() {
 	            return _react2.default.createElement(
 	                'div',
-	                { className: 'container' },
+	                { className: 'warper' },
 	                _react2.default.createElement(_Header2.default, null),
 	                this.props.children,
 	                _react2.default.createElement(_Footer2.default, null)
@@ -25741,7 +25741,7 @@
 	        value: function render() {
 	            return _react2.default.createElement(
 	                'main',
-	                { className: 'container' },
+	                { id: 'main', className: 'main container' },
 	                _react2.default.createElement(
 	                    'section',
 	                    { className: 'jumbotron' },
