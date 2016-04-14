@@ -32,10 +32,10 @@ export default class Main extends React.Component {
                 // Calling the end function will send the request
             })
         request
-            .post('https://d.apicloud.com/mcm/api/article')
+            .post('https://d.apicloud.com/mcm/api/user/login')
             .set('X-APICloud-AppId', 'A6984077246442')
             .set('X-APICloud-AppKey', key)
-            .send({ title: 'Manny' })
+            .send({ username: 'Manny', password: '123456' })
             .end(function(err, res) {
                 let data = JSON.parse(res.text)
                 console.log(data)

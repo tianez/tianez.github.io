@@ -55,13 +55,13 @@ default class Input extends React.Component {
             success: success,
         })
         if (success || !this.props.required && _onChange) {
-            console.log(987)
-            // this.props._onChange(this.props.k, value)
+            if(this.props.onChange){
+                this.props.onChange(this.props.name, value)
+            }
         }
     }
     _onChange(e) {
         let value = e.target.value.replace(/(^\s*)|(\s*$)/g, "")
-        console.log(value)
         this.componentWillMount(value, true)
     }
     render() {
@@ -111,14 +111,9 @@ default class Input extends React.Component {
 }
 
 Input.defaultProps = {
-    title: '邮箱地址',
-    type: 'email',
+    type: 'text',
     value: '',
-    placeholder: '输入你的邮箱地址2',
-    help: '输入你的邮箱地址',
-    disabled: '',
+    help: '',
     autocomplete: 'off',
     required: 'required',
-    max: 10,
-    min: 6,
 }
