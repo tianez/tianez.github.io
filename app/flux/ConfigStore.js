@@ -7,7 +7,7 @@ var CHANGE_EVENT = 'config';
 
 var _todos = {
     transition: 'example',
-    msg: [],
+    msg: 'nihaoadeasds23',
     loading: 1,
     title: '王的理想乡'
 };
@@ -20,6 +20,14 @@ var ConfigStore = assign({}, EventEmitter.prototype, {
 
     get: function(id) {
         return _todos[id];
+    },
+    
+    getMsg: function() {
+        let msg = _todos['msg']
+        if(_todos['msg']!=''){
+            _todos['msg'] = ''
+        }
+        return msg
     },
 
     emitChange: function() {
@@ -46,27 +54,12 @@ module.exports = ConfigStore;
 // Register callback to handle all updates
 AppDispatcher.register(function(action) {
     var text;
+    if (_todos[action.id] == action.text) {
+        return
+    }
     switch (action.actionType) {
         case 'init':
             init(action.data);
-            ConfigStore.emitChange();
-            break;
-        case 'toggle':
-            toggle(action.id);
-            ConfigStore.emitChange();
-            break;
-        case 'toggleBack':
-            if (_todos[action.id] == 'example') {
-                toggleBack(action.id);
-                ConfigStore.emitChange();
-            }
-            break;
-        case 'msg':
-            update('msg', action.text);
-            ConfigStore.emitChange();
-            break;
-        case 'update':
-            update(action.id, action.text);
             ConfigStore.emitChange();
             break;
         case 'updateText':
@@ -76,36 +69,12 @@ AppDispatcher.register(function(action) {
                 ConfigStore.emitChange();
             }
             break;
-        case 'login':
-            login(action.user);
-            ConfigStore.emitChange();
-            break;
         default:
-            // no op
+            _todos[action.id] = action.text;
+            ConfigStore.emitChange();
     }
 });
 
 function init(data) {
     _todos[init] = data;
-}
-
-function toggle(id) {
-    if (_todos[id] == 'example') {
-        var updates = 'example2';
-    } else {
-        var updates = 'example';
-    }
-    _todos[id] = updates;
-}
-
-function toggleBack(id) {
-    _todos[id] = 'example2';
-}
-
-function update(id, updates) {
-    _todos[id] = updates;
-}
-
-function login(user) {
-    _todos['user'] = user;
 }

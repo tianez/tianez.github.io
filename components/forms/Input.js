@@ -69,7 +69,7 @@ default class Input extends React.Component {
             'form-group form-horizontal animated bounceInRight': true,
             'has-error': this.state.error,
             'has-warning': this.state.warning,
-            'has-success': this.state.success,
+            'has-success': this.state.success
         })
         let limit = ''
         if (this.props.max) {
@@ -79,12 +79,10 @@ default class Input extends React.Component {
             'form-ico fa': true,
             'fa-exclamation': this.state.error,
             'fa-warning': this.state.warning,
-            'fa-check': this.state.success,
+            'fa-check': this.state.success
         })
         let helpClass = classNames({
-            'form-help': true,
-            // 'help-block animated': true,
-            // 'shake': this.state.error || this.state.warning,
+            'form-help': true
         })
         return (
             <div className={Class}>

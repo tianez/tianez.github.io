@@ -8,6 +8,10 @@ import {
 }
 from 'react-router'
 
+window.AppId = 'A6984077246442'
+window.AppKey = '7F7872C0-8EB2-D116-C9AF-AF02A4B65BA0'
+window.AppUrl= 'https://d.apicloud.com/mcm/api/'
+
 /** 
  * action
  */
@@ -27,6 +31,7 @@ import Main from './main'
 import Index from './Index'
 import Login from './Login'
 import Add from './Add'
+import Post from './Post'
 import NoMatch from './NoMatch'
 
 function redirectToLogin(nextState, replace) {
@@ -60,6 +65,10 @@ ReactDom.render((
             React.createElement(Route, {
                 path: "add",
                 component: Add
+            }),
+            React.createElement(Route, {
+                path: "post",
+                component: Post
             }),
             React.createElement(Route, {
                 path: "*",

@@ -16,11 +16,11 @@ export default class Form extends React.Component {
             return;
         }
         let now = Date.now()
-        let key = SHA1('A6984077246442' + 'UZ' + '7F7872C0-8EB2-D116-C9AF-AF02A4B65BA0' + 'UZ' + now) + "." + now
-        let url = this.props.apiurl + this.props.action
+        let key = SHA1(AppId + 'UZ' + AppKey + 'UZ' + now) + "." + now
+        let url = AppUrl + this.props.action
         request
             .post(url)
-            .set('X-APICloud-AppId', 'A6984077246442')
+            .set('X-APICloud-AppId', AppId)
             .set('X-APICloud-AppKey', key)
             .send(this.props.info)
             .end(function(err, res) {
@@ -28,7 +28,6 @@ export default class Form extends React.Component {
                 console.log(data)
                 this.props.onSubmit(data)
             }.bind(this))
-
     }
     render() {
         return (
@@ -42,8 +41,4 @@ export default class Form extends React.Component {
             </form>
         )
     }
-}
-
-Form.defaultProps = {
-    apiurl: 'https://d.apicloud.com/mcm/api/',
 }

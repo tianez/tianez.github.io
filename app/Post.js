@@ -15,7 +15,7 @@ export default class Main extends React.Component {
         return (
             <main id='main' className = "main container" >
                 <section className = "jumbotron" >
-                    <h3 className = "jumbotron-heading" >这是首页212</h3>
+                    <h3 className = "jumbotron-heading" >这是首页21232322</h3>
                 </section>
             </main>
         )
