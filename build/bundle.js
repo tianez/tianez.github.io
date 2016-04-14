@@ -25569,7 +25569,7 @@
 	                _react2.default.createElement(
 	                    'a',
 	                    { href: '#', className: 'pure-menu-heading pure-menu-link' },
-	                    'BRAND'
+	                    '我的理想乡'
 	                ),
 	                _react2.default.createElement(
 	                    'ul',

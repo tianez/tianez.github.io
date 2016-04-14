@@ -18,7 +18,7 @@ gulp.task('Less', function() {
     gulp.src('app/less/style.less')
         .pipe(sourcemaps.init())
         .pipe(less())
-        .pipe(postcss([ autoprefixer({ browsers: ['last 2 versions'] }) ]))
+        .pipe(postcss([autoprefixer({ browsers: ['last 2 versions'] })]))
         // .pipe(csscomb())
         .pipe(gulp.dest('app/css/'))
         .pipe(sourcemaps.write())
@@ -58,7 +58,12 @@ gulp.task('watch', function() {
     // livereload.listen();
     gulp.watch(['app/less/*.less'], ['Less']);
     // gulp.watch(['app/sass/*.scss'], ['Sass']);
-    gulp.watch(['app/*.js', 'app/css/style.css', 'components/forms/**'], ['webpack']);
+    gulp.watch(
+        ['app/*.js',
+            'app/**/*.js',
+            'app/css/style.css',
+            'components/forms/**'
+        ], ['webpack']);
 });
 
 gulp.task('default', [
