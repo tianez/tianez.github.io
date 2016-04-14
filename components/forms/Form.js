@@ -32,11 +32,11 @@ export default class Form extends React.Component {
     }
     render() {
         return (
-            <form className=""
+            <form className="form-fields"
                 role = 'form'
                 encType= 'multipart/form-data'
                 onSubmit={this.handleSubmit.bind(this) } >
-                <fieldset>
+                <fieldset className='form-fieldset'>
                     {this.props.children}
                 </fieldset>
             </form>

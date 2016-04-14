@@ -21,6 +21,7 @@ export default class Login extends React.Component {
         })
     }
     _onSubmit(data) {
+        ConfigActions.login(data)
         console.log(data)
     }
     render() {

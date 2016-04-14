@@ -8,6 +8,21 @@ import {
 }
 from 'react-router'
 
+/** 
+ * action
+ */
+// import ConfigActions from './flux/ConfigActions'
+window.ConfigActions = require('./flux/ConfigActions')
+
+/** 
+ * store
+ */
+// import ConfigStore from './flux/ConfigStore'
+window.ConfigStore = require('./flux/ConfigStore')
+
+/** 
+ * 路由
+ */
 import Main from './main'
 import Index from './Index'
 import Login from './Login'
