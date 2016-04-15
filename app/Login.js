@@ -19,7 +19,7 @@ export default class Login extends React.Component {
         info[name] = value
         this.setState({
             info: info
-        })
+        }) 
     }
     _onSubmit(data) {
         ConfigActions.login(data)

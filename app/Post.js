@@ -10,7 +10,7 @@ import Range from '../components/forms/Range'
 export default class Main extends React.Component {
     constructor(props) {
         super(props)
-    }
+    } 
     render() {
         return (
             <main id='main' className = "main container" >
