@@ -62,7 +62,7 @@ gulp.task('watch', function() {
         ['app/*.js',
             'app/**/*.js',
             'app/css/style.css',
-            'components/forms/**'
+            'components/**'
         ], ['webpack']);
 });
 
