@@ -4,9 +4,9 @@ import React from 'react'
 export default class Header extends React.Component {
     render() {
         let msg = ConfigStore.getMsg()
-        return (msg?
+        return (msg ?
             <section className = "container" >
-            msgs {msg}
+                msgs {msg}
             </section> : null
         )
     }

@@ -13,18 +13,18 @@ export default class Main extends React.Component {
         // sessionStorage.name = 'sdsd'
     }
     _onChange() {
-        let config = ConfigStore.getAll() 
-        console.log(config) 
+        let config = ConfigStore.getAll()
+        console.log(config)
         window.document.title = config.title
         this.setState(config);
     }
     componentWillMount() {
-       
+
     }
     componentDidMount() {
         ConfigStore.addChangeListener(this._onChange.bind(this));
     }
-    
+
     shouldComponentUpdate() {
         return true
     }
@@ -35,9 +35,9 @@ export default class Main extends React.Component {
         return (
             <div className = "warper" >
                 <Header />
-                <main id='main' className = "main"> 
-                <Msg />
-                {this.props.children}
+                <main id='main' className = "main">
+                    <Msg />
+                    {this.props.children}
                 </main>
                 <Footer />
             </div>
