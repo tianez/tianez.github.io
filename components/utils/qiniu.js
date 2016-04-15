@@ -1,9 +1,11 @@
-var genUpToken = function () {
-    var accessKey = 'Lkve3Zo4h2ZK3iIGMJbwvop2Guy1jIDyJT0Mi9RL'
-    var secretKey = 'WF41n8b1LIRk8c6lcBiDzNrFTci2E-cu7ki22W2b'
+'use strict'
+var accessKey = 'Lkve3Zo4h2ZK3iIGMJbwvop2Guy1jIDyJT0Mi9RL'
+var secretKey = 'WF41n8b1LIRk8c6lcBiDzNrFTci2E-cu7ki22W2b'
+var scope = 'wire'
+var getUpToken = function () {
     var returnBody = '{ \"name\":$(fname),\"size\":$(fsize),\"info\":$(imageInfo),\"hash\":$(etag)}'
     var putPolicy = {
-        "scope": "wire",
+        "scope": scope,
         "deadline": Date.now() + 3600,
         "returnBody": returnBody
     }
@@ -14,10 +16,14 @@ var genUpToken = function () {
     var upload_token = accessKey + ":" + safe64(encoded_signed) + ":" + encoded;
     return upload_token;
 }
-
-module.exports = function () {
-    return genUpToken()
+var Qiniu = {
+    getUpToken: getUpToken
 }
+module.exports = Qiniu
+
+// module.exports = function () {
+//     return getUpToken()
+// }
 
 function utf16to8(str) {
     var out, i, len, c;
