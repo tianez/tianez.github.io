@@ -33,8 +33,11 @@ module.exports = {
                 test: /\.(png|jpg)$/,
                 // loader: 'url?limit=25000',
                 loader: 'url?limit=25000&name=app/img/[name].[ext]',
-                
+
             }
+        ],
+        postLoaders: [
+            { loader: "transform?brfs" }
         ]
     },
     plugins: [
