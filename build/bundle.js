@@ -28333,8 +28333,6 @@
 	            var helpClass = (0, _classnames2.default)({
 	                'form-help': true
 	            });
-	            // 'help-block animated': true,
-	            // 'shake': this.state.error || this.state.warning,
 	            return _react2.default.createElement(
 	                'div',
 	                { className: Class },
