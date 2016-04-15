@@ -2,8 +2,7 @@
 import React from 'react'
 import classNames from 'classnames';
 
-export
-    default class Input extends React.Component {
+export default class Botton extends React.Component {
     constructor() {
         super()
     }
