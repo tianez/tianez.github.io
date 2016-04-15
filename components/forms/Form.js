@@ -23,7 +23,7 @@ export default class Form extends React.Component {
             .set('X-APICloud-AppId', AppId)
             .set('X-APICloud-AppKey', key)
             .send(this.props.info)
-            .end(function(err, res) {
+            .end(function (err, res) {
                 let data = JSON.parse(res.text)
                 console.log(data)
                 this.props.onSubmit(data)
