@@ -5,13 +5,21 @@ import Regs from '../utils/regs';
 import './input.scss'
 
 export
-default class Input extends React.Component {
+    default class Input extends React.Component {
     constructor(props) {
         super(props)
+        console.log(4)
         this.state = {
             value: props.value,
             help: props.help,
         }
+    }
+    componentDidMount() {
+        console.log(7)
+        this.setState({
+            value: this.props.value,
+            help: this.props.help
+        })
     }
     componentWillMount(value, _onChange) {
         let error = false
@@ -55,7 +63,7 @@ default class Input extends React.Component {
             success: success,
         })
         if (success || !this.props.required && _onChange) {
-            if(this.props.onChange){
+            if (this.props.onChange) {
                 this.props.onChange(this.props.name, value)
             }
         }

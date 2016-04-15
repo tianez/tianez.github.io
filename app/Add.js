@@ -3,39 +3,55 @@ import React from 'react';
 import request from 'superagent'
 import Form from '../components/forms/Form'
 import Input from '../components/forms/Input'
+// var Input = require('../components/forms/Input')
 import Textarea from '../components/forms/Textarea'
 import Button from '../components/forms/Button'
 
-export default class Login extends React.Component {
+export default class Add extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            info: {},
-            username: '',
-            password: '',
-        }
+            info: {}
+        } 
     }
     componentWillMount() {
+        console.log(3)
+    }
+    componentDidMount() {
+        console.log(2)
+        let action = 'article'
         let { bookId } = this.props.params
         if (bookId) {
+            action = action + '/' + bookId
             let article = ConfigStore.get(bookId)
             if (article) {
+                article._method = 'PUT'
                 this.setState({
                     info: article,
-                    id: article.id
+                    action: action,
+                    id: bookId
                 })
             } else {
                 let now = Date.now()
                 let key = SHA1(AppId + 'UZ' + AppKey + 'UZ' + now) + "." + now
-                let url = AppUrl + 'file'
+                let url = AppUrl + action
                 request
-                    .post(url)
+                    .get(url)
                     .set('X-APICloud-AppId', AppId)
                     .set('X-APICloud-AppKey', key)
-                    .send(data)
                     .end(function (err, res) {
-                        let data = JSON.parse(res.text)
-                        console.log(data)
+                        let article = JSON.parse(res.text)
+                        article._method = 'PUT'
+                        console.log(article)
+                        ConfigActions.update('title', article.title)
+                        // ConfigActions.update(article.id, article)
+                        console.log(6)
+                        this.setState({
+                            info: article,
+                            action: action,
+                            id: bookId,
+                            ids: 'bookId',
+                        })
                     }.bind(this))
             }
         }
@@ -57,17 +73,13 @@ export default class Login extends React.Component {
         }
     }
     render() {
+        console.log(1)
         let info = this.state.info
-        let action = 'article'
-        if (info.id) {
-            action = action + '/' + info.id
-            info._method = 'PUT'
-        }
         return (
             <section className = "container" >
-                <h2 className = "jumbotron-heading" >新增文章</h2>
-                <Form action = {action}
-                    info = {this.state.info}
+                <h2 className = "jumbotron-heading" >新增文章 {this.state.info.title}</h2>
+                <Form action = {this.state.action}
+                    info = {info}
                     onSubmit = {this._onSubmit.bind(this) }>
                     <Input
                         title = '标题'

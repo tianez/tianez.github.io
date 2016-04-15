@@ -28249,6 +28249,7 @@
 
 	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Input).call(this, props));
 
+	        console.log(4);
 	        _this.state = {
 	            value: props.value,
 	            help: props.help
@@ -28257,6 +28258,15 @@
 	    }
 
 	    _createClass(Input, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            console.log(7);
+	            this.setState({
+	                value: this.props.value,
+	                help: this.props.help
+	            });
+	        }
+	    }, {
 	        key: 'componentWillMount',
 	        value: function componentWillMount(value, _onChange) {
 	            var error = false;
@@ -35682,42 +35692,62 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	// var Input = require('../components/forms/Input')
 
-	var Login = function (_React$Component) {
-	    _inherits(Login, _React$Component);
 
-	    function Login(props) {
-	        _classCallCheck(this, Login);
+	var Add = function (_React$Component) {
+	    _inherits(Add, _React$Component);
 
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Login).call(this, props));
+	    function Add(props) {
+	        _classCallCheck(this, Add);
+
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Add).call(this, props));
 
 	        _this.state = {
-	            info: {},
-	            username: '',
-	            password: ''
+	            info: {}
 	        };
 	        return _this;
 	    }
 
-	    _createClass(Login, [{
+	    _createClass(Add, [{
 	        key: 'componentWillMount',
 	        value: function componentWillMount() {
+	            console.log(3);
+	        }
+	    }, {
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            console.log(2);
+	            var action = 'article';
 	            var bookId = this.props.params.bookId;
 
 	            if (bookId) {
+	                action = action + '/' + bookId;
 	                var article = ConfigStore.get(bookId);
 	                if (article) {
+	                    article._method = 'PUT';
 	                    this.setState({
 	                        info: article,
-	                        id: article.id
+	                        action: action,
+	                        id: bookId
 	                    });
 	                } else {
 	                    var now = Date.now();
 	                    var key = SHA1(AppId + 'UZ' + AppKey + 'UZ' + now) + "." + now;
-	                    var url = AppUrl + 'file';
-	                    _superagent2.default.post(url).set('X-APICloud-AppId', AppId).set('X-APICloud-AppKey', key).send(data).end(function (err, res) {
-	                        var data = JSON.parse(res.text);
-	                        console.log(data);
+	                    var url = AppUrl + action;
+	                    _superagent2.default.get(url).set('X-APICloud-AppId', AppId).set('X-APICloud-AppKey', key).end(function (err, res) {
+	                        var article = JSON.parse(res.text);
+	                        article._method = 'PUT';
+	                        console.log(article);
+	                        ConfigActions.update('title', article.title);
+	                        // ConfigActions.update(article.id, article)
+	                        console.log(6);
+	                        this.setState({
+	                            info: article,
+	                            action: action,
+	                            id: bookId,
+	                            ids: 'bookId'
+	                        });
 	                    }.bind(this));
 	                }
 	            }
@@ -35745,24 +35775,21 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
+	            console.log(1);
 	            var info = this.state.info;
-	            var action = 'article';
-	            if (info.id) {
-	                action = action + '/' + info.id;
-	                info._method = 'PUT';
-	            }
 	            return _react2.default.createElement(
 	                'section',
 	                { className: 'container' },
 	                _react2.default.createElement(
 	                    'h2',
 	                    { className: 'jumbotron-heading' },
-	                    '新增文章'
+	                    '新增文章 ',
+	                    this.state.info.title
 	                ),
 	                _react2.default.createElement(
 	                    _Form2.default,
-	                    { action: action,
-	                        info: this.state.info,
+	                    { action: this.state.action,
+	                        info: info,
 	                        onSubmit: this._onSubmit.bind(this) },
 	                    _react2.default.createElement(_Input2.default, {
 	                        title: '标题',
@@ -35786,10 +35813,10 @@
 	        }
 	    }]);
 
-	    return Login;
+	    return Add;
 	}(_react2.default.Component);
 
-	exports.default = Login;
+	exports.default = Add;
 
 /***/ },
 /* 297 */
