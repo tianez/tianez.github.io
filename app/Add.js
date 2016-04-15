@@ -15,6 +15,31 @@ export default class Login extends React.Component {
             password: '',
         }
     }
+    componentWillMount() {
+        let { bookId } = this.props.params
+        if (bookId) {
+            let article = ConfigStore.get(bookId)
+            if (article) {
+                this.setState({
+                    info: article,
+                    id: article.id
+                })
+            } else {
+                let now = Date.now()
+                let key = SHA1(AppId + 'UZ' + AppKey + 'UZ' + now) + "." + now
+                let url = AppUrl + 'file'
+                request
+                    .post(url)
+                    .set('X-APICloud-AppId', AppId)
+                    .set('X-APICloud-AppKey', key)
+                    .send(data)
+                    .end(function (err, res) {
+                        let data = JSON.parse(res.text)
+                        console.log(data)
+                    }.bind(this))
+            }
+        }
+    }
     _onChange(name, value) {
         let info = this.state.info
         info[name] = value
@@ -23,35 +48,31 @@ export default class Login extends React.Component {
         })
     }
     _onSubmit(data) {
-        ConfigActions.update('title',data.title)
-        ConfigActions.update('msg','发布成功！')
-        let now = Date.now()
-        let key = SHA1(AppId + 'UZ' + AppKey + 'UZ' + now) + "." + now
-        let url = AppUrl + 'article'
-        let filter = { where: {}, skip: 0, limit: 20 }
-        filter = JSON.stringify(filter)
-        request
-            .get(url)
-            .set('X-APICloud-AppId', AppId)
-            .set('X-APICloud-AppKey', key)
-            .query({
-                filter: filter
-            })
-            .end(function(err, res) {
-                let data = JSON.parse(res.text)
-                console.log(data)
-            }.bind(this))
+        ConfigActions.update('title', data.title)
+        ConfigActions.update('msg', '发布成功！')
+        ConfigActions.update(data.id, data)
+        console.log(this.state.id)
+        if (!this.state.id) {
+            window.location.href = '/#/post/' + data.id
+        }
     }
     render() {
+        let info = this.state.info
+        let action = 'article'
+        if (info.id) {
+            action = action + '/' + info.id
+            info._method = 'PUT'
+        }
         return (
             <section className = "container" >
                 <h2 className = "jumbotron-heading" >新增文章</h2>
-                <Form action = 'article'
+                <Form action = {action}
                     info = {this.state.info}
                     onSubmit = {this._onSubmit.bind(this) }>
                     <Input
                         title = '标题'
                         name = 'title'
+                        value = {info.title}
                         placeholder = '标题'
                         help = '请输入标题名'
                         onChange = {this._onChange.bind(this) }
@@ -59,6 +80,7 @@ export default class Login extends React.Component {
                     <Textarea
                         title = '内容'
                         name = 'content'
+                        value = {info.content}
                         placeholder = '内容'
                         help = '内容'
                         onChange = {this._onChange.bind(this) }

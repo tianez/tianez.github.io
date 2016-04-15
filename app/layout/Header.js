@@ -18,7 +18,6 @@ export default class Header extends React.Component {
                     <li className="pure-menu-item"><Link className="pure-menu-link" to="post" activeClassName={"active"}>post</Link></li>
                     <li className="pure-menu-item"><Link className="pure-menu-link" to="login" activeClassName={"active"}>登录</Link></li>
                     <li className="pure-menu-item"><Link className="pure-menu-link" to="add" activeClassName={"active"}>新增文章</Link></li>
-                    <li className="pure-menu-item"><Link className="pure-menu-link" to="/login" activeStyle={{ color: 'red' }}>登录</Link></li>
                 </ul>
             </header>
         )

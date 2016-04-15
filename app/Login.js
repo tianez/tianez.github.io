@@ -22,7 +22,7 @@ export default class Login extends React.Component {
         }) 
     }
     _onSubmit(data) {
-        ConfigActions.login(data)
+        localStorage.user = data
         let now = Date.now()
         let key = SHA1(AppId + 'UZ' + AppKey + 'UZ' + now) + "." + now
         let url = AppUrl + 'user'

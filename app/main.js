@@ -1,9 +1,13 @@
 'use strict'
 
 import React from 'react'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+
 import Header from './layout/Header'
 import Footer from './layout/Footer'
 import Msg from './layout/Msg'
+
+import './app.css'
 
 export default class Main extends React.Component {
     constructor() {
@@ -32,12 +36,16 @@ export default class Main extends React.Component {
         ConfigStore.removeChangeListener(this._onChange.bind(this));
     }
     render() {
+        const { pathname } = this.props.location
+        const key = pathname.split('/')[1] || 'root'
         return (
             <div className = "warper" >
                 <Header />
                 <main id='main' className = "main">
                     <Msg />
-                    {this.props.children}
+                    <ReactCSSTransitionGroup component="div" transitionName="swap" transitionEnterTimeout={500} transitionLeaveTimeout={500}>
+                        {React.cloneElement(this.props.children || <div />, { key: key }) }
+                    </ReactCSSTransitionGroup>
                 </main>
                 <Footer />
             </div>

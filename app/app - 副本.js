@@ -10,7 +10,7 @@ from 'react-router'
 
 window.AppId = 'A6984077246442'
 window.AppKey = '7F7872C0-8EB2-D116-C9AF-AF02A4B65BA0'
-window.AppUrl = 'https://d.apicloud.com/mcm/api/'
+window.AppUrl= 'https://d.apicloud.com/mcm/api/'
 
 /** 
  * action
@@ -37,10 +37,9 @@ import NoMatch from './NoMatch'
 function redirectToLogin(nextState, replace) {
     let pathname = nextState.location.pathname
     let user = localStorage.user ? true : false
-    if (!user && pathname !== '/login') {
+    let exit = ['/', '/add', '/login']
+    if (exit.indexOf(pathname) == -1 && !user) {
         replace({ pathname: '/login' })
-    } else if (pathname == 'login') {
-        replace({ pathname: '/' })
     }
 }
 ReactDom.render((
@@ -53,30 +52,23 @@ ReactDom.render((
         }),
         React.createElement(Route, {
             path: "/",
-            component: Main
+            component: Main,
+            onEnter: redirectToLogin
         },
             React.createElement(IndexRoute, {
                 component: Index
             }),
             React.createElement(Route, {
                 path: "login",
-                component: Login,
-                onEnter: redirectToLogin
+                component: Login
             }),
             React.createElement(Route, {
                 path: "add",
-                component: Add,
-                onEnter: redirectToLogin
-            }),
-            React.createElement(Route, {
-                path: "post/:bookId",
-                component: Add,
-                onEnter: redirectToLogin
+                component: Add
             }),
             React.createElement(Route, {
                 path: "post",
-                component: Post,
-                onEnter: redirectToLogin
+                component: Post
             }),
             React.createElement(Route, {
                 path: "*",
