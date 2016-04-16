@@ -12,7 +12,7 @@ export default class Add extends React.Component {
         super(props);
         this.state = {
             info: {}
-        } 
+        }
     }
     componentWillMount() {
         console.log(3)
@@ -21,6 +21,7 @@ export default class Add extends React.Component {
         console.log(2)
         let action = 'article'
         let { bookId } = this.props.params
+        console.log(bookId)
         if (bookId) {
             action = action + '/' + bookId
             let article = ConfigStore.get(bookId)
@@ -54,6 +55,10 @@ export default class Add extends React.Component {
                         })
                     }.bind(this))
             }
+        } else {
+            this.setState({
+                action: action,
+            })
         }
     }
     _onChange(name, value) {
@@ -76,29 +81,31 @@ export default class Add extends React.Component {
         console.log(1)
         let info = this.state.info
         return (
-            <section className = "container" >
-                <h2 className = "jumbotron-heading" >新增文章 {this.state.info.title}</h2>
-                <Form action = {this.state.action}
-                    info = {info}
-                    onSubmit = {this._onSubmit.bind(this) }>
-                    <Input
-                        title = '标题'
-                        name = 'title'
-                        value = {info.title}
-                        placeholder = '标题'
-                        help = '请输入标题名'
-                        onChange = {this._onChange.bind(this) }
-                        />
-                    <Textarea
-                        title = '内容'
-                        name = 'content'
-                        value = {info.content}
-                        placeholder = '内容'
-                        help = '内容'
-                        onChange = {this._onChange.bind(this) }
-                        />
-                    <Button value="提交" />
-                </Form>
+            <section className='warp'>
+                <section className = "container" >
+                    <h2 className = "jumbotron-heading" >新增文章 {this.state.info.title}</h2>
+                    <Form action = {this.state.action}
+                        info = {info}
+                        onSubmit = {this._onSubmit.bind(this) }>
+                        <Input
+                            title = '标题'
+                            name = 'title'
+                            value = {info.title}
+                            placeholder = '标题'
+                            help = '请输入标题名'
+                            onChange = {this._onChange.bind(this) }
+                            />
+                        <Textarea
+                            title = '内容'
+                            name = 'content'
+                            value = {info.content}
+                            placeholder = '内容'
+                            help = '内容'
+                            onChange = {this._onChange.bind(this) }
+                            />
+                        <Button value="提交" />
+                    </Form>
+                </section>
             </section>
         )
     }

@@ -43,7 +43,7 @@ export default class Main extends React.Component {
                 <Header />
                 <main id='main' className = "main">
                     <Msg />
-                    <ReactCSSTransitionGroup component="div" transitionName="swap" transitionEnterTimeout={500} transitionLeaveTimeout={500}>
+                    <ReactCSSTransitionGroup component="div" className='ww' transitionName="swap" transitionEnterTimeout={500} transitionLeaveTimeout={500}>
                         {React.cloneElement(this.props.children || <div />, { key: key }) }
                     </ReactCSSTransitionGroup>
                 </main>

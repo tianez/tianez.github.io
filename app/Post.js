@@ -10,14 +10,14 @@ import Range from '../components/forms/Range'
 export default class Main extends React.Component {
     constructor(props) {
         super(props)
-    } 
+    }
     render() {
         return (
-            <main id='main' className = "main container" >
-                <section className = "jumbotron" >
+            <section className='warp'>
+                <section className = "container" >
                     <h3 className = "jumbotron-heading" >这是首页21232322</h3>
                 </section>
-            </main>
+            </section>
         )
     }
 }

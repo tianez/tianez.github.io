@@ -10,7 +10,7 @@ import Upload from '../components/forms/Upload'
 
 export default class Main extends React.Component {
     constructor(props) {
-        super(props) 
+        super(props)
         let now = Date.now()
         let key = SHA1(AppId + 'UZ' + AppKey + 'UZ' + now) + "." + now
         let url = AppUrl + 'file'
@@ -22,7 +22,7 @@ export default class Main extends React.Component {
             "filename": "walle.jpg"
         }
         request
-            .post(url) 
+            .post(url)
             .set('X-APICloud-AppId', 'A6984077246442')
             .set('X-APICloud-AppKey', key)
             .send(data)
@@ -33,12 +33,12 @@ export default class Main extends React.Component {
     }
     render() {
         return (
-            <main id='main' className = "main container" >
-                <section className = "jumbotron" >
+            <section className='warp'>
+                <section className = "container" >
                     <h3 className = "jumbotron-heading" >这是首页212</h3>
+                    <Upload />
                 </section>
-                <Upload />
-            </main>
+            </section>
         )
     }
 }

@@ -6,7 +6,7 @@ export default class Header extends React.Component {
         let msg = ConfigStore.getMsg()
         return (msg ?
             <section className = "container" >
-                msgs {msg}
+                {msg}
             </section> : null
         )
     }
