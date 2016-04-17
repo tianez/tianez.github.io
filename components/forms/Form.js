@@ -1,6 +1,6 @@
 'use strict'
 import React from 'react'
-import request from 'superagent'
+import Apicloud from '../utils/Apicloud'
 import classNames from 'classnames';
 
 export default class Form extends React.Component {
@@ -15,19 +15,11 @@ export default class Form extends React.Component {
         if (this.props.locked) {
             return;
         }
-        let now = Date.now()
-        let key = SHA1(AppId + 'UZ' + AppKey + 'UZ' + now) + "." + now
-        let url = AppUrl + this.props.action
-        request
-            .post(url)
-            .set('X-APICloud-AppId', AppId)
-            .set('X-APICloud-AppKey', key)
-            .send(this.props.info)
-            .end(function (err, res) {
-                let data = JSON.parse(res.text)
-                console.log(data)
-                this.props.onSubmit(data)
-            }.bind(this))
+        Apicloud.post(this.props.action, this.props.info, function (err, res) {
+            let data = JSON.parse(res.text)
+            console.log(res)
+            this.props.onSubmit(data)
+        }.bind(this))
     }
     render() {
         return (
