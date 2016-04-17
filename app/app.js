@@ -27,9 +27,10 @@ window.ConfigStore = require('./flux/ConfigStore')
 /** 
  * 路由
  */
-import Main from './main'
+import Layout from './Layout'
 import Index from './Index'
 import Login from './Login'
+import Logout from './Logout'
 import Add from './Add'
 import Post from './Post'
 import NoMatch from './NoMatch'
@@ -39,7 +40,7 @@ function redirectToLogin(nextState, replace) {
     console.log(pathname)
     let user = localStorage.user ? true : false
     if (!user && pathname !== '/login') {
-        ConfigActions.update('msg','你还没有登录，请先登录！')
+        ConfigActions.update('msg', '你还没有登录，请先登录！')
         replace({ pathname: '/login' })
     } else if (user && pathname == '/login') {
         replace({ pathname: '/' })
@@ -53,39 +54,15 @@ ReactDom.render((
             path: "add2",
             component: Add
         }),
-        React.createElement(Route, {
-            path: "/",
-            component: Main
-        },
-            React.createElement(IndexRoute, {
-                component: Index
-            }),
-            React.createElement(Route, {
-                path: "login",
-                component: Login,
-                onEnter: redirectToLogin
-            }),
-            React.createElement(Route, {
-                path: "add",
-                component: Add,
-                onEnter: redirectToLogin
-            }),
-            React.createElement(Route, {
-                path: "post/:bookId",
-                component: Add,
-                onEnter: redirectToLogin
-            }),
-            React.createElement(Route, {
-                path: "post",
-                component: Post,
-                onEnter: redirectToLogin
-            }),
-            React.createElement(Route, {
-                path: "*",
-                component: NoMatch
-            })
+        React.createElement(Route, { path: "/", component: Layout },
+            React.createElement(IndexRoute, { component: Index }),
+            React.createElement(Route, { path: "login", component: Login, onEnter: redirectToLogin }),
+            React.createElement(Route, { path: "logout", component: Logout }),
+            React.createElement(Route, { path: "add", component: Add, onEnter: redirectToLogin }),
+            React.createElement(Route, { path: "post/:bookId", component: Add, onEnter: redirectToLogin }),
+            React.createElement(Route, { path: "post", component: Post, onEnter: redirectToLogin }),
+            React.createElement(Route, { path: "*", component: NoMatch })
         )
-
     )
 ),
     document.getElementById('app')

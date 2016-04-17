@@ -1,6 +1,7 @@
 'use strict';
 import React from 'react';
 import request from 'superagent'
+import Apicloud from '../components/utils/Apicloud'
 import Form from '../components/forms/Form'
 import Input from '../components/forms/Input'
 // var Input = require('../components/forms/Input')
@@ -15,13 +16,11 @@ export default class Add extends React.Component {
         }
     }
     componentWillMount() {
-        console.log(3)
+
     }
     componentDidMount() {
-        console.log(2)
         let action = 'article'
         let { bookId } = this.props.params
-        console.log(bookId)
         if (bookId) {
             action = action + '/' + bookId
             let article = ConfigStore.get(bookId)
@@ -33,27 +32,20 @@ export default class Add extends React.Component {
                     id: bookId
                 })
             } else {
-                let now = Date.now()
-                let key = SHA1(AppId + 'UZ' + AppKey + 'UZ' + now) + "." + now
-                let url = AppUrl + action
-                request
-                    .get(url)
-                    .set('X-APICloud-AppId', AppId)
-                    .set('X-APICloud-AppKey', key)
-                    .end(function (err, res) {
-                        let article = JSON.parse(res.text)
-                        article._method = 'PUT'
-                        console.log(article)
-                        ConfigActions.update('title', article.title)
-                        // ConfigActions.update(article.id, article)
-                        console.log(6)
-                        this.setState({
-                            info: article,
-                            action: action,
-                            id: bookId,
-                            ids: 'bookId',
-                        })
-                    }.bind(this))
+                Apicloud.get(action, '', function (err, res) {
+                    let article = JSON.parse(res.text)
+                    article._method = 'PUT'
+                    console.log(article)
+                    ConfigActions.update('title', article.title)
+                    // ConfigActions.update(article.id, article)
+                    console.log(6)
+                    this.setState({
+                        info: article,
+                        action: action,
+                        id: bookId,
+                        ids: 'bookId',
+                    })
+                }.bind(this))
             }
         } else {
             this.setState({

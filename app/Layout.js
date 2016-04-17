@@ -1,18 +1,16 @@
 'use strict'
 
 import React from 'react'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import Header from './layout/Header'
+import Main from './layout/Main'
 import Footer from './layout/Footer'
-import Msg from './layout/Msg'
 
 import './app.css'
 
-export default class Main extends React.Component {
+export default class Layout extends React.Component {
     constructor() {
-        super();
-        this.state = { value: 'sdsdsds' };
+        super()
         // localStorage.lastname="Smith";
         // sessionStorage.name = 'sdsd'
     }
@@ -20,7 +18,7 @@ export default class Main extends React.Component {
         let config = ConfigStore.getAll()
         console.log(config)
         window.document.title = config.title
-        this.setState(config);
+        this.setState(config)
     }
     componentWillMount() {
 
@@ -36,17 +34,12 @@ export default class Main extends React.Component {
         ConfigStore.removeChangeListener(this._onChange.bind(this));
     }
     render() {
-        const { pathname } = this.props.location
-        const key = pathname.split('/')[1] || 'root'
         return (
             <div className = "warper" >
                 <Header />
-                <main id='main' className = "main">
-                    <Msg />
-                    <ReactCSSTransitionGroup component="div" className='ww' transitionName="swap" transitionEnterTimeout={500} transitionLeaveTimeout={500}>
-                        {React.cloneElement(this.props.children || <div />, { key: key }) }
-                    </ReactCSSTransitionGroup>
-                </main>
+                <Main location = {this.props.location} >
+                    {this.props.children}
+                </Main>
                 <Footer />
             </div>
         )

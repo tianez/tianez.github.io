@@ -1,6 +1,5 @@
 'use strict';
 import React from 'react';
-import request from 'superagent'
 import Form from '../components/forms/Form'
 import Input from '../components/forms/Input'
 import Button from '../components/forms/Button'
@@ -19,26 +18,11 @@ export default class Login extends React.Component {
         info[name] = value
         this.setState({
             info: info
-        }) 
+        })
     }
     _onSubmit(data) {
-        localStorage.user = data
-        let now = Date.now()
-        let key = SHA1(AppId + 'UZ' + AppKey + 'UZ' + now) + "." + now
-        let url = AppUrl + 'user'
-        let filter = { where: {}, skip: 0, limit: 20 }
-        filter = JSON.stringify(filter)
-        request
-            .get(url)
-            .set('X-APICloud-AppId', AppId)
-            .set('X-APICloud-AppKey', key)
-            .query({
-                filter: filter
-            })
-            .end(function(err, res) {
-                let data = JSON.parse(res.text)
-                console.log(data)
-            }.bind(this))
+        localStorage.user = JSON.stringify(data)
+        window.location.href = '/#/'
     }
     render() {
         return (
