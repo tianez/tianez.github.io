@@ -28,6 +28,7 @@ export default class Form extends React.Component {
                 encType= 'multipart/form-data'
                 onSubmit={this.handleSubmit.bind(this) } >
                 <fieldset className='form-fieldset'>
+                    <legend className='form-legend'>{this.props.legend}</legend>
                     {this.props.children}
                 </fieldset>
             </form>

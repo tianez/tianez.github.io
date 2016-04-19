@@ -38,7 +38,6 @@ export default class Add extends React.Component {
                     console.log(article)
                     ConfigActions.update('title', article.title)
                     // ConfigActions.update(article.id, article)
-                    console.log(6)
                     this.setState({
                         info: article,
                         action: action,
@@ -62,43 +61,39 @@ export default class Add extends React.Component {
     }
     _onSubmit(data) {
         ConfigActions.update('title', data.title)
-        ConfigActions.update('msg', '发布成功！')
         ConfigActions.update(data.id, data)
-        console.log(this.state.id)
         if (!this.state.id) {
+            ConfigActions.update('msg', '发布成功！')
             window.location.href = '/#/post/' + data.id
+        }else {
+            ConfigActions.update('msg', '保存成功！')
         }
     }
     render() {
-        console.log(1)
         let info = this.state.info
         return (
-            <section className='warp'>
-                <section className = "container" >
-                    <h2 className = "jumbotron-heading" >新增文章 {this.state.info.title}</h2>
-                    <Form action = {this.state.action}
-                        info = {info}
-                        onSubmit = {this._onSubmit.bind(this) }>
-                        <Input
-                            title = '标题'
-                            name = 'title'
-                            value = {info.title}
-                            placeholder = '标题'
-                            help = '请输入标题名'
-                            onChange = {this._onChange.bind(this) }
-                            />
-                        <Textarea
-                            title = '内容'
-                            name = 'content'
-                            value = {info.content}
-                            placeholder = '内容'
-                            help = '内容'
-                            onChange = {this._onChange.bind(this) }
-                            />
-                        <Button value="提交" />
-                    </Form>
-                </section>
-            </section>
+            <Form action = {this.state.action}
+                info = {info}
+                legend = '新增文章'
+                onSubmit = {this._onSubmit.bind(this) }>
+                <Input
+                    title = '标题'
+                    name = 'title'
+                    value = {info.title}
+                    placeholder = '标题'
+                    help = '请输入标题名'
+                    onChange = {this._onChange.bind(this) }
+                    />
+                <Textarea
+                    title = '内容'
+                    name = 'content'
+                    value = {info.content}
+                    placeholder = '内容'
+                    help = '内容'
+                    onChange = {this._onChange.bind(this) }
+                    />
+                <Button value="提交" />
+            </Form>
         )
     }
 }

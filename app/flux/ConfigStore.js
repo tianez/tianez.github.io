@@ -7,7 +7,8 @@ var CHANGE_EVENT = 'config';
 
 var _todos = {
     transition: 'example',
-    msg: 'nihaoadeasds23',
+    msg: '',
+    msg_n: 0,
     loading: 1,
     title: '王的理想乡'
 };

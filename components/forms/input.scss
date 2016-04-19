@@ -1,7 +1,15 @@
 
 .form-fields {
+    position:   absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     .form-fieldset{
-        padding-top: 25px;
+        padding-top: 45px;
+    }
+    .form-legend {
+        padding: 0 15px;
+        font-size: 18px;
     }
 }
 .form-group {

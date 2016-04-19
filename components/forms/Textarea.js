@@ -47,8 +47,13 @@ export default class Textarea extends React.Component {
         if (success || !this.props.required && _onChange) {
             if(this.props.onChange){
                 this.props.onChange(this.props.name, value)
-            }
+            } 
         }
+    }
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            value: nextProps.value,
+        })
     }
     _onChange(e) {
         let value = e.target.value.replace(/(^\s*)|(\s*$)/, "")
@@ -89,9 +94,7 @@ export default class Textarea extends React.Component {
                         placeholder={this.props.placeholder}
                         disabled={this.props.disabled}
                         autoComplete={this.props.autocomplete}
-                        onChange={this._onChange.bind(this) }
-                        onFocus={this._onChange.bind(this) }
-                        onBlur={this._onChange.bind(this) } />
+                        onChange={this._onChange.bind(this) } />
                     <span className={helpClass}>{this.state.help}</span>
                 </div>
             </div>

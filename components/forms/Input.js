@@ -8,14 +8,12 @@ export
     default class Input extends React.Component {
     constructor(props) {
         super(props)
-        console.log(4)
         this.state = {
             value: props.value,
-            help: props.help,
+            help: props.help
         }
     }
     componentDidMount() {
-        console.log(7)
         this.setState({
             value: this.props.value,
             help: this.props.help
@@ -68,6 +66,11 @@ export
             }
         }
     }
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            value: nextProps.value,
+        })
+    }
     _onChange(e) {
         let value = e.target.value.replace(/(^\s*)|(\s*$)/g, "")
         this.componentWillMount(value, true)
@@ -79,9 +82,9 @@ export
             'has-warning': this.state.warning,
             'has-success': this.state.success
         })
-        let limit = ''
+        let limit = ' ' + this.state.length
         if (this.props.max) {
-            limit = ' ' + this.state.length + ' / ' + this.props.max
+            limit += ' / ' + this.props.max
         }
         let limitClass = classNames({
             'form-ico fa': true,
@@ -106,9 +109,7 @@ export
                         disabled={this.props.disabled}
                         autoComplete={this.props.autocomplete}
                         value={this.state.value}
-                        onChange={this._onChange.bind(this) }
-                        onFocus={this._onChange.bind(this) }
-                        onBlur={this._onChange.bind(this) } />
+                        onChange={this._onChange.bind(this) } />
                     <span className={helpClass}>{this.state.help}</span>
                 </div>
             </div>

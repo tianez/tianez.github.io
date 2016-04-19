@@ -13,8 +13,7 @@ export default class Login extends React.Component {
             let data = JSON.parse(res.text)
             console.log(data)
         }.bind(this))
-        console.log(localStorage.user)
-        localStorage.removeItem(user)
+        localStorage.removeItem('user') 
         window.location.href = '/#/'
     }
     render() {

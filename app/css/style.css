@@ -19,6 +19,7 @@ input:focus {
 .container {
   width: 1180px;
   margin: 0 auto;
+  position: relative;
 }
 .pure-menu-fixed ~ .main {
   padding-top: 4rem;

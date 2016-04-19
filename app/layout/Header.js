@@ -9,16 +9,22 @@ export default class Header extends React.Component {
         super(props)
     }
     render() {
+        let user = localStorage.user ? true : false
+        let islogin
+        if (user) {
+            islogin = <li className="pure-menu-item"><Link className="pure-menu-link" to="/logout" activeClassName={"active"}>登出</Link></li>
+        } else {
+            islogin = <li className="pure-menu-item"><Link className="pure-menu-link" to="/login" activeClassName={"active"}>登录</Link></li>
+        }
         const ACTIVE = { color: 'red' }
-        return ( 
+        return (
             <header id="header" className="pure-menu pure-menu-horizontal pure-menu-fixed">
                 <a href="#" className="pure-menu-heading pure-menu-link">我的理想乡</a>
                 <ul className="pure-menu-list">
-                    <li className="pure-menu-item"><Link className="pure-menu-link" to="/" activeClassName={"active"}>首页</Link></li>
+                    <li className="pure-menu-item"><Link className="pure-menu-link" to="/#/" activeClassName={"active"}>首页</Link></li>
                     <li className="pure-menu-item"><Link className="pure-menu-link" to="/post" activeClassName={"active"}>post</Link></li>
-                    <li className="pure-menu-item"><Link className="pure-menu-link" to="/login" activeClassName={"active"}>登录</Link></li>
-                    <li className="pure-menu-item"><Link className="pure-menu-link" to="/logout" activeClassName={"active"}>登出</Link></li>
                     <li className="pure-menu-item"><Link className="pure-menu-link" to="/add" activeClassName={"active"}>新增文章</Link></li>
+                    {islogin}
                 </ul>
             </header>
         )
