@@ -6,6 +6,7 @@ import Form from '../components/forms/Form'
 import Input from '../components/forms/Input'
 // var Input = require('../components/forms/Input')
 import Textarea from '../components/forms/Textarea'
+import Radio from '../components/forms/Radio'
 import Button from '../components/forms/Button'
 
 export default class Add extends React.Component {
@@ -92,6 +93,7 @@ export default class Add extends React.Component {
                     help = '内容'
                     onChange = {this._onChange.bind(this) }
                     />
+                <Radio /> 
                 <Button value="提交" />
             </Form>
         )
