@@ -85,11 +85,11 @@
 
 	var _Add2 = _interopRequireDefault(_Add);
 
-	var _Post = __webpack_require__(300);
+	var _Post = __webpack_require__(301);
 
 	var _Post2 = _interopRequireDefault(_Post);
 
-	var _NoMatch = __webpack_require__(301);
+	var _NoMatch = __webpack_require__(302);
 
 	var _NoMatch2 = _interopRequireDefault(_NoMatch);
 
@@ -103,13 +103,13 @@
 	 * action
 	 */
 	// import ConfigActions from './flux/ConfigActions'
-	window.ConfigActions = __webpack_require__(302);
+	window.ConfigActions = __webpack_require__(303);
 
 	/** 
 	 * store
 	 */
 	// import ConfigStore from './flux/ConfigStore'
-	window.ConfigStore = __webpack_require__(307);
+	window.ConfigStore = __webpack_require__(308);
 
 	/** 
 	 * 路由
@@ -132,7 +132,7 @@
 	}, _react2.default.createElement(_reactRouter.Route, {
 	    path: "add2",
 	    component: _Add2.default
-	}), _react2.default.createElement(_reactRouter.Route, { path: "/", component: _Layout2.default }, _react2.default.createElement(_reactRouter.IndexRoute, { component: _Index2.default }), _react2.default.createElement(_reactRouter.Route, { path: "login", component: _Login2.default, onEnter: redirectToLogin }), _react2.default.createElement(_reactRouter.Route, { path: "logout", component: _Logout2.default }), _react2.default.createElement(_reactRouter.Route, { path: "add", component: _Add2.default, onEnter: redirectToLogin }), _react2.default.createElement(_reactRouter.Route, { path: "post/:bookId", component: _Add2.default, onEnter: redirectToLogin }), _react2.default.createElement(_reactRouter.Route, { path: "post", component: _Post2.default, onEnter: redirectToLogin }), _react2.default.createElement(_reactRouter.Route, { path: "*", component: _NoMatch2.default }))), document.getElementById('app'));
+	}), _react2.default.createElement(_reactRouter.Route, { path: "/", component: _Layout2.default }, _react2.default.createElement(_reactRouter.IndexRoute, { component: _Index2.default }), _react2.default.createElement(_reactRouter.Route, { path: "login", component: _Login2.default, onEnter: redirectToLogin }), _react2.default.createElement(_reactRouter.Route, { path: "logout", component: _Logout2.default }), _react2.default.createElement(_reactRouter.Route, { path: "add", component: _Add2.default, onEnter: redirectToLogin }), _react2.default.createElement(_reactRouter.Route, { path: "post", component: _Post2.default, onEnter: redirectToLogin }, _react2.default.createElement(_reactRouter.Route, { path: "add", component: _Add2.default, onEnter: redirectToLogin }), _react2.default.createElement(_reactRouter.Route, { path: ":bookId", component: _Add2.default })), _react2.default.createElement(_reactRouter.Route, { path: "*", component: _NoMatch2.default }))), document.getElementById('app'));
 
 /***/ },
 /* 2 */
@@ -25741,6 +25741,29 @@
 	    _createClass(Header, [{
 	        key: 'render',
 	        value: function render() {
+	            var user = localStorage.user ? true : false;
+	            var islogin = void 0;
+	            if (user) {
+	                islogin = _react2.default.createElement(
+	                    'li',
+	                    { className: 'pure-menu-item' },
+	                    _react2.default.createElement(
+	                        Link,
+	                        { className: 'pure-menu-link', to: '/logout', activeClassName: "active" },
+	                        '登出'
+	                    )
+	                );
+	            } else {
+	                islogin = _react2.default.createElement(
+	                    'li',
+	                    { className: 'pure-menu-item' },
+	                    _react2.default.createElement(
+	                        Link,
+	                        { className: 'pure-menu-link', to: '/login', activeClassName: "active" },
+	                        '登录'
+	                    )
+	                );
+	            }
 	            var ACTIVE = { color: 'red' };
 	            return _react2.default.createElement(
 	                'header',
@@ -25758,7 +25781,7 @@
 	                        { className: 'pure-menu-item' },
 	                        _react2.default.createElement(
 	                            Link,
-	                            { className: 'pure-menu-link', to: '/', activeClassName: "active" },
+	                            { className: 'pure-menu-link', to: '/#/', activeClassName: "active" },
 	                            '首页'
 	                        )
 	                    ),
@@ -25776,28 +25799,11 @@
 	                        { className: 'pure-menu-item' },
 	                        _react2.default.createElement(
 	                            Link,
-	                            { className: 'pure-menu-link', to: '/login', activeClassName: "active" },
-	                            '登录'
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        'li',
-	                        { className: 'pure-menu-item' },
-	                        _react2.default.createElement(
-	                            Link,
-	                            { className: 'pure-menu-link', to: '/logout', activeClassName: "active" },
-	                            '登出'
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        'li',
-	                        { className: 'pure-menu-item' },
-	                        _react2.default.createElement(
-	                            Link,
 	                            { className: 'pure-menu-link', to: '/add', activeClassName: "active" },
 	                            '新增文章'
 	                        )
-	                    )
+	                    ),
+	                    islogin
 	                )
 	            );
 	        }
@@ -26705,10 +26711,13 @@
 	    _createClass(Header, [{
 	        key: 'render',
 	        value: function render() {
+	            var style = {
+	                lineHeight: '40px'
+	            };
 	            var msg = ConfigStore.getMsg();
 	            return msg ? _react2.default.createElement(
 	                'section',
-	                { className: 'container' },
+	                { className: 'container', style: style },
 	                msg
 	            ) : null;
 	        }
@@ -28408,7 +28417,6 @@
 
 	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Input).call(this, props));
 
-	        console.log(4);
 	        _this.state = {
 	            value: props.value,
 	            help: props.help
@@ -28419,7 +28427,6 @@
 	    _createClass(Input, [{
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
-	            console.log(7);
 	            this.setState({
 	                value: this.props.value,
 	                help: this.props.help
@@ -28475,6 +28482,13 @@
 	            }
 	        }
 	    }, {
+	        key: 'componentWillReceiveProps',
+	        value: function componentWillReceiveProps(nextProps) {
+	            this.setState({
+	                value: nextProps.value
+	            });
+	        }
+	    }, {
 	        key: '_onChange',
 	        value: function _onChange(e) {
 	            var value = e.target.value.replace(/(^\s*)|(\s*$)/g, "");
@@ -28489,9 +28503,9 @@
 	                'has-warning': this.state.warning,
 	                'has-success': this.state.success
 	            });
-	            var limit = '';
+	            var limit = ' ' + this.state.length;
 	            if (this.props.max) {
-	                limit = ' ' + this.state.length + ' / ' + this.props.max;
+	                limit += ' / ' + this.props.max;
 	            }
 	            var limitClass = (0, _classnames2.default)({
 	                'form-ico fa': true,
@@ -28527,9 +28541,7 @@
 	                        disabled: this.props.disabled,
 	                        autoComplete: this.props.autocomplete,
 	                        value: this.state.value,
-	                        onChange: this._onChange.bind(this),
-	                        onFocus: this._onChange.bind(this),
-	                        onBlur: this._onChange.bind(this) }),
+	                        onChange: this._onChange.bind(this) }),
 	                    _react2.default.createElement(
 	                        'span',
 	                        { className: helpClass },
@@ -28677,7 +28689,7 @@
 
 
 	// module
-	exports.push([module.id, ".form-fields .form-fieldset {\n  padding-top: 25px; }\n\n.form-group {\n  position: relative;\n  width: 100%;\n  max-width: 800px;\n  padding: 0 15px;\n  margin-bottom: 15px; }\n  .form-group .form-label {\n    color: #333;\n    font-size: 14px;\n    line-height: 32px;\n    height: 32px;\n    display: block; }\n  .form-group .form-control {\n    position: relative; }\n  .form-group .form-input, .form-group .form-textarea {\n    display: block;\n    width: 100%;\n    margin: 0;\n    padding: 6px 12px;\n    font-size: 14px;\n    line-height: 1.42857143;\n    color: #555;\n    background-color: #fff;\n    background-image: none;\n    border: 1px solid #ccc;\n    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;\n    -moz-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;\n    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s; }\n  .form-group .form-input {\n    height: 34px; }\n  .form-group .form-textarea {\n    max-width: 100%;\n    min-width: 100%;\n    min-height: 72px;\n    word-wrap: break-word;\n    overflow-x: hidden;\n    overflow-y: auto;\n    _overflow-y: visible; }\n  .form-group .form-range {\n    width: 100%;\n    margin: 0;\n    display: block;\n    height: 34px;\n    padding: 6px 0; }\n  .form-group .form-help {\n    display: block;\n    margin: 5px 0;\n    color: #737373;\n    font-size: 14px; }\n  .form-group .form-ico {\n    display: block;\n    position: absolute;\n    z-index: 3;\n    float: right;\n    right: 8px;\n    margin: 10px 2px 4px 10px;\n    min-width: 16px;\n    height: 16px;\n    line-height: 16px;\n    color: #ccc;\n    font-style: normal; }\n\n@media screen and (min-width: 480px) {\n  .form-horizontal .form-label {\n    padding-right: 10px;\n    float: left;\n    width: 100px;\n    text-align: right;\n    position: absolute;\n    top: 0; }\n  .form-horizontal .form-control {\n    padding-left: 100px; } }\n\n.has-error .form-input, .has-error .form-textarea, .has-warning .form-input, .has-warning .form-textarea {\n  color: #a94442;\n  border-color: #ebccd1; }\n\n.has-error .form-label, .has-error .form-ico, .has-error .form-help, .has-warning .form-label, .has-warning .form-ico, .has-warning .form-help {\n  color: #a94442; }\n\n.has-success .form-input, .has-success .form-textarea {\n  color: #3c763d;\n  border-color: #3c763d; }\n\n.has-success .form-ico, .has-success .form-help {\n  color: #3c763d; }\n", ""]);
+	exports.push([module.id, ".form-fields {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%; }\n  .form-fields .form-fieldset {\n    padding-top: 45px; }\n  .form-fields .form-legend {\n    padding: 0 15px;\n    font-size: 18px; }\n\n.form-group {\n  position: relative;\n  width: 100%;\n  max-width: 800px;\n  padding: 0 15px;\n  margin-bottom: 15px; }\n  .form-group .form-label {\n    color: #333;\n    font-size: 14px;\n    line-height: 32px;\n    height: 32px;\n    display: block; }\n  .form-group .form-control {\n    position: relative; }\n  .form-group .form-input, .form-group .form-textarea {\n    display: block;\n    width: 100%;\n    margin: 0;\n    padding: 6px 12px;\n    font-size: 14px;\n    line-height: 1.42857143;\n    color: #555;\n    background-color: #fff;\n    background-image: none;\n    border: 1px solid #ccc;\n    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;\n    -moz-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;\n    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s; }\n  .form-group .form-input {\n    height: 34px; }\n  .form-group .form-textarea {\n    max-width: 100%;\n    min-width: 100%;\n    min-height: 72px;\n    word-wrap: break-word;\n    overflow-x: hidden;\n    overflow-y: auto;\n    _overflow-y: visible; }\n  .form-group .form-range {\n    width: 100%;\n    margin: 0;\n    display: block;\n    height: 34px;\n    padding: 6px 0; }\n  .form-group .form-help {\n    display: block;\n    margin: 5px 0;\n    color: #737373;\n    font-size: 14px; }\n  .form-group .form-ico {\n    display: block;\n    position: absolute;\n    z-index: 3;\n    float: right;\n    right: 8px;\n    margin: 10px 2px 4px 10px;\n    min-width: 16px;\n    height: 16px;\n    line-height: 16px;\n    color: #ccc;\n    font-style: normal; }\n\n@media screen and (min-width: 480px) {\n  .form-horizontal .form-label {\n    padding-right: 10px;\n    float: left;\n    width: 100px;\n    text-align: right;\n    position: absolute;\n    top: 0; }\n  .form-horizontal .form-control {\n    padding-left: 100px; } }\n\n.has-error .form-input, .has-error .form-textarea, .has-warning .form-input, .has-warning .form-textarea {\n  color: #a94442;\n  border-color: #ebccd1; }\n\n.has-error .form-label, .has-error .form-ico, .has-error .form-help, .has-warning .form-label, .has-warning .form-ico, .has-warning .form-help {\n  color: #a94442; }\n\n.has-success .form-input, .has-success .form-textarea {\n  color: #3c763d;\n  border-color: #3c763d; }\n\n.has-success .form-ico, .has-success .form-help {\n  color: #3c763d; }\n", ""]);
 
 	// exports
 
@@ -28768,6 +28780,13 @@
 	            }
 	        }
 	    }, {
+	        key: 'componentWillReceiveProps',
+	        value: function componentWillReceiveProps(nextProps) {
+	            this.setState({
+	                value: nextProps.value
+	            });
+	        }
+	    }, {
 	        key: '_onChange',
 	        value: function _onChange(e) {
 	            var value = e.target.value.replace(/(^\s*)|(\s*$)/, "");
@@ -28821,9 +28840,7 @@
 	                        placeholder: this.props.placeholder,
 	                        disabled: this.props.disabled,
 	                        autoComplete: this.props.autocomplete,
-	                        onChange: this._onChange.bind(this),
-	                        onFocus: this._onChange.bind(this),
-	                        onBlur: this._onChange.bind(this) }),
+	                        onChange: this._onChange.bind(this) }),
 	                    _react2.default.createElement(
 	                        'span',
 	                        { className: helpClass },
@@ -35580,9 +35597,7 @@
 	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Login).call(this, props));
 
 	        _this.state = {
-	            info: {},
-	            username: '',
-	            password: ''
+	            info: {}
 	        };
 	        return _this;
 	    }
@@ -35605,24 +35620,22 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var info = this.state.info;
 	            return _react2.default.createElement(
 	                'section',
 	                { className: 'container' },
 	                _react2.default.createElement(
-	                    'h2',
-	                    { className: 'jumbotron-heading' },
-	                    '登录'
-	                ),
-	                _react2.default.createElement(
 	                    _Form2.default,
 	                    { action: 'user/login',
 	                        info: this.state.info,
+	                        legend: '登录',
 	                        onSubmit: this._onSubmit.bind(this) },
 	                    _react2.default.createElement(_Input2.default, {
 	                        title: '用户名',
 	                        name: 'username',
 	                        placeholder: '输入你的用户名',
 	                        help: '输入你的用户名',
+	                        value: info.username,
 	                        onChange: this._onChange.bind(this)
 	                    }),
 	                    _react2.default.createElement(_Input2.default, {
@@ -35631,6 +35644,7 @@
 	                        name: 'password',
 	                        placeholder: '输入你的密码',
 	                        help: '输入你的密码',
+	                        value: info.password,
 	                        onChange: this._onChange.bind(this)
 	                    }),
 	                    _react2.default.createElement(_Button2.default, { value: '提交' })
@@ -35715,6 +35729,11 @@
 	                _react2.default.createElement(
 	                    'fieldset',
 	                    { className: 'form-fieldset' },
+	                    _react2.default.createElement(
+	                        'legend',
+	                        { className: 'form-legend' },
+	                        this.props.legend
+	                    ),
 	                    this.props.children
 	                )
 	            );
@@ -35884,8 +35903,7 @@
 	            var data = JSON.parse(res.text);
 	            console.log(data);
 	        }.bind(_this));
-	        console.log(localStorage.user);
-	        localStorage.removeItem(user);
+	        localStorage.removeItem('user');
 	        window.location.href = '/#/';
 	        return _this;
 	    }
@@ -35937,6 +35955,10 @@
 	var _Textarea = __webpack_require__(248);
 
 	var _Textarea2 = _interopRequireDefault(_Textarea);
+
+	var _Radio = __webpack_require__(300);
+
+	var _Radio2 = _interopRequireDefault(_Radio);
 
 	var _Button = __webpack_require__(297);
 
@@ -35992,7 +36014,6 @@
 	                        console.log(article);
 	                        ConfigActions.update('title', article.title);
 	                        // ConfigActions.update(article.id, article)
-	                        console.log(6);
 	                        this.setState({
 	                            info: article,
 	                            action: action,
@@ -36020,54 +36041,42 @@
 	        key: '_onSubmit',
 	        value: function _onSubmit(data) {
 	            ConfigActions.update('title', data.title);
-	            ConfigActions.update('msg', '发布成功！');
 	            ConfigActions.update(data.id, data);
-	            console.log(this.state.id);
 	            if (!this.state.id) {
+	                ConfigActions.update('msg', '发布成功！');
 	                window.location.href = '/#/post/' + data.id;
+	            } else {
+	                ConfigActions.update('msg', '保存成功！');
 	            }
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            console.log(1);
 	            var info = this.state.info;
 	            return _react2.default.createElement(
-	                'section',
-	                { className: 'warp' },
-	                _react2.default.createElement(
-	                    'section',
-	                    { className: 'container' },
-	                    _react2.default.createElement(
-	                        'h2',
-	                        { className: 'jumbotron-heading' },
-	                        '新增文章 ',
-	                        this.state.info.title
-	                    ),
-	                    _react2.default.createElement(
-	                        _Form2.default,
-	                        { action: this.state.action,
-	                            info: info,
-	                            onSubmit: this._onSubmit.bind(this) },
-	                        _react2.default.createElement(_Input2.default, {
-	                            title: '标题',
-	                            name: 'title',
-	                            value: info.title,
-	                            placeholder: '标题',
-	                            help: '请输入标题名',
-	                            onChange: this._onChange.bind(this)
-	                        }),
-	                        _react2.default.createElement(_Textarea2.default, {
-	                            title: '内容',
-	                            name: 'content',
-	                            value: info.content,
-	                            placeholder: '内容',
-	                            help: '内容',
-	                            onChange: this._onChange.bind(this)
-	                        }),
-	                        _react2.default.createElement(_Button2.default, { value: '提交' })
-	                    )
-	                )
+	                _Form2.default,
+	                { action: this.state.action,
+	                    info: info,
+	                    legend: '新增文章',
+	                    onSubmit: this._onSubmit.bind(this) },
+	                _react2.default.createElement(_Input2.default, {
+	                    title: '标题',
+	                    name: 'title',
+	                    value: info.title,
+	                    placeholder: '标题',
+	                    help: '请输入标题名',
+	                    onChange: this._onChange.bind(this)
+	                }),
+	                _react2.default.createElement(_Textarea2.default, {
+	                    title: '内容',
+	                    name: 'content',
+	                    value: info.content,
+	                    placeholder: '内容',
+	                    help: '内容',
+	                    onChange: this._onChange.bind(this)
+	                }),
+	                _react2.default.createElement(_Radio2.default, null),
+	                _react2.default.createElement(_Button2.default, { value: '提交' })
 	            );
 	        }
 	    }]);
@@ -36093,9 +36102,129 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _superagent = __webpack_require__(236);
+	var _classnames = __webpack_require__(243);
 
-	var _superagent2 = _interopRequireDefault(_superagent);
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Checkbox = function (_React$Component) {
+	    _inherits(Checkbox, _React$Component);
+
+	    function Checkbox(props) {
+	        _classCallCheck(this, Checkbox);
+
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Checkbox).call(this, props));
+
+	        _this.state = {
+	            value: props.value,
+	            help: props.help
+	        };
+	        return _this;
+	    }
+
+	    _createClass(Checkbox, [{
+	        key: 'componentWillMount',
+	        value: function componentWillMount(value, _onChange) {}
+	    }, {
+	        key: 'componentWillReceiveProps',
+	        value: function componentWillReceiveProps(nextProps) {
+	            this.setState({
+	                value: nextProps.value
+	            });
+	        }
+	    }, {
+	        key: '_onChange',
+	        value: function _onChange(e) {
+	            console.log(e.target.value);
+	            // let value = e.target.value.replace(/(^\s*)|(\s*$)/, "")
+	            // this.componentWillMount(value, true)
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var type = this.props.type;
+	            var value = this.state.value;
+	            var name = this.props.name;
+	            var options = this.props.options.map(function (d, index) {
+	                var checked = false;
+	                if (type == 'radio' && value == d.value) {
+	                    checked = true;
+	                } else if (type == 'checkbox' && value.indexOf(d.value) > -1) {
+	                    checked = true;
+	                }
+	                var Class = (0, _classnames2.default)({
+	                    'checkbox': true,
+	                    'checked': checked
+	                });
+	                return _react2.default.createElement(
+	                    'div',
+	                    { className: Class, key: index },
+	                    _react2.default.createElement(
+	                        'label',
+	                        null,
+	                        _react2.default.createElement('input', { type: type, name: name, value: d.value, onClick: this._onChange.bind(this) }),
+	                        d.title
+	                    )
+	                );
+	            }.bind(this));
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                options
+	            );
+	        }
+	    }]);
+
+	    return Checkbox;
+	}(_react2.default.Component);
+
+	exports.default = Checkbox;
+
+
+	Checkbox.defaultProps = {
+	    title: '多选框',
+	    type: 'radio',
+	    options: [{ title: 'duuxnasd', value: 1 }, { title: 'duuxnasd2', value: 3 }],
+	    value: 3,
+	    name: 'name',
+	    placeholder: '',
+	    help: '',
+	    disabled: '',
+	    required: 'required'
+	};
+
+/***/ },
+/* 301 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(6);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactAddonsCssTransitionGroup = __webpack_require__(224);
+
+	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
+
+	var _reactRouter = __webpack_require__(164);
+
+	var _Apicloud = __webpack_require__(296);
+
+	var _Apicloud2 = _interopRequireDefault(_Apicloud);
 
 	var _Input = __webpack_require__(242);
 
@@ -36125,12 +36254,51 @@
 	    function Main(props) {
 	        _classCallCheck(this, Main);
 
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Main).call(this, props));
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Main).call(this, props));
+
+	        _this.state = {
+	            info: {}
+	        };
+	        return _this;
 	    }
 
 	    _createClass(Main, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            var filter = { where: {}, skip: 0, limit: 20 };
+	            _Apicloud2.default.get('article', filter, function (err, res) {
+	                var data = JSON.parse(res.text);
+	                console.log(data);
+	                this.setState({
+	                    info: data
+	                });
+	            }.bind(this));
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var pp = void 0;
+	            var active = {
+	                color: '#f00'
+	            };
+	            if (this.state.info.length > 0) {
+	                pp = this.state.info.map(function (d) {
+	                    var url = '/post/' + d.id;
+	                    return _react2.default.createElement(
+	                        'li',
+	                        { key: d.id },
+	                        _react2.default.createElement(
+	                            _reactRouter.Link,
+	                            { to: url, activeStyle: active },
+	                            d.title
+	                        )
+	                    );
+	                });
+	            } else {
+	                pp = '';
+	            }
+	            var pathname = this.props.location.pathname;
+
 	            return _react2.default.createElement(
 	                'section',
 	                { className: 'warp' },
@@ -36140,8 +36308,24 @@
 	                    _react2.default.createElement(
 	                        'h3',
 	                        { className: 'jumbotron-heading' },
-	                        '这是首页21232322'
+	                        '文章管理'
 	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'section',
+	                    { className: 'container' },
+	                    _react2.default.createElement(
+	                        'ul',
+	                        null,
+	                        pp
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    _reactAddonsCssTransitionGroup2.default,
+	                    {
+	                        component: 'section', className: 'container', transitionName: 'swap',
+	                        transitionEnterTimeout: 500, transitionLeaveTimeout: 500 },
+	                    _react2.default.cloneElement(this.props.children || _react2.default.createElement('div', null), { key: pathname })
 	                )
 	            );
 	        }
@@ -36153,7 +36337,7 @@
 	exports.default = Main;
 
 /***/ },
-/* 301 */
+/* 302 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36177,12 +36361,12 @@
 	module.exports = App;
 
 /***/ },
-/* 302 */
+/* 303 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var AppDispatcher = __webpack_require__(303);
+	var AppDispatcher = __webpack_require__(304);
 
 	var ConfigActions = {
 
@@ -36204,7 +36388,7 @@
 	module.exports = ConfigActions;
 
 /***/ },
-/* 303 */
+/* 304 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36222,12 +36406,12 @@
 	 * A singleton that operates as the central hub for application updates.
 	 */
 
-	var Dispatcher = __webpack_require__(304).Dispatcher;
+	var Dispatcher = __webpack_require__(305).Dispatcher;
 
 	module.exports = new Dispatcher();
 
 /***/ },
-/* 304 */
+/* 305 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36241,10 +36425,10 @@
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 */
 
-	module.exports.Dispatcher = __webpack_require__(305);
+	module.exports.Dispatcher = __webpack_require__(306);
 
 /***/ },
-/* 305 */
+/* 306 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -36270,7 +36454,7 @@
 	  }
 	}
 
-	var invariant = __webpack_require__(306);
+	var invariant = __webpack_require__(307);
 
 	var _prefix = 'ID_';
 
@@ -36485,7 +36669,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
 
 /***/ },
-/* 306 */
+/* 307 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -36540,12 +36724,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
 
 /***/ },
-/* 307 */
+/* 308 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var AppDispatcher = __webpack_require__(303);
+	var AppDispatcher = __webpack_require__(304);
 	var EventEmitter = __webpack_require__(264).EventEmitter;
 	var assign = __webpack_require__(258);
 
@@ -36553,7 +36737,8 @@
 
 	var _todos = {
 	    transition: 'example',
-	    msg: 'nihaoadeasds23',
+	    msg: '',
+	    msg_n: 0,
 	    loading: 1,
 	    title: '王的理想乡'
 	};
