@@ -20,6 +20,7 @@
   "dependencies": {
     "font-awesome": "~4.5.0",
     "animate.css": "~3.5.0",
-    "normalize-css": "~4.0.0"
+    "normalize-css": "~4.0.0",
+    "jquery.uniform": "^2.2.0"
   }
 }

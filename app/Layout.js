@@ -14,7 +14,7 @@ export default class Layout extends React.Component {
         // localStorage.lastname="Smith";
         // sessionStorage.name = 'sdsd'
     }
-    _onChange() {
+    _onChange() { 
         let config = ConfigStore.getAll()
         console.log(config)
         window.document.title = config.title

@@ -10,15 +10,31 @@ export default class Checkbox extends React.Component {
             help: props.help,
         }
     }
-    componentWillMount(value, _onChange) {
-    }
+    componentWillMount(value, _onChange) { }
     componentWillReceiveProps(nextProps) {
         this.setState({
             value: nextProps.value,
         })
     }
     _onChange(e) {
-        console.log(e.target.value)
+        let type = this.props.type
+        let v = parseInt(e.target.value)
+        let value
+        if (type == 'checkbox') {
+            value = this.state.value
+            let index = value.indexOf(v)
+            if (index == -1) {
+                value.push(v)
+            } else {
+                value.splice(index, 1)
+            }
+        } else {
+            value = v
+        }
+        console.log(value)
+        this.setState({
+            value: value
+        })
         // let value = e.target.value.replace(/(^\s*)|(\s*$)/, "")
         // this.componentWillMount(value, true)
     }
@@ -27,39 +43,53 @@ export default class Checkbox extends React.Component {
         let value = this.state.value
         let name = this.props.name
         let options = this.props.options.map(function (d, index) {
-            let checked = false
+            let checked = ''
             if (type == 'radio' && value == d.value) {
-                checked = true
-            } else if (type == 'checkbox' && value.indexOf(d.value) > -1) {
-                checked = true
+                checked = 'checked'
+            } else if (type == 'checkbox') {
+                if( value.indexOf(d.value) > -1){
+                    checked = 'checked'
+                }
             }
-            let Class = classNames({
-                'checkbox': true,
-                'checked': checked
-            })
+            let typeClass = type == 'radio' ? 'radio' : 'checker'
             return (
-                <div className={Class} key = {index}>
-                    <label>
-                        <input type={type} name={name} value={d.value} onClick ={this._onChange.bind(this) } />
-                        {d.title}
-                    </label>
-                </div>
+                <label className="form-radio" key={index}>
+                    <div className={typeClass}>
+                        <span className = {checked}>
+                            <input type={type} name={name} value={d.value} checked={checked} onChange ={this._onChange.bind(this) } />
+                        </span>
+                    </div>
+                    <span>{d.title}</span>
+                </label>
             )
         }.bind(this))
         return (
-            <div>{options}</div>
+            <div className='form-group form-horizontal animated bounceInRight'>
+                <label className="form-label">{this.props.title}</label>
+                <div className="form-control">
+                    {options}
+                </div>
+            </div>
         )
     }
 }
 
 Checkbox.defaultProps = {
     title: '多选框',
-    type: 'radio',
+    type: 'checkbox',
+    // type: 'radio',
+    value: [2],
+    // value: 2,
     options: [
-        { title: 'duuxnasd', value: 1 },
-        { title: 'duuxnasd2', value: 3 }
+        {
+            title: '选项1',
+            value: 1
+        },
+        {
+            title: '选项2',
+            value: 2
+        }
     ],
-    value: 3,
     name: 'name',
     placeholder: '',
     help: '',

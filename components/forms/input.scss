@@ -18,6 +18,7 @@
     max-width: 800px;
     padding: 0 15px;
     margin-bottom: 15px;
+    line-height: 32px;
     .form-label {
         color: #333;
         font-size: 14px;
@@ -65,11 +66,15 @@
         height: 34px;
         padding: 6px 0;
     }
+    .form-radio {
+        margin-right: 15px;
+    }
     .form-help {
         display: block;
         margin: 5px 0;
         color: #737373;
         font-size: 14px;
+        line-height: 20px;
     }
     .form-ico {
         display: block;
