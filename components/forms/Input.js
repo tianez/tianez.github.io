@@ -5,19 +5,13 @@ import Regs from '../utils/regs';
 import './input.scss'
 
 export
-    default class Input extends React.Component {
+default class Input extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             value: props.value,
-            help: props.help
+            help: props.help,
         }
-    }
-    componentDidMount() {
-        this.setState({
-            value: this.props.value,
-            help: this.props.help
-        })
     }
     componentWillMount(value, _onChange) {
         let error = false
@@ -69,6 +63,7 @@ export
     componentWillReceiveProps(nextProps) {
         this.setState({
             value: nextProps.value,
+            length: nextProps.value.length,
         })
     }
     _onChange(e) {

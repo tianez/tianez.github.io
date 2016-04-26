@@ -28293,14 +28293,6 @@
 	    }
 
 	    _createClass(Input, [{
-	        key: 'componentDidMount',
-	        value: function componentDidMount() {
-	            this.setState({
-	                value: this.props.value,
-	                help: this.props.help
-	            });
-	        }
-	    }, {
 	        key: 'componentWillMount',
 	        value: function componentWillMount(value, _onChange) {
 	            var error = false;
@@ -28353,7 +28345,8 @@
 	        key: 'componentWillReceiveProps',
 	        value: function componentWillReceiveProps(nextProps) {
 	            this.setState({
-	                value: nextProps.value
+	                value: nextProps.value,
+	                length: nextProps.value.length
 	            });
 	        }
 	    }, {
@@ -28651,7 +28644,8 @@
 	        key: 'componentWillReceiveProps',
 	        value: function componentWillReceiveProps(nextProps) {
 	            this.setState({
-	                value: nextProps.value
+	                value: nextProps.value,
+	                length: nextProps.value.length
 	            });
 	        }
 	    }, {

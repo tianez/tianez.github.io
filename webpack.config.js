@@ -11,34 +11,32 @@ module.exports = {
         filename: 'build/bundle.js'
     },
     module: {
-        loaders: [
-            {
-                test: /\.jsx?$/, // 用正则来匹配文件路径，这段意思是匹配 js 或者 jsx
-                loader: 'babel', // 加载模块 "babel" 是 "babel-loader" 的缩写
-                query: {
-                    //添加两个presents 使用这两种presets处理js或者jsx文件
-                    presets: ['es2015', 'react']
-                }
-            }, { //css
-                test: /\.css$/, // Only .css files
-                loader: ExtractTextPlugin.extract("style-loader", "css-loader")
-                // loader: 'style!css' // Run both loaders
-            }, { // LESS
-                test: /\.less$/,
-                loader: 'style!css!less'
-            }, { // SASS
-                test: /\.scss$/,
-                loader: 'style!css!sass'
-            }, { //图片
-                test: /\.(png|jpg)$/,
-                // loader: 'url?limit=25000',
-                loader: 'url?limit=25000&name=app/img/[name].[ext]',
-
+        loaders: [{
+            test: /\.jsx?$/, // 用正则来匹配文件路径，这段意思是匹配 js 或者 jsx
+            loader: 'babel', // 加载模块 "babel" 是 "babel-loader" 的缩写
+            query: {
+                //添加两个presents 使用这两种presets处理js或者jsx文件
+                presets: ['es2015', 'react']
             }
-        ],
-        postLoaders: [
-            { loader: "transform?brfs" }
-        ]
+        }, { //css
+            test: /\.css$/, // Only .css files
+            loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+                // loader: 'style!css' // Run both loaders
+        }, { // LESS
+            test: /\.less$/,
+            loader: 'style!css!less'
+        }, { // SASS
+            test: /\.scss$/,
+            loader: 'style!css!sass'
+        }, { //图片
+            test: /\.(png|jpg)$/,
+            // loader: 'url?limit=25000',
+            loader: 'url?limit=50000&name=app/img/[name].[ext]',
+
+        }],
+        postLoaders: [{
+            loader: "transform?brfs"
+        }]
     },
     plugins: [
         new ExtractTextPlugin("app.css")

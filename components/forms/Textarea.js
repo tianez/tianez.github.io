@@ -45,14 +45,15 @@ export default class Textarea extends React.Component {
             success: success,
         })
         if (success || !this.props.required && _onChange) {
-            if(this.props.onChange){
+            if (this.props.onChange) {
                 this.props.onChange(this.props.name, value)
-            } 
+            }
         }
     }
-    componentWillReceiveProps(nextProps){
+    componentWillReceiveProps(nextProps) {
         this.setState({
             value: nextProps.value,
+            length: nextProps.value.length,
         })
     }
     _onChange(e) {
