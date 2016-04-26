@@ -21,7 +21,9 @@ export default class Add extends React.Component {
     }
     componentDidMount() {
         let action = 'article'
-        let { bookId } = this.props.params
+        let {
+            bookId
+        } = this.props.params
         if (bookId) {
             action = action + '/' + bookId
             let article = ConfigStore.get(bookId)
@@ -33,12 +35,12 @@ export default class Add extends React.Component {
                     id: bookId
                 })
             } else {
-                Apicloud.get(action, '', function (err, res) {
+                Apicloud.get(action, '', function(err, res) {
                     let article = JSON.parse(res.text)
                     article._method = 'PUT'
                     console.log(article)
                     ConfigActions.update('title', article.title)
-                    // ConfigActions.update(article.id, article)
+                        // ConfigActions.update(article.id, article)
                     this.setState({
                         info: article,
                         action: action,
@@ -66,7 +68,7 @@ export default class Add extends React.Component {
         if (!this.state.id) {
             ConfigActions.update('msg', '发布成功！')
             window.location.href = '/#/post/' + data.id
-        }else {
+        } else {
             ConfigActions.update('msg', '保存成功！')
         }
     }
