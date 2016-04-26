@@ -8,9 +8,12 @@ var sass = require('gulp-sass')
 var csscomb = require('gulp-csscomb')
 var postcss = require('gulp-postcss')
 var autoprefixer = require('autoprefixer')
-var cssmin = require('gulp-minify-css')
+var cssmin = require('gulp-minify-css') //css压缩
+var uglify = require('gulp-uglify') //js压缩
+var concat = require('gulp-concat') //文件合并
+
 var sourcemaps = require('gulp-sourcemaps')
-var rename = require('gulp-rename')
+var rename = require('gulp-rename') //文件更名
 
 var webpackConfig = require('./webpack.config')
 
@@ -18,7 +21,9 @@ gulp.task('Less', function() {
     gulp.src('app/less/style.less')
         .pipe(sourcemaps.init())
         .pipe(less())
-        .pipe(postcss([autoprefixer({ browsers: ['last 2 versions'] })]))
+        .pipe(postcss([autoprefixer({
+            browsers: ['last 2 versions']
+        })]))
         // .pipe(csscomb())
         .pipe(gulp.dest('app/css/'))
         .pipe(sourcemaps.write())
@@ -35,9 +40,26 @@ gulp.task('Sass', function() {
         .pipe(sass())
         .pipe(sourcemaps.write())
         .pipe(cssmin({
-            compatibility: 'ie7'//兼容IE7及以下需设置compatibility属性
+            compatibility: 'ie7' //兼容IE7及以下需设置compatibility属性
         }))
         .pipe(gulp.dest('app/css/'))
+})
+
+// 合并、压缩js文件
+gulp.task('js', function() {
+    return gulp.src(
+            [
+                'components/utils/SHA1.js',
+                'components/utils/CryptoJS.js'
+            ]
+        )
+        .pipe(concat('ext.js'))
+        .pipe(gulp.dest('/'))
+        .pipe(rename({
+            suffix: '.min'
+        }))
+        .pipe(uglify())
+        .pipe(gulp.dest(''))
 })
 
 gulp.task("webpack", function() {
