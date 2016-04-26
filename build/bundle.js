@@ -25632,46 +25632,52 @@
 	                    )
 	                );
 	            }
-	            var ACTIVE = { color: 'red' };
+	            var ACTIVE = {
+	                color: 'red'
+	            };
 	            return _react2.default.createElement(
 	                'header',
 	                { id: 'header', className: 'pure-menu pure-menu-horizontal pure-menu-fixed' },
 	                _react2.default.createElement(
-	                    'a',
-	                    { href: '#', className: 'pure-menu-heading pure-menu-link' },
-	                    '我的理想乡'
-	                ),
-	                _react2.default.createElement(
-	                    'ul',
-	                    { className: 'pure-menu-list' },
+	                    'div',
+	                    { className: 'container' },
 	                    _react2.default.createElement(
-	                        'li',
-	                        { className: 'pure-menu-item' },
-	                        _react2.default.createElement(
-	                            Link,
-	                            { className: 'pure-menu-link', to: '/#/', activeClassName: "active" },
-	                            '首页'
-	                        )
+	                        'a',
+	                        { href: '#', className: 'pure-menu-heading pure-menu-link' },
+	                        '我的理想乡'
 	                    ),
 	                    _react2.default.createElement(
-	                        'li',
-	                        { className: 'pure-menu-item' },
+	                        'ul',
+	                        { className: 'pure-menu-list' },
 	                        _react2.default.createElement(
-	                            Link,
-	                            { className: 'pure-menu-link', to: '/post', activeClassName: "active" },
-	                            'post'
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        'li',
-	                        { className: 'pure-menu-item' },
+	                            'li',
+	                            { className: 'pure-menu-item' },
+	                            _react2.default.createElement(
+	                                Link,
+	                                { className: 'pure-menu-link', to: '/#/', activeClassName: "active" },
+	                                '首页'
+	                            )
+	                        ),
 	                        _react2.default.createElement(
-	                            Link,
-	                            { className: 'pure-menu-link', to: '/add', activeClassName: "active" },
-	                            '新增文章'
-	                        )
-	                    ),
-	                    islogin
+	                            'li',
+	                            { className: 'pure-menu-item' },
+	                            _react2.default.createElement(
+	                                Link,
+	                                { className: 'pure-menu-link', to: '/post', activeClassName: "active" },
+	                                'post'
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'li',
+	                            { className: 'pure-menu-item' },
+	                            _react2.default.createElement(
+	                                Link,
+	                                { className: 'pure-menu-link', to: '/add', activeClassName: "active" },
+	                                '新增文章'
+	                            )
+	                        ),
+	                        islogin
+	                    )
 	                )
 	            );
 	        }
