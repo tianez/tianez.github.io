@@ -70,7 +70,10 @@ export default class Add extends React.Component {
     render() {
         let info = this.state.info
         return (
-            <Form action = {this.state.action}
+            <section className='warp'>
+                <section className = "container" >
+                    <h3 className = "jumbotron-heading" >文章管理</h3>
+                    <Form action = {this.state.action}
                 info = {info}
                 legend = '新增文章'
                 onSubmit = {this._onSubmit.bind(this) }>
@@ -93,6 +96,9 @@ export default class Add extends React.Component {
                 <Radio /> 
                 <Button value="提交" />
             </Form>
+                </section>
+               
+            </section>
         )
     }
 }

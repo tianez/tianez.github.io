@@ -1,6 +1,7 @@
 'use strict';
 import React from 'react';
 import {Form, Input, Button} from '../../components/forms/index'
+import './Login.less'
 
 export default class Login extends React.Component {
     constructor(props) {
@@ -8,7 +9,7 @@ export default class Login extends React.Component {
         this.state = {
             info: {}
         }
-    }
+    } 
     _onChange(name, value) {
         let info = this.state.info
         info[name] = value
@@ -23,7 +24,7 @@ export default class Login extends React.Component {
     render() {
         let info = this.state.info
         return (
-            <section className='warp'>
+            <section className='warp login'>
                 <section className = "container" >
                     <Form action = 'user/login'
                         info = {this.state.info}

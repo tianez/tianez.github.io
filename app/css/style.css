@@ -31,6 +31,14 @@ input:focus {
   left: 0;
   bottom: 0;
 }
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+.pure-g [class*="pure-u"] {
+  padding: 0 15px;
+}
 .swap-enter {
   opacity: 0.01;
   -webkit-transform: translateX(5em);
