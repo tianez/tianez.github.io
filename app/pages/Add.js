@@ -1,13 +1,8 @@
 'use strict';
 import React from 'react';
 import request from 'superagent'
-import Apicloud from '../components/utils/Apicloud'
-import Form from '../components/forms/Form'
-import Input from '../components/forms/Input'
-// var Input = require('../components/forms/Input')
-import Textarea from '../components/forms/Textarea'
-import Radio from '../components/forms/Radio'
-import Button from '../components/forms/Button'
+import Apicloud from '../../components/utils/Apicloud'
+import {Form,Input,Textarea,Radio,Button} from '../../components/forms/index'
 
 export default class Add extends React.Component {
     constructor(props) {
@@ -17,7 +12,7 @@ export default class Add extends React.Component {
         }
     }
     componentWillMount() {
-
+ 
     }
     componentDidMount() {
         let action = 'article'

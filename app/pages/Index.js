@@ -3,10 +3,7 @@
 import React from 'react'
 import request from 'superagent'
 // var request = require('superagent')
-import Input from '../components/forms/Input'
-import Textarea from '../components/forms/Textarea'
-import Range from '../components/forms/Range'
-import Upload from '../components/forms/Upload'
+import {Input,Upload} from '../../components/forms/index'
 
 export default class Main extends React.Component {
     constructor(props) {

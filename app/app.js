@@ -28,12 +28,13 @@ window.ConfigStore = require('./flux/ConfigStore')
  * 路由
  */
 import Layout from './Layout'
-import Index from './Index'
-import Login from './Login'
-import Logout from './Logout'
-import Add from './Add'
-import Post from './Post'
-import NoMatch from './NoMatch'
+import Index from './pages/Index'
+import Page from './pages/Page'
+import Login from './pages/Login'
+import Logout from './pages/Logout'
+import Add from './pages/Add'
+import Post from './pages/Post'
+import NoMatch from './pages/NoMatch'
 
 function redirectToLogin(nextState, replace) {
     let pathname = nextState.location.pathname
@@ -50,12 +51,9 @@ ReactDom.render((
     React.createElement(Router, {
         history: hashHistory
     },
-        React.createElement(Route, {
-            path: "add2",
-            component: Add
-        }),
         React.createElement(Route, { path: "/", component: Layout },
             React.createElement(IndexRoute, { component: Index }),
+            React.createElement(Route, { path: "page", component: Page }),
             React.createElement(Route, { path: "login", component: Login, onEnter: redirectToLogin }),
             React.createElement(Route, { path: "logout", component: Logout }),
             React.createElement(Route, { path: "add", component: Add, onEnter: redirectToLogin }),

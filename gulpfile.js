@@ -78,7 +78,7 @@ gulp.task('webserver', function() {
 
 gulp.task('watch', function() {
     // livereload.listen();
-    gulp.watch(['app/less/*.less'], ['Less']);
+    gulp.watch(['app/**/*.less'], ['Less']);
     // gulp.watch(['app/sass/*.scss'], ['Sass']);
     gulp.watch(
         ['app/*.js',

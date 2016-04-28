@@ -2,16 +2,8 @@
 
 import React from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import {
-    Link
-}
-from 'react-router'
-
-import Apicloud from '../components/utils/Apicloud'
-// var request = require('superagent')
-import Input from '../components/forms/Input'
-import Textarea from '../components/forms/Textarea'
-import Range from '../components/forms/Range'
+import {Link} from 'react-router'
+import Apicloud from '../../components/utils/Apicloud'
 
 export default class Main extends React.Component {
     constructor(props) {
@@ -31,17 +23,17 @@ export default class Main extends React.Component {
         }.bind(this))
     }
     render() {
-        let pp
+        let lists
         let active = {
             color: '#f00'
         }
         if (this.state.info.length > 0) {
-            pp = this.state.info.map(function (d) {
+            lists = this.state.info.map(function (d) {
                 let url = '/post/' + d.id
                 return <li key={d.id}><Link to={url} activeStyle={active} >{d.title}</Link></li>
             })
         } else {
-            pp = ''
+            lists = ''
         }
         const { pathname } = this.props.location
         return (
@@ -51,7 +43,7 @@ export default class Main extends React.Component {
                 </section>
                 <section className = "container" >
                     <ul>
-                        {pp}
+                        {lists}
                     </ul>
                 </section>
                 <ReactCSSTransitionGroup

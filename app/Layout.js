@@ -6,7 +6,7 @@ import Header from './layout/Header'
 import Main from './layout/Main'
 import Footer from './layout/Footer'
 
-import './app.css'
+// import './app.css'
 
 export default class Layout extends React.Component {
     constructor() {
@@ -22,7 +22,7 @@ export default class Layout extends React.Component {
     }
     componentWillMount() {
 
-    }
+    } 
     componentDidMount() {
         ConfigStore.addChangeListener(this._onChange.bind(this));
     }
