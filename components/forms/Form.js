@@ -23,7 +23,7 @@ export default class Form extends React.Component {
     }
     render() {
         return (
-            <form className="form-fields"
+            <form className="form-fields form-horizontal"
                 role = 'form'
                 encType= 'multipart/form-data'
                 onSubmit={this.handleSubmit.bind(this) } >

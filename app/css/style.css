@@ -16,9 +16,11 @@ input:focus {
 .warp {
   position: absolute;
   width: 100%;
+  padding-bottom: 5rem;
 }
 .container {
-  width: 1180px;
+  width: 100%;
+  max-width: 1180px;
   margin: 0 auto;
   position: relative;
 }

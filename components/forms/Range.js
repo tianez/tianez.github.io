@@ -31,7 +31,7 @@ export default class Range extends React.Component {
     }
     render() {
         let Class = classNames({
-            'form-group form-horizontal animated bounceInRight': true,
+            'form-group animated bounceInRight': true,
         })
         let helpClass = classNames({
             'form-help': true,

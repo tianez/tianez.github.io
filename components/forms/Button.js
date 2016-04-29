@@ -8,7 +8,7 @@ export default class Botton extends React.Component {
     }
     render() {
         let Class = classNames({
-            'form-group form-horizontal animated bounceInRight': true,
+            'form-group animated bounceInRight': true,
         })
         return (
             <div className={Class}>

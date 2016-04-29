@@ -1,6 +1,7 @@
 'use strict'
 
 import React from 'react'
+import classNames from 'classnames';
 import ajaxUpload from '../utils/AjaxUpload'
 import {getUpToken} from '../utils/Qiniu'
 import Canvas from './Canvas'
@@ -17,6 +18,7 @@ export default class Upload extends React.Component {
         this.state = {
             files: [],
             thumbs: '1',
+            help: props.help,
         }
     }
     _onChange(e) {
@@ -57,25 +59,43 @@ export default class Upload extends React.Component {
         })
     }
     render() {
-        console.log(this.state.files)
+        let Class = classNames({
+            'form-group animated bounceInRight': true,
+        })
+        let helpClass = classNames({
+            'form-help': true,
+        })
         let thumbs
         if (this.state.files.length > 0) {
             thumbs = this.state.files.map(function (file,index) {
                 return (
-                    <Canvas src={file.thumb} key= {index} />
+                    <Canvas className='form-canva' src={file.thumb} key= {index} />
                 )
             })
         } else {
             thumbs = ''
         }
         return (
-            <section className = "jumbotron" >
-                <h3 className = "jumbotron-heading" >上传</h3>
-                <li><label htmlFor="bucket">照片: {this.state.thumbs} </label>
+            <div className={Class}>
+                <label className="form-label">{this.props.title}</label>
+                <div className="form-control">
                     <input id="file" name="file" onChange={this._onChange.bind(this) } className="ipt" type="file" />
-                </li>
-                {thumbs}
-            </section>
+                    <div className='form-canvas'>
+                    {thumbs}
+                    </div>
+                    <span className={helpClass}>{this.state.help}</span>
+                </div>
+            </div>
         )
     }
+}
+
+Upload.defaultProps = {
+    title: '上传图片',
+    value: '',
+    help: '滑动滑条选择你的值！',
+    disabled: '',
+    required: 'required',
+    max: 10,
+    min: 6,
 }

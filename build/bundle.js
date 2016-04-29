@@ -25753,7 +25753,8 @@
 	                    _reactAddonsCssTransitionGroup2.default,
 	                    { component: 'div', className: 'swap', transitionName: 'swap', transitionEnterTimeout: 500, transitionLeaveTimeout: 500 },
 	                    _react2.default.cloneElement(this.props.children || _react2.default.createElement('div', null), { key: key })
-	                )
+	                ),
+	                _react2.default.createElement('div', { className: 'clear' })
 	            );
 	        }
 	    }]);
@@ -28804,7 +28805,7 @@
 	        value: function render() {
 	            return _react2.default.createElement(
 	                'form',
-	                { className: 'form-fields',
+	                { className: 'form-fields form-horizontal',
 	                    role: 'form',
 	                    encType: 'multipart/form-data',
 	                    onSubmit: this.handleSubmit.bind(this) },
@@ -29048,7 +29049,7 @@
 	        key: 'render',
 	        value: function render() {
 	            var Class = (0, _classnames2.default)({
-	                'form-group form-horizontal animated bounceInRight': true,
+	                'form-group animated bounceInRight': true,
 	                'has-error': this.state.error,
 	                'has-warning': this.state.warning,
 	                'has-success': this.state.success
@@ -29174,7 +29175,7 @@
 
 
 	// module
-	exports.push([module.id, ".form-fields {\n  position: absolute;\n  width: 100%; }\n  .form-fields .form-fieldset {\n    padding-top: 45px; }\n  .form-fields .form-legend {\n    padding: 0 15px;\n    font-size: 18px; }\n\n.form-group {\n  position: relative;\n  width: 100%;\n  max-width: 800px;\n  padding: 0 15px;\n  margin-bottom: 15px;\n  line-height: 32px; }\n  .form-group .form-label {\n    color: #333;\n    font-size: 14px;\n    line-height: 32px;\n    height: 32px;\n    display: block; }\n  .form-group .form-control {\n    position: relative; }\n  .form-group .form-input, .form-group .form-textarea {\n    display: block;\n    width: 100%;\n    margin: 0;\n    padding: 6px 12px;\n    font-size: 14px;\n    line-height: 1.42857143;\n    color: #555;\n    background-color: #fff;\n    background-image: none;\n    border: 1px solid #ccc;\n    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;\n    -moz-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;\n    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s; }\n  .form-group .form-input {\n    height: 34px; }\n  .form-group .form-textarea {\n    max-width: 100%;\n    min-width: 100%;\n    min-height: 72px;\n    word-wrap: break-word;\n    overflow-x: hidden;\n    overflow-y: auto;\n    _overflow-y: visible; }\n  .form-group .form-range {\n    width: 100%;\n    margin: 0;\n    display: block;\n    height: 34px;\n    padding: 6px 0; }\n  .form-group .form-radio {\n    margin-right: 15px; }\n  .form-group .form-help {\n    display: block;\n    margin: 5px 0;\n    color: #737373;\n    font-size: 14px;\n    line-height: 20px; }\n  .form-group .form-ico {\n    display: block;\n    position: absolute;\n    z-index: 3;\n    float: right;\n    right: 8px;\n    margin: 10px 2px 4px 10px;\n    min-width: 16px;\n    height: 16px;\n    line-height: 16px;\n    color: #ccc;\n    font-style: normal; }\n\n@media screen and (min-width: 480px) {\n  .form-horizontal .form-label {\n    padding-right: 10px;\n    float: left;\n    width: 100px;\n    text-align: right;\n    position: absolute;\n    top: 0; }\n  .form-horizontal .form-control {\n    padding-left: 100px; } }\n\n.has-error .form-input, .has-error .form-textarea, .has-warning .form-input, .has-warning .form-textarea {\n  color: #a94442;\n  border-color: #ebccd1; }\n\n.has-error .form-label, .has-error .form-ico, .has-error .form-help, .has-warning .form-label, .has-warning .form-ico, .has-warning .form-help {\n  color: #a94442; }\n\n.has-success .form-input, .has-success .form-textarea {\n  color: #3c763d;\n  border-color: #3c763d; }\n\n.has-success .form-ico, .has-success .form-help {\n  color: #3c763d; }\n", ""]);
+	exports.push([module.id, ".form-fields {\n  width: 100%;\n  padding: 5px; }\n  .form-fields .form-fieldset {\n    padding-top: 45px; }\n  .form-fields .form-legend {\n    padding: 0 15px;\n    font-size: 18px; }\n\n.form-group {\n  position: relative;\n  width: 100%;\n  max-width: 800px;\n  padding: 0 15px;\n  margin-bottom: 15px;\n  line-height: 32px; }\n  .form-group .form-label {\n    color: #333;\n    font-size: 14px;\n    line-height: 32px;\n    height: 32px;\n    display: block; }\n  .form-group .form-control {\n    position: relative; }\n  .form-group .form-input, .form-group .form-textarea {\n    display: block;\n    width: 100%;\n    margin: 0;\n    padding: 6px 12px;\n    font-size: 14px;\n    line-height: 1.42857143;\n    color: #555;\n    background-color: #fff;\n    background-image: none;\n    border: 1px solid #ccc;\n    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;\n    -moz-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;\n    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s; }\n  .form-group .form-input {\n    height: 34px; }\n  .form-group .form-textarea {\n    max-width: 100%;\n    min-width: 100%;\n    min-height: 72px;\n    word-wrap: break-word;\n    overflow-x: hidden;\n    overflow-y: auto;\n    _overflow-y: visible; }\n  .form-group .form-range {\n    width: 100%;\n    margin: 0;\n    display: block;\n    height: 34px;\n    padding: 6px 0; }\n  .form-group .form-radio {\n    margin-right: 15px; }\n  .form-group .form-canvas {\n    width: 100%; }\n    .form-group .form-canvas canvas {\n      display: block;\n      float: left;\n      margin: 3px; }\n  .form-group .form-help {\n    display: block;\n    margin: 5px 0;\n    color: #737373;\n    font-size: 14px;\n    line-height: 20px;\n    clear: both; }\n  .form-group .form-ico {\n    display: block;\n    position: absolute;\n    z-index: 3;\n    float: right;\n    right: 8px;\n    margin: 10px 2px 4px 10px;\n    min-width: 16px;\n    height: 16px;\n    line-height: 16px;\n    color: #ccc;\n    font-style: normal; }\n\n@media screen and (min-width: 480px) {\n  .form-horizontal .form-label {\n    padding-right: 10px;\n    float: left;\n    width: 100px;\n    text-align: right;\n    position: absolute;\n    top: 0; }\n  .form-horizontal .form-control {\n    padding-left: 100px; } }\n\n.has-error .form-input, .has-error .form-textarea, .has-warning .form-input, .has-warning .form-textarea {\n  color: #a94442;\n  border-color: #ebccd1; }\n\n.has-error .form-label, .has-error .form-ico, .has-error .form-help, .has-warning .form-label, .has-warning .form-ico, .has-warning .form-help {\n  color: #a94442; }\n\n.has-success .form-input, .has-success .form-textarea {\n  color: #3c763d;\n  border-color: #3c763d; }\n\n.has-success .form-ico, .has-success .form-help {\n  color: #3c763d; }\n", ""]);
 
 	// exports
 
@@ -29282,7 +29283,7 @@
 	        key: 'render',
 	        value: function render() {
 	            var Class = (0, _classnames2.default)({
-	                'form-group form-horizontal animated bounceInRight': true,
+	                'form-group animated bounceInRight': true,
 	                'has-error': this.state.error,
 	                'has-warning': this.state.warning,
 	                'has-success': this.state.success
@@ -35586,6 +35587,10 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _classnames = __webpack_require__(253);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
 	var _AjaxUpload = __webpack_require__(302);
 
 	var _AjaxUpload2 = _interopRequireDefault(_AjaxUpload);
@@ -35620,7 +35625,8 @@
 
 	        _this.state = {
 	            files: [],
-	            thumbs: '1'
+	            thumbs: '1',
+	            help: props.help
 	        };
 	        return _this;
 	    }
@@ -35667,36 +35673,43 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            console.log(this.state.files);
+	            var Class = (0, _classnames2.default)({
+	                'form-group animated bounceInRight': true
+	            });
+	            var helpClass = (0, _classnames2.default)({
+	                'form-help': true
+	            });
 	            var thumbs = void 0;
 	            if (this.state.files.length > 0) {
 	                thumbs = this.state.files.map(function (file, index) {
-	                    return _react2.default.createElement(_Canvas2.default, { src: file.thumb, key: index });
+	                    return _react2.default.createElement(_Canvas2.default, { className: 'form-canva', src: file.thumb, key: index });
 	                });
 	            } else {
 	                thumbs = '';
 	            }
 	            return _react2.default.createElement(
-	                'section',
-	                { className: 'jumbotron' },
+	                'div',
+	                { className: Class },
 	                _react2.default.createElement(
-	                    'h3',
-	                    { className: 'jumbotron-heading' },
-	                    '上传'
+	                    'label',
+	                    { className: 'form-label' },
+	                    this.props.title
 	                ),
 	                _react2.default.createElement(
-	                    'li',
-	                    null,
+	                    'div',
+	                    { className: 'form-control' },
+	                    _react2.default.createElement('input', { id: 'file', name: 'file', onChange: this._onChange.bind(this), className: 'ipt', type: 'file' }),
 	                    _react2.default.createElement(
-	                        'label',
-	                        { htmlFor: 'bucket' },
-	                        '照片: ',
-	                        this.state.thumbs,
-	                        ' '
+	                        'div',
+	                        { className: 'form-canvas' },
+	                        thumbs
 	                    ),
-	                    _react2.default.createElement('input', { id: 'file', name: 'file', onChange: this._onChange.bind(this), className: 'ipt', type: 'file' })
-	                ),
-	                thumbs
+	                    _react2.default.createElement(
+	                        'span',
+	                        { className: helpClass },
+	                        this.state.help
+	                    )
+	                )
 	            );
 	        }
 	    }]);
@@ -35705,6 +35718,17 @@
 	}(_react2.default.Component);
 
 	exports.default = Upload;
+
+
+	Upload.defaultProps = {
+	    title: '上传图片',
+	    value: '',
+	    help: '滑动滑条选择你的值！',
+	    disabled: '',
+	    required: 'required',
+	    max: 10,
+	    min: 6
+	};
 
 /***/ },
 /* 302 */
@@ -36032,7 +36056,7 @@
 	            }.bind(this));
 	            return _react2.default.createElement(
 	                'div',
-	                { className: 'form-group form-horizontal animated bounceInRight' },
+	                { className: 'form-group animated bounceInRight' },
 	                _react2.default.createElement(
 	                    'label',
 	                    { className: 'form-label' },
@@ -36143,7 +36167,7 @@
 	        key: 'render',
 	        value: function render() {
 	            var Class = (0, _classnames2.default)({
-	                'form-group form-horizontal animated bounceInRight': true
+	                'form-group animated bounceInRight': true
 	            });
 	            var helpClass = (0, _classnames2.default)({
 	                'form-help': true
@@ -36234,7 +36258,7 @@
 	        key: 'render',
 	        value: function render() {
 	            var Class = (0, _classnames2.default)({
-	                'form-group form-horizontal animated bounceInRight': true
+	                'form-group animated bounceInRight': true
 	            });
 	            return _react2.default.createElement(
 	                'div',
@@ -36494,6 +36518,16 @@
 	                            onChange: this._onChange.bind(this)
 	                        }),
 	                        _react2.default.createElement(_index.Radio, null),
+	                        _react2.default.createElement(_index.Radio, { type: 'radio', value: '1', title: '状态',
+	                            options: [{
+	                                title: '正常',
+	                                value: 0
+	                            }, {
+	                                title: '关闭',
+	                                value: 1
+	                            }] }),
+	                        _react2.default.createElement(_index.Range, null),
+	                        _react2.default.createElement(_index.Upload, null),
 	                        _react2.default.createElement(_index.Button, { value: '提交' })
 	                    )
 	                )

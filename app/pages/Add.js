@@ -2,7 +2,7 @@
 import React from 'react';
 import request from 'superagent'
 import Apicloud from '../../components/utils/Apicloud'
-import {Form,Input,Textarea,Radio,Button} from '../../components/forms/index'
+import {Form, Input, Textarea, Radio, Upload,Range, Button} from '../../components/forms/index'
 
 export default class Add extends React.Component {
     constructor(props) {
@@ -12,7 +12,7 @@ export default class Add extends React.Component {
         }
     }
     componentWillMount() {
- 
+
     }
     componentDidMount() {
         let action = 'article'
@@ -30,12 +30,12 @@ export default class Add extends React.Component {
                     id: bookId
                 })
             } else {
-                Apicloud.get(action, '', function(err, res) {
+                Apicloud.get(action, '', function (err, res) {
                     let article = JSON.parse(res.text)
                     article._method = 'PUT'
                     console.log(article)
                     ConfigActions.update('title', article.title)
-                        // ConfigActions.update(article.id, article)
+                    // ConfigActions.update(article.id, article)
                     this.setState({
                         info: article,
                         action: action,
@@ -74,30 +74,40 @@ export default class Add extends React.Component {
                 <section className = "container" >
                     <h3 className = "jumbotron-heading" >文章管理</h3>
                     <Form action = {this.state.action}
-                info = {info}
-                legend = '新增文章'
-                onSubmit = {this._onSubmit.bind(this) }>
-                <Input
-                    title = '标题'
-                    name = 'title'
-                    value = {info.title}
-                    placeholder = '标题'
-                    help = '请输入标题名'
-                    onChange = {this._onChange.bind(this) }
-                    />
-                <Textarea
-                    title = '内容'
-                    name = 'content'
-                    value = {info.content}
-                    placeholder = '内容'
-                    help = '内容'
-                    onChange = {this._onChange.bind(this) }
-                    />
-                <Radio /> 
-                <Button value="提交" />
-            </Form>
+                        info = {info}
+                        legend = '新增文章'
+                        onSubmit = {this._onSubmit.bind(this) }>
+                        <Input
+                            title = '标题'
+                            name = 'title'
+                            value = {info.title}
+                            placeholder = '标题'
+                            help = '请输入标题名'
+                            onChange = {this._onChange.bind(this) }
+                            />
+                        <Textarea
+                            title = '内容'
+                            name = 'content'
+                            value = {info.content}
+                            placeholder = '内容'
+                            help = '内容'
+                            onChange = {this._onChange.bind(this) }
+                            />
+                        <Radio />
+                        <Radio type='radio' value='1' title='状态'
+                            options = {[{
+                                title: '正常',
+                                value: 0
+                            }, {
+                                title: '关闭',
+                                value: 1
+                            }]} />
+                        <Range />
+                        <Upload />
+                        <Button value="提交" />
+                    </Form>
                 </section>
-               
+
             </section>
         )
     }

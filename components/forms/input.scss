@@ -1,7 +1,7 @@
 
 .form-fields {
-    position:   absolute;
     width: 100%;
+    padding: 5px;
     .form-fieldset{
         padding-top: 45px;
     }
@@ -67,12 +67,21 @@
     .form-radio {
         margin-right: 15px;
     }
+    .form-canvas {
+        width: 100%;
+        canvas {
+            display: block;
+            float: left;
+            margin: 3px;
+        }
+    }
     .form-help {
         display: block;
         margin: 5px 0;
         color: #737373;
         font-size: 14px;
         line-height: 20px;
+        clear: both;
     }
     .form-ico {
         display: block;

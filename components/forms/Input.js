@@ -72,7 +72,7 @@ default class Input extends React.Component {
     }
     render() {
         let Class = classNames({
-            'form-group form-horizontal animated bounceInRight': true,
+            'form-group animated bounceInRight': true,
             'has-error': this.state.error,
             'has-warning': this.state.warning,
             'has-success': this.state.success
