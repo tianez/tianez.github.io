@@ -1,15 +1,18 @@
 'use strict'
 import React from 'react'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group' 
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import Msg from './Msg'
 
 export default class Main extends React.Component {
     constructor(props) {
         super(props)
-    } 
+    }
     render() {
-        const { pathname } = this.props.location
-        const key = pathname.split('/')[1] || 'root'
+        let {
+            pathname
+        } = this.props.location
+        let pathnames = pathname.split('/')
+        let key = pathnames[pathnames.length-1] || 'root'
         return (
             <main id='main' className = "main">
                 <Msg />

@@ -1,6 +1,5 @@
 'use strict';
 import React from 'react';
-
 import './page.less'
 
 export default class Login extends React.Component {
@@ -9,8 +8,8 @@ export default class Login extends React.Component {
     }
     render() {
         return (
-            <section className='warp'>
-            <section className = "container page">
+            <section className='warp page'>
+            <section className = "container">
         <div className="header">
             <h1>Page Title</h1>
             <h2>A subtitle for your page goes here</h2>

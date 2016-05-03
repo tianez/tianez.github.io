@@ -2,7 +2,15 @@
 import React from 'react';
 import request from 'superagent'
 import Apicloud from '../../components/utils/Apicloud'
-import {Form, Input, Textarea, Radio, Upload,Range, Button} from '../../components/forms/index'
+import {
+    Form,
+    Input,
+    Textarea,
+    Radio,
+    Upload,
+    Range,
+    Button
+} from '../../components/forms/index'
 
 export default class Add extends React.Component {
     constructor(props) {
@@ -30,12 +38,12 @@ export default class Add extends React.Component {
                     id: bookId
                 })
             } else {
-                Apicloud.get(action, '', function (err, res) {
+                Apicloud.get(action, '', function(err, res) {
                     let article = JSON.parse(res.text)
                     article._method = 'PUT'
                     console.log(article)
                     ConfigActions.update('title', article.title)
-                    // ConfigActions.update(article.id, article)
+                        // ConfigActions.update(article.id, article)
                     this.setState({
                         info: article,
                         action: action,
@@ -49,6 +57,12 @@ export default class Add extends React.Component {
                 action: action,
             })
         }
+        let toolbar = ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|', 'indent', 'outdent', 'alignment'];
+        let editor = new Simditor({
+            textarea: $('#editor'),
+            toolbar: toolbar
+                //optional options
+        })
     }
     _onChange(name, value) {
         let info = this.state.info
@@ -93,6 +107,7 @@ export default class Add extends React.Component {
                             help = '内容'
                             onChange = {this._onChange.bind(this) }
                             />
+                        <textarea id="editor" placeholder="Balabala" autofocus></textarea>
                         <Radio />
                         <Radio type='radio' value='1' title='状态'
                             options = {[{

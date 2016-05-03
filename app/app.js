@@ -57,10 +57,11 @@ ReactDom.render((
             React.createElement(Route, { path: "login", component: Login, onEnter: redirectToLogin }),
             React.createElement(Route, { path: "logout", component: Logout }),
             React.createElement(Route, { path: "add", component: Add, onEnter: redirectToLogin }),
-            React.createElement(Route, { path: "post", component: Post, onEnter: redirectToLogin },
-                React.createElement(Route, { path: "add", component: Add, onEnter: redirectToLogin }),
-                React.createElement(Route, { path: ":bookId", component: Add })
+            React.createElement(Route, { path: "post", component: Post, onEnter: redirectToLogin }
+                // React.createElement(Route, { path: "add", component: Add, onEnter: redirectToLogin }) 
             ),
+            React.createElement(Route, { path: "post/add", component: Add, onEnter: redirectToLogin }),
+            React.createElement(Route, { path: "post/:bookId", component: Add }),
             React.createElement(Route, { path: "*", component: NoMatch })
         )
     )

@@ -2,7 +2,9 @@
 
 import React from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import {Link} from 'react-router'
+import {
+    Link
+} from 'react-router'
 import Apicloud from '../../components/utils/Apicloud'
 
 export default class Main extends React.Component {
@@ -13,8 +15,12 @@ export default class Main extends React.Component {
         }
     }
     componentDidMount() {
-        let filter = { where: {}, skip: 0, limit: 20 }
-        Apicloud.get('article', filter, function (err, res) {
+        let filter = {
+            where: {},
+            skip: 0,
+            limit: 20
+        }
+        Apicloud.get('article', filter, function(err, res) {
             let data = JSON.parse(res.text)
             console.log(data)
             this.setState({
@@ -28,14 +34,16 @@ export default class Main extends React.Component {
             color: '#f00'
         }
         if (this.state.info.length > 0) {
-            lists = this.state.info.map(function (d) {
+            lists = this.state.info.map(function(d) {
                 let url = '/post/' + d.id
                 return <li key={d.id}><Link to={url} activeStyle={active} >{d.title}</Link></li>
             })
         } else {
             lists = ''
         }
-        const { pathname } = this.props.location
+        const {
+            pathname
+        } = this.props.location
         return (
             <section className='warp'>
                 <section className = "container" >

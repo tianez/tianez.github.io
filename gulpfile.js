@@ -50,7 +50,12 @@ gulp.task('js', function() {
     return gulp.src(
             [
                 'components/utils/SHA1.js',
-                'components/utils/CryptoJS.js'
+                'components/utils/CryptoJS.js',
+                'bower_components/jquery/dist/jquery.min.js',
+                'bower_components/simditor/scripts/module.js',
+                'bower_components/simditor/scripts/hotkeys.js',
+                'bower_components/simditor/scripts/uploader.js',
+                'bower_components/simditor/scripts/simditor.js'
             ]
         )
         .pipe(concat('ext.js'))
