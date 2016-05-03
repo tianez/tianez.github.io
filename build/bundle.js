@@ -81,19 +81,19 @@
 
 	var _Login2 = _interopRequireDefault(_Login);
 
-	var _Logout = __webpack_require__(309);
+	var _Logout = __webpack_require__(310);
 
 	var _Logout2 = _interopRequireDefault(_Logout);
 
-	var _Add = __webpack_require__(310);
+	var _Add = __webpack_require__(311);
 
 	var _Add2 = _interopRequireDefault(_Add);
 
-	var _Post = __webpack_require__(311);
+	var _Post = __webpack_require__(312);
 
 	var _Post2 = _interopRequireDefault(_Post);
 
-	var _NoMatch = __webpack_require__(312);
+	var _NoMatch = __webpack_require__(313);
 
 	var _NoMatch2 = _interopRequireDefault(_NoMatch);
 
@@ -107,13 +107,13 @@
 	 * action
 	 */
 	// import ConfigActions from './flux/ConfigActions'
-	window.ConfigActions = __webpack_require__(313);
+	window.ConfigActions = __webpack_require__(314);
 
 	/** 
 	 * store
 	 */
 	// import ConfigStore from './flux/ConfigStore'
-	window.ConfigStore = __webpack_require__(318);
+	window.ConfigStore = __webpack_require__(319);
 
 	/** 
 	 * 路由
@@ -28608,7 +28608,7 @@
 
 	var _index = __webpack_require__(250);
 
-	__webpack_require__(307);
+	__webpack_require__(308);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -28710,37 +28710,42 @@
 
 	var _Textarea2 = _interopRequireDefault(_Textarea);
 
-	var _Canvas = __webpack_require__(260);
+	var _Editer = __webpack_require__(260);
+
+	var _Editer2 = _interopRequireDefault(_Editer);
+
+	var _Canvas = __webpack_require__(261);
 
 	var _Canvas2 = _interopRequireDefault(_Canvas);
 
-	var _Upload = __webpack_require__(301);
+	var _Upload = __webpack_require__(302);
 
 	var _Upload2 = _interopRequireDefault(_Upload);
 
-	var _Radio = __webpack_require__(304);
+	var _Radio = __webpack_require__(305);
 
 	var _Radio2 = _interopRequireDefault(_Radio);
 
-	var _Range = __webpack_require__(305);
+	var _Range = __webpack_require__(306);
 
 	var _Range2 = _interopRequireDefault(_Range);
 
-	var _Button = __webpack_require__(306);
+	var _Button = __webpack_require__(307);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Forms = {
-	    Form: _Form2.default,
-	    Input: _Input2.default,
-	    Textarea: _Textarea2.default,
-	    Canvas: _Canvas2.default,
-	    Upload: _Upload2.default,
-	    Radio: _Radio2.default,
-	    Range: _Range2.default,
-	    Button: _Button2.default
+		Form: _Form2.default,
+		Input: _Input2.default,
+		Textarea: _Textarea2.default,
+		Editer: _Editer2.default,
+		Canvas: _Canvas2.default,
+		Upload: _Upload2.default,
+		Radio: _Radio2.default,
+		Range: _Range2.default,
+		Button: _Button2.default
 	};
 	module.exports = Forms;
 
@@ -29221,7 +29226,8 @@
 
 	        _this.state = {
 	            value: props.value,
-	            help: props.help
+	            help: props.help,
+	            num: false
 	        };
 	        return _this;
 	    }
@@ -29271,6 +29277,15 @@
 	    }, {
 	        key: 'componentWillReceiveProps',
 	        value: function componentWillReceiveProps(nextProps) {
+	            if (this.props.value == nextProps.value) {
+	                return;
+	            }
+	            if (this.state.num) {
+	                return;
+	            }
+	            this.setState({
+	                num: true
+	            });
 	            this.setState({
 	                value: nextProps.value,
 	                length: nextProps.value.length
@@ -29377,7 +29392,144 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactCanvas = __webpack_require__(261);
+	var _classnames = __webpack_require__(253);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Editer = function (_React$Component) {
+	    _inherits(Editer, _React$Component);
+
+	    function Editer() {
+	        _classCallCheck(this, Editer);
+
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Editer).call(this));
+
+	        _this.state = {
+	            num: false
+	        };
+	        return _this;
+	    }
+
+	    _createClass(Editer, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount(value) {
+	            var toolbar = ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|', 'indent', 'outdent', 'alignment'];
+	            var editor = new Simditor({
+	                textarea: $('#editor'),
+	                toolbar: toolbar
+	            });
+	            editor.on('valuechanged', function (event) {
+	                var v = editor.getValue();
+	                if (v == this.props.value) {
+	                    return;
+	                }
+	                if (this.props.onChange) {
+	                    this.props.onChange(this.props.name, v);
+	                }
+	                event.preventDefault();
+	            }.bind(this));
+	            if (value) {
+	                editor.setValue(value);
+	            }
+	        }
+	    }, {
+	        key: 'componentWillReceiveProps',
+	        value: function componentWillReceiveProps(nextProps) {
+	            if (this.props.value == nextProps.value) {
+	                return;
+	            }
+	            if (this.state.num) {
+	                return;
+	            }
+	            this.setState({
+	                num: true
+	            });
+	            this.componentDidMount(nextProps.value);
+	        }
+	    }, {
+	        key: '_onChange',
+	        value: function _onChange(e) {
+	            return;
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var Class = (0, _classnames2.default)({
+	                'form-group animated bounceInRight': true
+	            });
+	            var helpClass = (0, _classnames2.default)({
+	                'form-help': true
+	            });
+	            return _react2.default.createElement(
+	                'div',
+	                { className: Class },
+	                _react2.default.createElement(
+	                    'label',
+	                    { className: 'form-label' },
+	                    this.props.title
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'form-control' },
+	                    _react2.default.createElement('textarea', { id: 'editor',
+	                        className: 'form-textarea',
+	                        value: this.props.value,
+	                        placeholder: this.props.placeholder,
+	                        disabled: this.props.disabled,
+	                        onChange: this._onChange.bind(this),
+	                        autofocus: true }),
+	                    _react2.default.createElement(
+	                        'span',
+	                        { className: helpClass },
+	                        this.props.help
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return Editer;
+	}(_react2.default.Component);
+
+	exports.default = Editer;
+
+
+	Editer.defaultProps = {
+	    title: '项目名称',
+	    value: '1212',
+	    name: 'content',
+	    placeholder: '输入你的邮箱地址',
+	    help: '输入你的邮箱地址!',
+	    disabled: '',
+	    autocomplete: 'off',
+	    required: 'required'
+	};
+
+/***/ },
+/* 261 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(9);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactCanvas = __webpack_require__(262);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29422,42 +29574,42 @@
 	exports.default = Canvas;
 
 /***/ },
-/* 261 */
+/* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var ReactCanvas = {
-	  Surface: __webpack_require__(262),
+	  Surface: __webpack_require__(263),
 
-	  Layer: __webpack_require__(289),
-	  Group: __webpack_require__(292),
-	  Image: __webpack_require__(293),
-	  Text: __webpack_require__(295),
-	  ListView: __webpack_require__(296),
-	  Gradient: __webpack_require__(300),
+	  Layer: __webpack_require__(290),
+	  Group: __webpack_require__(293),
+	  Image: __webpack_require__(294),
+	  Text: __webpack_require__(296),
+	  ListView: __webpack_require__(297),
+	  Gradient: __webpack_require__(301),
 
-	  FontFace: __webpack_require__(273),
-	  measureText: __webpack_require__(276)
+	  FontFace: __webpack_require__(274),
+	  measureText: __webpack_require__(277)
 	};
 
 	module.exports = ReactCanvas;
 
 /***/ },
-/* 262 */
+/* 263 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 
 	var React = __webpack_require__(9);
 	var ReactUpdates = __webpack_require__(62);
-	var invariant = __webpack_require__(263);
-	var ContainerMixin = __webpack_require__(264);
-	var RenderLayer = __webpack_require__(267);
-	var FrameUtils = __webpack_require__(268);
-	var DrawingUtils = __webpack_require__(269);
-	var _hitTest = __webpack_require__(285);
-	var layoutNode = __webpack_require__(286);
+	var invariant = __webpack_require__(264);
+	var ContainerMixin = __webpack_require__(265);
+	var RenderLayer = __webpack_require__(268);
+	var FrameUtils = __webpack_require__(269);
+	var DrawingUtils = __webpack_require__(270);
+	var _hitTest = __webpack_require__(286);
+	var layoutNode = __webpack_require__(287);
 
 	/**
 	 * Surface is a standard React component and acts as the main drawing canvas.
@@ -29666,7 +29818,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ },
-/* 263 */
+/* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -29722,7 +29874,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ },
-/* 264 */
+/* 265 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29732,8 +29884,8 @@
 
 	var React = __webpack_require__(9);
 	var ReactMultiChild = __webpack_require__(122);
-	var assign = __webpack_require__(265);
-	var emptyObject = __webpack_require__(266);
+	var assign = __webpack_require__(266);
+	var emptyObject = __webpack_require__(267);
 
 	var ContainerMixin = assign({}, ReactMultiChild.Mixin, {
 
@@ -29852,7 +30004,7 @@
 	module.exports = ContainerMixin;
 
 /***/ },
-/* 265 */
+/* 266 */
 /***/ function(module, exports) {
 
 	/* eslint-disable no-unused-vars */
@@ -29897,7 +30049,7 @@
 	};
 
 /***/ },
-/* 266 */
+/* 267 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -29923,14 +30075,14 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ },
-/* 267 */
+/* 268 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var FrameUtils = __webpack_require__(268);
-	var DrawingUtils = __webpack_require__(269);
-	var EventTypes = __webpack_require__(284);
+	var FrameUtils = __webpack_require__(269);
+	var DrawingUtils = __webpack_require__(270);
+	var EventTypes = __webpack_require__(285);
 
 	function RenderLayer() {
 	  this.children = [];
@@ -30115,7 +30267,7 @@
 	module.exports = RenderLayer;
 
 /***/ },
-/* 268 */
+/* 269 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -30247,17 +30399,17 @@
 	};
 
 /***/ },
-/* 269 */
+/* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var ImageCache = __webpack_require__(270);
-	var FontUtils = __webpack_require__(272);
-	var FontFace = __webpack_require__(273);
-	var FrameUtils = __webpack_require__(268);
-	var CanvasUtils = __webpack_require__(274);
-	var Canvas = __webpack_require__(283);
+	var ImageCache = __webpack_require__(271);
+	var FontUtils = __webpack_require__(273);
+	var FontFace = __webpack_require__(274);
+	var FrameUtils = __webpack_require__(269);
+	var CanvasUtils = __webpack_require__(275);
+	var Canvas = __webpack_require__(284);
 
 	// Global backing store <canvas> cache
 	var _backingStores = [];
@@ -30675,12 +30827,12 @@
 	};
 
 /***/ },
-/* 270 */
+/* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var EventEmitter = __webpack_require__(271);
+	var EventEmitter = __webpack_require__(272);
 	var assign = __webpack_require__(47);
 
 	var NOOP = function NOOP() {};
@@ -30841,7 +30993,7 @@
 	module.exports = ImageCache;
 
 /***/ },
-/* 271 */
+/* 272 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -31115,12 +31267,12 @@
 	}
 
 /***/ },
-/* 272 */
+/* 273 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var FontFace = __webpack_require__(273);
+	var FontFace = __webpack_require__(274);
 
 	var _useNativeImpl = typeof window.FontFace !== 'undefined';
 	var _pendingFonts = {};
@@ -31302,7 +31454,7 @@
 	};
 
 /***/ },
-/* 273 */
+/* 274 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -31360,14 +31512,14 @@
 	module.exports = FontFace;
 
 /***/ },
-/* 274 */
+/* 275 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var FontFace = __webpack_require__(273);
-	var clamp = __webpack_require__(275);
-	var measureText = __webpack_require__(276);
+	var FontFace = __webpack_require__(274);
+	var clamp = __webpack_require__(276);
+	var measureText = __webpack_require__(277);
 
 	/**
 	 * Draw an image into a <canvas>. This operation requires that the image
@@ -31558,7 +31710,7 @@
 	};
 
 /***/ },
-/* 275 */
+/* 276 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -31576,14 +31728,14 @@
 	};
 
 /***/ },
-/* 276 */
+/* 277 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var FontFace = __webpack_require__(273);
-	var FontUtils = __webpack_require__(272);
-	var LineBreaker = __webpack_require__(277);
+	var FontFace = __webpack_require__(274);
+	var FontUtils = __webpack_require__(273);
+	var LineBreaker = __webpack_require__(278);
 
 	var canvas = document.createElement('canvas');
 	var ctx = canvas.getContext('2d');
@@ -31678,7 +31830,7 @@
 	};
 
 /***/ },
-/* 277 */
+/* 278 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31687,15 +31839,15 @@
 	(function () {
 	  var AI, AL, BA, BK, CB, CI_BRK, CJ, CP_BRK, CR, DI_BRK, ID, IN_BRK, LF, LineBreaker, NL, NS, PR_BRK, SA, SG, SP, UnicodeTrie, WJ, XX, base64, characterClasses, classTrie, data, fs, pairTable, _ref, _ref1;
 
-	  UnicodeTrie = __webpack_require__(278);
+	  UnicodeTrie = __webpack_require__(279);
 
 	  
 
-	  base64 = __webpack_require__(280);
+	  base64 = __webpack_require__(281);
 
-	  _ref = __webpack_require__(281), BK = _ref.BK, CR = _ref.CR, LF = _ref.LF, NL = _ref.NL, CB = _ref.CB, BA = _ref.BA, SP = _ref.SP, WJ = _ref.WJ, SP = _ref.SP, BK = _ref.BK, LF = _ref.LF, NL = _ref.NL, AI = _ref.AI, AL = _ref.AL, SA = _ref.SA, SG = _ref.SG, XX = _ref.XX, CJ = _ref.CJ, ID = _ref.ID, NS = _ref.NS, characterClasses = _ref.characterClasses;
+	  _ref = __webpack_require__(282), BK = _ref.BK, CR = _ref.CR, LF = _ref.LF, NL = _ref.NL, CB = _ref.CB, BA = _ref.BA, SP = _ref.SP, WJ = _ref.WJ, SP = _ref.SP, BK = _ref.BK, LF = _ref.LF, NL = _ref.NL, AI = _ref.AI, AL = _ref.AL, SA = _ref.SA, SG = _ref.SG, XX = _ref.XX, CJ = _ref.CJ, ID = _ref.ID, NS = _ref.NS, characterClasses = _ref.characterClasses;
 
-	  _ref1 = __webpack_require__(282), DI_BRK = _ref1.DI_BRK, IN_BRK = _ref1.IN_BRK, CI_BRK = _ref1.CI_BRK, CP_BRK = _ref1.CP_BRK, PR_BRK = _ref1.PR_BRK, pairTable = _ref1.pairTable;
+	  _ref1 = __webpack_require__(283), DI_BRK = _ref1.DI_BRK, IN_BRK = _ref1.IN_BRK, CI_BRK = _ref1.CI_BRK, CP_BRK = _ref1.CP_BRK, PR_BRK = _ref1.PR_BRK, pairTable = _ref1.pairTable;
 
 	  data = base64.toByteArray("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");
 
@@ -31843,7 +31995,7 @@
 	}).call(undefined);
 
 /***/ },
-/* 278 */
+/* 279 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31851,7 +32003,7 @@
 	// Generated by CoffeeScript 1.7.1
 	var UnicodeTrie, inflate;
 
-	inflate = __webpack_require__(279);
+	inflate = __webpack_require__(280);
 
 	UnicodeTrie = function () {
 	  var DATA_BLOCK_LENGTH, DATA_GRANULARITY, DATA_MASK, INDEX_1_OFFSET, INDEX_2_BLOCK_LENGTH, INDEX_2_BMP_LENGTH, INDEX_2_MASK, INDEX_SHIFT, LSCP_INDEX_2_LENGTH, LSCP_INDEX_2_OFFSET, OMITTED_BMP_INDEX_1_LENGTH, SHIFT_1, SHIFT_1_2, SHIFT_2, UTF8_2B_INDEX_2_LENGTH, UTF8_2B_INDEX_2_OFFSET;
@@ -31940,7 +32092,7 @@
 	module.exports = UnicodeTrie;
 
 /***/ },
-/* 279 */
+/* 280 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -32318,7 +32470,7 @@
 	module.exports = tinf_uncompress;
 
 /***/ },
-/* 280 */
+/* 281 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32441,7 +32593,7 @@
 	})( false ? undefined.base64js = {} : exports);
 
 /***/ },
-/* 281 */
+/* 282 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -32532,7 +32684,7 @@
 	}).call(undefined);
 
 /***/ },
-/* 282 */
+/* 283 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -32555,7 +32707,7 @@
 	}).call(undefined);
 
 /***/ },
-/* 283 */
+/* 284 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32601,7 +32753,7 @@
 	module.exports = Canvas;
 
 /***/ },
-/* 284 */
+/* 285 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -32619,13 +32771,13 @@
 	};
 
 /***/ },
-/* 285 */
+/* 286 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var FrameUtils = __webpack_require__(268);
-	var EventTypes = __webpack_require__(284);
+	var FrameUtils = __webpack_require__(269);
+	var EventTypes = __webpack_require__(285);
 
 	/**
 	 * RenderLayer hit testing
@@ -32723,12 +32875,12 @@
 	module.exports.getHitHandle = getHitHandle;
 
 /***/ },
-/* 286 */
+/* 287 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var computeLayout = __webpack_require__(287);
+	var computeLayout = __webpack_require__(288);
 
 	/**
 	 * This computes the CSS layout for a RenderLayer tree and mutates the frame
@@ -32773,7 +32925,7 @@
 	module.exports = layoutNode;
 
 /***/ },
-/* 287 */
+/* 288 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {'use strict';
@@ -33362,10 +33514,10 @@
 	if (( false ? 'undefined' : _typeof(module)) === 'object') {
 	  module.exports = computeLayout;
 	}
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(288)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(289)(module)))
 
 /***/ },
-/* 288 */
+/* 289 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -33382,13 +33534,13 @@
 	};
 
 /***/ },
-/* 289 */
+/* 290 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var createComponent = __webpack_require__(290);
-	var LayerMixin = __webpack_require__(291);
+	var createComponent = __webpack_require__(291);
+	var LayerMixin = __webpack_require__(292);
 
 	var Layer = createComponent('Layer', LayerMixin, {
 
@@ -33412,7 +33564,7 @@
 	module.exports = Layer;
 
 /***/ },
-/* 290 */
+/* 291 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33421,7 +33573,7 @@
 	// https://github.com/reactjs/react-art
 
 	var assign = __webpack_require__(47);
-	var RenderLayer = __webpack_require__(267);
+	var RenderLayer = __webpack_require__(268);
 
 	function createComponent(name) {
 	  var ReactCanvasComponent = function ReactCanvasComponent(props) {
@@ -33444,7 +33596,7 @@
 	module.exports = createComponent;
 
 /***/ },
-/* 291 */
+/* 292 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -33452,9 +33604,9 @@
 	// Adapted from ReactART:
 	// https://github.com/reactjs/react-art
 
-	var FrameUtils = __webpack_require__(268);
-	var DrawingUtils = __webpack_require__(269);
-	var EventTypes = __webpack_require__(284);
+	var FrameUtils = __webpack_require__(269);
+	var DrawingUtils = __webpack_require__(270);
+	var EventTypes = __webpack_require__(285);
 
 	var LAYER_GUID = 0;
 
@@ -33541,15 +33693,15 @@
 	module.exports = LayerMixin;
 
 /***/ },
-/* 292 */
+/* 293 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var createComponent = __webpack_require__(290);
-	var ContainerMixin = __webpack_require__(264);
-	var LayerMixin = __webpack_require__(291);
-	var RenderLayer = __webpack_require__(267);
+	var createComponent = __webpack_require__(291);
+	var ContainerMixin = __webpack_require__(265);
+	var LayerMixin = __webpack_require__(292);
+	var RenderLayer = __webpack_require__(268);
 
 	var Group = createComponent('Group', LayerMixin, ContainerMixin, {
 
@@ -33582,20 +33734,20 @@
 	module.exports = Group;
 
 /***/ },
-/* 293 */
+/* 294 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(9);
 	var assign = __webpack_require__(47);
-	var createComponent = __webpack_require__(290);
-	var LayerMixin = __webpack_require__(291);
-	var Layer = __webpack_require__(289);
-	var Group = __webpack_require__(292);
-	var ImageCache = __webpack_require__(270);
-	var Easing = __webpack_require__(294);
-	var clamp = __webpack_require__(275);
+	var createComponent = __webpack_require__(291);
+	var LayerMixin = __webpack_require__(292);
+	var Layer = __webpack_require__(290);
+	var Group = __webpack_require__(293);
+	var ImageCache = __webpack_require__(271);
+	var Easing = __webpack_require__(295);
+	var clamp = __webpack_require__(276);
 
 	var FADE_DURATION = 200;
 
@@ -33716,7 +33868,7 @@
 	module.exports = Image;
 
 /***/ },
-/* 294 */
+/* 295 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -33759,13 +33911,13 @@
 	module.exports = Easing;
 
 /***/ },
-/* 295 */
+/* 296 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var createComponent = __webpack_require__(290);
-	var LayerMixin = __webpack_require__(291);
+	var createComponent = __webpack_require__(291);
+	var LayerMixin = __webpack_require__(292);
 
 	var Text = createComponent('Text', LayerMixin, {
 
@@ -33818,16 +33970,16 @@
 	module.exports = Text;
 
 /***/ },
-/* 296 */
+/* 297 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(9);
 	var assign = __webpack_require__(47);
-	var Scroller = __webpack_require__(297);
-	var Group = __webpack_require__(292);
-	var clamp = __webpack_require__(275);
+	var Scroller = __webpack_require__(298);
+	var Group = __webpack_require__(293);
+	var clamp = __webpack_require__(276);
 
 	var ListView = React.createClass({
 	  displayName: 'ListView',
@@ -34003,15 +34155,15 @@
 	module.exports = ListView;
 
 /***/ },
-/* 297 */
+/* 298 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	module.exports = __webpack_require__(298);
+	module.exports = __webpack_require__(299);
 
 /***/ },
-/* 298 */
+/* 299 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -34030,7 +34182,7 @@
 	 * License: MIT + Apache (V2)
 	 */
 
-	var core = __webpack_require__(299);
+	var core = __webpack_require__(300);
 	var Scroller;
 
 	(function () {
@@ -35300,7 +35452,7 @@
 	})();
 
 /***/ },
-/* 299 */
+/* 300 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -35537,14 +35689,14 @@
 	})(typeof window !== 'undefined' ? window : undefined);
 
 /***/ },
-/* 300 */
+/* 301 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(9);
-	var createComponent = __webpack_require__(290);
-	var LayerMixin = __webpack_require__(291);
+	var createComponent = __webpack_require__(291);
+	var LayerMixin = __webpack_require__(292);
 
 	var Gradient = createComponent('Gradient', LayerMixin, {
 
@@ -35575,7 +35727,7 @@
 	module.exports = Gradient;
 
 /***/ },
-/* 301 */
+/* 302 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -35594,13 +35746,13 @@
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _AjaxUpload = __webpack_require__(302);
+	var _AjaxUpload = __webpack_require__(303);
 
 	var _AjaxUpload2 = _interopRequireDefault(_AjaxUpload);
 
-	var _Qiniu = __webpack_require__(303);
+	var _Qiniu = __webpack_require__(304);
 
-	var _Canvas = __webpack_require__(260);
+	var _Canvas = __webpack_require__(261);
 
 	var _Canvas2 = _interopRequireDefault(_Canvas);
 
@@ -35734,7 +35886,7 @@
 	};
 
 /***/ },
-/* 302 */
+/* 303 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -35775,7 +35927,7 @@
 	};
 
 /***/ },
-/* 303 */
+/* 304 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -35946,7 +36098,7 @@
 	};
 
 /***/ },
-/* 304 */
+/* 305 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36019,6 +36171,9 @@
 	            this.setState({
 	                value: value
 	            });
+	            if (this.props.onChange) {
+	                this.props.onChange(this.props.name, value);
+	            }
 	            // let value = e.target.value.replace(/(^\s*)|(\s*$)/, "")
 	            // this.componentWillMount(value, true)
 	        }
@@ -36093,7 +36248,7 @@
 	        title: '选项2',
 	        value: 2
 	    }],
-	    name: 'name',
+	    name: 'state',
 	    placeholder: '',
 	    help: '',
 	    disabled: '',
@@ -36101,7 +36256,7 @@
 	};
 
 /***/ },
-/* 305 */
+/* 306 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36221,7 +36376,7 @@
 	};
 
 /***/ },
-/* 306 */
+/* 307 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36286,13 +36441,13 @@
 	exports.default = Botton;
 
 /***/ },
-/* 307 */
+/* 308 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(308);
+	var content = __webpack_require__(309);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(8)(content, {});
@@ -36312,7 +36467,7 @@
 	}
 
 /***/ },
-/* 308 */
+/* 309 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
@@ -36326,7 +36481,7 @@
 
 
 /***/ },
-/* 309 */
+/* 310 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36375,7 +36530,7 @@
 	exports.default = Login;
 
 /***/ },
-/* 310 */
+/* 311 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36424,10 +36579,17 @@
 
 	    _createClass(Add, [{
 	        key: 'componentWillMount',
-	        value: function componentWillMount() {}
+	        value: function componentWillMount() {
+	            // this._req()
+	        }
 	    }, {
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
+	            this._req();
+	        }
+	    }, {
+	        key: '_req',
+	        value: function _req() {
 	            var action = 'article';
 	            var bookId = this.props.params.bookId;
 
@@ -36461,18 +36623,13 @@
 	                    action: action
 	                });
 	            }
-	            var toolbar = ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|', 'indent', 'outdent', 'alignment'];
-	            var editor = new Simditor({
-	                textarea: $('#editor'),
-	                toolbar: toolbar
-	                //optional options
-	            });
 	        }
 	    }, {
 	        key: '_onChange',
 	        value: function _onChange(name, value) {
 	            var info = this.state.info;
 	            info[name] = value;
+	            console.log(info);
 	            this.setState({
 	                info: info
 	            });
@@ -36520,22 +36677,28 @@
 	                        }),
 	                        _react2.default.createElement(_index.Textarea, {
 	                            title: '内容',
-	                            name: 'content',
-	                            value: info.content,
+	                            name: 'description',
+	                            value: info.description,
 	                            placeholder: '内容',
 	                            help: '内容',
 	                            onChange: this._onChange.bind(this)
 	                        }),
-	                        _react2.default.createElement('textarea', { id: 'editor', placeholder: 'Balabala', autofocus: true }),
+	                        _react2.default.createElement(_index.Editer, {
+	                            value: info.content,
+	                            onChange: this._onChange.bind(this)
+	                        }),
 	                        _react2.default.createElement(_index.Radio, null),
-	                        _react2.default.createElement(_index.Radio, { type: 'radio', value: '1', title: '状态',
+	                        _react2.default.createElement(_index.Radio, { type: 'radio', value: info.state,
+	                            title: '状态',
 	                            options: [{
 	                                title: '正常',
 	                                value: 0
 	                            }, {
 	                                title: '关闭',
 	                                value: 1
-	                            }] }),
+	                            }],
+	                            onChange: this._onChange.bind(this)
+	                        }),
 	                        _react2.default.createElement(_index.Range, null),
 	                        _react2.default.createElement(_index.Upload, null),
 	                        _react2.default.createElement(_index.Button, { value: '提交' })
@@ -36551,7 +36714,7 @@
 	exports.default = Add;
 
 /***/ },
-/* 311 */
+/* 312 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36677,7 +36840,7 @@
 	exports.default = Main;
 
 /***/ },
-/* 312 */
+/* 313 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36710,12 +36873,12 @@
 	module.exports = App;
 
 /***/ },
-/* 313 */
+/* 314 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var AppDispatcher = __webpack_require__(314);
+	var AppDispatcher = __webpack_require__(315);
 
 	var ConfigActions = {
 
@@ -36737,7 +36900,7 @@
 	module.exports = ConfigActions;
 
 /***/ },
-/* 314 */
+/* 315 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36755,12 +36918,12 @@
 	 * A singleton that operates as the central hub for application updates.
 	 */
 
-	var Dispatcher = __webpack_require__(315).Dispatcher;
+	var Dispatcher = __webpack_require__(316).Dispatcher;
 
 	module.exports = new Dispatcher();
 
 /***/ },
-/* 315 */
+/* 316 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -36774,10 +36937,10 @@
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 */
 
-	module.exports.Dispatcher = __webpack_require__(316);
+	module.exports.Dispatcher = __webpack_require__(317);
 
 /***/ },
-/* 316 */
+/* 317 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -36803,7 +36966,7 @@
 	  }
 	}
 
-	var invariant = __webpack_require__(317);
+	var invariant = __webpack_require__(318);
 
 	var _prefix = 'ID_';
 
@@ -37018,7 +37181,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ },
-/* 317 */
+/* 318 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -37073,14 +37236,14 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ },
-/* 318 */
+/* 319 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var AppDispatcher = __webpack_require__(314);
-	var EventEmitter = __webpack_require__(271).EventEmitter;
-	var assign = __webpack_require__(265);
+	var AppDispatcher = __webpack_require__(315);
+	var EventEmitter = __webpack_require__(272).EventEmitter;
+	var assign = __webpack_require__(266);
 
 	var CHANGE_EVENT = 'config';
 

@@ -6,6 +6,7 @@ import {
     Form,
     Input,
     Textarea,
+    Editer,
     Radio,
     Upload,
     Range,
@@ -20,9 +21,12 @@ export default class Add extends React.Component {
         }
     }
     componentWillMount() {
-
+        // this._req()
     }
     componentDidMount() {
+        this._req()
+    }
+    _req() {
         let action = 'article'
         let {
             bookId
@@ -57,16 +61,11 @@ export default class Add extends React.Component {
                 action: action,
             })
         }
-        let toolbar = ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|', 'indent', 'outdent', 'alignment'];
-        let editor = new Simditor({
-            textarea: $('#editor'),
-            toolbar: toolbar
-                //optional options
-        })
     }
     _onChange(name, value) {
         let info = this.state.info
         info[name] = value
+        console.log(info)
         this.setState({
             info: info
         })
@@ -101,28 +100,33 @@ export default class Add extends React.Component {
                             />
                         <Textarea
                             title = '内容'
-                            name = 'content'
-                            value = {info.content}
+                            name = 'description'
+                            value = {info.description}
                             placeholder = '内容'
                             help = '内容'
                             onChange = {this._onChange.bind(this) }
                             />
-                        <textarea id="editor" placeholder="Balabala" autofocus></textarea>
+                        <Editer 
+                            value= {info.content}
+                            onChange = {this._onChange.bind(this) }
+                            />
                         <Radio />
-                        <Radio type='radio' value='1' title='状态'
+                        <Radio type='radio' value= {info.state}
+                            title='状态'
                             options = {[{
                                 title: '正常',
                                 value: 0
                             }, {
                                 title: '关闭',
                                 value: 1
-                            }]} />
+                            }]}
+                            onChange = {this._onChange.bind(this) }
+                            />
                         <Range />
                         <Upload />
                         <Button value="提交" />
                     </Form>
                 </section>
-
             </section>
         )
     }

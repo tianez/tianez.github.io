@@ -10,7 +10,7 @@ export default class Checkbox extends React.Component {
             help: props.help,
         }
     }
-    componentWillMount(value, _onChange) { }
+    componentWillMount(value, _onChange) {}
     componentWillReceiveProps(nextProps) {
         this.setState({
             value: nextProps.value,
@@ -35,6 +35,9 @@ export default class Checkbox extends React.Component {
         this.setState({
             value: value
         })
+        if (this.props.onChange) {
+            this.props.onChange(this.props.name, value)
+        }
         // let value = e.target.value.replace(/(^\s*)|(\s*$)/, "")
         // this.componentWillMount(value, true)
     }
@@ -42,12 +45,12 @@ export default class Checkbox extends React.Component {
         let type = this.props.type
         let value = this.state.value
         let name = this.props.name
-        let options = this.props.options.map(function (d, index) {
+        let options = this.props.options.map(function(d, index) {
             let checked = ''
             if (type == 'radio' && value == d.value) {
                 checked = 'checked'
             } else if (type == 'checkbox') {
-                if( value.indexOf(d.value) > -1){
+                if (value.indexOf(d.value) > -1) {
                     checked = 'checked'
                 }
             }
@@ -80,17 +83,14 @@ Checkbox.defaultProps = {
     // type: 'radio',
     value: [2],
     // value: 2,
-    options: [
-        {
-            title: '选项1',
-            value: 1
-        },
-        {
-            title: '选项2',
-            value: 2
-        }
-    ],
-    name: 'name',
+    options: [{
+        title: '选项1',
+        value: 1
+    }, {
+        title: '选项2',
+        value: 2
+    }],
+    name: 'state',
     placeholder: '',
     help: '',
     disabled: '',

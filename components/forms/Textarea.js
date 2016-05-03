@@ -8,6 +8,7 @@ export default class Textarea extends React.Component {
         this.state = {
             value: props.value,
             help: props.help,
+            num: false
         }
     }
     componentWillMount(value, _onChange) {
@@ -51,6 +52,15 @@ export default class Textarea extends React.Component {
         }
     }
     componentWillReceiveProps(nextProps) {
+        if (this.props.value == nextProps.value) {
+            return
+        }
+        if (this.state.num) {
+            return
+        }
+        this.setState({
+            num: true
+        })
         this.setState({
             value: nextProps.value,
             length: nextProps.value.length,
