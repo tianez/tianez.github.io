@@ -43,7 +43,7 @@ input:focus {
   display: block;
 }
 .pure-g [class*="pure-u"] {
-  padding: 0 15px;
+  padding: 0 3px;
 }
 .swap-enter {
   opacity: 0.01;
@@ -66,20 +66,6 @@ input:focus {
   opacity: 0;
   -webkit-transform: translateX(-5em);
           transform: translateX(-5em);
-}
-.example-enter {
-  opacity: 0.01;
-  transition: opacity 0.5s ease-in;
-}
-.example-enter.example-enter-active {
-  opacity: 1;
-}
-.example-leave {
-  opacity: 1;
-  transition: opacity 0.5s ease-in;
-}
-.example-leave.example-leave-active {
-  opacity: 0;
 }
 #header {
   background: #f3f3f3;

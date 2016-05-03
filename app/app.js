@@ -29,6 +29,7 @@ window.ConfigStore = require('./flux/ConfigStore')
  */
 import Layout from './Layout'
 import Index from './pages/Index'
+import Pages from './pages/Pages'
 import Page from './pages/Page'
 import Login from './pages/Login'
 import Logout from './pages/Logout'
@@ -53,7 +54,8 @@ ReactDom.render((
     },
         React.createElement(Route, { path: "/", component: Layout },
             React.createElement(IndexRoute, { component: Index }),
-            React.createElement(Route, { path: "page", component: Page }),
+            React.createElement(Route, { path: "page", component: Pages }),
+            React.createElement(Route, { path: "page/:articleId", component: Page }),
             React.createElement(Route, { path: "login", component: Login, onEnter: redirectToLogin }),
             React.createElement(Route, { path: "logout", component: Logout }),
             React.createElement(Route, { path: "add", component: Add, onEnter: redirectToLogin }),

@@ -10,9 +10,10 @@ export default class Editer extends React.Component {
         }
     }
     componentDidMount(value) {
+        let editor_ID= '#'+this.props.name
         let toolbar = ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|', 'indent', 'outdent', 'alignment'];
         let editor = new Simditor({
-            textarea: $('#editor'),
+            textarea: $(editor_ID),
             toolbar: toolbar
         })
         editor.on('valuechanged', function(event) {
@@ -55,7 +56,7 @@ export default class Editer extends React.Component {
             <div className={Class}>
                 <label className="form-label">{this.props.title}</label>
                 <div className="form-control">
-                    <textarea id="editor" 
+                    <textarea id={this.props.name} 
                         className="form-textarea"
                         value={this.props.value}
                         placeholder={this.props.placeholder}
@@ -71,7 +72,7 @@ export default class Editer extends React.Component {
 
 Editer.defaultProps = {
     title: '项目名称',
-    value: '1212',
+    value: '',
     name: 'content',
     placeholder: '输入你的邮箱地址',
     help: '输入你的邮箱地址!',

@@ -33,9 +33,21 @@ export default class Layout extends React.Component {
     componentWillUnmount() {
         ConfigStore.removeChangeListener(this._onChange.bind(this));
     }
+    onScroll(){
+        console.log(1)
+    }
+    onWheel(){
+        console.log(12)
+    }
+    onKeyPress(){
+        console.log(32)
+    }
     render() {
         return (
-            <div className = "warper" >
+            <div className = "warper" 
+                onScroll={this.onScroll.bind(this)} 
+                onWheel={this.onWheel.bind(this)}
+                onKeyPress={this.onKeyPress.bind(this)}  >
                 <Header />
                 <Main location = {this.props.location} >
                     {this.props.children}
