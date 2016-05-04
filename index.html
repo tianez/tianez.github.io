@@ -16,18 +16,27 @@
     <link rel="stylesheet" href="app.css">
 </head>
 <style>
-    html,body {
+    html {
+        width: 100%;
         height: 100%;
+    }
+    body {
+        width: 100%;
+        min-height: 100%;
     }
     .load {
         width: 100%;
-        height: 100%;
+        height: 0;
+        position: absolute;
+        z-index: 999;
+    }
+    .warper {
     }
 </style>
 
 <body>
     <div class="load"></div>
-    <div id="app"></div>
+    <div id="app" class="app"></div>
     <script src="ext.min.js"></script>
     <script src="build/bundle.js"></script>
 </body>

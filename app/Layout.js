@@ -11,6 +11,9 @@ import Footer from './layout/Footer'
 export default class Layout extends React.Component {
     constructor() {
         super()
+        this.state = {
+            msg: ''
+        }
         // localStorage.lastname="Smith";
         // sessionStorage.name = 'sdsd'
     }
@@ -24,20 +27,25 @@ export default class Layout extends React.Component {
 
     } 
     componentDidMount() {
-        ConfigStore.addChangeListener(this._onChange.bind(this));
-    }
+        // window.addEventListener('scroll', this.onScroll.bind(this))
+        ConfigStore.addChangeListener(this._onChange.bind(this))
+    }   
 
     shouldComponentUpdate() {
         return true
     }
     componentWillUnmount() {
-        ConfigStore.removeChangeListener(this._onChange.bind(this));
+        ConfigStore.removeChangeListener(this._onChange.bind(this))
     }
     onScroll(){
-        console.log(1)
+        // var obj = document.getElementById('app')
+        // console.log(obj.offsetTop) 
+        // console.log(window.scrollY)
+        ConfigActions.update('window_Y', window.scrollY)
+        // console.log(document.body.scrollTop)
     }
-    onWheel(){
-        console.log(12)
+    onWheel(obj){
+        // console.log(obj.target.offsetTop)
     }
     onKeyPress(){
         console.log(32)
@@ -45,11 +53,9 @@ export default class Layout extends React.Component {
     render() {
         return (
             <div className = "warper" 
-                onScroll={this.onScroll.bind(this)} 
-                onWheel={this.onWheel.bind(this)}
-                onKeyPress={this.onKeyPress.bind(this)}  >
+                onWheel = {this.onWheel.bind(this)} >
                 <Header />
-                <Main location = {this.props.location} >
+                <Main location = {this.props.location}>
                     {this.props.children}
                 </Main>
                 <Footer />

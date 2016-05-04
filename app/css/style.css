@@ -17,6 +17,12 @@ input,
 input:focus {
   outline: none;
 }
+.right {
+  float: right;
+}
+.left {
+  float: left;
+}
 .warp {
   position: absolute;
   width: 100%;
@@ -26,7 +32,6 @@ input:focus {
   width: 100%;
   max-width: 1180px;
   margin: 0 auto;
-  position: relative;
 }
 .pure-menu-fixed ~ .main {
   padding-top: 4rem;
@@ -36,6 +41,7 @@ input:focus {
   width: 100%;
   left: 0;
   bottom: 0;
+  z-index: 999;
 }
 .img-responsive {
   width: 100%;
@@ -56,6 +62,7 @@ input:focus {
   opacity: 1;
   -webkit-transform: translateX(0);
           transform: translateX(0);
+  z-index: 99;
 }
 .swap-leave {
   opacity: 1;
@@ -67,17 +74,19 @@ input:focus {
   opacity: 0;
   -webkit-transform: translateX(-5em);
           transform: translateX(-5em);
+  z-index: 9;
 }
 #header {
   background: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 1px 2px #eee;
 }
 #header .pure-menu-link {
   padding: 1rem 2rem;
   line-height: 2rem;
 }
 #header .active {
-  background: #1f8dd6;
-  color: #fff;
+  color: #ee521c;
+  background: none;
 }
 #footer {
   background: #111;

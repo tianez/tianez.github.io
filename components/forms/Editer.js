@@ -14,7 +14,9 @@ export default class Editer extends React.Component {
         let toolbar = ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|', 'indent', 'outdent', 'alignment'];
         editor = new Simditor({
             textarea: $(editor_ID),
-            toolbar: toolbar
+            toolbar: toolbar,
+            toolbarFloat:false,
+            toolbarFloatOffset:'100px'
         })
         editor.on('valuechanged', function(event) {
                 let v = editor.getValue()

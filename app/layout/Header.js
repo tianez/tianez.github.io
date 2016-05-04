@@ -22,11 +22,12 @@ export default class Header extends React.Component {
         return (
             <header id="header" className="pure-menu pure-menu-horizontal pure-menu-fixed">
                 <div className='container'>
-                <a href="#" className="pure-menu-heading pure-menu-link">我的理想乡</a>
-                <ul className="pure-menu-list">
-                    <li className="pure-menu-item"><Link className="pure-menu-link" to="/#/" activeClassName={"active"}>首页</Link></li>
+                <a href="#" className="pure-menu-heading pure-menu-link left">我的理想乡</a>
+                <ul className="pure-menu-list left">
                     <li className="pure-menu-item"><Link className="pure-menu-link" to="/page" activeClassName={"active"}>博文</Link></li>
                     <li className="pure-menu-item"><Link className="pure-menu-link" to="/page/add" activeClassName={"active"}>新增文章</Link></li>
+                </ul>
+                <ul className="pure-menu-list right">
                     {islogin}
                 </ul>
                 </div>

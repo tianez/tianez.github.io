@@ -653,7 +653,7 @@
 .simditor .simditor-body ul, .simditor .simditor-body ol, .editor-style ul, .editor-style ol {
   list-style: disc outside none;
   margin: 15px 0;
-  padding: 0 0 0 40px;
+  padding: 0 0 0 20px;
   line-height: 1.6;
 }
 .simditor .simditor-body ul ul, .simditor .simditor-body ul ol, .simditor .simditor-body ol ul, .simditor .simditor-body ol ol, .editor-style ul ul, .editor-style ul ol, .editor-style ol ul, .editor-style ol ol {

@@ -51,6 +51,8 @@ export default class Textarea extends React.Component {
             }
         }
     }
+    componentDidMount() {
+    }   
     componentWillReceiveProps(nextProps) {
         if (this.props.value == nextProps.value) {
             return
@@ -69,6 +71,17 @@ export default class Textarea extends React.Component {
     _onChange(e) {
         let value = e.target.value.replace(/(^\s*)|(\s*$)/, "")
         this.componentWillMount(value, true)
+    }
+    onWheel(obj){
+        console.log(obj) 
+        console.log(obj.currentTarget.offsetTop)
+    }
+    onKeyPress(obj){
+        console.log(obj)
+        console.log(obj.nativeEvent.charCode)
+    }
+    onCopy(obj){
+        console.log(obj)
     }
     render() {
         let Class = classNames({
@@ -93,7 +106,10 @@ export default class Textarea extends React.Component {
             // 'shake': this.state.error || this.state.warning,
         })
         return (
-            <div className={Class}>
+            <div className={Class}
+                onWheel = {this.onWheel.bind(this)}
+                onCopy = {this.onCopy.bind(this)}
+                onKeyPress = {this.onKeyPress.bind(this)} > 
                 <label className="form-label">{this.props.title}</label>
                 <div className="form-control">
                     <i className={limitClass}>{limit}</i>

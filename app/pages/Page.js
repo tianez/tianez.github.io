@@ -42,7 +42,7 @@ export default class Login extends React.Component {
             left: '50%'
         }
         return (
-            <section className='warp page'>
+            <section className='warp page simditor'>
                 <section style={divStyle}>
                     <img  style={imgStyle} src="http://www.day.com/img?w=1920&h=600&r=1" />
                 </section>
@@ -51,7 +51,7 @@ export default class Login extends React.Component {
                         <h1>{this.state.title}</h1>
                         <h2>{this.state.description}</h2>
                     </div>
-                    <div className="content" dangerouslySetInnerHTML={{ __html: this.state.content }}>
+                    <div className="content simditor-body" dangerouslySetInnerHTML={{ __html: this.state.content }}>
                     </div>
                 </section>
             </section>

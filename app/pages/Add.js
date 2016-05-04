@@ -45,7 +45,6 @@ export default class Add extends React.Component {
                 Apicloud.get(action, '', function(err, res) {
                     let article = JSON.parse(res.text)
                     article._method = 'PUT'
-                    console.log(article)
                     ConfigActions.update('title', article.title)
                         // ConfigActions.update(article.id, article)
                     this.setState({
