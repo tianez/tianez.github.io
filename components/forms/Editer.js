@@ -1,7 +1,7 @@
 'use strict'
 import React from 'react'
 import classNames from 'classnames';
-
+let editor
 export default class Editer extends React.Component {
     constructor() {
         super()
@@ -9,26 +9,26 @@ export default class Editer extends React.Component {
             num: false
         }
     }
-    componentDidMount(value) {
-        let editor_ID= '#'+this.props.name
+    componentDidMount() {
+        let editor_ID = '#' + this.props.name
         let toolbar = ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|', 'indent', 'outdent', 'alignment'];
-        let editor = new Simditor({
+        editor = new Simditor({
             textarea: $(editor_ID),
             toolbar: toolbar
         })
         editor.on('valuechanged', function(event) {
-            let v = editor.getValue()
-            if (v == this.props.value) {
-                return
-            }
-            if (this.props.onChange) {
-                this.props.onChange(this.props.name, v)
-            }
-            event.preventDefault()
-        }.bind(this))
-        if (value) {
-            editor.setValue(value)
-        }
+                let v = editor.getValue()
+                if (v == this.props.value) {
+                    return
+                }
+                if (this.props.onChange) {
+                    this.props.onChange(this.props.name, v)
+                }
+                event.preventDefault()
+            }.bind(this))
+            // if (value) {
+            //     editor.setValue(value)
+            // }
     }
     componentWillReceiveProps(nextProps) {
         if (this.props.value == nextProps.value) {
@@ -40,14 +40,15 @@ export default class Editer extends React.Component {
         this.setState({
             num: true
         })
-        this.componentDidMount(nextProps.value)
+        editor.setValue(nextProps.value)
+            // this.componentDidMount(nextProps.value)
     }
     _onChange(e) {
         return
     }
     render() {
         let Class = classNames({
-            'form-group animated bounceInRight': true
+            'form-group': true
         })
         let helpClass = classNames({
             'form-help': true

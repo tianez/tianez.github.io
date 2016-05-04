@@ -4,7 +4,13 @@ import './css/style.min.css'
 import React from 'react';
 import ReactDom from 'react-dom'
 import {
-    Router, Route, IndexRoute, Redirect, hashHistory, browserHistory, Link
+    Router,
+    Route,
+    IndexRoute,
+    Redirect,
+    hashHistory,
+    browserHistory,
+    Link
 }
 from 'react-router'
 
@@ -31,10 +37,9 @@ import Layout from './Layout'
 import Index from './pages/Index'
 import Pages from './pages/Pages'
 import Page from './pages/Page'
+import Add from './pages/Add'
 import Login from './pages/Login'
 import Logout from './pages/Logout'
-import Add from './pages/Add'
-import Post from './pages/Post'
 import NoMatch from './pages/NoMatch'
 
 function redirectToLogin(nextState, replace) {
@@ -43,30 +48,66 @@ function redirectToLogin(nextState, replace) {
     let user = localStorage.user ? true : false
     if (!user && pathname !== '/login') {
         ConfigActions.update('msg', '你还没有登录，请先登录！')
-        replace({ pathname: '/login' })
+        replace({
+            pathname: '/login'
+        })
     } else if (user && pathname == '/login') {
-        replace({ pathname: '/' })
+        replace({
+            pathname: '/'
+        })
     }
 }
 ReactDom.render((
-    React.createElement(Router, {
-        history: hashHistory
-    },
-        React.createElement(Route, { path: "/", component: Layout },
-            React.createElement(IndexRoute, { component: Index }),
-            React.createElement(Route, { path: "page", component: Pages }),
-            React.createElement(Route, { path: "page/:articleId", component: Page }),
-            React.createElement(Route, { path: "login", component: Login, onEnter: redirectToLogin }),
-            React.createElement(Route, { path: "logout", component: Logout }),
-            React.createElement(Route, { path: "add", component: Add, onEnter: redirectToLogin }),
-            React.createElement(Route, { path: "post", component: Post, onEnter: redirectToLogin }
-                // React.createElement(Route, { path: "add", component: Add, onEnter: redirectToLogin }) 
-            ),
-            React.createElement(Route, { path: "post/add", component: Add, onEnter: redirectToLogin }),
-            React.createElement(Route, { path: "post/:bookId", component: Add }),
-            React.createElement(Route, { path: "*", component: NoMatch })
+        React.createElement(Router, {
+                history: hashHistory
+            },
+            React.createElement(Route, {
+                    path: "/",
+                    component: Layout
+                },
+                React.createElement(IndexRoute, {
+                    component: Index
+                }),
+                React.createElement(Route, {
+                        path: "page",
+                        component: Pages
+                    }
+                    // React.createElement(Route, { path: "add", component: Add, onEnter: redirectToLogin }) 
+                ),
+                React.createElement(Route, {
+                    path: "page/add",
+                    component: Add,
+                    onEnter: redirectToLogin
+                }),
+                React.createElement(Route, {
+                    path: "edit/:articleId",
+                    component: Add,
+                    onEnter: redirectToLogin
+                }),
+                React.createElement(Route, {
+                    path: "page/:articleId",
+                    component: Page
+                }),
+                React.createElement(Route, {
+                    path: "login",
+                    component: Login,
+                    onEnter: redirectToLogin
+                }),
+                React.createElement(Route, {
+                    path: "logout",
+                    component: Logout
+                }),
+                React.createElement(Route, {
+                    path: "add",
+                    component: Add,
+                    onEnter: redirectToLogin
+                }),
+                React.createElement(Route, {
+                    path: "*",
+                    component: NoMatch
+                })
+            )
         )
-    )
-),
+    ),
     document.getElementById('app')
 )

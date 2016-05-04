@@ -9,7 +9,7 @@ export default class Login extends React.Component {
         this.state = {
             info: {}
         }
-    } 
+    }
     _onChange(name, value) {
         let info = this.state.info
         info[name] = value

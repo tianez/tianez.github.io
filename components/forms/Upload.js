@@ -3,7 +3,10 @@
 import React from 'react'
 import classNames from 'classnames';
 import ajaxUpload from '../utils/AjaxUpload'
-import {getUpToken} from '../utils/Qiniu'
+import {
+    getUpToken,
+    getHash
+} from '../utils/Qiniu'
 import Canvas from './Canvas'
 
 // var ReactCanvas = require('react-canvas');
@@ -25,14 +28,15 @@ export default class Upload extends React.Component {
         let qnurl = 'https://7xj11y.com1.z0.glb.clouddn.com'
         e.preventDefault()
         let files = e.target.files
-        // 文件过滤
-        // 只允许上传图片
+            // 文件过滤
+            // 只允许上传图片
         files = Array.prototype.slice.call(files, 0)
-        files = files.filter(function (file) {
+        files = files.filter(function(file) {
             return /image/i.test(file.type)
         })
         let file = files[0]
         files[0].thumb = URL.createObjectURL(file)
+        console.log(files[0])
         let value = this.state.files.concat(files)
         this.setState({
             files: value
@@ -54,20 +58,19 @@ export default class Upload extends React.Component {
                 console.log(qnurl + '/' + res.name)
                 console.log(res)
             },
-            onError: () => {
-            }
+            onError: () => {}
         })
     }
     render() {
         let Class = classNames({
-            'form-group animated bounceInRight': true,
+            'form-group': true,
         })
         let helpClass = classNames({
             'form-help': true,
         })
         let thumbs
         if (this.state.files.length > 0) {
-            thumbs = this.state.files.map(function (file,index) {
+            thumbs = this.state.files.map(function(file, index) {
                 return (
                     <Canvas className='form-canva' src={file.thumb} key= {index} />
                 )

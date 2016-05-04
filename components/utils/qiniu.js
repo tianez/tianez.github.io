@@ -2,7 +2,7 @@
 var accessKey = 'Lkve3Zo4h2ZK3iIGMJbwvop2Guy1jIDyJT0Mi9RL'
 var secretKey = 'WF41n8b1LIRk8c6lcBiDzNrFTci2E-cu7ki22W2b'
 var scope = 'wire'
-var getUpToken = function () {
+var getUpToken = function() {
     var returnBody = '{ \"name\":$(fname),\"size\":$(fsize),\"info\":$(imageInfo),\"hash\":$(etag)}'
     var putPolicy = {
         "scope": scope,
@@ -16,14 +16,16 @@ var getUpToken = function () {
     var upload_token = accessKey + ":" + safe64(encoded_signed) + ":" + encoded;
     return upload_token;
 }
+
+var getHash = function(str) {
+    // let buffer = require('fs').createReadStream(str)
+    return str
+}
 var Qiniu = {
-    getUpToken: getUpToken
+    getUpToken: getUpToken,
+    getHash: getHash
 }
 module.exports = Qiniu
-
-// module.exports = function () {
-//     return getUpToken()
-// }
 
 function utf16to8(str) {
     var out, i, len, c;
@@ -161,7 +163,7 @@ function base64decode(str) {
     }
     return out;
 }
-var safe64 = function (base64) {
+var safe64 = function(base64) {
     base64 = base64.replace(/\+/g, "-");
     base64 = base64.replace(/\//g, "_");
     return base64;

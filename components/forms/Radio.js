@@ -67,7 +67,7 @@ export default class Checkbox extends React.Component {
             )
         }.bind(this))
         return (
-            <div className='form-group animated bounceInRight'>
+            <div className='form-group'>
                 <label className="form-label">{this.props.title}</label>
                 <div className="form-control">
                     {options}

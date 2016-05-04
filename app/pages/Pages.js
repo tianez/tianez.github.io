@@ -34,9 +34,10 @@ export default class Main extends React.Component {
             color: '#f00'
         }
         if (this.state.info.length > 0) {
-            lists = this.state.info.map(function(d) {
+            lists = this.state.info.map(function(d, index) {
                 let url = '/page/' + d.id
-                return <li key={d.id}><Link to={url} activeStyle={active} >{d.title}</Link></li>
+                let edit = '/edit/' + d.id
+                return <li key={index}><Link to={url} activeStyle={active} >{d.title}</Link><Link to={edit} activeStyle={active} >编辑</Link></li>
             })
         } else {
             lists = ''

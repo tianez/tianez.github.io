@@ -29,17 +29,17 @@ export default class Add extends React.Component {
     _req() {
         let action = 'article'
         let {
-            bookId
+            articleId
         } = this.props.params
-        if (bookId) {
-            action = action + '/' + bookId
-            let article = ConfigStore.get(bookId)
+        if (articleId) {
+            action = action + '/' + articleId
+            let article = ConfigStore.get(articleId)
             if (article) {
                 article._method = 'PUT'
                 this.setState({
                     info: article,
                     action: action,
-                    id: bookId
+                    id: articleId
                 })
             } else {
                 Apicloud.get(action, '', function(err, res) {
@@ -51,8 +51,8 @@ export default class Add extends React.Component {
                     this.setState({
                         info: article,
                         action: action,
-                        id: bookId,
-                        ids: 'bookId',
+                        id: articleId,
+                        ids: 'articleId',
                     })
                 }.bind(this))
             }
@@ -83,7 +83,7 @@ export default class Add extends React.Component {
     render() {
         let info = this.state.info
         return (
-            <section className='warp'>
+            <section className='warp animated fadeInRight'>
                 <section className = "container" >
                     <h3 className = "jumbotron-heading" >文章管理</h3>
                     <Form action = {this.state.action}

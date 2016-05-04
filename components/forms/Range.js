@@ -27,11 +27,11 @@ export default class Range extends React.Component {
             help: help,
         })
         console.log(value)
-        // this.props._onChange(this.props.k, value)
+            // this.props._onChange(this.props.k, value)
     }
     render() {
         let Class = classNames({
-            'form-group animated bounceInRight': true,
+            'form-group': true,
         })
         let helpClass = classNames({
             'form-help': true,
