@@ -28350,8 +28350,8 @@
 	                        { className: 'service-box pure-u-1-3' },
 	                        _react2.default.createElement(
 	                            'figure',
-	                            { className: 'wow bounceIn' },
-	                            _react2.default.createElement('img', { src: 'https://d1p3dh66omwgxt.cloudfront.net/wp-content/uploads/2016/03/a-02-e1459166052554.jpg', alt: '', className: 'img-responsive' })
+	                            { className: 'figure' },
+	                            _react2.default.createElement('img', { src: 'http://www.day.com/img?w=410&h=300&r=1', alt: '', className: 'img-responsive' })
 	                        ),
 	                        _react2.default.createElement(
 	                            'h4',
@@ -28369,8 +28369,8 @@
 	                        { className: 'service-box pure-u-1-3' },
 	                        _react2.default.createElement(
 	                            'figure',
-	                            { className: 'wow bounceIn' },
-	                            _react2.default.createElement('img', { src: 'https://d1p3dh66omwgxt.cloudfront.net/wp-content/uploads/2016/03/a-02-e1459166052554.jpg', alt: '', className: 'img-responsive' })
+	                            { className: 'figure' },
+	                            _react2.default.createElement('img', { src: 'app/images/1.png', alt: '', className: 'img-responsive' })
 	                        ),
 	                        _react2.default.createElement(
 	                            'h4',
@@ -28388,8 +28388,8 @@
 	                        { className: 'service-box pure-u-1-3' },
 	                        _react2.default.createElement(
 	                            'figure',
-	                            { className: 'wow bounceIn' },
-	                            _react2.default.createElement('img', { src: 'https://d1p3dh66omwgxt.cloudfront.net/wp-content/uploads/2016/03/a-02-e1459166052554.jpg', alt: '', className: 'img-responsive' })
+	                            { className: 'figure' },
+	                            _react2.default.createElement('img', { src: 'http://www.day.com/img?w=410&h=300&r=3', alt: '', className: 'img-responsive' })
 	                        ),
 	                        _react2.default.createElement(
 	                            'h4',
@@ -28447,7 +28447,7 @@
 
 
 	// module
-	exports.push([module.id, ".index .service-box figure {\n  margin: 0;\n  max-width: 100%;\n  overflow: hidden;\n}\n.index .service-box figure img {\n  transform: scale(1.1);\n}\n.index .service-box figure img:hover {\n  transform: scale(1);\n}\n.index .service-box h4 {\n  font-size: 20px;\n  font-weight: 400;\n  color: #000;\n  text-align: center;\n  margin: 5px 0 0 0;\n}\n.index .service-box .text-muted {\n  text-align: center;\n  color: #777;\n  margin: 5px 0;\n  line-height: 24px;\n  font-size: 16px;\n}\n", ""]);
+	exports.push([module.id, ".index .service-box .figure {\n  margin: 0;\n  width: 100%;\n  max-width: 100%;\n  overflow: hidden;\n  cursor: pointer;\n  opacity: .8;\n  transition: opacity 0.4s ease 0s;\n}\n.index .service-box .figure:hover {\n  opacity: 1;\n}\n.index .service-box h4 {\n  font-size: 20px;\n  font-weight: 400;\n  color: #000;\n  text-align: center;\n  margin: 5px 0 0 0;\n}\n.index .service-box .text-muted {\n  text-align: center;\n  color: #777;\n  margin: 5px 0;\n  line-height: 24px;\n  font-size: 16px;\n}\n", ""]);
 
 	// exports
 
@@ -28696,9 +28696,22 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var divStyle = {
+	                height: '600px'
+	            };
+	            var imgStyle = {
+	                marginLeft: '-960px',
+	                position: 'relative',
+	                left: '50%'
+	            };
 	            return _react2.default.createElement(
 	                'section',
 	                { className: 'warp page' },
+	                _react2.default.createElement(
+	                    'section',
+	                    { style: divStyle },
+	                    _react2.default.createElement('img', { style: imgStyle, src: 'http://www.day.com/img?w=1920&h=600&r=1' })
+	                ),
 	                _react2.default.createElement(
 	                    'section',
 	                    { className: 'container' },
@@ -28890,7 +28903,7 @@
 	            var info = this.state.info;
 	            return _react2.default.createElement(
 	                'section',
-	                { className: 'warp animated fadeInRight' },
+	                { className: 'warp' },
 	                _react2.default.createElement(
 	                    'section',
 	                    { className: 'container' },

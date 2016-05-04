@@ -24,7 +24,7 @@ export default class Login extends React.Component {
             ConfigActions.update('title', article.title)
             this.setState(article)
         } else {
-            Apicloud.get(action, '', function (err, res) {
+            Apicloud.get(action, '', function(err, res) {
                 let article = JSON.parse(res.text)
                 ConfigActions.update(articleId, article)
                 ConfigActions.update('title', article.title)
@@ -33,8 +33,19 @@ export default class Login extends React.Component {
         }
     }
     render() {
+        let divStyle = {
+            height: '600px',
+        }
+        let imgStyle = {
+            marginLeft: '-960px',
+            position: 'relative',
+            left: '50%'
+        }
         return (
             <section className='warp page'>
+                <section style={divStyle}>
+                    <img  style={imgStyle} src="http://www.day.com/img?w=1920&h=600&r=1" />
+                </section>
                 <section className = "container">
                     <div className="header">
                         <h1>{this.state.title}</h1>

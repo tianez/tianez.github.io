@@ -38,12 +38,13 @@ input:focus {
   bottom: 0;
 }
 .img-responsive {
+  width: 100%;
   max-width: 100%;
   height: auto;
   display: block;
 }
 .pure-g [class*="pure-u"] {
-  padding: 0 3px;
+  padding: 0 10px;
 }
 .swap-enter {
   opacity: 0.01;
@@ -68,7 +69,7 @@ input:focus {
           transform: translateX(-5em);
 }
 #header {
-  background: #f3f3f3;
+  background: rgba(255, 255, 255, 0.75);
 }
 #header .pure-menu-link {
   padding: 1rem 2rem;

@@ -83,7 +83,7 @@ export default class Add extends React.Component {
     render() {
         let info = this.state.info
         return (
-            <section className='warp animated fadeInRight'>
+            <section className='warp'>
                 <section className = "container" >
                     <h3 className = "jumbotron-heading" >文章管理</h3>
                     <Form action = {this.state.action}
