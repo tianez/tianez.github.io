@@ -39,6 +39,6 @@ module.exports = {
         }]
     },
     plugins: [
-        new ExtractTextPlugin("app/app.css")
+        new ExtractTextPlugin("app.css")
     ]
 }
