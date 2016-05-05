@@ -12,6 +12,7 @@ html {
 }
 body {
   font-size: 1.4rem;
+  background: url(../images/1.jpg);
 }
 input,
 input:focus {
@@ -23,33 +24,13 @@ input:focus {
 .left {
   float: left;
 }
-.warp {
-  position: absolute;
-  width: 100%;
-  left: 0;
-  top: 10rem;
-  transition: all 0.5s ease-in;
-}
-.swap_show .warp {
-  top: 4rem;
+.clear {
+  clear: both;
 }
 .container {
   width: 100%;
   max-width: 1180px;
   margin: 0 auto;
-}
-.main {
-  position: relative;
-}
-.pure-menu-fixed ~ .main {
-  padding-top: 4rem;
-}
-.fixed-bottom {
-  position: fixed;
-  width: 100%;
-  left: 0;
-  bottom: 0;
-  z-index: 999;
 }
 .img-responsive {
   width: 100%;
@@ -89,6 +70,19 @@ input:focus {
   color: #ee521c;
   background: none;
 }
+.main {
+  position: relative;
+}
+.warp {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 10rem;
+  transition: all 0.5s ease-in;
+}
+.swap_show .warp {
+  top: 4rem;
+}
 #footer {
   background: #111;
   color: #7f8c8d;
@@ -96,9 +90,18 @@ input:focus {
   height: 32px;
   padding: 0 20px;
 }
+.fixed-bottom {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  z-index: 999;
+}
 .loading {
   overflow: hidden;
   height: 60px;
+  position: relative;
+  top: 4rem;
 }
 .loading-hide {
   height: 0;
@@ -108,6 +111,14 @@ input:focus {
   margin: 20px auto 0;
   width: 150px;
   text-align: center;
+}
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
 }
 .spinner > div {
   width: 20px;
@@ -119,14 +130,6 @@ input:focus {
   animation: bouncedelay 1.4s infinite ease-in-out;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
-}
-.spinner .bounce1 {
-  -webkit-animation-delay: -0.32s;
-  animation-delay: -0.32s;
-}
-.spinner .bounce2 {
-  -webkit-animation-delay: -0.16s;
-  animation-delay: -0.16s;
 }
 @-webkit-keyframes bouncedelay {
   0%,
@@ -149,4 +152,98 @@ input:focus {
     transform: scale(1);
     -webkit-transform: scale(1);
   }
+}
+.index .service-box .figure {
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: .8;
+  transition: opacity 0.4s ease 0s;
+}
+.index .service-box .figure:hover {
+  opacity: 1;
+}
+.index .service-box h4 {
+  font-size: 20px;
+  font-weight: 400;
+  color: #000;
+  text-align: center;
+  margin: 5px 0 0 0;
+}
+.index .service-box .text-muted {
+  text-align: center;
+  color: #777;
+  margin: 5px 0;
+  line-height: 24px;
+  font-size: 16px;
+}
+.login {
+  margin-top: 40px;
+}
+.msg ~ .swap .login {
+  margin-top: 0;
+}
+.swap_show .page .banner {
+  top: 4rem;
+}
+.page {
+  color: #777;
+  border: none;
+  padding-top: 600px;
+}
+.page .banner {
+  position: fixed;
+  top: 10rem;
+  left: 0;
+  z-index: 1;
+  height: 600px;
+  width: 100%;
+  transition: all 0.5s ease-in;
+}
+.page .banner img {
+  position: relative;
+  margin-left: -960px;
+  left: 50%;
+}
+.page .contents {
+  background: #fff;
+  position: relative;
+  z-index: 9;
+  padding: 0 1.5rem 5rem;
+}
+.page .header {
+  margin: 0;
+  color: #333;
+  text-align: center;
+  padding: 2.5rem 2rem 0;
+  border-bottom: 1px solid #eee;
+}
+.page .header h1 {
+  margin: 1rem 0;
+  font-size: 4.8rem;
+  font-weight: 300;
+}
+.page .header h2 {
+  font-weight: 300;
+  color: #ccc;
+  padding: 0;
+  margin-top: 0;
+}
+.page .content {
+  margin: 0 auto;
+  max-width: 1000px;
+  margin-bottom: 50px;
+  font-size: 1.6rem;
+  line-height: 2.6rem;
+}
+.page .content .content-subhead {
+  margin: 50px 0 20px;
+  font-weight: 300;
+  color: #888;
+}
+.page .content .pure-img-responsive {
+  max-width: 100%;
+  height: auto;
 }

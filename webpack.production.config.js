@@ -23,23 +23,23 @@ var config = {
                 presets: ['es2015', 'react']
             }
         }, { //css
-                test: /\.css$/, // Only .css files
-                loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+            test: /\.css$/, // Only .css files
+            loader: ExtractTextPlugin.extract("style-loader", "css-loader")
                 // loader: 'style!css' // Run both loaders
-            }, { // LESS
-                test: /\.less$/,
-                loader: 'style!css!less'
-            }, { // SASS
-                test: /\.scss$/,
-                loader: 'style!css!sass'
-            }, { //图片
-                test: /\.(png|jpg)$/,
-                loader: 'url?limit=25000'
-            }]
+        }, { // LESS
+            test: /\.less$/,
+            loader: 'style!css!less'
+        }, { // SASS
+            test: /\.scss$/,
+            loader: 'style!css!sass'
+        }, { //图片
+            test: /\.(png|jpg)$/,
+            loader: 'url?limit=50000&name=app/img/[name].[ext]',
+        }]
     },
     plugins: [
         new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
-        new ExtractTextPlugin("app/css/app.css")
+        new ExtractTextPlugin("app.css")
     ]
 }
 

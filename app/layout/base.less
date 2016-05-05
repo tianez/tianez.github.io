@@ -11,6 +11,7 @@ html {
 
 body {
     font-size: 1.4rem;
+    background: url(../images/1.jpg);
 }
 
 input,input:focus {
@@ -25,39 +26,15 @@ input,input:focus {
     float: left;
 }
 
-.warp {
-    position: absolute;
-    width: 100%;
-    left: 0;
-    top: 10rem;
-    transition: all .5s ease-in;
+.clear {
+    clear: both;
 }
 
-.swap_show {
-    .warp{
-        top: 4rem;
-    }
-}
 .container {
     width: 100%;
     max-width: 1180px;
     margin: 0 auto;
     // position: relative;
-}
-
-.main {
-    position: relative;
-}
-.pure-menu-fixed~.main {
-    padding-top: 4rem;
-}
-
-.fixed-bottom { 
-    position: fixed;
-    width: 100%;
-    left: 0;
-    bottom: 0;
-    z-index: 999;
 }
 
 .img-responsive {

@@ -1,6 +1,8 @@
 .loading {
   overflow: hidden;
   height: 60px;
+  position: relative;
+  top: 4rem;
 }
 .loading-hide {
   height: 0;
@@ -11,6 +13,14 @@
   margin: 20px auto 0;
   width: 150px;
   text-align: center;
+  .bounce1 {
+    -webkit-animation-delay: -0.32s;
+    animation-delay: -0.32s;
+  }
+  .bounce2 {
+    -webkit-animation-delay: -0.16s;
+    animation-delay: -0.16s;
+  }
 }
  
 .spinner > div {
@@ -25,15 +35,6 @@
   animation-fill-mode: both;
 }
  
-.spinner .bounce1 {
-  -webkit-animation-delay: -0.32s;
-  animation-delay: -0.32s;
-}
- 
-.spinner .bounce2 {
-  -webkit-animation-delay: -0.16s;
-  animation-delay: -0.16s;
-}
  
 @-webkit-keyframes bouncedelay {
   0%, 80%, 100% { -webkit-transform: scale(0.0) }

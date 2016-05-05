@@ -19,14 +19,14 @@ var webpackConfig = require('./webpack.config')
 
 gulp.task('Less', function() {
     gulp.src('app/layout/style.less')
-        .pipe(sourcemaps.init())
+        // .pipe(sourcemaps.init())
         .pipe(less())
         .pipe(postcss([autoprefixer({
             browsers: ['last 2 versions']
         })]))
         // .pipe(csscomb())
         .pipe(gulp.dest('app/css/'))
-        .pipe(sourcemaps.write())
+        // .pipe(sourcemaps.write())
         .pipe(cssmin({
             compatibility: 'ie7' //兼容IE7及以下需设置compatibility属性
         }))
@@ -88,7 +88,7 @@ gulp.task('watch', function() {
     gulp.watch(
         ['app/*.js',
             'app/**/*.js',
-            'app/css/style.css',
+            // 'app/css/style.css',
             'components/**'
         ], ['webpack']);
 });

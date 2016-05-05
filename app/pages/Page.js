@@ -1,7 +1,7 @@
 'use strict';
 import React from 'react';
 import Apicloud from '../../components/utils/Apicloud'
-import './page.less'
+// import './page.less'
 
 export default class Login extends React.Component {
     constructor(props) {

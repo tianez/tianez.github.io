@@ -3,7 +3,7 @@
 import React from 'react'
 import request from 'superagent'
 
-import './index.less'
+// import './index.less'
 
 export default class Main extends React.Component {
     constructor(props) {

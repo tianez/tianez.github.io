@@ -1,7 +1,11 @@
 'use strict';
 import React from 'react';
-import {Form, Input, Button} from '../../components/forms/index'
-import './Login.less'
+import {
+    Form,
+    Input,
+    Button
+} from '../../components/forms/index'
+// import './Login.less'
 
 export default class Login extends React.Component {
     constructor(props) {

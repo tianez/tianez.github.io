@@ -1,5 +1,5 @@
 'use strict'
-import './css/style.min.css'
+// import './css/style.min.css'
 
 import React from 'react';
 import ReactDom from 'react-dom'
@@ -33,7 +33,7 @@ window.ConfigStore = require('./flux/ConfigStore')
 window.showload = function() {
     setTimeout(function() {
         ConfigActions.update('loading', 0)
-    }, 1000)
+    }, 600)
 }
 
 window.old = ''
