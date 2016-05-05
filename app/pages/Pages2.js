@@ -26,7 +26,6 @@ export default class Main extends React.Component {
             this.setState({
                 info: data
             })
-            showload()
         }.bind(this))
     }
     render() {
@@ -47,21 +46,11 @@ export default class Main extends React.Component {
             pathname
         } = this.props.location
         return (
-            <section className='warp'>
-                <section className = "container" >
-                    <h3 className = "jumbotron-heading" >文章管理</h3>
-                </section>
-                <section className = "container" >
-                    <ul>
-                        {lists}
-                    </ul>
-                </section>
-                <ReactCSSTransitionGroup
-                    component="section" className='container' transitionName="swap"
+            <ReactCSSTransitionGroup
+                    component="section" transitionName="swap"
                     transitionEnterTimeout={500} transitionLeaveTimeout={500} >
                     {React.cloneElement(this.props.children || <div/>, { key: pathname }) }
                 </ReactCSSTransitionGroup>
-            </section>
         )
     }
 }

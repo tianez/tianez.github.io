@@ -28,7 +28,15 @@ input,input:focus {
 .warp {
     position: absolute;
     width: 100%;
-    padding-bottom: 5rem;
+    left: 0;
+    top: 10rem;
+    transition: all .5s ease-in;
+}
+
+.swap_show {
+    .warp{
+        top: 4rem;
+    }
 }
 .container {
     width: 100%;
@@ -37,6 +45,9 @@ input,input:focus {
     // position: relative;
 }
 
+.main {
+    position: relative;
+}
 .pure-menu-fixed~.main {
     padding-top: 4rem;
 }

@@ -30,12 +30,21 @@ window.ConfigActions = require('./flux/ConfigActions')
 // import ConfigStore from './flux/ConfigStore'
 window.ConfigStore = require('./flux/ConfigStore')
 
+window.showload = function() {
+    setTimeout(function() {
+        ConfigActions.update('loading', 0)
+    }, 1000)
+}
+
+window.old = ''
+
 /** 
  * 路由
  */
 import Layout from './Layout'
 import Index from './pages/Index'
 import Pages from './pages/Pages'
+import Pages2 from './pages/Pages2'
 import Page from './pages/Page'
 import Add from './pages/Add'
 import Login from './pages/Login'
@@ -57,6 +66,7 @@ function redirectToLogin(nextState, replace) {
         })
     }
 }
+
 ReactDom.render((
         React.createElement(Router, {
                 history: hashHistory
@@ -69,11 +79,9 @@ ReactDom.render((
                     component: Index
                 }),
                 React.createElement(Route, {
-                        path: "page",
-                        component: Pages
-                    }
-                    // React.createElement(Route, { path: "add", component: Add, onEnter: redirectToLogin }) 
-                ),
+                    path: "page",
+                    component: Pages
+                }),
                 React.createElement(Route, {
                     path: "page/add",
                     component: Add,
@@ -88,6 +96,18 @@ ReactDom.render((
                     path: "page/:articleId",
                     component: Page
                 }),
+                React.createElement(Route, {
+                        path: "page2",
+                        component: Pages
+                    },
+                    React.createElement(IndexRoute, {
+                        component: Pages
+                    }),
+                    React.createElement(Route, {
+                        path: ":articleId",
+                        component: Page
+                    })
+                ),
                 React.createElement(Route, {
                     path: "login",
                     component: Login,

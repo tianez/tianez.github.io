@@ -12,24 +12,32 @@ export default class Layout extends React.Component {
     constructor() {
         super()
         this.state = {
-            msg: ''
-        }
-        // localStorage.lastname="Smith";
-        // sessionStorage.name = 'sdsd'
-    }
-    _onChange() { 
-        let config = ConfigStore.getAll()
-        console.log(config)
-        window.document.title = config.title
-        this.setState(config)
+                msg: ''
+            }
+            // localStorage.lastname="Smith";
+            // sessionStorage.name = 'sdsd'
     }
     componentWillMount() {
 
-    } 
+    }
     componentDidMount() {
         // window.addEventListener('scroll', this.onScroll.bind(this))
         ConfigStore.addChangeListener(this._onChange.bind(this))
-    }   
+        window.onload = function() {
+            let load = document.getElementById('load')
+            load.className += " load_hide";
+        }
+        window.onhashchange = function() {
+            let hash = location.hash.split("?")[0]
+            if (old == '') {
+                old = hash
+            }
+            if (old != hash) {
+                old = hash
+                ConfigActions.update('loading', 1)
+            }
+        }
+    }
 
     shouldComponentUpdate() {
         return true
@@ -37,17 +45,23 @@ export default class Layout extends React.Component {
     componentWillUnmount() {
         ConfigStore.removeChangeListener(this._onChange.bind(this))
     }
-    onScroll(){
+    _onChange() {
+        let config = ConfigStore.getAll()
+        console.log(config)
+        window.document.title = config.title
+        this.setState(config)
+    }
+    onScroll() {
         // var obj = document.getElementById('app')
         // console.log(obj.offsetTop) 
         // console.log(window.scrollY)
         ConfigActions.update('window_Y', window.scrollY)
-        // console.log(document.body.scrollTop)
+            // console.log(document.body.scrollTop)
     }
-    onWheel(obj){
+    onWheel(obj) {
         // console.log(obj.target.offsetTop)
     }
-    onKeyPress(){
+    onKeyPress() {
         console.log(32)
     }
     render() {

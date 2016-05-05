@@ -60,6 +60,7 @@ export default class Add extends React.Component {
                 action: action,
             })
         }
+        showload()
     }
     _onChange(name, value) {
         let info = this.state.info

@@ -65,23 +65,27 @@
 
 	var _reactRouter = __webpack_require__(167);
 
-	var _Layout = __webpack_require__(226);
+	var _Layout = __webpack_require__(224);
 
 	var _Layout2 = _interopRequireDefault(_Layout);
 
-	var _Index = __webpack_require__(245);
+	var _Index = __webpack_require__(246);
 
 	var _Index2 = _interopRequireDefault(_Index);
 
-	var _Pages = __webpack_require__(248);
+	var _Pages = __webpack_require__(249);
 
 	var _Pages2 = _interopRequireDefault(_Pages);
 
-	var _Page = __webpack_require__(250);
+	var _Pages3 = __webpack_require__(251);
+
+	var _Pages4 = _interopRequireDefault(_Pages3);
+
+	var _Page = __webpack_require__(252);
 
 	var _Page2 = _interopRequireDefault(_Page);
 
-	var _Add = __webpack_require__(253);
+	var _Add = __webpack_require__(255);
 
 	var _Add2 = _interopRequireDefault(_Add);
 
@@ -115,6 +119,14 @@
 	// import ConfigStore from './flux/ConfigStore'
 	window.ConfigStore = __webpack_require__(321);
 
+	window.showload = function () {
+	    setTimeout(function () {
+	        ConfigActions.update('loading', 0);
+	    }, 1000);
+	};
+
+	window.old = '';
+
 	/** 
 	 * 路由
 	 */
@@ -135,6 +147,7 @@
 	        });
 	    }
 	}
+
 	_reactDom2.default.render(_react2.default.createElement(_reactRouter.Router, {
 	    history: _reactRouter.hashHistory
 	}, _react2.default.createElement(_reactRouter.Route, {
@@ -145,9 +158,7 @@
 	}), _react2.default.createElement(_reactRouter.Route, {
 	    path: "page",
 	    component: _Pages2.default
-	}
-	// React.createElement(Route, { path: "add", component: Add, onEnter: redirectToLogin })
-	), _react2.default.createElement(_reactRouter.Route, {
+	}), _react2.default.createElement(_reactRouter.Route, {
 	    path: "page/add",
 	    component: _Add2.default,
 	    onEnter: redirectToLogin
@@ -159,6 +170,14 @@
 	    path: "page/:articleId",
 	    component: _Page2.default
 	}), _react2.default.createElement(_reactRouter.Route, {
+	    path: "page2",
+	    component: _Pages2.default
+	}, _react2.default.createElement(_reactRouter.IndexRoute, {
+	    component: _Pages2.default
+	}), _react2.default.createElement(_reactRouter.Route, {
+	    path: ":articleId",
+	    component: _Page2.default
+	})), _react2.default.createElement(_reactRouter.Route, {
 	    path: "login",
 	    component: _Login2.default,
 	    onEnter: redirectToLogin
@@ -20174,7 +20193,7 @@
 
 	exports.Link = _Link3['default'];
 
-	var _IndexLink2 = __webpack_require__(206);
+	var _IndexLink2 = __webpack_require__(205);
 
 	var _IndexLink3 = _interopRequireDefault(_IndexLink2);
 
@@ -20182,25 +20201,25 @@
 
 	/* components (configuration) */
 
-	var _IndexRedirect2 = __webpack_require__(207);
+	var _IndexRedirect2 = __webpack_require__(206);
 
 	var _IndexRedirect3 = _interopRequireDefault(_IndexRedirect2);
 
 	exports.IndexRedirect = _IndexRedirect3['default'];
 
-	var _IndexRoute2 = __webpack_require__(209);
+	var _IndexRoute2 = __webpack_require__(208);
 
 	var _IndexRoute3 = _interopRequireDefault(_IndexRoute2);
 
 	exports.IndexRoute = _IndexRoute3['default'];
 
-	var _Redirect2 = __webpack_require__(208);
+	var _Redirect2 = __webpack_require__(207);
 
 	var _Redirect3 = _interopRequireDefault(_Redirect2);
 
 	exports.Redirect = _Redirect3['default'];
 
-	var _Route2 = __webpack_require__(210);
+	var _Route2 = __webpack_require__(209);
 
 	var _Route3 = _interopRequireDefault(_Route2);
 
@@ -20208,19 +20227,19 @@
 
 	/* mixins */
 
-	var _History2 = __webpack_require__(211);
+	var _History2 = __webpack_require__(210);
 
 	var _History3 = _interopRequireDefault(_History2);
 
 	exports.History = _History3['default'];
 
-	var _Lifecycle2 = __webpack_require__(212);
+	var _Lifecycle2 = __webpack_require__(211);
 
 	var _Lifecycle3 = _interopRequireDefault(_Lifecycle2);
 
 	exports.Lifecycle = _Lifecycle3['default'];
 
-	var _RouteContext2 = __webpack_require__(213);
+	var _RouteContext2 = __webpack_require__(212);
 
 	var _RouteContext3 = _interopRequireDefault(_RouteContext2);
 
@@ -20228,43 +20247,41 @@
 
 	/* utils */
 
-	var _useRoutes2 = __webpack_require__(214);
+	var _useRoutes2 = __webpack_require__(213);
 
 	var _useRoutes3 = _interopRequireDefault(_useRoutes2);
 
 	exports.useRoutes = _useRoutes3['default'];
 
-	var _RouteUtils = __webpack_require__(199);
+	var _RouteUtils = __webpack_require__(198);
 
 	exports.createRoutes = _RouteUtils.createRoutes;
 
-	var _RouterContext2 = __webpack_require__(201);
+	var _RouterContext2 = __webpack_require__(200);
 
 	var _RouterContext3 = _interopRequireDefault(_RouterContext2);
 
 	exports.RouterContext = _RouterContext3['default'];
 
-	var _RoutingContext2 = __webpack_require__(215);
+	var _RoutingContext2 = __webpack_require__(214);
 
 	var _RoutingContext3 = _interopRequireDefault(_RoutingContext2);
 
 	exports.RoutingContext = _RoutingContext3['default'];
 
-	var _PropTypes2 = __webpack_require__(205);
+	var _PropTypes2 = __webpack_require__(199);
 
 	var _PropTypes3 = _interopRequireDefault(_PropTypes2);
 
 	exports.PropTypes = _PropTypes3['default'];
-	exports.locationShape = _PropTypes2.locationShape;
-	exports.routerShape = _PropTypes2.routerShape;
 
-	var _match2 = __webpack_require__(216);
+	var _match2 = __webpack_require__(215);
 
 	var _match3 = _interopRequireDefault(_match2);
 
 	exports.match = _match3['default'];
 
-	var _useRouterHistory2 = __webpack_require__(220);
+	var _useRouterHistory2 = __webpack_require__(219);
 
 	var _useRouterHistory3 = _interopRequireDefault(_useRouterHistory2);
 
@@ -20274,27 +20291,21 @@
 
 	exports.formatPattern = _PatternUtils.formatPattern;
 
-	var _applyRouterMiddleware2 = __webpack_require__(221);
-
-	var _applyRouterMiddleware3 = _interopRequireDefault(_applyRouterMiddleware2);
-
-	exports.applyRouterMiddleware = _applyRouterMiddleware3['default'];
-
 	/* histories */
 
-	var _browserHistory2 = __webpack_require__(222);
+	var _browserHistory2 = __webpack_require__(220);
 
 	var _browserHistory3 = _interopRequireDefault(_browserHistory2);
 
 	exports.browserHistory = _browserHistory3['default'];
 
-	var _hashHistory2 = __webpack_require__(225);
+	var _hashHistory2 = __webpack_require__(223);
 
 	var _hashHistory3 = _interopRequireDefault(_hashHistory2);
 
 	exports.hashHistory = _hashHistory3['default'];
 
-	var _createMemoryHistory2 = __webpack_require__(217);
+	var _createMemoryHistory2 = __webpack_require__(216);
 
 	var _createMemoryHistory3 = _interopRequireDefault(_createMemoryHistory2);
 
@@ -20344,13 +20355,13 @@
 
 	var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
 
-	var _InternalPropTypes = __webpack_require__(200);
+	var _PropTypes = __webpack_require__(199);
 
-	var _RouterContext = __webpack_require__(201);
+	var _RouterContext = __webpack_require__(200);
 
 	var _RouterContext2 = _interopRequireDefault(_RouterContext);
 
-	var _RouteUtils = __webpack_require__(199);
+	var _RouteUtils = __webpack_require__(198);
 
 	var _RouterUtils = __webpack_require__(203);
 
@@ -20376,8 +20387,8 @@
 
 	  propTypes: {
 	    history: object,
-	    children: _InternalPropTypes.routes,
-	    routes: _InternalPropTypes.routes, // alias for children
+	    children: _PropTypes.routes,
+	    routes: _PropTypes.routes, // alias for children
 	    render: func,
 	    createElement: func,
 	    onError: func,
@@ -21910,7 +21921,7 @@
 
 	function isNestedObject(object) {
 	  for (var p in object) {
-	    if (Object.prototype.hasOwnProperty.call(object, p) && _typeof(object[p]) === 'object' && !Array.isArray(object[p]) && object[p] !== null) return true;
+	    if (object.hasOwnProperty(p) && _typeof(object[p]) === 'object' && !Array.isArray(object[p]) && object[p] !== null) return true;
 	  }return false;
 	}
 
@@ -22182,7 +22193,7 @@
 
 	var _getComponents2 = _interopRequireDefault(_getComponents);
 
-	var _matchRoutes = __webpack_require__(198);
+	var _matchRoutes = __webpack_require__(197);
 
 	var _matchRoutes2 = _interopRequireDefault(_matchRoutes);
 
@@ -22611,6 +22622,10 @@
 	  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 	}
 
+	function escapeSource(string) {
+	  return escapeRegExp(string).replace(/\/+/g, '/+');
+	}
+
 	function _compilePattern(pattern) {
 	  var regexpSource = '';
 	  var paramNames = [];
@@ -22622,7 +22637,7 @@
 	  while (match = matcher.exec(pattern)) {
 	    if (match.index !== lastIndex) {
 	      tokens.push(pattern.slice(lastIndex, match.index));
-	      regexpSource += escapeRegExp(pattern.slice(lastIndex, match.index));
+	      regexpSource += escapeSource(pattern.slice(lastIndex, match.index));
 	    }
 
 	    if (match[1]) {
@@ -22647,7 +22662,7 @@
 
 	  if (lastIndex !== pattern.length) {
 	    tokens.push(pattern.slice(lastIndex, pattern.length));
-	    regexpSource += escapeRegExp(pattern.slice(lastIndex, pattern.length));
+	    regexpSource += escapeSource(pattern.slice(lastIndex, pattern.length));
 	  }
 
 	  return {
@@ -22687,9 +22702,12 @@
 	 */
 
 	function matchPattern(pattern, pathname) {
-	  // Ensure pattern starts with leading slash for consistency with pathname.
+	  // Make leading slashes consistent between pattern and pathname.
 	  if (pattern.charAt(0) !== '/') {
 	    pattern = '/' + pattern;
+	  }
+	  if (pathname.charAt(0) !== '/') {
+	    pathname = '/' + pathname;
 	  }
 
 	  var _compilePattern2 = compilePattern(pattern);
@@ -22698,9 +22716,7 @@
 	  var paramNames = _compilePattern2.paramNames;
 	  var tokens = _compilePattern2.tokens;
 
-	  if (pattern.charAt(pattern.length - 1) !== '/') {
-	    regexpSource += '/?'; // Allow optional path separator at end.
-	  }
+	  regexpSource += '/*'; // Capture path separators
 
 	  // Special-case patterns like '*' for catch-all routes.
 	  if (tokens[tokens.length - 1] === '*') {
@@ -22715,20 +22731,15 @@
 	    var matchedPath = match[0];
 	    remainingPathname = pathname.substr(matchedPath.length);
 
-	    if (remainingPathname) {
-	      // Require that the match ends at a path separator, if we didn't match
-	      // the full path, so any remaining pathname is a new path segment.
-	      if (matchedPath.charAt(matchedPath.length - 1) !== '/') {
-	        return {
-	          remainingPathname: null,
-	          paramNames: paramNames,
-	          paramValues: null
-	        };
-	      }
-
-	      // If there is a remaining pathname, treat the path separator as part of
-	      // the remaining pathname for properly continuing the match.
-	      remainingPathname = '/' + remainingPathname;
+	    // If we didn't match the entire pathname, then make sure that the match we
+	    // did get ends at a path separator (potentially the one we added above at
+	    // the beginning of the path, if the actual match was empty).
+	    if (remainingPathname && matchedPath.charAt(matchedPath.length - 1) !== '/') {
+	      return {
+	        remainingPathname: null,
+	        paramNames: paramNames,
+	        paramValues: null
+	      };
 	    }
 
 	    paramValues = match.slice(1).map(function (v) {
@@ -23088,42 +23099,20 @@
 	  return String(a) === String(b);
 	}
 
-	/**
-	 * Returns true if the current pathname matches the supplied one, net of
-	 * leading and trailing slash normalization. This is sufficient for an
-	 * indexOnly route match.
-	 */
-	function pathIsActive(pathname, currentPathname) {
-	  // Normalize leading slash for consistency. Leading slash on pathname has
-	  // already been normalized in isActive. See caveat there.
-	  if (currentPathname.charAt(0) !== '/') {
-	    currentPathname = '/' + currentPathname;
-	  }
-
-	  // Normalize the end of both path names too. Maybe `/foo/` shouldn't show
-	  // `/foo` as active, but in this case, we would already have failed the
-	  // match.
-	  if (pathname.charAt(pathname.length - 1) !== '/') {
-	    pathname += '/';
-	  }
-	  if (currentPathname.charAt(currentPathname.length - 1) !== '/') {
-	    currentPathname += '/';
-	  }
-
-	  return currentPathname === pathname;
+	function paramsAreActive(paramNames, paramValues, activeParams) {
+	  // FIXME: This doesn't work on repeated params in activeParams.
+	  return paramNames.every(function (paramName, index) {
+	    return String(paramValues[index]) === String(activeParams[paramName]);
+	  });
 	}
 
-	/**
-	 * Returns true if the given pathname matches the active routes and params.
-	 */
-	function routeIsActive(pathname, routes, params) {
+	function getMatchingRouteIndex(pathname, activeRoutes, activeParams) {
 	  var remainingPathname = pathname,
 	      paramNames = [],
 	      paramValues = [];
 
-	  // for...of would work here but it's probably slower post-transpilation.
-	  for (var i = 0, len = routes.length; i < len; ++i) {
-	    var route = routes[i];
+	  for (var i = 0, len = activeRoutes.length; i < len; ++i) {
+	    var route = activeRoutes[i];
 	    var pattern = route.path || '';
 
 	    if (pattern.charAt(0) === '/') {
@@ -23132,24 +23121,39 @@
 	      paramValues = [];
 	    }
 
-	    if (remainingPathname !== null && pattern) {
+	    if (remainingPathname !== null) {
 	      var matched = _PatternUtils.matchPattern(pattern, remainingPathname);
 	      remainingPathname = matched.remainingPathname;
 	      paramNames = [].concat(paramNames, matched.paramNames);
 	      paramValues = [].concat(paramValues, matched.paramValues);
-
-	      if (remainingPathname === '') {
-	        // We have an exact match on the route. Just check that all the params
-	        // match.
-	        // FIXME: This doesn't work on repeated params.
-	        return paramNames.every(function (paramName, index) {
-	          return String(paramValues[index]) === String(params[paramName]);
-	        });
-	      }
 	    }
+
+	    if (remainingPathname === '' && route.path && paramsAreActive(paramNames, paramValues, activeParams)) return i;
 	  }
 
-	  return false;
+	  return null;
+	}
+
+	/**
+	 * Returns true if the given pathname matches the active routes
+	 * and params.
+	 */
+	function routeIsActive(pathname, routes, params, indexOnly) {
+	  var i = getMatchingRouteIndex(pathname, routes, params);
+
+	  if (i === null) {
+	    // No match.
+	    return false;
+	  } else if (!indexOnly) {
+	    // Any match is good enough.
+	    return true;
+	  }
+
+	  // If any remaining routes past the match index have paths, then we can't
+	  // be on the index route.
+	  return routes.slice(i + 1).every(function (route) {
+	    return !route.path;
+	  });
 	}
 
 	/**
@@ -23175,20 +23179,7 @@
 
 	  if (currentLocation == null) return false;
 
-	  // TODO: This is a bit ugly. It keeps around support for treating pathnames
-	  // without preceding slashes as absolute paths, but possibly also works
-	  // around the same quirks with basenames as in matchRoutes.
-	  if (pathname.charAt(0) !== '/') {
-	    pathname = '/' + pathname;
-	  }
-
-	  if (!pathIsActive(pathname, currentLocation.pathname)) {
-	    // The path check is necessary and sufficient for indexOnly, but otherwise
-	    // we still need to check the routes.
-	    if (indexOnly || !routeIsActive(pathname, routes, params)) {
-	      return false;
-	    }
-	  }
+	  if (!routeIsActive(pathname, routes, params, indexOnly)) return false;
 
 	  return queryIsActive(query, currentLocation.query);
 	}
@@ -23199,78 +23190,22 @@
 /* 196 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+	'use strict';
 
 	exports.__esModule = true;
 
-	var _extends = Object.assign || function (target) {
-	  for (var i = 1; i < arguments.length; i++) {
-	    var source = arguments[i];for (var key in source) {
-	      if (Object.prototype.hasOwnProperty.call(source, key)) {
-	        target[key] = source[key];
-	      }
-	    }
-	  }return target;
-	};
-
-	function _interopRequireDefault(obj) {
-	  return obj && obj.__esModule ? obj : { 'default': obj };
-	}
-
 	var _AsyncUtils = __webpack_require__(194);
 
-	var _deprecateObjectProperties = __webpack_require__(197);
-
-	var _routerWarning = __webpack_require__(190);
-
-	var _routerWarning2 = _interopRequireDefault(_routerWarning);
-
-	function getComponentsForRoute(nextState, route, callback) {
+	function getComponentsForRoute(location, route, callback) {
 	  if (route.component || route.components) {
 	    callback(null, route.component || route.components);
-	    return;
-	  }
-
-	  var getComponent = route.getComponent || route.getComponents;
-	  if (!getComponent) {
-	    callback();
-	    return;
-	  }
-
-	  var location = nextState.location;
-
-	  var nextStateWithLocation = undefined;
-
-	  if (process.env.NODE_ENV !== 'production' && _deprecateObjectProperties.canUseMembrane) {
-	    nextStateWithLocation = _extends({}, nextState);
-
-	    // I don't use deprecateObjectProperties here because I want to keep the
-	    // same code path between development and production, in that we just
-	    // assign extra properties to the copy of the state object in both cases.
-
-	    var _loop = function _loop(prop) {
-	      if (!Object.prototype.hasOwnProperty.call(location, prop)) {
-	        return 'continue';
-	      }
-
-	      Object.defineProperty(nextStateWithLocation, prop, {
-	        get: function get() {
-	          process.env.NODE_ENV !== 'production' ? _routerWarning2['default'](false, 'Accessing location properties from the first argument to `getComponent` and `getComponents` is deprecated. That argument is now the router state (`nextState`) rather than the location. To access the location, use `nextState.location`.') : undefined;
-	          return location[prop];
-	        }
-	      });
-	    };
-
-	    for (var prop in location) {
-	      var _ret = _loop(prop);
-
-	      if (_ret === 'continue') continue;
-	    }
+	  } else if (route.getComponent) {
+	    route.getComponent(location, callback);
+	  } else if (route.getComponents) {
+	    route.getComponents(location, callback);
 	  } else {
-	    nextStateWithLocation = _extends({}, nextState, location);
+	    callback();
 	  }
-
-	  getComponent.call(route, nextStateWithLocation, callback);
 	}
 
 	/**
@@ -23282,13 +23217,12 @@
 	 */
 	function getComponents(nextState, callback) {
 	  _AsyncUtils.mapAsync(nextState.routes, function (route, index, callback) {
-	    getComponentsForRoute(nextState, route, callback);
+	    getComponentsForRoute(nextState.location, route, callback);
 	  }, callback);
 	}
 
 	exports['default'] = getComponents;
 	module.exports = exports['default'];
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ },
 /* 197 */
@@ -23296,102 +23230,9 @@
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 
-	exports.__esModule = true;
-
-	function _interopRequireDefault(obj) {
-	  return obj && obj.__esModule ? obj : { 'default': obj };
-	}
-
-	var _routerWarning = __webpack_require__(190);
-
-	var _routerWarning2 = _interopRequireDefault(_routerWarning);
-
-	var canUseMembrane = false;
-
-	exports.canUseMembrane = canUseMembrane;
-	// No-op by default.
-	var deprecateObjectProperties = function deprecateObjectProperties(object) {
-	  return object;
-	};
-
-	if (process.env.NODE_ENV !== 'production') {
-	  try {
-	    if (Object.defineProperty({}, 'x', { get: function get() {
-	        return true;
-	      } }).x) {
-	      exports.canUseMembrane = canUseMembrane = true;
-	    }
-	    /* eslint-disable no-empty */
-	  } catch (e) {}
-	  /* eslint-enable no-empty */
-
-	  if (canUseMembrane) {
-	    deprecateObjectProperties = function deprecateObjectProperties(object, message) {
-	      // Wrap the deprecated object in a membrane to warn on property access.
-	      var membrane = {};
-
-	      var _loop = function _loop(prop) {
-	        if (!Object.prototype.hasOwnProperty.call(object, prop)) {
-	          return 'continue';
-	        }
-
-	        if (typeof object[prop] === 'function') {
-	          // Can't use fat arrow here because of use of arguments below.
-	          membrane[prop] = function () {
-	            process.env.NODE_ENV !== 'production' ? _routerWarning2['default'](false, message) : undefined;
-	            return object[prop].apply(object, arguments);
-	          };
-	          return 'continue';
-	        }
-
-	        // These properties are non-enumerable to prevent React dev tools from
-	        // seeing them and causing spurious warnings when accessing them. In
-	        // principle this could be done with a proxy, but support for the
-	        // ownKeys trap on proxies is not universal, even among browsers that
-	        // otherwise support proxies.
-	        Object.defineProperty(membrane, prop, {
-	          get: function get() {
-	            process.env.NODE_ENV !== 'production' ? _routerWarning2['default'](false, message) : undefined;
-	            return object[prop];
-	          }
-	        });
-	      };
-
-	      for (var prop in object) {
-	        var _ret = _loop(prop);
-
-	        if (_ret === 'continue') continue;
-	      }
-
-	      return membrane;
-	    };
-	  }
-	}
-
-	exports['default'] = deprecateObjectProperties;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
-
-/***/ },
-/* 198 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
-
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
 	exports.__esModule = true;
-
-	var _extends = Object.assign || function (target) {
-	  for (var i = 1; i < arguments.length; i++) {
-	    var source = arguments[i];for (var key in source) {
-	      if (Object.prototype.hasOwnProperty.call(source, key)) {
-	        target[key] = source[key];
-	      }
-	    }
-	  }return target;
-	};
-
-	exports['default'] = matchRoutes;
 
 	function _interopRequireDefault(obj) {
 	  return obj && obj.__esModule ? obj : { 'default': obj };
@@ -23405,7 +23246,7 @@
 
 	var _PatternUtils = __webpack_require__(192);
 
-	var _RouteUtils = __webpack_require__(199);
+	var _RouteUtils = __webpack_require__(198);
 
 	function getChildRoutes(route, location, callback) {
 	  if (route.childRoutes) {
@@ -23492,17 +23333,13 @@
 	    paramValues = [];
 	  }
 
-	  // Only try to match the path if the route actually has a pattern, and if
-	  // we're not just searching for potential nested absolute paths.
-	  if (remainingPathname !== null && pattern) {
+	  if (remainingPathname !== null) {
 	    var matched = _PatternUtils.matchPattern(pattern, remainingPathname);
 	    remainingPathname = matched.remainingPathname;
 	    paramNames = [].concat(paramNames, matched.paramNames);
 	    paramValues = [].concat(paramValues, matched.paramValues);
 
-	    // By assumption, pattern is non-empty here, which is the prerequisite for
-	    // actually terminating a match.
-	    if (remainingPathname === '') {
+	    if (remainingPathname === '' && route.path) {
 	      var _ret2 = function () {
 	        var match = {
 	          routes: [route],
@@ -23528,7 +23365,6 @@
 	            callback(null, match);
 	          }
 	        });
-
 	        return {
 	          v: undefined
 	        };
@@ -23583,39 +23419,29 @@
 	 * Note: This operation may finish synchronously if no routes have an
 	 * asynchronous getChildRoutes method.
 	 */
-
-	function matchRoutes(routes, location, callback, remainingPathname) {
+	function matchRoutes(routes, location, callback) {
+	  var remainingPathname = arguments.length <= 3 || arguments[3] === undefined ? location.pathname : arguments[3];
 	  var paramNames = arguments.length <= 4 || arguments[4] === undefined ? [] : arguments[4];
 	  var paramValues = arguments.length <= 5 || arguments[5] === undefined ? [] : arguments[5];
-
-	  if (remainingPathname === undefined) {
-	    // TODO: This is a little bit ugly, but it works around a quirk in history
-	    // that strips the leading slash from pathnames when using basenames with
-	    // trailing slashes.
-	    if (location.pathname.charAt(0) !== '/') {
-	      location = _extends({}, location, {
-	        pathname: '/' + location.pathname
+	  return function () {
+	    _AsyncUtils.loopAsync(routes.length, function (index, next, done) {
+	      matchRouteDeep(routes[index], location, remainingPathname, paramNames, paramValues, function (error, match) {
+	        if (error || match) {
+	          done(error, match);
+	        } else {
+	          next();
+	        }
 	      });
-	    }
-	    remainingPathname = location.pathname;
-	  }
-
-	  _AsyncUtils.loopAsync(routes.length, function (index, next, done) {
-	    matchRouteDeep(routes[index], location, remainingPathname, paramNames, paramValues, function (error, match) {
-	      if (error || match) {
-	        done(error, match);
-	      } else {
-	        next();
-	      }
-	    });
-	  }, callback);
+	    }, callback);
+	  }();
 	}
 
+	exports['default'] = matchRoutes;
 	module.exports = exports['default'];
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ },
-/* 199 */
+/* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -23745,7 +23571,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ },
-/* 200 */
+/* 199 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23769,14 +23595,21 @@
 
 	var history = shape({
 	  listen: func.isRequired,
-	  push: func.isRequired,
-	  replace: func.isRequired,
-	  go: func.isRequired,
-	  goBack: func.isRequired,
-	  goForward: func.isRequired
+	  pushState: func.isRequired,
+	  replaceState: func.isRequired,
+	  go: func.isRequired
 	});
 
 	exports.history = history;
+	var location = shape({
+	  pathname: string.isRequired,
+	  search: string.isRequired,
+	  state: object,
+	  action: string.isRequired,
+	  key: string
+	});
+
+	exports.location = location;
 	var component = oneOfType([func, string]);
 	exports.component = component;
 	var components = oneOfType([component, object]);
@@ -23784,10 +23617,19 @@
 	var route = oneOfType([object, element]);
 	exports.route = route;
 	var routes = oneOfType([route, arrayOf(route)]);
+
 	exports.routes = routes;
+	exports['default'] = {
+	  falsy: falsy,
+	  history: history,
+	  location: location,
+	  component: component,
+	  components: components,
+	  route: route
+	};
 
 /***/ },
-/* 201 */
+/* 200 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -23818,7 +23660,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _deprecateObjectProperties = __webpack_require__(197);
+	var _deprecateObjectProperties = __webpack_require__(201);
 
 	var _deprecateObjectProperties2 = _interopRequireDefault(_deprecateObjectProperties);
 
@@ -23826,7 +23668,7 @@
 
 	var _getRouteParams2 = _interopRequireDefault(_getRouteParams);
 
-	var _RouteUtils = __webpack_require__(199);
+	var _RouteUtils = __webpack_require__(198);
 
 	var _routerWarning = __webpack_require__(190);
 
@@ -23959,6 +23801,71 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ },
+/* 201 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {/*eslint no-empty: 0*/
+	'use strict';
+
+	exports.__esModule = true;
+	exports['default'] = deprecateObjectProperties;
+
+	function _interopRequireDefault(obj) {
+	  return obj && obj.__esModule ? obj : { 'default': obj };
+	}
+
+	var _routerWarning = __webpack_require__(190);
+
+	var _routerWarning2 = _interopRequireDefault(_routerWarning);
+
+	var useMembrane = false;
+
+	if (process.env.NODE_ENV !== 'production') {
+	  try {
+	    if (Object.defineProperty({}, 'x', { get: function get() {
+	        return true;
+	      } }).x) {
+	      useMembrane = true;
+	    }
+	  } catch (e) {}
+	}
+
+	// wraps an object in a membrane to warn about deprecated property access
+
+	function deprecateObjectProperties(object, message) {
+	  if (!useMembrane) return object;
+
+	  var membrane = {};
+
+	  var _loop = function _loop(prop) {
+	    if (typeof object[prop] === 'function') {
+	      membrane[prop] = function () {
+	        process.env.NODE_ENV !== 'production' ? _routerWarning2['default'](false, message) : undefined;
+	        return object[prop].apply(object, arguments);
+	      };
+	    } else {
+	      Object.defineProperty(membrane, prop, {
+	        configurable: false,
+	        enumerable: false,
+	        get: function get() {
+	          process.env.NODE_ENV !== 'production' ? _routerWarning2['default'](false, message) : undefined;
+	          return object[prop];
+	        }
+	      });
+	    }
+	  };
+
+	  for (var prop in object) {
+	    _loop(prop);
+	  }
+
+	  return membrane;
+	}
+
+	module.exports = exports['default'];
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
+
+/***/ },
 /* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -24016,7 +23923,7 @@
 	  return obj && obj.__esModule ? obj : { 'default': obj };
 	}
 
-	var _deprecateObjectProperties = __webpack_require__(197);
+	var _deprecateObjectProperties = __webpack_require__(201);
 
 	var _deprecateObjectProperties2 = _interopRequireDefault(_deprecateObjectProperties);
 
@@ -24076,8 +23983,6 @@
 
 	var _routerWarning2 = _interopRequireDefault(_routerWarning);
 
-	var _PropTypes = __webpack_require__(205);
-
 	var _React$PropTypes = _react2['default'].PropTypes;
 	var bool = _React$PropTypes.bool;
 	var object = _React$PropTypes.object;
@@ -24134,7 +24039,7 @@
 	  displayName: 'Link',
 
 	  contextTypes: {
-	    router: _PropTypes.routerShape
+	    router: object
 	  },
 
 	  propTypes: {
@@ -24151,6 +24056,7 @@
 	  getDefaultProps: function getDefaultProps() {
 	    return {
 	      onlyActiveOnIndex: false,
+	      className: '',
 	      style: {}
 	    };
 	  },
@@ -24210,13 +24116,7 @@
 
 	      if (activeClassName || activeStyle != null && !isEmptyObject(activeStyle)) {
 	        if (router.isActive(_location2, onlyActiveOnIndex)) {
-	          if (activeClassName) {
-	            if (props.className) {
-	              props.className += ' ' + activeClassName;
-	            } else {
-	              props.className = activeClassName;
-	            }
-	          }
+	          if (activeClassName) props.className += props.className === '' ? activeClassName : ' ' + activeClassName;
 
 	          if (activeStyle) props.style = _extends({}, props.style, activeStyle);
 	        }
@@ -24234,134 +24134,6 @@
 
 /***/ },
 /* 205 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
-
-	exports.__esModule = true;
-
-	function _interopRequireWildcard(obj) {
-	  if (obj && obj.__esModule) {
-	    return obj;
-	  } else {
-	    var newObj = {};if (obj != null) {
-	      for (var key in obj) {
-	        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
-	      }
-	    }newObj['default'] = obj;return newObj;
-	  }
-	}
-
-	function _interopRequireDefault(obj) {
-	  return obj && obj.__esModule ? obj : { 'default': obj };
-	}
-
-	var _react = __webpack_require__(9);
-
-	var _deprecateObjectProperties = __webpack_require__(197);
-
-	var _deprecateObjectProperties2 = _interopRequireDefault(_deprecateObjectProperties);
-
-	var _InternalPropTypes = __webpack_require__(200);
-
-	var InternalPropTypes = _interopRequireWildcard(_InternalPropTypes);
-
-	var _routerWarning = __webpack_require__(190);
-
-	var _routerWarning2 = _interopRequireDefault(_routerWarning);
-
-	var func = _react.PropTypes.func;
-	var object = _react.PropTypes.object;
-	var shape = _react.PropTypes.shape;
-	var string = _react.PropTypes.string;
-	var routerShape = shape({
-	  push: func.isRequired,
-	  replace: func.isRequired,
-	  go: func.isRequired,
-	  goBack: func.isRequired,
-	  goForward: func.isRequired,
-	  setRouteLeaveHook: func.isRequired,
-	  isActive: func.isRequired
-	});
-
-	exports.routerShape = routerShape;
-	var locationShape = shape({
-	  pathname: string.isRequired,
-	  search: string.isRequired,
-	  state: object,
-	  action: string.isRequired,
-	  key: string
-	});
-
-	exports.locationShape = locationShape;
-	// Deprecated stuff below:
-
-	var falsy = InternalPropTypes.falsy;
-	exports.falsy = falsy;
-	var history = InternalPropTypes.history;
-	exports.history = history;
-	var location = locationShape;
-	exports.location = location;
-	var component = InternalPropTypes.component;
-	exports.component = component;
-	var components = InternalPropTypes.components;
-	exports.components = components;
-	var route = InternalPropTypes.route;
-	exports.route = route;
-	var routes = InternalPropTypes.routes;
-	exports.routes = routes;
-	var router = routerShape;
-
-	exports.router = router;
-	if (process.env.NODE_ENV !== 'production') {
-	  (function () {
-	    var deprecatePropType = function deprecatePropType(propType, message) {
-	      return function () {
-	        process.env.NODE_ENV !== 'production' ? _routerWarning2['default'](false, message) : undefined;
-	        return propType.apply(undefined, arguments);
-	      };
-	    };
-
-	    var deprecateInternalPropType = function deprecateInternalPropType(propType) {
-	      return deprecatePropType(propType, 'This prop type is not intended for external use, and was previously exported by mistake. These internal prop types are deprecated for external use, and will be removed in a later version.');
-	    };
-
-	    var deprecateRenamedPropType = function deprecateRenamedPropType(propType, name) {
-	      return deprecatePropType(propType, 'The `' + name + '` prop type is now exported as `' + name + 'Shape` to avoid name conflicts. This export is deprecated and will be removed in a later version.');
-	    };
-
-	    exports.falsy = falsy = deprecateInternalPropType(falsy);
-	    exports.history = history = deprecateInternalPropType(history);
-	    exports.component = component = deprecateInternalPropType(component);
-	    exports.components = components = deprecateInternalPropType(components);
-	    exports.route = route = deprecateInternalPropType(route);
-	    exports.routes = routes = deprecateInternalPropType(routes);
-
-	    exports.location = location = deprecateRenamedPropType(location, 'location');
-	    exports.router = router = deprecateRenamedPropType(router, 'router');
-	  })();
-	}
-
-	var defaultExport = {
-	  falsy: falsy,
-	  history: history,
-	  location: location,
-	  component: component,
-	  components: components,
-	  route: route,
-	  // For some reason, routes was never here.
-	  router: router
-	};
-
-	if (process.env.NODE_ENV !== 'production') {
-	  defaultExport = _deprecateObjectProperties2['default'](defaultExport, 'The default export from `react-router/lib/PropTypes` is deprecated. Please use the named exports instead.');
-	}
-
-	exports['default'] = defaultExport;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
-
-/***/ },
-/* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24406,7 +24178,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 207 */
+/* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -24429,11 +24201,11 @@
 
 	var _invariant2 = _interopRequireDefault(_invariant);
 
-	var _Redirect = __webpack_require__(208);
+	var _Redirect = __webpack_require__(207);
 
 	var _Redirect2 = _interopRequireDefault(_Redirect);
 
-	var _InternalPropTypes = __webpack_require__(200);
+	var _PropTypes = __webpack_require__(199);
 
 	var _React$PropTypes = _react2['default'].PropTypes;
 	var string = _React$PropTypes.string;
@@ -24462,8 +24234,8 @@
 	    to: string.isRequired,
 	    query: object,
 	    state: object,
-	    onEnter: _InternalPropTypes.falsy,
-	    children: _InternalPropTypes.falsy
+	    onEnter: _PropTypes.falsy,
+	    children: _PropTypes.falsy
 	  },
 
 	  /* istanbul ignore next: sanity check */
@@ -24478,7 +24250,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ },
-/* 208 */
+/* 207 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -24497,11 +24269,11 @@
 
 	var _invariant2 = _interopRequireDefault(_invariant);
 
-	var _RouteUtils = __webpack_require__(199);
+	var _RouteUtils = __webpack_require__(198);
 
 	var _PatternUtils = __webpack_require__(192);
 
-	var _InternalPropTypes = __webpack_require__(200);
+	var _PropTypes = __webpack_require__(199);
 
 	var _React$PropTypes = _react2['default'].PropTypes;
 	var string = _React$PropTypes.string;
@@ -24573,8 +24345,8 @@
 	    to: string.isRequired,
 	    query: object,
 	    state: object,
-	    onEnter: _InternalPropTypes.falsy,
-	    children: _InternalPropTypes.falsy
+	    onEnter: _PropTypes.falsy,
+	    children: _PropTypes.falsy
 	  },
 
 	  /* istanbul ignore next: sanity check */
@@ -24589,7 +24361,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ },
-/* 209 */
+/* 208 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -24612,9 +24384,9 @@
 
 	var _invariant2 = _interopRequireDefault(_invariant);
 
-	var _RouteUtils = __webpack_require__(199);
+	var _RouteUtils = __webpack_require__(198);
 
-	var _InternalPropTypes = __webpack_require__(200);
+	var _PropTypes = __webpack_require__(199);
 
 	var func = _react2['default'].PropTypes.func;
 
@@ -24639,9 +24411,9 @@
 	  },
 
 	  propTypes: {
-	    path: _InternalPropTypes.falsy,
-	    component: _InternalPropTypes.component,
-	    components: _InternalPropTypes.components,
+	    path: _PropTypes.falsy,
+	    component: _PropTypes.component,
+	    components: _PropTypes.components,
 	    getComponent: func,
 	    getComponents: func
 	  },
@@ -24658,7 +24430,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ },
-/* 210 */
+/* 209 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -24677,9 +24449,9 @@
 
 	var _invariant2 = _interopRequireDefault(_invariant);
 
-	var _RouteUtils = __webpack_require__(199);
+	var _RouteUtils = __webpack_require__(198);
 
-	var _InternalPropTypes = __webpack_require__(200);
+	var _PropTypes = __webpack_require__(199);
 
 	var _React$PropTypes = _react2['default'].PropTypes;
 	var string = _React$PropTypes.string;
@@ -24704,8 +24476,8 @@
 
 	  propTypes: {
 	    path: string,
-	    component: _InternalPropTypes.component,
-	    components: _InternalPropTypes.components,
+	    component: _PropTypes.component,
+	    components: _PropTypes.components,
 	    getComponent: func,
 	    getComponents: func
 	  },
@@ -24722,7 +24494,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ },
-/* 211 */
+/* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -24737,7 +24509,7 @@
 
 	var _routerWarning2 = _interopRequireDefault(_routerWarning);
 
-	var _InternalPropTypes = __webpack_require__(200);
+	var _PropTypes = __webpack_require__(199);
 
 	/**
 	 * A mixin that adds the "history" instance variable to components.
@@ -24745,7 +24517,7 @@
 	var History = {
 
 	  contextTypes: {
-	    history: _InternalPropTypes.history
+	    history: _PropTypes.history
 	  },
 
 	  componentWillMount: function componentWillMount() {
@@ -24760,7 +24532,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ },
-/* 212 */
+/* 211 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -24837,7 +24609,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ },
-/* 213 */
+/* 212 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -24891,7 +24663,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ },
-/* 214 */
+/* 213 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -24962,7 +24734,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ },
-/* 215 */
+/* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -24977,7 +24749,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _RouterContext = __webpack_require__(201);
+	var _RouterContext = __webpack_require__(200);
 
 	var _RouterContext2 = _interopRequireDefault(_RouterContext);
 
@@ -25002,7 +24774,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ },
-/* 216 */
+/* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -25033,7 +24805,7 @@
 
 	var _invariant2 = _interopRequireDefault(_invariant);
 
-	var _createMemoryHistory = __webpack_require__(217);
+	var _createMemoryHistory = __webpack_require__(216);
 
 	var _createMemoryHistory2 = _interopRequireDefault(_createMemoryHistory);
 
@@ -25041,7 +24813,7 @@
 
 	var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
 
-	var _RouteUtils = __webpack_require__(199);
+	var _RouteUtils = __webpack_require__(198);
 
 	var _RouterUtils = __webpack_require__(203);
 
@@ -25103,7 +24875,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ },
-/* 217 */
+/* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25119,11 +24891,11 @@
 
 	var _historyLibUseQueries2 = _interopRequireDefault(_historyLibUseQueries);
 
-	var _historyLibUseBasename = __webpack_require__(218);
+	var _historyLibUseBasename = __webpack_require__(217);
 
 	var _historyLibUseBasename2 = _interopRequireDefault(_historyLibUseBasename);
 
-	var _historyLibCreateMemoryHistory = __webpack_require__(219);
+	var _historyLibCreateMemoryHistory = __webpack_require__(218);
 
 	var _historyLibCreateMemoryHistory2 = _interopRequireDefault(_historyLibCreateMemoryHistory);
 
@@ -25143,10 +24915,10 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 218 */
+/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+	'use strict';
 
 	exports.__esModule = true;
 
@@ -25163,10 +24935,6 @@
 	function _interopRequireDefault(obj) {
 	  return obj && obj.__esModule ? obj : { 'default': obj };
 	}
-
-	var _warning = __webpack_require__(170);
-
-	var _warning2 = _interopRequireDefault(_warning);
 
 	var _ExecutionEnvironment = __webpack_require__(174);
 
@@ -25193,11 +24961,7 @@
 	    if (basename == null && _ExecutionEnvironment.canUseDOM) {
 	      var base = document.getElementsByTagName('base')[0];
 
-	      if (base) {
-	        process.env.NODE_ENV !== 'production' ? _warning2['default'](false, 'Automatically setting basename using <base href> is deprecated and will ' + 'be removed in the next major release. The semantics of <base href> are ' + 'subtly different from basename. Please pass the basename explicitly in ' + 'the options to createHistory') : undefined;
-
-	        basename = base.getAttribute('href');
-	      }
+	      if (base) basename = _PathUtils.extractPath(base.href);
 	    }
 
 	    function addBasename(location) {
@@ -25299,10 +25063,9 @@
 
 	exports['default'] = useBasename;
 	module.exports = exports['default'];
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ },
-/* 219 */
+/* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -25474,7 +25237,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ },
-/* 220 */
+/* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25490,7 +25253,7 @@
 
 	var _historyLibUseQueries2 = _interopRequireDefault(_historyLibUseQueries);
 
-	var _historyLibUseBasename = __webpack_require__(218);
+	var _historyLibUseBasename = __webpack_require__(217);
 
 	var _historyLibUseBasename2 = _interopRequireDefault(_historyLibUseBasename);
 
@@ -25505,72 +25268,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 221 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-
-	var _extends = Object.assign || function (target) {
-	  for (var i = 1; i < arguments.length; i++) {
-	    var source = arguments[i];for (var key in source) {
-	      if (Object.prototype.hasOwnProperty.call(source, key)) {
-	        target[key] = source[key];
-	      }
-	    }
-	  }return target;
-	};
-
-	function _interopRequireDefault(obj) {
-	  return obj && obj.__esModule ? obj : { 'default': obj };
-	}
-
-	var _react = __webpack_require__(9);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _RouterContext = __webpack_require__(201);
-
-	var _RouterContext2 = _interopRequireDefault(_RouterContext);
-
-	exports['default'] = function () {
-	  for (var _len = arguments.length, middlewares = Array(_len), _key = 0; _key < _len; _key++) {
-	    middlewares[_key] = arguments[_key];
-	  }
-
-	  var withContext = middlewares.map(function (m) {
-	    return m.renderRouterContext;
-	  }).filter(function (f) {
-	    return f;
-	  });
-	  var withComponent = middlewares.map(function (m) {
-	    return m.renderRouteComponent;
-	  }).filter(function (f) {
-	    return f;
-	  });
-	  var makeCreateElement = function makeCreateElement() {
-	    var baseCreateElement = arguments.length <= 0 || arguments[0] === undefined ? _react.createElement : arguments[0];
-	    return function (Component, props) {
-	      return withComponent.reduceRight(function (previous, renderRouteComponent) {
-	        return renderRouteComponent(previous, props);
-	      }, baseCreateElement(Component, props));
-	    };
-	  };
-
-	  return function (renderProps) {
-	    return withContext.reduceRight(function (previous, renderRouterContext) {
-	      return renderRouterContext(previous, renderProps);
-	    }, _react2['default'].createElement(_RouterContext2['default'], _extends({}, renderProps, {
-	      createElement: makeCreateElement(renderProps.createElement)
-	    })));
-	  };
-	};
-
-	module.exports = exports['default'];
-
-/***/ },
-/* 222 */
+/* 220 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25581,11 +25279,11 @@
 	  return obj && obj.__esModule ? obj : { 'default': obj };
 	}
 
-	var _historyLibCreateBrowserHistory = __webpack_require__(223);
+	var _historyLibCreateBrowserHistory = __webpack_require__(221);
 
 	var _historyLibCreateBrowserHistory2 = _interopRequireDefault(_historyLibCreateBrowserHistory);
 
-	var _createRouterHistory = __webpack_require__(224);
+	var _createRouterHistory = __webpack_require__(222);
 
 	var _createRouterHistory2 = _interopRequireDefault(_createRouterHistory);
 
@@ -25593,7 +25291,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 223 */
+/* 221 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -25665,7 +25363,7 @@
 	      state = null;
 	      key = history.createKey();
 
-	      if (isSupported) window.history.replaceState(_extends({}, historyState, { key: key }), null);
+	      if (isSupported) window.history.replaceState(_extends({}, historyState, { key: key }), null, path);
 	    }
 
 	    var location = _PathUtils.parsePath(path);
@@ -25785,7 +25483,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ },
-/* 224 */
+/* 222 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25796,7 +25494,7 @@
 	  return obj && obj.__esModule ? obj : { 'default': obj };
 	}
 
-	var _useRouterHistory = __webpack_require__(220);
+	var _useRouterHistory = __webpack_require__(219);
 
 	var _useRouterHistory2 = _interopRequireDefault(_useRouterHistory);
 
@@ -25811,7 +25509,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 225 */
+/* 223 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25826,7 +25524,7 @@
 
 	var _historyLibCreateHashHistory2 = _interopRequireDefault(_historyLibCreateHashHistory);
 
-	var _createRouterHistory = __webpack_require__(224);
+	var _createRouterHistory = __webpack_require__(222);
 
 	var _createRouterHistory2 = _interopRequireDefault(_createRouterHistory);
 
@@ -25834,7 +25532,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 226 */
+/* 224 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25849,15 +25547,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Header = __webpack_require__(227);
+	var _Header = __webpack_require__(225);
 
 	var _Header2 = _interopRequireDefault(_Header);
 
-	var _Main = __webpack_require__(228);
+	var _Main = __webpack_require__(226);
 
 	var _Main2 = _interopRequireDefault(_Main);
 
-	var _Footer = __webpack_require__(237);
+	var _Footer = __webpack_require__(238);
 
 	var _Footer2 = _interopRequireDefault(_Footer);
 
@@ -25888,14 +25586,6 @@
 	    }
 
 	    _createClass(Layout, [{
-	        key: '_onChange',
-	        value: function _onChange() {
-	            var config = ConfigStore.getAll();
-	            console.log(config);
-	            window.document.title = config.title;
-	            this.setState(config);
-	        }
-	    }, {
 	        key: 'componentWillMount',
 	        value: function componentWillMount() {}
 	    }, {
@@ -25903,6 +25593,20 @@
 	        value: function componentDidMount() {
 	            // window.addEventListener('scroll', this.onScroll.bind(this))
 	            ConfigStore.addChangeListener(this._onChange.bind(this));
+	            window.onload = function () {
+	                var load = document.getElementById('load');
+	                load.className += " load_hide";
+	            };
+	            window.onhashchange = function () {
+	                var hash = location.hash.split("?")[0];
+	                if (old == '') {
+	                    old = hash;
+	                }
+	                if (old != hash) {
+	                    old = hash;
+	                    ConfigActions.update('loading', 1);
+	                }
+	            };
 	        }
 	    }, {
 	        key: 'shouldComponentUpdate',
@@ -25913,6 +25617,14 @@
 	        key: 'componentWillUnmount',
 	        value: function componentWillUnmount() {
 	            ConfigStore.removeChangeListener(this._onChange.bind(this));
+	        }
+	    }, {
+	        key: '_onChange',
+	        value: function _onChange() {
+	            var config = ConfigStore.getAll();
+	            console.log(config);
+	            window.document.title = config.title;
+	            this.setState(config);
 	        }
 	    }, {
 	        key: 'onScroll',
@@ -25957,7 +25669,7 @@
 	exports.default = Layout;
 
 /***/ },
-/* 227 */
+/* 225 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26050,6 +25762,15 @@
 	                            { className: 'pure-menu-item' },
 	                            _react2.default.createElement(
 	                                Link,
+	                                { className: 'pure-menu-link', to: '/page2', activeClassName: "active" },
+	                                '博文2'
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'li',
+	                            { className: 'pure-menu-item' },
+	                            _react2.default.createElement(
+	                                Link,
 	                                { className: 'pure-menu-link', to: '/page/add', activeClassName: "active" },
 	                                '新增文章'
 	                            )
@@ -26071,7 +25792,7 @@
 	exports.default = Header;
 
 /***/ },
-/* 228 */
+/* 226 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26086,13 +25807,21 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactAddonsCssTransitionGroup = __webpack_require__(229);
+	var _reactAddonsCssTransitionGroup = __webpack_require__(227);
 
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
+
+	var _classnames = __webpack_require__(234);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
 
 	var _Msg = __webpack_require__(236);
 
 	var _Msg2 = _interopRequireDefault(_Msg);
+
+	var _Load = __webpack_require__(237);
+
+	var _Load2 = _interopRequireDefault(_Load);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26118,13 +25847,19 @@
 
 	            var pathnames = pathname.split('/');
 	            var key = pathnames[pathnames.length - 1] || 'root';
+	            var loading = ConfigStore.get('loading');
+	            var Class = (0, _classnames2.default)({
+	                'swap': true,
+	                'swap_show': loading == 0
+	            });
 	            return _react2.default.createElement(
 	                'main',
 	                { id: 'main', className: 'main' },
+	                _react2.default.createElement(_Load2.default, null),
 	                _react2.default.createElement(_Msg2.default, null),
 	                _react2.default.createElement(
 	                    _reactAddonsCssTransitionGroup2.default,
-	                    { component: 'div', className: 'swap', transitionName: 'swap', transitionEnterTimeout: 500, transitionLeaveTimeout: 500 },
+	                    { component: 'div', className: Class, transitionName: 'swap', transitionEnterTimeout: 500, transitionLeaveTimeout: 500 },
 	                    _react2.default.cloneElement(this.props.children || _react2.default.createElement('div', null), { key: key })
 	                ),
 	                _react2.default.createElement('div', { className: 'clear' })
@@ -26138,15 +25873,15 @@
 	exports.default = Main;
 
 /***/ },
-/* 229 */
+/* 227 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	module.exports = __webpack_require__(230);
+	module.exports = __webpack_require__(228);
 
 /***/ },
-/* 230 */
+/* 228 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -26167,8 +25902,8 @@
 
 	var assign = __webpack_require__(47);
 
-	var ReactTransitionGroup = __webpack_require__(231);
-	var ReactCSSTransitionGroupChild = __webpack_require__(233);
+	var ReactTransitionGroup = __webpack_require__(229);
+	var ReactCSSTransitionGroupChild = __webpack_require__(231);
 
 	function createTransitionTimeoutPropValidator(transitionType) {
 	  var timeoutPropName = 'transition' + transitionType + 'Timeout';
@@ -26234,7 +25969,7 @@
 	module.exports = ReactCSSTransitionGroup;
 
 /***/ },
-/* 231 */
+/* 229 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -26251,7 +25986,7 @@
 	'use strict';
 
 	var React = __webpack_require__(10);
-	var ReactTransitionChildMapping = __webpack_require__(232);
+	var ReactTransitionChildMapping = __webpack_require__(230);
 
 	var assign = __webpack_require__(47);
 	var emptyFunction = __webpack_require__(23);
@@ -26444,7 +26179,7 @@
 	module.exports = ReactTransitionGroup;
 
 /***/ },
-/* 232 */
+/* 230 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -26547,7 +26282,7 @@
 	module.exports = ReactTransitionChildMapping;
 
 /***/ },
-/* 233 */
+/* 231 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -26567,8 +26302,8 @@
 	var React = __webpack_require__(10);
 	var ReactDOM = __webpack_require__(11);
 
-	var CSSCore = __webpack_require__(234);
-	var ReactTransitionEvents = __webpack_require__(235);
+	var CSSCore = __webpack_require__(232);
+	var ReactTransitionEvents = __webpack_require__(233);
 
 	var onlyChild = __webpack_require__(164);
 
@@ -26717,7 +26452,7 @@
 	module.exports = ReactCSSTransitionGroupChild;
 
 /***/ },
-/* 234 */
+/* 232 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -26820,7 +26555,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ },
-/* 235 */
+/* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -26934,6 +26669,71 @@
 	module.exports = ReactTransitionEvents;
 
 /***/ },
+/* 234 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+	/*!
+	  Copyright (c) 2016 Jed Watson.
+	  Licensed under the MIT License (MIT), see
+	  http://jedwatson.github.io/classnames
+	*/
+	/* global define */
+
+	(function () {
+		'use strict';
+
+		var hasOwn = {}.hasOwnProperty;
+
+		function classNames() {
+			var classes = [];
+
+			for (var i = 0; i < arguments.length; i++) {
+				var arg = arguments[i];
+				if (!arg) continue;
+
+				var argType = typeof arg === 'undefined' ? 'undefined' : _typeof(arg);
+
+				if (argType === 'string' || argType === 'number') {
+					classes.push(arg);
+				} else if (Array.isArray(arg)) {
+					classes.push(classNames.apply(null, arg));
+				} else if (argType === 'object') {
+					for (var key in arg) {
+						if (hasOwn.call(arg, key) && arg[key]) {
+							classes.push(key);
+						}
+					}
+				}
+			}
+
+			return classes.join(' ');
+		}
+
+		if (typeof module !== 'undefined' && module.exports) {
+			module.exports = classNames;
+		} else if ("function" === 'function' && _typeof(__webpack_require__(235)) === 'object' && __webpack_require__(235)) {
+			// register as 'classnames', consistent with npm package name
+			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
+				return classNames;
+			}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		} else {
+			window.classNames = classNames;
+		}
+	})();
+
+/***/ },
+/* 235 */
+/***/ function(module, exports) {
+
+	/* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {module.exports = __webpack_amd_options__;
+
+	/* WEBPACK VAR INJECTION */}.call(exports, {}))
+
+/***/ },
 /* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -27002,7 +26802,71 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ApiStore = __webpack_require__(238);
+	var _classnames = __webpack_require__(234);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Loading = function (_React$Component) {
+	    _inherits(Loading, _React$Component);
+
+	    function Loading() {
+	        _classCallCheck(this, Loading);
+
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Loading).apply(this, arguments));
+	    }
+
+	    _createClass(Loading, [{
+	        key: 'render',
+	        value: function render() {
+	            var loading = ConfigStore.get('loading');
+	            var Class = (0, _classnames2.default)({
+	                'container loading': true,
+	                'loading-hide': loading == 0
+	            });
+	            return _react2.default.createElement(
+	                'section',
+	                { className: Class },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'spinner' },
+	                    _react2.default.createElement('div', { className: 'bounce1' }),
+	                    _react2.default.createElement('div', { className: 'bounce2' }),
+	                    _react2.default.createElement('div', { className: 'bounce3' })
+	                )
+	            );
+	        }
+	    }]);
+
+	    return Loading;
+	}(_react2.default.Component);
+
+	exports.default = Loading;
+
+/***/ },
+/* 238 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(9);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _ApiStore = __webpack_require__(239);
 
 	var _ApiStore2 = _interopRequireDefault(_ApiStore);
 
@@ -27068,12 +26932,12 @@
 	exports.default = Header;
 
 /***/ },
-/* 238 */
+/* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _superagent = __webpack_require__(239);
+	var _superagent = __webpack_require__(240);
 
 	var _superagent2 = _interopRequireDefault(_superagent);
 
@@ -27106,7 +26970,7 @@
 	module.exports = ApiStore;
 
 /***/ },
-/* 239 */
+/* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27115,10 +26979,10 @@
 	 * Module dependencies.
 	 */
 
-	var Emitter = __webpack_require__(240);
-	var reduce = __webpack_require__(241);
-	var requestBase = __webpack_require__(242);
-	var isObject = __webpack_require__(243);
+	var Emitter = __webpack_require__(241);
+	var reduce = __webpack_require__(242);
+	var requestBase = __webpack_require__(243);
+	var isObject = __webpack_require__(244);
 
 	/**
 	 * Root reference for iframes.
@@ -27170,7 +27034,7 @@
 	 * Expose `request`.
 	 */
 
-	var request = module.exports = __webpack_require__(244).bind(null, Request);
+	var request = module.exports = __webpack_require__(245).bind(null, Request);
 
 	/**
 	 * Determine XHR.
@@ -28194,8 +28058,8 @@
 	};
 
 /***/ },
-/* 240 */
-/***/ function(module, exports, __webpack_require__) {
+/* 241 */
+/***/ function(module, exports) {
 
 	'use strict';
 
@@ -28203,9 +28067,7 @@
 	 * Expose `Emitter`.
 	 */
 
-	if (true) {
-	  module.exports = Emitter;
-	}
+	module.exports = Emitter;
 
 	/**
 	 * Initialize a new `Emitter`.
@@ -28358,7 +28220,7 @@
 	};
 
 /***/ },
-/* 241 */
+/* 242 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -28386,7 +28248,7 @@
 	};
 
 /***/ },
-/* 242 */
+/* 243 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28394,7 +28256,7 @@
 	/**
 	 * Module of mixed-in functions shared between node and client code
 	 */
-	var isObject = __webpack_require__(243);
+	var isObject = __webpack_require__(244);
 
 	/**
 	 * Clear previous timeout.
@@ -28558,7 +28420,7 @@
 	};
 
 /***/ },
-/* 243 */
+/* 244 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -28580,7 +28442,7 @@
 	module.exports = isObject;
 
 /***/ },
-/* 244 */
+/* 245 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -28619,7 +28481,7 @@
 	module.exports = request;
 
 /***/ },
-/* 245 */
+/* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28634,11 +28496,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _superagent = __webpack_require__(239);
+	var _superagent = __webpack_require__(240);
 
 	var _superagent2 = _interopRequireDefault(_superagent);
 
-	__webpack_require__(246);
+	__webpack_require__(247);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -28658,6 +28520,13 @@
 	    }
 
 	    _createClass(Main, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            setTimeout(function () {
+	                ConfigActions.update('loading', 0);
+	            }, 1);
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
@@ -28739,13 +28608,13 @@
 	exports.default = Main;
 
 /***/ },
-/* 246 */
+/* 247 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(247);
+	var content = __webpack_require__(248);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(8)(content, {});
@@ -28754,8 +28623,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/.npminstall/css-loader/0.23.1/css-loader/index.js!./../../node_modules/.npminstall/less-loader/2.2.3/less-loader/index.js!./index.less", function() {
-				var newContent = require("!!./../../node_modules/.npminstall/css-loader/0.23.1/css-loader/index.js!./../../node_modules/.npminstall/less-loader/2.2.3/less-loader/index.js!./index.less");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./index.less", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./index.less");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -28765,7 +28634,7 @@
 	}
 
 /***/ },
-/* 247 */
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
@@ -28779,7 +28648,7 @@
 
 
 /***/ },
-/* 248 */
+/* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28794,13 +28663,186 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactAddonsCssTransitionGroup = __webpack_require__(229);
+	var _reactAddonsCssTransitionGroup = __webpack_require__(227);
 
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
 	var _reactRouter = __webpack_require__(167);
 
-	var _Apicloud = __webpack_require__(249);
+	var _Apicloud = __webpack_require__(250);
+
+	var _Apicloud2 = _interopRequireDefault(_Apicloud);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Main = function (_React$Component) {
+	    _inherits(Main, _React$Component);
+
+	    function Main(props) {
+	        _classCallCheck(this, Main);
+
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Main).call(this, props));
+
+	        _this.state = {
+	            info: {}
+	        };
+	        return _this;
+	    }
+
+	    _createClass(Main, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            var filter = {
+	                where: {},
+	                skip: 0,
+	                limit: 20
+	            };
+	            _Apicloud2.default.get('article', filter, function (err, res) {
+	                var data = JSON.parse(res.text);
+	                console.log(data);
+	                this.setState({
+	                    info: data
+	                });
+	                showload();
+	            }.bind(this));
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var lists = void 0;
+	            var active = {
+	                color: '#f00'
+	            };
+	            if (this.state.info.length > 0) {
+	                lists = this.state.info.map(function (d, index) {
+	                    var url = '/page/' + d.id;
+	                    var edit = '/edit/' + d.id;
+	                    return _react2.default.createElement(
+	                        'li',
+	                        { key: index },
+	                        _react2.default.createElement(
+	                            _reactRouter.Link,
+	                            { to: url, activeStyle: active },
+	                            d.title
+	                        ),
+	                        _react2.default.createElement(
+	                            _reactRouter.Link,
+	                            { to: edit, activeStyle: active },
+	                            '编辑'
+	                        )
+	                    );
+	                });
+	            } else {
+	                lists = '';
+	            }
+	            var pathname = this.props.location.pathname;
+
+	            return _react2.default.createElement(
+	                'section',
+	                { className: 'warp' },
+	                _react2.default.createElement(
+	                    'section',
+	                    { className: 'container' },
+	                    _react2.default.createElement(
+	                        'h3',
+	                        { className: 'jumbotron-heading' },
+	                        '文章管理'
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'section',
+	                    { className: 'container' },
+	                    _react2.default.createElement(
+	                        'ul',
+	                        null,
+	                        lists
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    _reactAddonsCssTransitionGroup2.default,
+	                    {
+	                        component: 'section', className: 'container', transitionName: 'swap',
+	                        transitionEnterTimeout: 500, transitionLeaveTimeout: 500 },
+	                    _react2.default.cloneElement(this.props.children || _react2.default.createElement('div', null), { key: pathname })
+	                )
+	            );
+	        }
+	    }]);
+
+	    return Main;
+	}(_react2.default.Component);
+
+	exports.default = Main;
+
+/***/ },
+/* 250 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _superagent = __webpack_require__(240);
+
+	var _superagent2 = _interopRequireDefault(_superagent);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var get = function get(url, filter, cb) {
+	    if (window.navigator.onLine == true) {
+	        var now = Date.now();
+	        var key = SHA1(AppId + 'UZ' + AppKey + 'UZ' + now) + "." + now;
+	        _superagent2.default.get(AppUrl + url).set('X-APICloud-AppId', AppId).set('X-APICloud-AppKey', key).query({
+	            filter: JSON.stringify(filter)
+	        }).end(cb);
+	    } else {
+	        console.log('网络出现故障！');
+	    }
+	};
+
+	var post = function post(url, info, cb) {
+	    console.log(window.navigator.onLine);
+	    if (window.navigator.onLine == true) {
+	        var now = Date.now();
+	        var key = SHA1(AppId + 'UZ' + AppKey + 'UZ' + now) + "." + now;
+	        _superagent2.default.post(AppUrl + url).set('X-APICloud-AppId', AppId).set('X-APICloud-AppKey', key).send(info).end(cb);
+	    } else {
+	        console.log('网络出现故障！');
+	    }
+	};
+	var Apicloud = {
+	    get: get,
+	    post: post
+	};
+	module.exports = Apicloud;
+
+/***/ },
+/* 251 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(9);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactAddonsCssTransitionGroup = __webpack_require__(227);
+
+	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
+
+	var _reactRouter = __webpack_require__(167);
+
+	var _Apicloud = __webpack_require__(250);
 
 	var _Apicloud2 = _interopRequireDefault(_Apicloud);
 
@@ -28874,33 +28916,11 @@
 	            var pathname = this.props.location.pathname;
 
 	            return _react2.default.createElement(
-	                'section',
-	                { className: 'warp' },
-	                _react2.default.createElement(
-	                    'section',
-	                    { className: 'container' },
-	                    _react2.default.createElement(
-	                        'h3',
-	                        { className: 'jumbotron-heading' },
-	                        '文章管理'
-	                    )
-	                ),
-	                _react2.default.createElement(
-	                    'section',
-	                    { className: 'container' },
-	                    _react2.default.createElement(
-	                        'ul',
-	                        null,
-	                        lists
-	                    )
-	                ),
-	                _react2.default.createElement(
-	                    _reactAddonsCssTransitionGroup2.default,
-	                    {
-	                        component: 'section', className: 'container', transitionName: 'swap',
-	                        transitionEnterTimeout: 500, transitionLeaveTimeout: 500 },
-	                    _react2.default.cloneElement(this.props.children || _react2.default.createElement('div', null), { key: pathname })
-	                )
+	                _reactAddonsCssTransitionGroup2.default,
+	                {
+	                    component: 'section', transitionName: 'swap',
+	                    transitionEnterTimeout: 500, transitionLeaveTimeout: 500 },
+	                _react2.default.cloneElement(this.props.children || _react2.default.createElement('div', null), { key: pathname })
 	            );
 	        }
 	    }]);
@@ -28911,47 +28931,7 @@
 	exports.default = Main;
 
 /***/ },
-/* 249 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _superagent = __webpack_require__(239);
-
-	var _superagent2 = _interopRequireDefault(_superagent);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var get = function get(url, filter, cb) {
-	    if (window.navigator.onLine == true) {
-	        var now = Date.now();
-	        var key = SHA1(AppId + 'UZ' + AppKey + 'UZ' + now) + "." + now;
-	        _superagent2.default.get(AppUrl + url).set('X-APICloud-AppId', AppId).set('X-APICloud-AppKey', key).query({
-	            filter: JSON.stringify(filter)
-	        }).end(cb);
-	    } else {
-	        console.log('网络出现故障！');
-	    }
-	};
-
-	var post = function post(url, info, cb) {
-	    console.log(window.navigator.onLine);
-	    if (window.navigator.onLine == true) {
-	        var now = Date.now();
-	        var key = SHA1(AppId + 'UZ' + AppKey + 'UZ' + now) + "." + now;
-	        _superagent2.default.post(AppUrl + url).set('X-APICloud-AppId', AppId).set('X-APICloud-AppKey', key).send(info).end(cb);
-	    } else {
-	        console.log('网络出现故障！');
-	    }
-	};
-	var Apicloud = {
-	    get: get,
-	    post: post
-	};
-	module.exports = Apicloud;
-
-/***/ },
-/* 250 */
+/* 252 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28966,11 +28946,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Apicloud = __webpack_require__(249);
+	var _Apicloud = __webpack_require__(250);
 
 	var _Apicloud2 = _interopRequireDefault(_Apicloud);
 
-	__webpack_require__(251);
+	__webpack_require__(253);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29010,52 +28990,53 @@
 	            if (article) {
 	                ConfigActions.update('title', article.title);
 	                this.setState(article);
+	                setTimeout(function () {
+	                    ConfigActions.update('loading', 0);
+	                }, 1);
 	            } else {
 	                _Apicloud2.default.get(action, '', function (err, res) {
 	                    var article = JSON.parse(res.text);
 	                    ConfigActions.update(articleId, article);
 	                    ConfigActions.update('title', article.title);
 	                    this.setState(article);
+	                    showload();
 	                }.bind(this));
 	            }
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var divStyle = {
-	                height: '600px'
-	            };
-	            var imgStyle = {
-	                marginLeft: '-960px',
-	                position: 'relative',
-	                left: '50%'
-	            };
+	            var imgsrc = "http://www.day.com/img?w=1920&h=600&r=" + this.state.id;
 	            return _react2.default.createElement(
 	                'section',
 	                { className: 'warp page simditor' },
 	                _react2.default.createElement(
 	                    'section',
-	                    { style: divStyle },
-	                    _react2.default.createElement('img', { style: imgStyle, src: 'http://www.day.com/img?w=1920&h=600&r=1' })
+	                    { className: 'banner' },
+	                    _react2.default.createElement('img', { src: imgsrc })
 	                ),
 	                _react2.default.createElement(
 	                    'section',
-	                    { className: 'container' },
+	                    { className: 'contents' },
 	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'header' },
+	                        'section',
+	                        { className: 'container' },
 	                        _react2.default.createElement(
-	                            'h1',
-	                            null,
-	                            this.state.title
+	                            'div',
+	                            { className: 'header' },
+	                            _react2.default.createElement(
+	                                'h1',
+	                                null,
+	                                this.state.title
+	                            ),
+	                            _react2.default.createElement(
+	                                'h2',
+	                                null,
+	                                this.state.description
+	                            )
 	                        ),
-	                        _react2.default.createElement(
-	                            'h2',
-	                            null,
-	                            this.state.description
-	                        )
-	                    ),
-	                    _react2.default.createElement('div', { className: 'content simditor-body', dangerouslySetInnerHTML: { __html: this.state.content } })
+	                        _react2.default.createElement('div', { className: 'content simditor-body', dangerouslySetInnerHTML: { __html: this.state.content } })
+	                    )
 	                )
 	            );
 	        }
@@ -29067,13 +29048,13 @@
 	exports.default = Login;
 
 /***/ },
-/* 251 */
+/* 253 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(252);
+	var content = __webpack_require__(254);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(8)(content, {});
@@ -29082,8 +29063,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/.npminstall/css-loader/0.23.1/css-loader/index.js!./../../node_modules/.npminstall/less-loader/2.2.3/less-loader/index.js!./page.less", function() {
-				var newContent = require("!!./../../node_modules/.npminstall/css-loader/0.23.1/css-loader/index.js!./../../node_modules/.npminstall/less-loader/2.2.3/less-loader/index.js!./page.less");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./page.less", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./page.less");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -29093,7 +29074,7 @@
 	}
 
 /***/ },
-/* 252 */
+/* 254 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
@@ -29101,13 +29082,13 @@
 
 
 	// module
-	exports.push([module.id, ".page {\n  color: #777;\n  border: none;\n}\n.page .header {\n  margin: 0;\n  color: #333;\n  text-align: center;\n  padding: 2.5rem 2rem 0;\n  border-bottom: 1px solid #eee;\n}\n.page .header h1 {\n  margin: 1rem 0;\n  font-size: 4.8rem;\n  font-weight: 300;\n}\n.page .header h2 {\n  font-weight: 300;\n  color: #ccc;\n  padding: 0;\n  margin-top: 0;\n}\n.page .content {\n  margin: 0 auto;\n  max-width: 1000px;\n  margin-bottom: 50px;\n  font-size: 1.6rem;\n  line-height: 2.6rem;\n}\n.page .content .content-subhead {\n  margin: 50px 0 20px;\n  font-weight: 300;\n  color: #888;\n}\n.page .content .pure-img-responsive {\n  max-width: 100%;\n  height: auto;\n}\n", ""]);
+	exports.push([module.id, ".swap_show .page .banner {\n  top: 4rem;\n}\n.page {\n  color: #777;\n  border: none;\n  padding-top: 600px;\n}\n.page .banner {\n  position: fixed;\n  top: 10rem;\n  left: 0;\n  z-index: 1;\n  height: 600px;\n  width: 100%;\n  transition: all 0.5s ease-in;\n}\n.page .banner img {\n  position: relative;\n  margin-left: -960px;\n  left: 50%;\n}\n.page .contents {\n  background: #fff;\n  position: relative;\n  z-index: 9;\n  padding: 0 1.5rem 5rem;\n}\n.page .header {\n  margin: 0;\n  color: #333;\n  text-align: center;\n  padding: 2.5rem 2rem 0;\n  border-bottom: 1px solid #eee;\n}\n.page .header h1 {\n  margin: 1rem 0;\n  font-size: 4.8rem;\n  font-weight: 300;\n}\n.page .header h2 {\n  font-weight: 300;\n  color: #ccc;\n  padding: 0;\n  margin-top: 0;\n}\n.page .content {\n  margin: 0 auto;\n  max-width: 1000px;\n  margin-bottom: 50px;\n  font-size: 1.6rem;\n  line-height: 2.6rem;\n}\n.page .content .content-subhead {\n  margin: 50px 0 20px;\n  font-weight: 300;\n  color: #888;\n}\n.page .content .pure-img-responsive {\n  max-width: 100%;\n  height: auto;\n}\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 253 */
+/* 255 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29122,15 +29103,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _superagent = __webpack_require__(239);
+	var _superagent = __webpack_require__(240);
 
 	var _superagent2 = _interopRequireDefault(_superagent);
 
-	var _Apicloud = __webpack_require__(249);
+	var _Apicloud = __webpack_require__(250);
 
 	var _Apicloud2 = _interopRequireDefault(_Apicloud);
 
-	var _index = __webpack_require__(254);
+	var _index = __webpack_require__(256);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29199,6 +29180,7 @@
 	                    action: action
 	                });
 	            }
+	            showload();
 	        }
 	    }, {
 	        key: '_onChange',
@@ -29290,12 +29272,12 @@
 	exports.default = Add;
 
 /***/ },
-/* 254 */
+/* 256 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _Form = __webpack_require__(255);
+	var _Form = __webpack_require__(257);
 
 	var _Form2 = _interopRequireDefault(_Form);
 
@@ -29347,7 +29329,7 @@
 	module.exports = Forms;
 
 /***/ },
-/* 255 */
+/* 257 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29362,11 +29344,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Apicloud = __webpack_require__(249);
+	var _Apicloud = __webpack_require__(250);
 
 	var _Apicloud2 = _interopRequireDefault(_Apicloud);
 
-	var _classnames = __webpack_require__(256);
+	var _classnames = __webpack_require__(234);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -29434,71 +29416,6 @@
 	exports.default = Form;
 
 /***/ },
-/* 256 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
-
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
-
-	/*!
-	  Copyright (c) 2016 Jed Watson.
-	  Licensed under the MIT License (MIT), see
-	  http://jedwatson.github.io/classnames
-	*/
-	/* global define */
-
-	(function () {
-		'use strict';
-
-		var hasOwn = {}.hasOwnProperty;
-
-		function classNames() {
-			var classes = [];
-
-			for (var i = 0; i < arguments.length; i++) {
-				var arg = arguments[i];
-				if (!arg) continue;
-
-				var argType = typeof arg === 'undefined' ? 'undefined' : _typeof(arg);
-
-				if (argType === 'string' || argType === 'number') {
-					classes.push(arg);
-				} else if (Array.isArray(arg)) {
-					classes.push(classNames.apply(null, arg));
-				} else if (argType === 'object') {
-					for (var key in arg) {
-						if (hasOwn.call(arg, key) && arg[key]) {
-							classes.push(key);
-						}
-					}
-				}
-			}
-
-			return classes.join(' ');
-		}
-
-		if (typeof module !== 'undefined' && module.exports) {
-			module.exports = classNames;
-		} else if ("function" === 'function' && _typeof(__webpack_require__(257)) === 'object' && __webpack_require__(257)) {
-			// register as 'classnames', consistent with npm package name
-			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
-				return classNames;
-			}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-		} else {
-			window.classNames = classNames;
-		}
-	})();
-
-/***/ },
-/* 257 */
-/***/ function(module, exports) {
-
-	/* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {module.exports = __webpack_amd_options__;
-
-	/* WEBPACK VAR INJECTION */}.call(exports, {}))
-
-/***/ },
 /* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -29514,7 +29431,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames = __webpack_require__(256);
+	var _classnames = __webpack_require__(234);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -29721,8 +29638,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/.npminstall/css-loader/0.23.1/css-loader/index.js!./../../node_modules/.npminstall/sass-loader/3.2.0/sass-loader/index.js!./input.scss", function() {
-				var newContent = require("!!./../../node_modules/.npminstall/css-loader/0.23.1/css-loader/index.js!./../../node_modules/.npminstall/sass-loader/3.2.0/sass-loader/index.js!./input.scss");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./input.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./input.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -29761,7 +29678,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames = __webpack_require__(256);
+	var _classnames = __webpack_require__(234);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -29972,7 +29889,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames = __webpack_require__(256);
+	var _classnames = __webpack_require__(234);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -34772,1269 +34689,1269 @@
 	var Scroller;
 
 	(function () {
-		var NOOP = function NOOP() {};
+				var NOOP = function NOOP() {};
 
-		/**
-	  * A pure logic 'component' for 'virtual' scrolling/zooming.
-	  */
-		Scroller = function Scroller(callback, options) {
+				/**
+	    * A pure logic 'component' for 'virtual' scrolling/zooming.
+	    */
+				Scroller = function Scroller(callback, options) {
 
-			this.__callback = callback;
+							this.__callback = callback;
 
-			this.options = {
+							this.options = {
 
-				/** Enable scrolling on x-axis */
-				scrollingX: true,
+										/** Enable scrolling on x-axis */
+										scrollingX: true,
 
-				/** Enable scrolling on y-axis */
-				scrollingY: true,
+										/** Enable scrolling on y-axis */
+										scrollingY: true,
 
-				/** Enable animations for deceleration, snap back, zooming and scrolling */
-				animating: true,
+										/** Enable animations for deceleration, snap back, zooming and scrolling */
+										animating: true,
 
-				/** duration for animations triggered by scrollTo/zoomTo */
-				animationDuration: 250,
+										/** duration for animations triggered by scrollTo/zoomTo */
+										animationDuration: 250,
 
-				/** Enable bouncing (content can be slowly moved outside and jumps back after releasing) */
-				bouncing: true,
+										/** Enable bouncing (content can be slowly moved outside and jumps back after releasing) */
+										bouncing: true,
 
-				/** Enable locking to the main axis if user moves only slightly on one of them at start */
-				locking: true,
+										/** Enable locking to the main axis if user moves only slightly on one of them at start */
+										locking: true,
 
-				/** Enable pagination mode (switching between full page content panes) */
-				paging: false,
+										/** Enable pagination mode (switching between full page content panes) */
+										paging: false,
 
-				/** Enable snapping of content to a configured pixel grid */
-				snapping: false,
+										/** Enable snapping of content to a configured pixel grid */
+										snapping: false,
 
-				/** Enable zooming of content via API, fingers and mouse wheel */
-				zooming: false,
+										/** Enable zooming of content via API, fingers and mouse wheel */
+										zooming: false,
 
-				/** Minimum zoom level */
-				minZoom: 0.5,
+										/** Minimum zoom level */
+										minZoom: 0.5,
 
-				/** Maximum zoom level */
-				maxZoom: 3,
+										/** Maximum zoom level */
+										maxZoom: 3,
 
-				/** Multiply or decrease scrolling speed **/
-				speedMultiplier: 1,
+										/** Multiply or decrease scrolling speed **/
+										speedMultiplier: 1,
 
-				/** Callback that is fired on the later of touch end or deceleration end,
-	   	provided that another scrolling action has not begun. Used to know
-	   	when to fade out a scrollbar. */
-				scrollingComplete: NOOP,
+										/** Callback that is fired on the later of touch end or deceleration end,
+	         	provided that another scrolling action has not begun. Used to know
+	         	when to fade out a scrollbar. */
+										scrollingComplete: NOOP,
 
-				/** Increase or decrease the amount of friction applied to deceleration **/
-				decelerationRate: 0.95,
+										/** Increase or decrease the amount of friction applied to deceleration **/
+										decelerationRate: 0.95,
 
-				/** This configures the amount of change applied to deceleration when reaching boundaries  **/
-				penetrationDeceleration: 0.03,
+										/** This configures the amount of change applied to deceleration when reaching boundaries  **/
+										penetrationDeceleration: 0.03,
 
-				/** This configures the amount of change applied to acceleration when reaching boundaries  **/
-				penetrationAcceleration: 0.08
+										/** This configures the amount of change applied to acceleration when reaching boundaries  **/
+										penetrationAcceleration: 0.08
 
-			};
+							};
 
-			for (var key in options) {
-				this.options[key] = options[key];
-			}
-		};
-
-		// Easing Equations (c) 2003 Robert Penner, all rights reserved.
-		// Open source under the BSD License.
-
-		/**
-	  * @param pos {Number} position between 0 (start of effect) and 1 (end of effect)
-	 **/
-		var easeOutCubic = function easeOutCubic(pos) {
-			return Math.pow(pos - 1, 3) + 1;
-		};
-
-		/**
-	  * @param pos {Number} position between 0 (start of effect) and 1 (end of effect)
-	 **/
-		var easeInOutCubic = function easeInOutCubic(pos) {
-			if ((pos /= 0.5) < 1) {
-				return 0.5 * Math.pow(pos, 3);
-			}
-
-			return 0.5 * (Math.pow(pos - 2, 3) + 2);
-		};
-
-		var members = {
-
-			/*
-	  ---------------------------------------------------------------------------
-	  	INTERNAL FIELDS :: STATUS
-	  ---------------------------------------------------------------------------
-	  */
-
-			/** {Boolean} Whether only a single finger is used in touch handling */
-			__isSingleTouch: false,
-
-			/** {Boolean} Whether a touch event sequence is in progress */
-			__isTracking: false,
-
-			/** {Boolean} Whether a deceleration animation went to completion. */
-			__didDecelerationComplete: false,
-
-			/**
-	   * {Boolean} Whether a gesture zoom/rotate event is in progress. Activates when
-	   * a gesturestart event happens. This has higher priority than dragging.
-	   */
-			__isGesturing: false,
-
-			/**
-	   * {Boolean} Whether the user has moved by such a distance that we have enabled
-	   * dragging mode. Hint: It's only enabled after some pixels of movement to
-	   * not interrupt with clicks etc.
-	   */
-			__isDragging: false,
-
-			/**
-	   * {Boolean} Not touching and dragging anymore, and smoothly animating the
-	   * touch sequence using deceleration.
-	   */
-			__isDecelerating: false,
-
-			/**
-	   * {Boolean} Smoothly animating the currently configured change
-	   */
-			__isAnimating: false,
-
-			/*
-	  ---------------------------------------------------------------------------
-	  	INTERNAL FIELDS :: DIMENSIONS
-	  ---------------------------------------------------------------------------
-	  */
-
-			/** {Integer} Available outer left position (from document perspective) */
-			__clientLeft: 0,
-
-			/** {Integer} Available outer top position (from document perspective) */
-			__clientTop: 0,
-
-			/** {Integer} Available outer width */
-			__clientWidth: 0,
-
-			/** {Integer} Available outer height */
-			__clientHeight: 0,
-
-			/** {Integer} Outer width of content */
-			__contentWidth: 0,
-
-			/** {Integer} Outer height of content */
-			__contentHeight: 0,
-
-			/** {Integer} Snapping width for content */
-			__snapWidth: 100,
-
-			/** {Integer} Snapping height for content */
-			__snapHeight: 100,
-
-			/** {Integer} Height to assign to refresh area */
-			__refreshHeight: null,
-
-			/** {Boolean} Whether the refresh process is enabled when the event is released now */
-			__refreshActive: false,
-
-			/** {Function} Callback to execute on activation. This is for signalling the user about a refresh is about to happen when he release */
-			__refreshActivate: null,
-
-			/** {Function} Callback to execute on deactivation. This is for signalling the user about the refresh being cancelled */
-			__refreshDeactivate: null,
-
-			/** {Function} Callback to execute to start the actual refresh. Call {@link #refreshFinish} when done */
-			__refreshStart: null,
-
-			/** {Number} Zoom level */
-			__zoomLevel: 1,
-
-			/** {Number} Scroll position on x-axis */
-			__scrollLeft: 0,
-
-			/** {Number} Scroll position on y-axis */
-			__scrollTop: 0,
-
-			/** {Integer} Maximum allowed scroll position on x-axis */
-			__maxScrollLeft: 0,
-
-			/** {Integer} Maximum allowed scroll position on y-axis */
-			__maxScrollTop: 0,
-
-			/* {Number} Scheduled left position (final position when animating) */
-			__scheduledLeft: 0,
-
-			/* {Number} Scheduled top position (final position when animating) */
-			__scheduledTop: 0,
-
-			/* {Number} Scheduled zoom level (final scale when animating) */
-			__scheduledZoom: 0,
-
-			/*
-	  ---------------------------------------------------------------------------
-	  	INTERNAL FIELDS :: LAST POSITIONS
-	  ---------------------------------------------------------------------------
-	  */
-
-			/** {Number} Left position of finger at start */
-			__lastTouchLeft: null,
-
-			/** {Number} Top position of finger at start */
-			__lastTouchTop: null,
-
-			/** {Date} Timestamp of last move of finger. Used to limit tracking range for deceleration speed. */
-			__lastTouchMove: null,
-
-			/** {Array} List of positions, uses three indexes for each state: left, top, timestamp */
-			__positions: null,
-
-			/*
-	  ---------------------------------------------------------------------------
-	  	INTERNAL FIELDS :: DECELERATION SUPPORT
-	  ---------------------------------------------------------------------------
-	  */
-
-			/** {Integer} Minimum left scroll position during deceleration */
-			__minDecelerationScrollLeft: null,
-
-			/** {Integer} Minimum top scroll position during deceleration */
-			__minDecelerationScrollTop: null,
-
-			/** {Integer} Maximum left scroll position during deceleration */
-			__maxDecelerationScrollLeft: null,
-
-			/** {Integer} Maximum top scroll position during deceleration */
-			__maxDecelerationScrollTop: null,
-
-			/** {Number} Current factor to modify horizontal scroll position with on every step */
-			__decelerationVelocityX: null,
-
-			/** {Number} Current factor to modify vertical scroll position with on every step */
-			__decelerationVelocityY: null,
-
-			/*
-	  ---------------------------------------------------------------------------
-	  	PUBLIC API
-	  ---------------------------------------------------------------------------
-	  */
-
-			/**
-	   * Configures the dimensions of the client (outer) and content (inner) elements.
-	   * Requires the available space for the outer element and the outer size of the inner element.
-	   * All values which are falsy (null or zero etc.) are ignored and the old value is kept.
-	   *
-	   * @param clientWidth {Integer ? null} Inner width of outer element
-	   * @param clientHeight {Integer ? null} Inner height of outer element
-	   * @param contentWidth {Integer ? null} Outer width of inner element
-	   * @param contentHeight {Integer ? null} Outer height of inner element
-	   */
-			setDimensions: function setDimensions(clientWidth, clientHeight, contentWidth, contentHeight) {
-
-				var self = this;
-
-				// Only update values which are defined
-				if (clientWidth === +clientWidth) {
-					self.__clientWidth = clientWidth;
-				}
-
-				if (clientHeight === +clientHeight) {
-					self.__clientHeight = clientHeight;
-				}
-
-				if (contentWidth === +contentWidth) {
-					self.__contentWidth = contentWidth;
-				}
-
-				if (contentHeight === +contentHeight) {
-					self.__contentHeight = contentHeight;
-				}
-
-				// Refresh maximums
-				self.__computeScrollMax();
-
-				// Refresh scroll position
-				self.scrollTo(self.__scrollLeft, self.__scrollTop, true);
-			},
-
-			/**
-	   * Sets the client coordinates in relation to the document.
-	   *
-	   * @param left {Integer ? 0} Left position of outer element
-	   * @param top {Integer ? 0} Top position of outer element
-	   */
-			setPosition: function setPosition(left, top) {
-
-				var self = this;
-
-				self.__clientLeft = left || 0;
-				self.__clientTop = top || 0;
-			},
-
-			/**
-	   * Configures the snapping (when snapping is active)
-	   *
-	   * @param width {Integer} Snapping width
-	   * @param height {Integer} Snapping height
-	   */
-			setSnapSize: function setSnapSize(width, height) {
-
-				var self = this;
-
-				self.__snapWidth = width;
-				self.__snapHeight = height;
-			},
-
-			/**
-	   * Activates pull-to-refresh. A special zone on the top of the list to start a list refresh whenever
-	   * the user event is released during visibility of this zone. This was introduced by some apps on iOS like
-	   * the official Twitter client.
-	   *
-	   * @param height {Integer} Height of pull-to-refresh zone on top of rendered list
-	   * @param activateCallback {Function} Callback to execute on activation. This is for signalling the user about a refresh is about to happen when he release.
-	   * @param deactivateCallback {Function} Callback to execute on deactivation. This is for signalling the user about the refresh being cancelled.
-	   * @param startCallback {Function} Callback to execute to start the real async refresh action. Call {@link #finishPullToRefresh} after finish of refresh.
-	   */
-			activatePullToRefresh: function activatePullToRefresh(height, activateCallback, deactivateCallback, startCallback) {
-
-				var self = this;
-
-				self.__refreshHeight = height;
-				self.__refreshActivate = activateCallback;
-				self.__refreshDeactivate = deactivateCallback;
-				self.__refreshStart = startCallback;
-			},
-
-			/**
-	   * Starts pull-to-refresh manually.
-	   */
-			triggerPullToRefresh: function triggerPullToRefresh() {
-				// Use publish instead of scrollTo to allow scrolling to out of boundary position
-				// We don't need to normalize scrollLeft, zoomLevel, etc. here because we only y-scrolling when pull-to-refresh is enabled
-				this.__publish(this.__scrollLeft, -this.__refreshHeight, this.__zoomLevel, true);
-
-				if (this.__refreshStart) {
-					this.__refreshStart();
-				}
-			},
-
-			/**
-	   * Signalizes that pull-to-refresh is finished.
-	   */
-			finishPullToRefresh: function finishPullToRefresh() {
-
-				var self = this;
-
-				self.__refreshActive = false;
-				if (self.__refreshDeactivate) {
-					self.__refreshDeactivate();
-				}
-
-				self.scrollTo(self.__scrollLeft, self.__scrollTop, true);
-			},
-
-			/**
-	   * Returns the scroll position and zooming values
-	   *
-	   * @return {Map} `left` and `top` scroll position and `zoom` level
-	   */
-			getValues: function getValues() {
-
-				var self = this;
-
-				return {
-					left: self.__scrollLeft,
-					top: self.__scrollTop,
-					zoom: self.__zoomLevel
-				};
-			},
-
-			/**
-	   * Returns the maximum scroll values
-	   *
-	   * @return {Map} `left` and `top` maximum scroll values
-	   */
-			getScrollMax: function getScrollMax() {
-
-				var self = this;
-
-				return {
-					left: self.__maxScrollLeft,
-					top: self.__maxScrollTop
-				};
-			},
-
-			/**
-	   * Zooms to the given level. Supports optional animation. Zooms
-	   * the center when no coordinates are given.
-	   *
-	   * @param level {Number} Level to zoom to
-	   * @param animate {Boolean ? false} Whether to use animation
-	   * @param originLeft {Number ? null} Zoom in at given left coordinate
-	   * @param originTop {Number ? null} Zoom in at given top coordinate
-	   * @param callback {Function ? null} A callback that gets fired when the zoom is complete.
-	   */
-			zoomTo: function zoomTo(level, animate, originLeft, originTop, callback) {
-
-				var self = this;
-
-				if (!self.options.zooming) {
-					throw new Error("Zooming is not enabled!");
-				}
-
-				// Add callback if exists
-				if (callback) {
-					self.__zoomComplete = callback;
-				}
-
-				// Stop deceleration
-				if (self.__isDecelerating) {
-					core.effect.Animate.stop(self.__isDecelerating);
-					self.__isDecelerating = false;
-				}
-
-				var oldLevel = self.__zoomLevel;
-
-				// Normalize input origin to center of viewport if not defined
-				if (originLeft == null) {
-					originLeft = self.__clientWidth / 2;
-				}
-
-				if (originTop == null) {
-					originTop = self.__clientHeight / 2;
-				}
-
-				// Limit level according to configuration
-				level = Math.max(Math.min(level, self.options.maxZoom), self.options.minZoom);
-
-				// Recompute maximum values while temporary tweaking maximum scroll ranges
-				self.__computeScrollMax(level);
-
-				// Recompute left and top coordinates based on new zoom level
-				var left = (originLeft + self.__scrollLeft) * level / oldLevel - originLeft;
-				var top = (originTop + self.__scrollTop) * level / oldLevel - originTop;
-
-				// Limit x-axis
-				if (left > self.__maxScrollLeft) {
-					left = self.__maxScrollLeft;
-				} else if (left < 0) {
-					left = 0;
-				}
-
-				// Limit y-axis
-				if (top > self.__maxScrollTop) {
-					top = self.__maxScrollTop;
-				} else if (top < 0) {
-					top = 0;
-				}
-
-				// Push values out
-				self.__publish(left, top, level, animate);
-			},
-
-			/**
-	   * Zooms the content by the given factor.
-	   *
-	   * @param factor {Number} Zoom by given factor
-	   * @param animate {Boolean ? false} Whether to use animation
-	   * @param originLeft {Number ? 0} Zoom in at given left coordinate
-	   * @param originTop {Number ? 0} Zoom in at given top coordinate
-	   * @param callback {Function ? null} A callback that gets fired when the zoom is complete.
-	   */
-			zoomBy: function zoomBy(factor, animate, originLeft, originTop, callback) {
-
-				var self = this;
-
-				self.zoomTo(self.__zoomLevel * factor, animate, originLeft, originTop, callback);
-			},
-
-			/**
-	   * Scrolls to the given position. Respect limitations and snapping automatically.
-	   *
-	   * @param left {Number?null} Horizontal scroll position, keeps current if value is <code>null</code>
-	   * @param top {Number?null} Vertical scroll position, keeps current if value is <code>null</code>
-	   * @param animate {Boolean?false} Whether the scrolling should happen using an animation
-	   * @param zoom {Number?null} Zoom level to go to
-	   */
-			scrollTo: function scrollTo(left, top, animate, zoom) {
-
-				var self = this;
-
-				// Stop deceleration
-				if (self.__isDecelerating) {
-					core.effect.Animate.stop(self.__isDecelerating);
-					self.__isDecelerating = false;
-				}
-
-				// Correct coordinates based on new zoom level
-				if (zoom != null && zoom !== self.__zoomLevel) {
-
-					if (!self.options.zooming) {
-						throw new Error("Zooming is not enabled!");
-					}
-
-					left *= zoom;
-					top *= zoom;
-
-					// Recompute maximum values while temporary tweaking maximum scroll ranges
-					self.__computeScrollMax(zoom);
-				} else {
-
-					// Keep zoom when not defined
-					zoom = self.__zoomLevel;
-				}
-
-				if (!self.options.scrollingX) {
-
-					left = self.__scrollLeft;
-				} else {
-
-					if (self.options.paging) {
-						left = Math.round(left / self.__clientWidth) * self.__clientWidth;
-					} else if (self.options.snapping) {
-						left = Math.round(left / self.__snapWidth) * self.__snapWidth;
-					}
-				}
-
-				if (!self.options.scrollingY) {
-
-					top = self.__scrollTop;
-				} else {
-
-					if (self.options.paging) {
-						top = Math.round(top / self.__clientHeight) * self.__clientHeight;
-					} else if (self.options.snapping) {
-						top = Math.round(top / self.__snapHeight) * self.__snapHeight;
-					}
-				}
-
-				// Limit for allowed ranges
-				left = Math.max(Math.min(self.__maxScrollLeft, left), 0);
-				top = Math.max(Math.min(self.__maxScrollTop, top), 0);
-
-				// Don't animate when no change detected, still call publish to make sure
-				// that rendered position is really in-sync with internal data
-				if (left === self.__scrollLeft && top === self.__scrollTop) {
-					animate = false;
-				}
-
-				// Publish new values
-				self.__publish(left, top, zoom, animate);
-			},
-
-			/**
-	   * Scroll by the given offset
-	   *
-	   * @param left {Number ? 0} Scroll x-axis by given offset
-	   * @param top {Number ? 0} Scroll x-axis by given offset
-	   * @param animate {Boolean ? false} Whether to animate the given change
-	   */
-			scrollBy: function scrollBy(left, top, animate) {
-
-				var self = this;
-
-				var startLeft = self.__isAnimating ? self.__scheduledLeft : self.__scrollLeft;
-				var startTop = self.__isAnimating ? self.__scheduledTop : self.__scrollTop;
-
-				self.scrollTo(startLeft + (left || 0), startTop + (top || 0), animate);
-			},
-
-			/*
-	  ---------------------------------------------------------------------------
-	  	EVENT CALLBACKS
-	  ---------------------------------------------------------------------------
-	  */
-
-			/**
-	   * Mouse wheel handler for zooming support
-	   */
-			doMouseZoom: function doMouseZoom(wheelDelta, timeStamp, pageX, pageY) {
-
-				var self = this;
-				var change = wheelDelta > 0 ? 0.97 : 1.03;
-
-				return self.zoomTo(self.__zoomLevel * change, false, pageX - self.__clientLeft, pageY - self.__clientTop);
-			},
-
-			/**
-	   * Touch start handler for scrolling support
-	   */
-			doTouchStart: function doTouchStart(touches, timeStamp) {
-
-				// Array-like check is enough here
-				if (touches.length == null) {
-					throw new Error("Invalid touch list: " + touches);
-				}
-
-				if (timeStamp instanceof Date) {
-					timeStamp = timeStamp.valueOf();
-				}
-				if (typeof timeStamp !== "number") {
-					throw new Error("Invalid timestamp value: " + timeStamp);
-				}
-
-				var self = this;
-
-				// Reset interruptedAnimation flag
-				self.__interruptedAnimation = true;
-
-				// Stop deceleration
-				if (self.__isDecelerating) {
-					core.effect.Animate.stop(self.__isDecelerating);
-					self.__isDecelerating = false;
-					self.__interruptedAnimation = true;
-				}
-
-				// Stop animation
-				if (self.__isAnimating) {
-					core.effect.Animate.stop(self.__isAnimating);
-					self.__isAnimating = false;
-					self.__interruptedAnimation = true;
-				}
-
-				// Use center point when dealing with two fingers
-				var currentTouchLeft, currentTouchTop;
-				var isSingleTouch = touches.length === 1;
-				if (isSingleTouch) {
-					currentTouchLeft = touches[0].pageX;
-					currentTouchTop = touches[0].pageY;
-				} else {
-					currentTouchLeft = Math.abs(touches[0].pageX + touches[1].pageX) / 2;
-					currentTouchTop = Math.abs(touches[0].pageY + touches[1].pageY) / 2;
-				}
-
-				// Store initial positions
-				self.__initialTouchLeft = currentTouchLeft;
-				self.__initialTouchTop = currentTouchTop;
-
-				// Store current zoom level
-				self.__zoomLevelStart = self.__zoomLevel;
-
-				// Store initial touch positions
-				self.__lastTouchLeft = currentTouchLeft;
-				self.__lastTouchTop = currentTouchTop;
-
-				// Store initial move time stamp
-				self.__lastTouchMove = timeStamp;
-
-				// Reset initial scale
-				self.__lastScale = 1;
-
-				// Reset locking flags
-				self.__enableScrollX = !isSingleTouch && self.options.scrollingX;
-				self.__enableScrollY = !isSingleTouch && self.options.scrollingY;
-
-				// Reset tracking flag
-				self.__isTracking = true;
-
-				// Reset deceleration complete flag
-				self.__didDecelerationComplete = false;
-
-				// Dragging starts directly with two fingers, otherwise lazy with an offset
-				self.__isDragging = !isSingleTouch;
-
-				// Some features are disabled in multi touch scenarios
-				self.__isSingleTouch = isSingleTouch;
-
-				// Clearing data structure
-				self.__positions = [];
-			},
-
-			/**
-	   * Touch move handler for scrolling support
-	   */
-			doTouchMove: function doTouchMove(touches, timeStamp, scale) {
-
-				// Array-like check is enough here
-				if (touches.length == null) {
-					throw new Error("Invalid touch list: " + touches);
-				}
-
-				if (timeStamp instanceof Date) {
-					timeStamp = timeStamp.valueOf();
-				}
-				if (typeof timeStamp !== "number") {
-					throw new Error("Invalid timestamp value: " + timeStamp);
-				}
-
-				var self = this;
-
-				// Ignore event when tracking is not enabled (event might be outside of element)
-				if (!self.__isTracking) {
-					return;
-				}
-
-				var currentTouchLeft, currentTouchTop;
-
-				// Compute move based around of center of fingers
-				if (touches.length === 2) {
-					currentTouchLeft = Math.abs(touches[0].pageX + touches[1].pageX) / 2;
-					currentTouchTop = Math.abs(touches[0].pageY + touches[1].pageY) / 2;
-				} else {
-					currentTouchLeft = touches[0].pageX;
-					currentTouchTop = touches[0].pageY;
-				}
-
-				var positions = self.__positions;
-
-				// Are we already is dragging mode?
-				if (self.__isDragging) {
-
-					// Compute move distance
-					var moveX = currentTouchLeft - self.__lastTouchLeft;
-					var moveY = currentTouchTop - self.__lastTouchTop;
-
-					// Read previous scroll position and zooming
-					var scrollLeft = self.__scrollLeft;
-					var scrollTop = self.__scrollTop;
-					var level = self.__zoomLevel;
-
-					// Work with scaling
-					if (scale != null && self.options.zooming) {
-
-						var oldLevel = level;
-
-						// Recompute level based on previous scale and new scale
-						level = level / self.__lastScale * scale;
-
-						// Limit level according to configuration
-						level = Math.max(Math.min(level, self.options.maxZoom), self.options.minZoom);
-
-						// Only do further compution when change happened
-						if (oldLevel !== level) {
-
-							// Compute relative event position to container
-							var currentTouchLeftRel = currentTouchLeft - self.__clientLeft;
-							var currentTouchTopRel = currentTouchTop - self.__clientTop;
-
-							// Recompute left and top coordinates based on new zoom level
-							scrollLeft = (currentTouchLeftRel + scrollLeft) * level / oldLevel - currentTouchLeftRel;
-							scrollTop = (currentTouchTopRel + scrollTop) * level / oldLevel - currentTouchTopRel;
-
-							// Recompute max scroll values
-							self.__computeScrollMax(level);
-						}
-					}
-
-					if (self.__enableScrollX) {
-
-						scrollLeft -= moveX * this.options.speedMultiplier;
-						var maxScrollLeft = self.__maxScrollLeft;
-
-						if (scrollLeft > maxScrollLeft || scrollLeft < 0) {
-
-							// Slow down on the edges
-							if (self.options.bouncing) {
-
-								scrollLeft += moveX / 2 * this.options.speedMultiplier;
-							} else if (scrollLeft > maxScrollLeft) {
-
-								scrollLeft = maxScrollLeft;
-							} else {
-
-								scrollLeft = 0;
+							for (var key in options) {
+										this.options[key] = options[key];
 							}
-						}
-					}
+				};
 
-					// Compute new vertical scroll position
-					if (self.__enableScrollY) {
+				// Easing Equations (c) 2003 Robert Penner, all rights reserved.
+				// Open source under the BSD License.
 
-						scrollTop -= moveY * this.options.speedMultiplier;
-						var maxScrollTop = self.__maxScrollTop;
+				/**
+	    * @param pos {Number} position between 0 (start of effect) and 1 (end of effect)
+	   **/
+				var easeOutCubic = function easeOutCubic(pos) {
+							return Math.pow(pos - 1, 3) + 1;
+				};
 
-						if (scrollTop > maxScrollTop || scrollTop < 0) {
+				/**
+	    * @param pos {Number} position between 0 (start of effect) and 1 (end of effect)
+	   **/
+				var easeInOutCubic = function easeInOutCubic(pos) {
+							if ((pos /= 0.5) < 1) {
+										return 0.5 * Math.pow(pos, 3);
+							}
 
-							// Slow down on the edges
-							if (self.options.bouncing) {
+							return 0.5 * (Math.pow(pos - 2, 3) + 2);
+				};
 
-								scrollTop += moveY / 2 * this.options.speedMultiplier;
+				var members = {
 
-								// Support pull-to-refresh (only when only y is scrollable)
-								if (!self.__enableScrollX && self.__refreshHeight != null) {
+							/*
+	      ---------------------------------------------------------------------------
+	      	INTERNAL FIELDS :: STATUS
+	      ---------------------------------------------------------------------------
+	      */
 
-									if (!self.__refreshActive && scrollTop <= -self.__refreshHeight) {
+							/** {Boolean} Whether only a single finger is used in touch handling */
+							__isSingleTouch: false,
 
-										self.__refreshActive = true;
-										if (self.__refreshActivate) {
-											self.__refreshActivate();
+							/** {Boolean} Whether a touch event sequence is in progress */
+							__isTracking: false,
+
+							/** {Boolean} Whether a deceleration animation went to completion. */
+							__didDecelerationComplete: false,
+
+							/**
+	       * {Boolean} Whether a gesture zoom/rotate event is in progress. Activates when
+	       * a gesturestart event happens. This has higher priority than dragging.
+	       */
+							__isGesturing: false,
+
+							/**
+	       * {Boolean} Whether the user has moved by such a distance that we have enabled
+	       * dragging mode. Hint: It's only enabled after some pixels of movement to
+	       * not interrupt with clicks etc.
+	       */
+							__isDragging: false,
+
+							/**
+	       * {Boolean} Not touching and dragging anymore, and smoothly animating the
+	       * touch sequence using deceleration.
+	       */
+							__isDecelerating: false,
+
+							/**
+	       * {Boolean} Smoothly animating the currently configured change
+	       */
+							__isAnimating: false,
+
+							/*
+	      ---------------------------------------------------------------------------
+	      	INTERNAL FIELDS :: DIMENSIONS
+	      ---------------------------------------------------------------------------
+	      */
+
+							/** {Integer} Available outer left position (from document perspective) */
+							__clientLeft: 0,
+
+							/** {Integer} Available outer top position (from document perspective) */
+							__clientTop: 0,
+
+							/** {Integer} Available outer width */
+							__clientWidth: 0,
+
+							/** {Integer} Available outer height */
+							__clientHeight: 0,
+
+							/** {Integer} Outer width of content */
+							__contentWidth: 0,
+
+							/** {Integer} Outer height of content */
+							__contentHeight: 0,
+
+							/** {Integer} Snapping width for content */
+							__snapWidth: 100,
+
+							/** {Integer} Snapping height for content */
+							__snapHeight: 100,
+
+							/** {Integer} Height to assign to refresh area */
+							__refreshHeight: null,
+
+							/** {Boolean} Whether the refresh process is enabled when the event is released now */
+							__refreshActive: false,
+
+							/** {Function} Callback to execute on activation. This is for signalling the user about a refresh is about to happen when he release */
+							__refreshActivate: null,
+
+							/** {Function} Callback to execute on deactivation. This is for signalling the user about the refresh being cancelled */
+							__refreshDeactivate: null,
+
+							/** {Function} Callback to execute to start the actual refresh. Call {@link #refreshFinish} when done */
+							__refreshStart: null,
+
+							/** {Number} Zoom level */
+							__zoomLevel: 1,
+
+							/** {Number} Scroll position on x-axis */
+							__scrollLeft: 0,
+
+							/** {Number} Scroll position on y-axis */
+							__scrollTop: 0,
+
+							/** {Integer} Maximum allowed scroll position on x-axis */
+							__maxScrollLeft: 0,
+
+							/** {Integer} Maximum allowed scroll position on y-axis */
+							__maxScrollTop: 0,
+
+							/* {Number} Scheduled left position (final position when animating) */
+							__scheduledLeft: 0,
+
+							/* {Number} Scheduled top position (final position when animating) */
+							__scheduledTop: 0,
+
+							/* {Number} Scheduled zoom level (final scale when animating) */
+							__scheduledZoom: 0,
+
+							/*
+	      ---------------------------------------------------------------------------
+	      	INTERNAL FIELDS :: LAST POSITIONS
+	      ---------------------------------------------------------------------------
+	      */
+
+							/** {Number} Left position of finger at start */
+							__lastTouchLeft: null,
+
+							/** {Number} Top position of finger at start */
+							__lastTouchTop: null,
+
+							/** {Date} Timestamp of last move of finger. Used to limit tracking range for deceleration speed. */
+							__lastTouchMove: null,
+
+							/** {Array} List of positions, uses three indexes for each state: left, top, timestamp */
+							__positions: null,
+
+							/*
+	      ---------------------------------------------------------------------------
+	      	INTERNAL FIELDS :: DECELERATION SUPPORT
+	      ---------------------------------------------------------------------------
+	      */
+
+							/** {Integer} Minimum left scroll position during deceleration */
+							__minDecelerationScrollLeft: null,
+
+							/** {Integer} Minimum top scroll position during deceleration */
+							__minDecelerationScrollTop: null,
+
+							/** {Integer} Maximum left scroll position during deceleration */
+							__maxDecelerationScrollLeft: null,
+
+							/** {Integer} Maximum top scroll position during deceleration */
+							__maxDecelerationScrollTop: null,
+
+							/** {Number} Current factor to modify horizontal scroll position with on every step */
+							__decelerationVelocityX: null,
+
+							/** {Number} Current factor to modify vertical scroll position with on every step */
+							__decelerationVelocityY: null,
+
+							/*
+	      ---------------------------------------------------------------------------
+	      	PUBLIC API
+	      ---------------------------------------------------------------------------
+	      */
+
+							/**
+	       * Configures the dimensions of the client (outer) and content (inner) elements.
+	       * Requires the available space for the outer element and the outer size of the inner element.
+	       * All values which are falsy (null or zero etc.) are ignored and the old value is kept.
+	       *
+	       * @param clientWidth {Integer ? null} Inner width of outer element
+	       * @param clientHeight {Integer ? null} Inner height of outer element
+	       * @param contentWidth {Integer ? null} Outer width of inner element
+	       * @param contentHeight {Integer ? null} Outer height of inner element
+	       */
+							setDimensions: function setDimensions(clientWidth, clientHeight, contentWidth, contentHeight) {
+
+										var self = this;
+
+										// Only update values which are defined
+										if (clientWidth === +clientWidth) {
+													self.__clientWidth = clientWidth;
 										}
-									} else if (self.__refreshActive && scrollTop > -self.__refreshHeight) {
+
+										if (clientHeight === +clientHeight) {
+													self.__clientHeight = clientHeight;
+										}
+
+										if (contentWidth === +contentWidth) {
+													self.__contentWidth = contentWidth;
+										}
+
+										if (contentHeight === +contentHeight) {
+													self.__contentHeight = contentHeight;
+										}
+
+										// Refresh maximums
+										self.__computeScrollMax();
+
+										// Refresh scroll position
+										self.scrollTo(self.__scrollLeft, self.__scrollTop, true);
+							},
+
+							/**
+	       * Sets the client coordinates in relation to the document.
+	       *
+	       * @param left {Integer ? 0} Left position of outer element
+	       * @param top {Integer ? 0} Top position of outer element
+	       */
+							setPosition: function setPosition(left, top) {
+
+										var self = this;
+
+										self.__clientLeft = left || 0;
+										self.__clientTop = top || 0;
+							},
+
+							/**
+	       * Configures the snapping (when snapping is active)
+	       *
+	       * @param width {Integer} Snapping width
+	       * @param height {Integer} Snapping height
+	       */
+							setSnapSize: function setSnapSize(width, height) {
+
+										var self = this;
+
+										self.__snapWidth = width;
+										self.__snapHeight = height;
+							},
+
+							/**
+	       * Activates pull-to-refresh. A special zone on the top of the list to start a list refresh whenever
+	       * the user event is released during visibility of this zone. This was introduced by some apps on iOS like
+	       * the official Twitter client.
+	       *
+	       * @param height {Integer} Height of pull-to-refresh zone on top of rendered list
+	       * @param activateCallback {Function} Callback to execute on activation. This is for signalling the user about a refresh is about to happen when he release.
+	       * @param deactivateCallback {Function} Callback to execute on deactivation. This is for signalling the user about the refresh being cancelled.
+	       * @param startCallback {Function} Callback to execute to start the real async refresh action. Call {@link #finishPullToRefresh} after finish of refresh.
+	       */
+							activatePullToRefresh: function activatePullToRefresh(height, activateCallback, deactivateCallback, startCallback) {
+
+										var self = this;
+
+										self.__refreshHeight = height;
+										self.__refreshActivate = activateCallback;
+										self.__refreshDeactivate = deactivateCallback;
+										self.__refreshStart = startCallback;
+							},
+
+							/**
+	       * Starts pull-to-refresh manually.
+	       */
+							triggerPullToRefresh: function triggerPullToRefresh() {
+										// Use publish instead of scrollTo to allow scrolling to out of boundary position
+										// We don't need to normalize scrollLeft, zoomLevel, etc. here because we only y-scrolling when pull-to-refresh is enabled
+										this.__publish(this.__scrollLeft, -this.__refreshHeight, this.__zoomLevel, true);
+
+										if (this.__refreshStart) {
+													this.__refreshStart();
+										}
+							},
+
+							/**
+	       * Signalizes that pull-to-refresh is finished.
+	       */
+							finishPullToRefresh: function finishPullToRefresh() {
+
+										var self = this;
 
 										self.__refreshActive = false;
 										if (self.__refreshDeactivate) {
-											self.__refreshDeactivate();
+													self.__refreshDeactivate();
 										}
-									}
-								}
-							} else if (scrollTop > maxScrollTop) {
 
-								scrollTop = maxScrollTop;
-							} else {
+										self.scrollTo(self.__scrollLeft, self.__scrollTop, true);
+							},
 
-								scrollTop = 0;
+							/**
+	       * Returns the scroll position and zooming values
+	       *
+	       * @return {Map} `left` and `top` scroll position and `zoom` level
+	       */
+							getValues: function getValues() {
+
+										var self = this;
+
+										return {
+													left: self.__scrollLeft,
+													top: self.__scrollTop,
+													zoom: self.__zoomLevel
+										};
+							},
+
+							/**
+	       * Returns the maximum scroll values
+	       *
+	       * @return {Map} `left` and `top` maximum scroll values
+	       */
+							getScrollMax: function getScrollMax() {
+
+										var self = this;
+
+										return {
+													left: self.__maxScrollLeft,
+													top: self.__maxScrollTop
+										};
+							},
+
+							/**
+	       * Zooms to the given level. Supports optional animation. Zooms
+	       * the center when no coordinates are given.
+	       *
+	       * @param level {Number} Level to zoom to
+	       * @param animate {Boolean ? false} Whether to use animation
+	       * @param originLeft {Number ? null} Zoom in at given left coordinate
+	       * @param originTop {Number ? null} Zoom in at given top coordinate
+	       * @param callback {Function ? null} A callback that gets fired when the zoom is complete.
+	       */
+							zoomTo: function zoomTo(level, animate, originLeft, originTop, callback) {
+
+										var self = this;
+
+										if (!self.options.zooming) {
+													throw new Error("Zooming is not enabled!");
+										}
+
+										// Add callback if exists
+										if (callback) {
+													self.__zoomComplete = callback;
+										}
+
+										// Stop deceleration
+										if (self.__isDecelerating) {
+													core.effect.Animate.stop(self.__isDecelerating);
+													self.__isDecelerating = false;
+										}
+
+										var oldLevel = self.__zoomLevel;
+
+										// Normalize input origin to center of viewport if not defined
+										if (originLeft == null) {
+													originLeft = self.__clientWidth / 2;
+										}
+
+										if (originTop == null) {
+													originTop = self.__clientHeight / 2;
+										}
+
+										// Limit level according to configuration
+										level = Math.max(Math.min(level, self.options.maxZoom), self.options.minZoom);
+
+										// Recompute maximum values while temporary tweaking maximum scroll ranges
+										self.__computeScrollMax(level);
+
+										// Recompute left and top coordinates based on new zoom level
+										var left = (originLeft + self.__scrollLeft) * level / oldLevel - originLeft;
+										var top = (originTop + self.__scrollTop) * level / oldLevel - originTop;
+
+										// Limit x-axis
+										if (left > self.__maxScrollLeft) {
+													left = self.__maxScrollLeft;
+										} else if (left < 0) {
+													left = 0;
+										}
+
+										// Limit y-axis
+										if (top > self.__maxScrollTop) {
+													top = self.__maxScrollTop;
+										} else if (top < 0) {
+													top = 0;
+										}
+
+										// Push values out
+										self.__publish(left, top, level, animate);
+							},
+
+							/**
+	       * Zooms the content by the given factor.
+	       *
+	       * @param factor {Number} Zoom by given factor
+	       * @param animate {Boolean ? false} Whether to use animation
+	       * @param originLeft {Number ? 0} Zoom in at given left coordinate
+	       * @param originTop {Number ? 0} Zoom in at given top coordinate
+	       * @param callback {Function ? null} A callback that gets fired when the zoom is complete.
+	       */
+							zoomBy: function zoomBy(factor, animate, originLeft, originTop, callback) {
+
+										var self = this;
+
+										self.zoomTo(self.__zoomLevel * factor, animate, originLeft, originTop, callback);
+							},
+
+							/**
+	       * Scrolls to the given position. Respect limitations and snapping automatically.
+	       *
+	       * @param left {Number?null} Horizontal scroll position, keeps current if value is <code>null</code>
+	       * @param top {Number?null} Vertical scroll position, keeps current if value is <code>null</code>
+	       * @param animate {Boolean?false} Whether the scrolling should happen using an animation
+	       * @param zoom {Number?null} Zoom level to go to
+	       */
+							scrollTo: function scrollTo(left, top, animate, zoom) {
+
+										var self = this;
+
+										// Stop deceleration
+										if (self.__isDecelerating) {
+													core.effect.Animate.stop(self.__isDecelerating);
+													self.__isDecelerating = false;
+										}
+
+										// Correct coordinates based on new zoom level
+										if (zoom != null && zoom !== self.__zoomLevel) {
+
+													if (!self.options.zooming) {
+																throw new Error("Zooming is not enabled!");
+													}
+
+													left *= zoom;
+													top *= zoom;
+
+													// Recompute maximum values while temporary tweaking maximum scroll ranges
+													self.__computeScrollMax(zoom);
+										} else {
+
+													// Keep zoom when not defined
+													zoom = self.__zoomLevel;
+										}
+
+										if (!self.options.scrollingX) {
+
+													left = self.__scrollLeft;
+										} else {
+
+													if (self.options.paging) {
+																left = Math.round(left / self.__clientWidth) * self.__clientWidth;
+													} else if (self.options.snapping) {
+																left = Math.round(left / self.__snapWidth) * self.__snapWidth;
+													}
+										}
+
+										if (!self.options.scrollingY) {
+
+													top = self.__scrollTop;
+										} else {
+
+													if (self.options.paging) {
+																top = Math.round(top / self.__clientHeight) * self.__clientHeight;
+													} else if (self.options.snapping) {
+																top = Math.round(top / self.__snapHeight) * self.__snapHeight;
+													}
+										}
+
+										// Limit for allowed ranges
+										left = Math.max(Math.min(self.__maxScrollLeft, left), 0);
+										top = Math.max(Math.min(self.__maxScrollTop, top), 0);
+
+										// Don't animate when no change detected, still call publish to make sure
+										// that rendered position is really in-sync with internal data
+										if (left === self.__scrollLeft && top === self.__scrollTop) {
+													animate = false;
+										}
+
+										// Publish new values
+										self.__publish(left, top, zoom, animate);
+							},
+
+							/**
+	       * Scroll by the given offset
+	       *
+	       * @param left {Number ? 0} Scroll x-axis by given offset
+	       * @param top {Number ? 0} Scroll x-axis by given offset
+	       * @param animate {Boolean ? false} Whether to animate the given change
+	       */
+							scrollBy: function scrollBy(left, top, animate) {
+
+										var self = this;
+
+										var startLeft = self.__isAnimating ? self.__scheduledLeft : self.__scrollLeft;
+										var startTop = self.__isAnimating ? self.__scheduledTop : self.__scrollTop;
+
+										self.scrollTo(startLeft + (left || 0), startTop + (top || 0), animate);
+							},
+
+							/*
+	      ---------------------------------------------------------------------------
+	      	EVENT CALLBACKS
+	      ---------------------------------------------------------------------------
+	      */
+
+							/**
+	       * Mouse wheel handler for zooming support
+	       */
+							doMouseZoom: function doMouseZoom(wheelDelta, timeStamp, pageX, pageY) {
+
+										var self = this;
+										var change = wheelDelta > 0 ? 0.97 : 1.03;
+
+										return self.zoomTo(self.__zoomLevel * change, false, pageX - self.__clientLeft, pageY - self.__clientTop);
+							},
+
+							/**
+	       * Touch start handler for scrolling support
+	       */
+							doTouchStart: function doTouchStart(touches, timeStamp) {
+
+										// Array-like check is enough here
+										if (touches.length == null) {
+													throw new Error("Invalid touch list: " + touches);
+										}
+
+										if (timeStamp instanceof Date) {
+													timeStamp = timeStamp.valueOf();
+										}
+										if (typeof timeStamp !== "number") {
+													throw new Error("Invalid timestamp value: " + timeStamp);
+										}
+
+										var self = this;
+
+										// Reset interruptedAnimation flag
+										self.__interruptedAnimation = true;
+
+										// Stop deceleration
+										if (self.__isDecelerating) {
+													core.effect.Animate.stop(self.__isDecelerating);
+													self.__isDecelerating = false;
+													self.__interruptedAnimation = true;
+										}
+
+										// Stop animation
+										if (self.__isAnimating) {
+													core.effect.Animate.stop(self.__isAnimating);
+													self.__isAnimating = false;
+													self.__interruptedAnimation = true;
+										}
+
+										// Use center point when dealing with two fingers
+										var currentTouchLeft, currentTouchTop;
+										var isSingleTouch = touches.length === 1;
+										if (isSingleTouch) {
+													currentTouchLeft = touches[0].pageX;
+													currentTouchTop = touches[0].pageY;
+										} else {
+													currentTouchLeft = Math.abs(touches[0].pageX + touches[1].pageX) / 2;
+													currentTouchTop = Math.abs(touches[0].pageY + touches[1].pageY) / 2;
+										}
+
+										// Store initial positions
+										self.__initialTouchLeft = currentTouchLeft;
+										self.__initialTouchTop = currentTouchTop;
+
+										// Store current zoom level
+										self.__zoomLevelStart = self.__zoomLevel;
+
+										// Store initial touch positions
+										self.__lastTouchLeft = currentTouchLeft;
+										self.__lastTouchTop = currentTouchTop;
+
+										// Store initial move time stamp
+										self.__lastTouchMove = timeStamp;
+
+										// Reset initial scale
+										self.__lastScale = 1;
+
+										// Reset locking flags
+										self.__enableScrollX = !isSingleTouch && self.options.scrollingX;
+										self.__enableScrollY = !isSingleTouch && self.options.scrollingY;
+
+										// Reset tracking flag
+										self.__isTracking = true;
+
+										// Reset deceleration complete flag
+										self.__didDecelerationComplete = false;
+
+										// Dragging starts directly with two fingers, otherwise lazy with an offset
+										self.__isDragging = !isSingleTouch;
+
+										// Some features are disabled in multi touch scenarios
+										self.__isSingleTouch = isSingleTouch;
+
+										// Clearing data structure
+										self.__positions = [];
+							},
+
+							/**
+	       * Touch move handler for scrolling support
+	       */
+							doTouchMove: function doTouchMove(touches, timeStamp, scale) {
+
+										// Array-like check is enough here
+										if (touches.length == null) {
+													throw new Error("Invalid touch list: " + touches);
+										}
+
+										if (timeStamp instanceof Date) {
+													timeStamp = timeStamp.valueOf();
+										}
+										if (typeof timeStamp !== "number") {
+													throw new Error("Invalid timestamp value: " + timeStamp);
+										}
+
+										var self = this;
+
+										// Ignore event when tracking is not enabled (event might be outside of element)
+										if (!self.__isTracking) {
+													return;
+										}
+
+										var currentTouchLeft, currentTouchTop;
+
+										// Compute move based around of center of fingers
+										if (touches.length === 2) {
+													currentTouchLeft = Math.abs(touches[0].pageX + touches[1].pageX) / 2;
+													currentTouchTop = Math.abs(touches[0].pageY + touches[1].pageY) / 2;
+										} else {
+													currentTouchLeft = touches[0].pageX;
+													currentTouchTop = touches[0].pageY;
+										}
+
+										var positions = self.__positions;
+
+										// Are we already is dragging mode?
+										if (self.__isDragging) {
+
+													// Compute move distance
+													var moveX = currentTouchLeft - self.__lastTouchLeft;
+													var moveY = currentTouchTop - self.__lastTouchTop;
+
+													// Read previous scroll position and zooming
+													var scrollLeft = self.__scrollLeft;
+													var scrollTop = self.__scrollTop;
+													var level = self.__zoomLevel;
+
+													// Work with scaling
+													if (scale != null && self.options.zooming) {
+
+																var oldLevel = level;
+
+																// Recompute level based on previous scale and new scale
+																level = level / self.__lastScale * scale;
+
+																// Limit level according to configuration
+																level = Math.max(Math.min(level, self.options.maxZoom), self.options.minZoom);
+
+																// Only do further compution when change happened
+																if (oldLevel !== level) {
+
+																			// Compute relative event position to container
+																			var currentTouchLeftRel = currentTouchLeft - self.__clientLeft;
+																			var currentTouchTopRel = currentTouchTop - self.__clientTop;
+
+																			// Recompute left and top coordinates based on new zoom level
+																			scrollLeft = (currentTouchLeftRel + scrollLeft) * level / oldLevel - currentTouchLeftRel;
+																			scrollTop = (currentTouchTopRel + scrollTop) * level / oldLevel - currentTouchTopRel;
+
+																			// Recompute max scroll values
+																			self.__computeScrollMax(level);
+																}
+													}
+
+													if (self.__enableScrollX) {
+
+																scrollLeft -= moveX * this.options.speedMultiplier;
+																var maxScrollLeft = self.__maxScrollLeft;
+
+																if (scrollLeft > maxScrollLeft || scrollLeft < 0) {
+
+																			// Slow down on the edges
+																			if (self.options.bouncing) {
+
+																						scrollLeft += moveX / 2 * this.options.speedMultiplier;
+																			} else if (scrollLeft > maxScrollLeft) {
+
+																						scrollLeft = maxScrollLeft;
+																			} else {
+
+																						scrollLeft = 0;
+																			}
+																}
+													}
+
+													// Compute new vertical scroll position
+													if (self.__enableScrollY) {
+
+																scrollTop -= moveY * this.options.speedMultiplier;
+																var maxScrollTop = self.__maxScrollTop;
+
+																if (scrollTop > maxScrollTop || scrollTop < 0) {
+
+																			// Slow down on the edges
+																			if (self.options.bouncing) {
+
+																						scrollTop += moveY / 2 * this.options.speedMultiplier;
+
+																						// Support pull-to-refresh (only when only y is scrollable)
+																						if (!self.__enableScrollX && self.__refreshHeight != null) {
+
+																									if (!self.__refreshActive && scrollTop <= -self.__refreshHeight) {
+
+																												self.__refreshActive = true;
+																												if (self.__refreshActivate) {
+																															self.__refreshActivate();
+																												}
+																									} else if (self.__refreshActive && scrollTop > -self.__refreshHeight) {
+
+																												self.__refreshActive = false;
+																												if (self.__refreshDeactivate) {
+																															self.__refreshDeactivate();
+																												}
+																									}
+																						}
+																			} else if (scrollTop > maxScrollTop) {
+
+																						scrollTop = maxScrollTop;
+																			} else {
+
+																						scrollTop = 0;
+																			}
+																}
+													}
+
+													// Keep list from growing infinitely (holding min 10, max 20 measure points)
+													if (positions.length > 60) {
+																positions.splice(0, 30);
+													}
+
+													// Track scroll movement for decleration
+													positions.push(scrollLeft, scrollTop, timeStamp);
+
+													// Sync scroll position
+													self.__publish(scrollLeft, scrollTop, level);
+
+													// Otherwise figure out whether we are switching into dragging mode now.
+										} else {
+
+																var minimumTrackingForScroll = self.options.locking ? 3 : 0;
+																var minimumTrackingForDrag = 5;
+
+																var distanceX = Math.abs(currentTouchLeft - self.__initialTouchLeft);
+																var distanceY = Math.abs(currentTouchTop - self.__initialTouchTop);
+
+																self.__enableScrollX = self.options.scrollingX && distanceX >= minimumTrackingForScroll;
+																self.__enableScrollY = self.options.scrollingY && distanceY >= minimumTrackingForScroll;
+
+																positions.push(self.__scrollLeft, self.__scrollTop, timeStamp);
+
+																self.__isDragging = (self.__enableScrollX || self.__enableScrollY) && (distanceX >= minimumTrackingForDrag || distanceY >= minimumTrackingForDrag);
+																if (self.__isDragging) {
+																			self.__interruptedAnimation = false;
+																}
+													}
+
+										// Update last touch positions and time stamp for next event
+										self.__lastTouchLeft = currentTouchLeft;
+										self.__lastTouchTop = currentTouchTop;
+										self.__lastTouchMove = timeStamp;
+										self.__lastScale = scale;
+							},
+
+							/**
+	       * Touch end handler for scrolling support
+	       */
+							doTouchEnd: function doTouchEnd(timeStamp) {
+
+										if (timeStamp instanceof Date) {
+													timeStamp = timeStamp.valueOf();
+										}
+										if (typeof timeStamp !== "number") {
+													throw new Error("Invalid timestamp value: " + timeStamp);
+										}
+
+										var self = this;
+
+										// Ignore event when tracking is not enabled (no touchstart event on element)
+										// This is required as this listener ('touchmove') sits on the document and not on the element itself.
+										if (!self.__isTracking) {
+													return;
+										}
+
+										// Not touching anymore (when two finger hit the screen there are two touch end events)
+										self.__isTracking = false;
+
+										// Be sure to reset the dragging flag now. Here we also detect whether
+										// the finger has moved fast enough to switch into a deceleration animation.
+										if (self.__isDragging) {
+
+													// Reset dragging flag
+													self.__isDragging = false;
+
+													// Start deceleration
+													// Verify that the last move detected was in some relevant time frame
+													if (self.__isSingleTouch && self.options.animating && timeStamp - self.__lastTouchMove <= 100) {
+
+																// Then figure out what the scroll position was about 100ms ago
+																var positions = self.__positions;
+																var endPos = positions.length - 1;
+																var startPos = endPos;
+
+																// Move pointer to position measured 100ms ago
+																for (var i = endPos; i > 0 && positions[i] > self.__lastTouchMove - 100; i -= 3) {
+																			startPos = i;
+																}
+
+																// If we haven't received consecutive touchmove events within a 100ms
+																// timeframe, attempt a best-effort based on the first position. This
+																// typically happens when an expensive operation occurs on the main
+																// thread during scrolling, such as image decoding.
+																if (startPos === endPos && positions.length > 5) {
+																			startPos = 2;
+																}
+
+																// If start and stop position is identical in a 100ms timeframe,
+																// we cannot compute any useful deceleration.
+																if (startPos !== endPos) {
+
+																			// Compute relative movement between these two points
+																			var timeOffset = positions[endPos] - positions[startPos];
+																			var movedLeft = self.__scrollLeft - positions[startPos - 2];
+																			var movedTop = self.__scrollTop - positions[startPos - 1];
+
+																			// Based on 50ms compute the movement to apply for each render step
+																			self.__decelerationVelocityX = movedLeft / timeOffset * (1000 / 60);
+																			self.__decelerationVelocityY = movedTop / timeOffset * (1000 / 60);
+
+																			// How much velocity is required to start the deceleration
+																			var minVelocityToStartDeceleration = self.options.paging || self.options.snapping ? 4 : 1;
+
+																			// Verify that we have enough velocity to start deceleration
+																			if (Math.abs(self.__decelerationVelocityX) > minVelocityToStartDeceleration || Math.abs(self.__decelerationVelocityY) > minVelocityToStartDeceleration) {
+
+																						// Deactivate pull-to-refresh when decelerating
+																						if (!self.__refreshActive) {
+																									self.__startDeceleration(timeStamp);
+																						}
+																			}
+																} else {
+																			self.options.scrollingComplete();
+																}
+													} else if (timeStamp - self.__lastTouchMove > 100) {
+																self.options.scrollingComplete();
+													}
+										}
+
+										// If this was a slower move it is per default non decelerated, but this
+										// still means that we want snap back to the bounds which is done here.
+										// This is placed outside the condition above to improve edge case stability
+										// e.g. touchend fired without enabled dragging. This should normally do not
+										// have modified the scroll positions or even showed the scrollbars though.
+										if (!self.__isDecelerating) {
+
+													if (self.__refreshActive && self.__refreshStart) {
+
+																// Use publish instead of scrollTo to allow scrolling to out of boundary position
+																// We don't need to normalize scrollLeft, zoomLevel, etc. here because we only y-scrolling when pull-to-refresh is enabled
+																self.__publish(self.__scrollLeft, -self.__refreshHeight, self.__zoomLevel, true);
+
+																if (self.__refreshStart) {
+																			self.__refreshStart();
+																}
+													} else {
+
+																if (self.__interruptedAnimation || self.__isDragging) {
+																			self.options.scrollingComplete();
+																}
+																self.scrollTo(self.__scrollLeft, self.__scrollTop, true, self.__zoomLevel);
+
+																// Directly signalize deactivation (nothing todo on refresh?)
+																if (self.__refreshActive) {
+
+																			self.__refreshActive = false;
+																			if (self.__refreshDeactivate) {
+																						self.__refreshDeactivate();
+																			}
+																}
+													}
+										}
+
+										// Fully cleanup list
+										self.__positions.length = 0;
+							},
+
+							/*
+	      ---------------------------------------------------------------------------
+	      	PRIVATE API
+	      ---------------------------------------------------------------------------
+	      */
+
+							/**
+	       * Applies the scroll position to the content element
+	       *
+	       * @param left {Number} Left scroll position
+	       * @param top {Number} Top scroll position
+	       * @param animate {Boolean?false} Whether animation should be used to move to the new coordinates
+	       */
+							__publish: function __publish(left, top, zoom, animate) {
+
+										var self = this;
+
+										// Remember whether we had an animation, then we try to continue based on the current "drive" of the animation
+										var wasAnimating = self.__isAnimating;
+										if (wasAnimating) {
+													core.effect.Animate.stop(wasAnimating);
+													self.__isAnimating = false;
+										}
+
+										if (animate && self.options.animating) {
+
+													// Keep scheduled positions for scrollBy/zoomBy functionality
+													self.__scheduledLeft = left;
+													self.__scheduledTop = top;
+													self.__scheduledZoom = zoom;
+
+													var oldLeft = self.__scrollLeft;
+													var oldTop = self.__scrollTop;
+													var oldZoom = self.__zoomLevel;
+
+													var diffLeft = left - oldLeft;
+													var diffTop = top - oldTop;
+													var diffZoom = zoom - oldZoom;
+
+													var step = function step(percent, now, render) {
+
+																if (render) {
+
+																			self.__scrollLeft = oldLeft + diffLeft * percent;
+																			self.__scrollTop = oldTop + diffTop * percent;
+																			self.__zoomLevel = oldZoom + diffZoom * percent;
+
+																			// Push values out
+																			if (self.__callback) {
+																						self.__callback(self.__scrollLeft, self.__scrollTop, self.__zoomLevel);
+																			}
+																}
+													};
+
+													var verify = function verify(id) {
+																return self.__isAnimating === id;
+													};
+
+													var completed = function completed(renderedFramesPerSecond, animationId, wasFinished) {
+																if (animationId === self.__isAnimating) {
+																			self.__isAnimating = false;
+																}
+																if (self.__didDecelerationComplete || wasFinished) {
+																			self.options.scrollingComplete();
+																}
+
+																if (self.options.zooming) {
+																			self.__computeScrollMax();
+																			if (self.__zoomComplete) {
+																						self.__zoomComplete();
+																						self.__zoomComplete = null;
+																			}
+																}
+													};
+
+													// When continuing based on previous animation we choose an ease-out animation instead of ease-in-out
+													self.__isAnimating = core.effect.Animate.start(step, verify, completed, self.options.animationDuration, wasAnimating ? easeOutCubic : easeInOutCubic);
+										} else {
+
+													self.__scheduledLeft = self.__scrollLeft = left;
+													self.__scheduledTop = self.__scrollTop = top;
+													self.__scheduledZoom = self.__zoomLevel = zoom;
+
+													// Push values out
+													if (self.__callback) {
+																self.__callback(left, top, zoom);
+													}
+
+													// Fix max scroll ranges
+													if (self.options.zooming) {
+																self.__computeScrollMax();
+																if (self.__zoomComplete) {
+																			self.__zoomComplete();
+																			self.__zoomComplete = null;
+																}
+													}
+										}
+							},
+
+							/**
+	       * Recomputes scroll minimum values based on client dimensions and content dimensions.
+	       */
+							__computeScrollMax: function __computeScrollMax(zoomLevel) {
+
+										var self = this;
+
+										if (zoomLevel == null) {
+													zoomLevel = self.__zoomLevel;
+										}
+
+										self.__maxScrollLeft = Math.max(self.__contentWidth * zoomLevel - self.__clientWidth, 0);
+										self.__maxScrollTop = Math.max(self.__contentHeight * zoomLevel - self.__clientHeight, 0);
+							},
+
+							/*
+	      ---------------------------------------------------------------------------
+	      	ANIMATION (DECELERATION) SUPPORT
+	      ---------------------------------------------------------------------------
+	      */
+
+							/**
+	       * Called when a touch sequence end and the speed of the finger was high enough
+	       * to switch into deceleration mode.
+	       */
+							__startDeceleration: function __startDeceleration(timeStamp) {
+
+										var self = this;
+
+										if (self.options.paging) {
+
+													var scrollLeft = Math.max(Math.min(self.__scrollLeft, self.__maxScrollLeft), 0);
+													var scrollTop = Math.max(Math.min(self.__scrollTop, self.__maxScrollTop), 0);
+													var clientWidth = self.__clientWidth;
+													var clientHeight = self.__clientHeight;
+
+													// We limit deceleration not to the min/max values of the allowed range, but to the size of the visible client area.
+													// Each page should have exactly the size of the client area.
+													self.__minDecelerationScrollLeft = Math.floor(scrollLeft / clientWidth) * clientWidth;
+													self.__minDecelerationScrollTop = Math.floor(scrollTop / clientHeight) * clientHeight;
+													self.__maxDecelerationScrollLeft = Math.ceil(scrollLeft / clientWidth) * clientWidth;
+													self.__maxDecelerationScrollTop = Math.ceil(scrollTop / clientHeight) * clientHeight;
+										} else {
+
+													self.__minDecelerationScrollLeft = 0;
+													self.__minDecelerationScrollTop = 0;
+													self.__maxDecelerationScrollLeft = self.__maxScrollLeft;
+													self.__maxDecelerationScrollTop = self.__maxScrollTop;
+										}
+
+										// Wrap class method
+										var step = function step(percent, now, render) {
+													self.__stepThroughDeceleration(render);
+										};
+
+										// How much velocity is required to keep the deceleration running
+										var minVelocityToKeepDecelerating = self.options.snapping ? 4 : 0.1;
+
+										// Detect whether it's still worth to continue animating steps
+										// If we are already slow enough to not being user perceivable anymore, we stop the whole process here.
+										var verify = function verify() {
+													var shouldContinue = Math.abs(self.__decelerationVelocityX) >= minVelocityToKeepDecelerating || Math.abs(self.__decelerationVelocityY) >= minVelocityToKeepDecelerating;
+													if (!shouldContinue) {
+																self.__didDecelerationComplete = true;
+													}
+													return shouldContinue;
+										};
+
+										var completed = function completed(renderedFramesPerSecond, animationId, wasFinished) {
+													self.__isDecelerating = false;
+													if (self.__didDecelerationComplete) {
+																self.options.scrollingComplete();
+													}
+
+													// Animate to grid when snapping is active, otherwise just fix out-of-boundary positions
+													self.scrollTo(self.__scrollLeft, self.__scrollTop, self.options.snapping);
+										};
+
+										// Start animation and switch on flag
+										self.__isDecelerating = core.effect.Animate.start(step, verify, completed);
+							},
+
+							/**
+	       * Called on every step of the animation
+	       *
+	       * @param inMemory {Boolean?false} Whether to not render the current step, but keep it in memory only. Used internally only!
+	       */
+							__stepThroughDeceleration: function __stepThroughDeceleration(render) {
+
+										var self = this;
+
+										//
+										// COMPUTE NEXT SCROLL POSITION
+										//
+
+										// Add deceleration to scroll position
+										var scrollLeft = self.__scrollLeft + self.__decelerationVelocityX;
+										var scrollTop = self.__scrollTop + self.__decelerationVelocityY;
+
+										//
+										// HARD LIMIT SCROLL POSITION FOR NON BOUNCING MODE
+										//
+
+										if (!self.options.bouncing) {
+
+													var scrollLeftFixed = Math.max(Math.min(self.__maxDecelerationScrollLeft, scrollLeft), self.__minDecelerationScrollLeft);
+													if (scrollLeftFixed !== scrollLeft) {
+																scrollLeft = scrollLeftFixed;
+																self.__decelerationVelocityX = 0;
+													}
+
+													var scrollTopFixed = Math.max(Math.min(self.__maxDecelerationScrollTop, scrollTop), self.__minDecelerationScrollTop);
+													if (scrollTopFixed !== scrollTop) {
+																scrollTop = scrollTopFixed;
+																self.__decelerationVelocityY = 0;
+													}
+										}
+
+										//
+										// UPDATE SCROLL POSITION
+										//
+
+										if (render) {
+
+													self.__publish(scrollLeft, scrollTop, self.__zoomLevel);
+										} else {
+
+													self.__scrollLeft = scrollLeft;
+													self.__scrollTop = scrollTop;
+										}
+
+										//
+										// SLOW DOWN
+										//
+
+										// Slow down velocity on every iteration
+										if (!self.options.paging) {
+
+													// This is the factor applied to every iteration of the animation
+													// to slow down the process. This should emulate natural behavior where
+													// objects slow down when the initiator of the movement is removed
+													var frictionFactor = self.options.decelerationRate;
+
+													self.__decelerationVelocityX *= frictionFactor;
+													self.__decelerationVelocityY *= frictionFactor;
+										}
+
+										//
+										// BOUNCING SUPPORT
+										//
+
+										if (self.options.bouncing) {
+
+													var scrollOutsideX = 0;
+													var scrollOutsideY = 0;
+
+													// This configures the amount of change applied to deceleration/acceleration when reaching boundaries
+													var penetrationDeceleration = self.options.penetrationDeceleration;
+													var penetrationAcceleration = self.options.penetrationAcceleration;
+
+													// Check limits
+													if (scrollLeft < self.__minDecelerationScrollLeft) {
+																scrollOutsideX = self.__minDecelerationScrollLeft - scrollLeft;
+													} else if (scrollLeft > self.__maxDecelerationScrollLeft) {
+																scrollOutsideX = self.__maxDecelerationScrollLeft - scrollLeft;
+													}
+
+													if (scrollTop < self.__minDecelerationScrollTop) {
+																scrollOutsideY = self.__minDecelerationScrollTop - scrollTop;
+													} else if (scrollTop > self.__maxDecelerationScrollTop) {
+																scrollOutsideY = self.__maxDecelerationScrollTop - scrollTop;
+													}
+
+													// Slow down until slow enough, then flip back to snap position
+													if (scrollOutsideX !== 0) {
+																if (scrollOutsideX * self.__decelerationVelocityX <= 0) {
+																			self.__decelerationVelocityX += scrollOutsideX * penetrationDeceleration;
+																} else {
+																			self.__decelerationVelocityX = scrollOutsideX * penetrationAcceleration;
+																}
+													}
+
+													if (scrollOutsideY !== 0) {
+																if (scrollOutsideY * self.__decelerationVelocityY <= 0) {
+																			self.__decelerationVelocityY += scrollOutsideY * penetrationDeceleration;
+																} else {
+																			self.__decelerationVelocityY = scrollOutsideY * penetrationAcceleration;
+																}
+													}
+										}
 							}
-						}
-					}
-
-					// Keep list from growing infinitely (holding min 10, max 20 measure points)
-					if (positions.length > 60) {
-						positions.splice(0, 30);
-					}
-
-					// Track scroll movement for decleration
-					positions.push(scrollLeft, scrollTop, timeStamp);
-
-					// Sync scroll position
-					self.__publish(scrollLeft, scrollTop, level);
-
-					// Otherwise figure out whether we are switching into dragging mode now.
-				} else {
-
-						var minimumTrackingForScroll = self.options.locking ? 3 : 0;
-						var minimumTrackingForDrag = 5;
-
-						var distanceX = Math.abs(currentTouchLeft - self.__initialTouchLeft);
-						var distanceY = Math.abs(currentTouchTop - self.__initialTouchTop);
-
-						self.__enableScrollX = self.options.scrollingX && distanceX >= minimumTrackingForScroll;
-						self.__enableScrollY = self.options.scrollingY && distanceY >= minimumTrackingForScroll;
-
-						positions.push(self.__scrollLeft, self.__scrollTop, timeStamp);
-
-						self.__isDragging = (self.__enableScrollX || self.__enableScrollY) && (distanceX >= minimumTrackingForDrag || distanceY >= minimumTrackingForDrag);
-						if (self.__isDragging) {
-							self.__interruptedAnimation = false;
-						}
-					}
-
-				// Update last touch positions and time stamp for next event
-				self.__lastTouchLeft = currentTouchLeft;
-				self.__lastTouchTop = currentTouchTop;
-				self.__lastTouchMove = timeStamp;
-				self.__lastScale = scale;
-			},
-
-			/**
-	   * Touch end handler for scrolling support
-	   */
-			doTouchEnd: function doTouchEnd(timeStamp) {
-
-				if (timeStamp instanceof Date) {
-					timeStamp = timeStamp.valueOf();
-				}
-				if (typeof timeStamp !== "number") {
-					throw new Error("Invalid timestamp value: " + timeStamp);
-				}
-
-				var self = this;
-
-				// Ignore event when tracking is not enabled (no touchstart event on element)
-				// This is required as this listener ('touchmove') sits on the document and not on the element itself.
-				if (!self.__isTracking) {
-					return;
-				}
-
-				// Not touching anymore (when two finger hit the screen there are two touch end events)
-				self.__isTracking = false;
-
-				// Be sure to reset the dragging flag now. Here we also detect whether
-				// the finger has moved fast enough to switch into a deceleration animation.
-				if (self.__isDragging) {
-
-					// Reset dragging flag
-					self.__isDragging = false;
-
-					// Start deceleration
-					// Verify that the last move detected was in some relevant time frame
-					if (self.__isSingleTouch && self.options.animating && timeStamp - self.__lastTouchMove <= 100) {
-
-						// Then figure out what the scroll position was about 100ms ago
-						var positions = self.__positions;
-						var endPos = positions.length - 1;
-						var startPos = endPos;
-
-						// Move pointer to position measured 100ms ago
-						for (var i = endPos; i > 0 && positions[i] > self.__lastTouchMove - 100; i -= 3) {
-							startPos = i;
-						}
-
-						// If we haven't received consecutive touchmove events within a 100ms
-						// timeframe, attempt a best-effort based on the first position. This
-						// typically happens when an expensive operation occurs on the main
-						// thread during scrolling, such as image decoding.
-						if (startPos === endPos && positions.length > 5) {
-							startPos = 2;
-						}
-
-						// If start and stop position is identical in a 100ms timeframe,
-						// we cannot compute any useful deceleration.
-						if (startPos !== endPos) {
-
-							// Compute relative movement between these two points
-							var timeOffset = positions[endPos] - positions[startPos];
-							var movedLeft = self.__scrollLeft - positions[startPos - 2];
-							var movedTop = self.__scrollTop - positions[startPos - 1];
-
-							// Based on 50ms compute the movement to apply for each render step
-							self.__decelerationVelocityX = movedLeft / timeOffset * (1000 / 60);
-							self.__decelerationVelocityY = movedTop / timeOffset * (1000 / 60);
-
-							// How much velocity is required to start the deceleration
-							var minVelocityToStartDeceleration = self.options.paging || self.options.snapping ? 4 : 1;
-
-							// Verify that we have enough velocity to start deceleration
-							if (Math.abs(self.__decelerationVelocityX) > minVelocityToStartDeceleration || Math.abs(self.__decelerationVelocityY) > minVelocityToStartDeceleration) {
-
-								// Deactivate pull-to-refresh when decelerating
-								if (!self.__refreshActive) {
-									self.__startDeceleration(timeStamp);
-								}
-							}
-						} else {
-							self.options.scrollingComplete();
-						}
-					} else if (timeStamp - self.__lastTouchMove > 100) {
-						self.options.scrollingComplete();
-					}
-				}
-
-				// If this was a slower move it is per default non decelerated, but this
-				// still means that we want snap back to the bounds which is done here.
-				// This is placed outside the condition above to improve edge case stability
-				// e.g. touchend fired without enabled dragging. This should normally do not
-				// have modified the scroll positions or even showed the scrollbars though.
-				if (!self.__isDecelerating) {
-
-					if (self.__refreshActive && self.__refreshStart) {
-
-						// Use publish instead of scrollTo to allow scrolling to out of boundary position
-						// We don't need to normalize scrollLeft, zoomLevel, etc. here because we only y-scrolling when pull-to-refresh is enabled
-						self.__publish(self.__scrollLeft, -self.__refreshHeight, self.__zoomLevel, true);
-
-						if (self.__refreshStart) {
-							self.__refreshStart();
-						}
-					} else {
-
-						if (self.__interruptedAnimation || self.__isDragging) {
-							self.options.scrollingComplete();
-						}
-						self.scrollTo(self.__scrollLeft, self.__scrollTop, true, self.__zoomLevel);
-
-						// Directly signalize deactivation (nothing todo on refresh?)
-						if (self.__refreshActive) {
-
-							self.__refreshActive = false;
-							if (self.__refreshDeactivate) {
-								self.__refreshDeactivate();
-							}
-						}
-					}
-				}
-
-				// Fully cleanup list
-				self.__positions.length = 0;
-			},
-
-			/*
-	  ---------------------------------------------------------------------------
-	  	PRIVATE API
-	  ---------------------------------------------------------------------------
-	  */
-
-			/**
-	   * Applies the scroll position to the content element
-	   *
-	   * @param left {Number} Left scroll position
-	   * @param top {Number} Top scroll position
-	   * @param animate {Boolean?false} Whether animation should be used to move to the new coordinates
-	   */
-			__publish: function __publish(left, top, zoom, animate) {
-
-				var self = this;
-
-				// Remember whether we had an animation, then we try to continue based on the current "drive" of the animation
-				var wasAnimating = self.__isAnimating;
-				if (wasAnimating) {
-					core.effect.Animate.stop(wasAnimating);
-					self.__isAnimating = false;
-				}
-
-				if (animate && self.options.animating) {
-
-					// Keep scheduled positions for scrollBy/zoomBy functionality
-					self.__scheduledLeft = left;
-					self.__scheduledTop = top;
-					self.__scheduledZoom = zoom;
-
-					var oldLeft = self.__scrollLeft;
-					var oldTop = self.__scrollTop;
-					var oldZoom = self.__zoomLevel;
-
-					var diffLeft = left - oldLeft;
-					var diffTop = top - oldTop;
-					var diffZoom = zoom - oldZoom;
-
-					var step = function step(percent, now, render) {
-
-						if (render) {
-
-							self.__scrollLeft = oldLeft + diffLeft * percent;
-							self.__scrollTop = oldTop + diffTop * percent;
-							self.__zoomLevel = oldZoom + diffZoom * percent;
-
-							// Push values out
-							if (self.__callback) {
-								self.__callback(self.__scrollLeft, self.__scrollTop, self.__zoomLevel);
-							}
-						}
-					};
-
-					var verify = function verify(id) {
-						return self.__isAnimating === id;
-					};
-
-					var completed = function completed(renderedFramesPerSecond, animationId, wasFinished) {
-						if (animationId === self.__isAnimating) {
-							self.__isAnimating = false;
-						}
-						if (self.__didDecelerationComplete || wasFinished) {
-							self.options.scrollingComplete();
-						}
-
-						if (self.options.zooming) {
-							self.__computeScrollMax();
-							if (self.__zoomComplete) {
-								self.__zoomComplete();
-								self.__zoomComplete = null;
-							}
-						}
-					};
-
-					// When continuing based on previous animation we choose an ease-out animation instead of ease-in-out
-					self.__isAnimating = core.effect.Animate.start(step, verify, completed, self.options.animationDuration, wasAnimating ? easeOutCubic : easeInOutCubic);
-				} else {
-
-					self.__scheduledLeft = self.__scrollLeft = left;
-					self.__scheduledTop = self.__scrollTop = top;
-					self.__scheduledZoom = self.__zoomLevel = zoom;
-
-					// Push values out
-					if (self.__callback) {
-						self.__callback(left, top, zoom);
-					}
-
-					// Fix max scroll ranges
-					if (self.options.zooming) {
-						self.__computeScrollMax();
-						if (self.__zoomComplete) {
-							self.__zoomComplete();
-							self.__zoomComplete = null;
-						}
-					}
-				}
-			},
-
-			/**
-	   * Recomputes scroll minimum values based on client dimensions and content dimensions.
-	   */
-			__computeScrollMax: function __computeScrollMax(zoomLevel) {
-
-				var self = this;
-
-				if (zoomLevel == null) {
-					zoomLevel = self.__zoomLevel;
-				}
-
-				self.__maxScrollLeft = Math.max(self.__contentWidth * zoomLevel - self.__clientWidth, 0);
-				self.__maxScrollTop = Math.max(self.__contentHeight * zoomLevel - self.__clientHeight, 0);
-			},
-
-			/*
-	  ---------------------------------------------------------------------------
-	  	ANIMATION (DECELERATION) SUPPORT
-	  ---------------------------------------------------------------------------
-	  */
-
-			/**
-	   * Called when a touch sequence end and the speed of the finger was high enough
-	   * to switch into deceleration mode.
-	   */
-			__startDeceleration: function __startDeceleration(timeStamp) {
-
-				var self = this;
-
-				if (self.options.paging) {
-
-					var scrollLeft = Math.max(Math.min(self.__scrollLeft, self.__maxScrollLeft), 0);
-					var scrollTop = Math.max(Math.min(self.__scrollTop, self.__maxScrollTop), 0);
-					var clientWidth = self.__clientWidth;
-					var clientHeight = self.__clientHeight;
-
-					// We limit deceleration not to the min/max values of the allowed range, but to the size of the visible client area.
-					// Each page should have exactly the size of the client area.
-					self.__minDecelerationScrollLeft = Math.floor(scrollLeft / clientWidth) * clientWidth;
-					self.__minDecelerationScrollTop = Math.floor(scrollTop / clientHeight) * clientHeight;
-					self.__maxDecelerationScrollLeft = Math.ceil(scrollLeft / clientWidth) * clientWidth;
-					self.__maxDecelerationScrollTop = Math.ceil(scrollTop / clientHeight) * clientHeight;
-				} else {
-
-					self.__minDecelerationScrollLeft = 0;
-					self.__minDecelerationScrollTop = 0;
-					self.__maxDecelerationScrollLeft = self.__maxScrollLeft;
-					self.__maxDecelerationScrollTop = self.__maxScrollTop;
-				}
-
-				// Wrap class method
-				var step = function step(percent, now, render) {
-					self.__stepThroughDeceleration(render);
 				};
 
-				// How much velocity is required to keep the deceleration running
-				var minVelocityToKeepDecelerating = self.options.snapping ? 4 : 0.1;
-
-				// Detect whether it's still worth to continue animating steps
-				// If we are already slow enough to not being user perceivable anymore, we stop the whole process here.
-				var verify = function verify() {
-					var shouldContinue = Math.abs(self.__decelerationVelocityX) >= minVelocityToKeepDecelerating || Math.abs(self.__decelerationVelocityY) >= minVelocityToKeepDecelerating;
-					if (!shouldContinue) {
-						self.__didDecelerationComplete = true;
-					}
-					return shouldContinue;
-				};
-
-				var completed = function completed(renderedFramesPerSecond, animationId, wasFinished) {
-					self.__isDecelerating = false;
-					if (self.__didDecelerationComplete) {
-						self.options.scrollingComplete();
-					}
-
-					// Animate to grid when snapping is active, otherwise just fix out-of-boundary positions
-					self.scrollTo(self.__scrollLeft, self.__scrollTop, self.options.snapping);
-				};
-
-				// Start animation and switch on flag
-				self.__isDecelerating = core.effect.Animate.start(step, verify, completed);
-			},
-
-			/**
-	   * Called on every step of the animation
-	   *
-	   * @param inMemory {Boolean?false} Whether to not render the current step, but keep it in memory only. Used internally only!
-	   */
-			__stepThroughDeceleration: function __stepThroughDeceleration(render) {
-
-				var self = this;
-
-				//
-				// COMPUTE NEXT SCROLL POSITION
-				//
-
-				// Add deceleration to scroll position
-				var scrollLeft = self.__scrollLeft + self.__decelerationVelocityX;
-				var scrollTop = self.__scrollTop + self.__decelerationVelocityY;
-
-				//
-				// HARD LIMIT SCROLL POSITION FOR NON BOUNCING MODE
-				//
-
-				if (!self.options.bouncing) {
-
-					var scrollLeftFixed = Math.max(Math.min(self.__maxDecelerationScrollLeft, scrollLeft), self.__minDecelerationScrollLeft);
-					if (scrollLeftFixed !== scrollLeft) {
-						scrollLeft = scrollLeftFixed;
-						self.__decelerationVelocityX = 0;
-					}
-
-					var scrollTopFixed = Math.max(Math.min(self.__maxDecelerationScrollTop, scrollTop), self.__minDecelerationScrollTop);
-					if (scrollTopFixed !== scrollTop) {
-						scrollTop = scrollTopFixed;
-						self.__decelerationVelocityY = 0;
-					}
+				// Copy over members to prototype
+				for (var key in members) {
+							Scroller.prototype[key] = members[key];
 				}
 
-				//
-				// UPDATE SCROLL POSITION
-				//
-
-				if (render) {
-
-					self.__publish(scrollLeft, scrollTop, self.__zoomLevel);
-				} else {
-
-					self.__scrollLeft = scrollLeft;
-					self.__scrollTop = scrollTop;
-				}
-
-				//
-				// SLOW DOWN
-				//
-
-				// Slow down velocity on every iteration
-				if (!self.options.paging) {
-
-					// This is the factor applied to every iteration of the animation
-					// to slow down the process. This should emulate natural behavior where
-					// objects slow down when the initiator of the movement is removed
-					var frictionFactor = self.options.decelerationRate;
-
-					self.__decelerationVelocityX *= frictionFactor;
-					self.__decelerationVelocityY *= frictionFactor;
-				}
-
-				//
-				// BOUNCING SUPPORT
-				//
-
-				if (self.options.bouncing) {
-
-					var scrollOutsideX = 0;
-					var scrollOutsideY = 0;
-
-					// This configures the amount of change applied to deceleration/acceleration when reaching boundaries
-					var penetrationDeceleration = self.options.penetrationDeceleration;
-					var penetrationAcceleration = self.options.penetrationAcceleration;
-
-					// Check limits
-					if (scrollLeft < self.__minDecelerationScrollLeft) {
-						scrollOutsideX = self.__minDecelerationScrollLeft - scrollLeft;
-					} else if (scrollLeft > self.__maxDecelerationScrollLeft) {
-						scrollOutsideX = self.__maxDecelerationScrollLeft - scrollLeft;
-					}
-
-					if (scrollTop < self.__minDecelerationScrollTop) {
-						scrollOutsideY = self.__minDecelerationScrollTop - scrollTop;
-					} else if (scrollTop > self.__maxDecelerationScrollTop) {
-						scrollOutsideY = self.__maxDecelerationScrollTop - scrollTop;
-					}
-
-					// Slow down until slow enough, then flip back to snap position
-					if (scrollOutsideX !== 0) {
-						if (scrollOutsideX * self.__decelerationVelocityX <= 0) {
-							self.__decelerationVelocityX += scrollOutsideX * penetrationDeceleration;
-						} else {
-							self.__decelerationVelocityX = scrollOutsideX * penetrationAcceleration;
-						}
-					}
-
-					if (scrollOutsideY !== 0) {
-						if (scrollOutsideY * self.__decelerationVelocityY <= 0) {
-							self.__decelerationVelocityY += scrollOutsideY * penetrationDeceleration;
-						} else {
-							self.__decelerationVelocityY = scrollOutsideY * penetrationAcceleration;
-						}
-					}
-				}
-			}
-		};
-
-		// Copy over members to prototype
-		for (var key in members) {
-			Scroller.prototype[key] = members[key];
-		}
-
-		module.exports = Scroller;
+				module.exports = Scroller;
 	})();
 
 /***/ },
@@ -36328,7 +36245,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames = __webpack_require__(256);
+	var _classnames = __webpack_require__(234);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -36702,7 +36619,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames = __webpack_require__(256);
+	var _classnames = __webpack_require__(234);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -36860,7 +36777,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames = __webpack_require__(256);
+	var _classnames = __webpack_require__(234);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -36980,7 +36897,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames = __webpack_require__(256);
+	var _classnames = __webpack_require__(234);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -37045,7 +36962,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _index = __webpack_require__(254);
+	var _index = __webpack_require__(256);
 
 	__webpack_require__(312);
 
@@ -37147,8 +37064,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/.npminstall/css-loader/0.23.1/css-loader/index.js!./../../node_modules/.npminstall/less-loader/2.2.3/less-loader/index.js!./Login.less", function() {
-				var newContent = require("!!./../../node_modules/.npminstall/css-loader/0.23.1/css-loader/index.js!./../../node_modules/.npminstall/less-loader/2.2.3/less-loader/index.js!./Login.less");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./Login.less", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./Login.less");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -37632,7 +37549,7 @@
 	    transition: 'example',
 	    msg: '',
 	    msg_n: 0,
-	    loading: 1,
+	    loading: true,
 	    title: '王的理想乡'
 	};
 

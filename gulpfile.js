@@ -18,7 +18,7 @@ var rename = require('gulp-rename') //文件更名
 var webpackConfig = require('./webpack.config')
 
 gulp.task('Less', function() {
-    gulp.src('app/less/style.less')
+    gulp.src('app/layout/style.less')
         .pipe(sourcemaps.init())
         .pipe(less())
         .pipe(postcss([autoprefixer({
@@ -35,7 +35,7 @@ gulp.task('Less', function() {
 })
 
 gulp.task('Sass', function() {
-    gulp.src('app/sass/style.scss')
+    gulp.src('app/layout/style.scss')
         .pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(sourcemaps.write())
@@ -97,6 +97,6 @@ gulp.task('default', [
     'Less',
     // 'Sass',
     'webpack',
-    // 'webserver',
+    'webserver',
     'watch'
 ])

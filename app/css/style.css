@@ -26,12 +26,20 @@ input:focus {
 .warp {
   position: absolute;
   width: 100%;
-  padding-bottom: 5rem;
+  left: 0;
+  top: 10rem;
+  transition: all 0.5s ease-in;
+}
+.swap_show .warp {
+  top: 4rem;
 }
 .container {
   width: 100%;
   max-width: 1180px;
   margin: 0 auto;
+}
+.main {
+  position: relative;
 }
 .pure-menu-fixed ~ .main {
   padding-top: 4rem;
@@ -54,31 +62,24 @@ input:focus {
 }
 .swap-enter {
   opacity: 0.01;
-  -webkit-transform: translateX(5em);
-          transform: translateX(5em);
   transition: all 0.5s ease-in;
 }
 .swap-enter.swap-enter-active {
   opacity: 1;
-  -webkit-transform: translateX(0);
-          transform: translateX(0);
   z-index: 99;
 }
 .swap-leave {
   opacity: 1;
-  -webkit-transform: translateX(0);
-          transform: translateX(0);
   transition: all 0.5s ease-in;
 }
 .swap-leave.swap-leave-active {
   opacity: 0;
-  -webkit-transform: translateX(-5em);
-          transform: translateX(-5em);
   z-index: 9;
 }
 #header {
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.9);
   box-shadow: 0 1px 2px #eee;
+  z-index: 999;
 }
 #header .pure-menu-link {
   padding: 1rem 2rem;
@@ -94,4 +95,58 @@ input:focus {
   line-height: 32px;
   height: 32px;
   padding: 0 20px;
+}
+.loading {
+  overflow: hidden;
+  height: 60px;
+}
+.loading-hide {
+  height: 0;
+  transition: all 0.5s ease-in;
+}
+.spinner {
+  margin: 20px auto 0;
+  width: 150px;
+  text-align: center;
+}
+.spinner > div {
+  width: 20px;
+  height: 20px;
+  background-color: #67CF22;
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: bouncedelay 1.4s infinite ease-in-out;
+  animation: bouncedelay 1.4s infinite ease-in-out;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+@-webkit-keyframes bouncedelay {
+  0%,
+  80%,
+  100% {
+    -webkit-transform: scale(0);
+  }
+  40% {
+    -webkit-transform: scale(1);
+  }
+}
+@keyframes bouncedelay {
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+    -webkit-transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+  }
 }

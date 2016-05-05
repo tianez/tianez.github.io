@@ -23,29 +23,27 @@ export default class Login extends React.Component {
         if (article) {
             ConfigActions.update('title', article.title)
             this.setState(article)
+            setTimeout(function() {
+                ConfigActions.update('loading', 0)
+            }, 1)
         } else {
             Apicloud.get(action, '', function(err, res) {
                 let article = JSON.parse(res.text)
                 ConfigActions.update(articleId, article)
                 ConfigActions.update('title', article.title)
                 this.setState(article)
+                showload()
             }.bind(this))
         }
     }
     render() {
-        let divStyle = {
-            height: '600px',
-        }
-        let imgStyle = {
-            marginLeft: '-960px',
-            position: 'relative',
-            left: '50%'
-        }
+        let imgsrc = "http://www.day.com/img?w=1920&h=600&r=" + this.state.id
         return (
             <section className='warp page simditor'>
-                <section style={divStyle}>
-                    <img  style={imgStyle} src="http://www.day.com/img?w=1920&h=600&r=1" />
+                <section className='banner'>
+                    <img src= {imgsrc} />
                 </section>
+                <section className = "contents">
                 <section className = "container">
                     <div className="header">
                         <h1>{this.state.title}</h1>
@@ -53,6 +51,7 @@ export default class Login extends React.Component {
                     </div>
                     <div className="content simditor-body" dangerouslySetInnerHTML={{ __html: this.state.content }}>
                     </div>
+                </section>
                 </section>
             </section>
         )

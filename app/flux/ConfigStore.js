@@ -9,21 +9,21 @@ var _todos = {
     transition: 'example',
     msg: '',
     msg_n: 0,
-    loading: 1,
+    loading: true,
     title: '王的理想乡'
 };
 
 var ConfigStore = assign({}, EventEmitter.prototype, {
 
-    getAll: function () {
+    getAll: function() {
         return _todos;
     },
 
-    get: function (id) {
+    get: function(id) {
         return _todos[id];
     },
 
-    getMsg: function () {
+    getMsg: function() {
         let msg = _todos['msg']
         if (_todos['msg'] != '') {
             _todos['msg'] = ''
@@ -31,21 +31,21 @@ var ConfigStore = assign({}, EventEmitter.prototype, {
         return msg
     },
 
-    emitChange: function () {
+    emitChange: function() {
         this.emit(CHANGE_EVENT);
     },
 
     /**
      * @param {function} callback
      */
-    addChangeListener: function (callback) {
+    addChangeListener: function(callback) {
         this.on(CHANGE_EVENT, callback);
     },
 
     /**
      * @param {function} callback
      */
-    removeChangeListener: function (callback) {
+    removeChangeListener: function(callback) {
         this.removeListener(CHANGE_EVENT, callback);
     }
 });
@@ -53,7 +53,7 @@ var ConfigStore = assign({}, EventEmitter.prototype, {
 module.exports = ConfigStore;
 
 // Register callback to handle all updates
-AppDispatcher.register(function (action) {
+AppDispatcher.register(function(action) {
     var text;
     if (_todos[action.id] == action.text) {
         return

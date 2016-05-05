@@ -9,6 +9,11 @@ export default class Main extends React.Component {
     constructor(props) {
         super(props)
     }
+    componentDidMount() {
+        setTimeout(function() {
+            ConfigActions.update('loading', 0)
+        }, 1)
+    }
     render() {
         return (
             <section className='warp index'>
