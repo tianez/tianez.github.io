@@ -8,10 +8,25 @@
     left: 0;
     top: 10rem;
     transition: all .5s ease-in;
+    padding-bottom: 6rem;
 }
 
+.swap {
+	opacity: 0;
+}
 .swap_show {
+	opacity: 1;
+	transition: all .5s ease-in;
     .warp{
         top: 4rem;
     }
+}
+
+.msg {
+    position: relative;
+    top: 4rem;
+}
+
+.msg~.swap_show .warp{
+    top: 6rem;
 }

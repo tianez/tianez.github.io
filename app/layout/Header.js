@@ -16,7 +16,7 @@ export default class Header extends React.Component {
         } else {
             islogin = <li className="pure-menu-item"><Link className="pure-menu-link" to="/login" activeClassName={"active"}>登录</Link></li>
         }
-        const ACTIVE = {
+        let ACTIVE = {
             color: 'red'
         }
         return (

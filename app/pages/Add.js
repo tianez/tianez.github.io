@@ -123,7 +123,10 @@ export default class Add extends React.Component {
                             onChange = {this._onChange.bind(this) }
                             />
                         <Range />
-                        <Upload />
+                        <Upload 
+                        name = 'pics' 
+                        value= {info.pics}
+                        onChange = {this._onChange.bind(this) } />
                         <Button value="提交" />
                     </Form>
                 </section>
