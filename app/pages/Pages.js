@@ -38,7 +38,16 @@ export default class Main extends React.Component {
             lists = this.state.info.map(function(d, index) {
                 let url = '/page/' + d.id
                 let edit = '/edit/' + d.id
-                return <li key={index}><Link to={url} activeStyle={active} >{d.title}</Link><Link to={edit} activeStyle={active} >编辑</Link></li>
+                let imgurl = "http://www.day.com/img?w=410&h=300&r=" + d.id
+                return (
+                    <Link to={url} activeStyle={active} className="service-box pure-u-1-3" key={index}>
+                        <figure className="figure">
+                            <img src={imgurl} alt={d.title} className="img-responsive" />
+                        </figure>
+                        <h4>{d.title}</h4>
+                        <p className="text-muted">Unparalleled convenience: consult Doctors via video</p>
+                    </Link>
+                )
             })
         } else {
             lists = ''
@@ -47,14 +56,13 @@ export default class Main extends React.Component {
             pathname
         } = this.props.location
         return (
-            <section className='warp'>
-                <section className = "container" >
-                    <h3 className = "jumbotron-heading" >文章管理</h3>
+            <section className='warp index'>
+                <section className = "container  pure-g" >
+                    <h3 className = "jumbotron-heading pure-u-1" >文章管理</h3>
                 </section>
-                <section className = "container" >
-                    <ul>
-                        {lists}
-                    </ul>
+                <section className = "container pure-g" >
+                    <h3 className = "jumbotron-heading pure-u-1" >这是首页</h3>
+                    {lists}
                 </section>
                 <ReactCSSTransitionGroup
                     component="section" className='container' transitionName="swap"

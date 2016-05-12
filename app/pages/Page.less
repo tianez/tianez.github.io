@@ -1,3 +1,8 @@
+.service-box {
+    margin-bottom: 2rem;
+}
+
+
 .swap_show {
     .page {
         .banner {
@@ -16,6 +21,7 @@
         z-index: 1;
         height: 600px;
         width: 100%;
+
         // transition: all .5s ease-in;
         img {
             position: relative;
@@ -56,10 +62,17 @@
         .thumbs {
             clear: both;
             float: left;
+            .canvas {
+                float: left;
+                padding: 3px;
+                width: 25%;
+                margin: 0;
+            }
             canvas {
                 display: block;
                 float: left;
-                margin: 3px;
+                width: 100% !important;
+                cursor: pointer;
             }
         }
         .content-subhead {
@@ -72,4 +85,35 @@
             height: auto;
         }
     }
+}
+.swiper-container {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0;
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #000;
+        img {
+            width: auto;
+            height: auto;
+            max-width: 98%;
+            max-height: 98%;
+            -ms-transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            position: absolute;
+            left: 50%;
+            top: 50%;
+        }
+    }
+}
+.swiper-show {
+    z-index: 9999;
+    opacity: 1;
 }

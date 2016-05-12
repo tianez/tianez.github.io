@@ -1,7 +1,7 @@
 'use strict'
 import React from 'react'
-import classNames from 'classnames';
-import Regs from '../utils/regs';
+import classNames from 'classnames'
+import Regs from '../utils/regs'
 import './input.scss'
 
 export

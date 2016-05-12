@@ -10,7 +10,8 @@ var _todos = {
     msg: '',
     msg_n: 0,
     loading: true,
-    title: '王的理想乡'
+    title: '王的理想乡',
+    pics: ''
 };
 
 var ConfigStore = assign({}, EventEmitter.prototype, {

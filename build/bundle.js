@@ -25612,7 +25612,8 @@
 	    msg: '',
 	    msg_n: 0,
 	    loading: true,
-	    title: '王的理想乡'
+	    title: '王的理想乡',
+	    pics: ''
 	};
 
 	var ConfigStore = assign({}, EventEmitter.prototype, {
@@ -29152,18 +29153,24 @@
 	                lists = this.state.info.map(function (d, index) {
 	                    var url = '/page/' + d.id;
 	                    var edit = '/edit/' + d.id;
+	                    var imgurl = "http://www.day.com/img?w=410&h=300&r=" + d.id;
 	                    return _react2.default.createElement(
-	                        'li',
-	                        { key: index },
+	                        _reactRouter.Link,
+	                        { to: url, activeStyle: active, className: 'service-box pure-u-1-3', key: index },
 	                        _react2.default.createElement(
-	                            _reactRouter.Link,
-	                            { to: url, activeStyle: active },
+	                            'figure',
+	                            { className: 'figure' },
+	                            _react2.default.createElement('img', { src: imgurl, alt: d.title, className: 'img-responsive' })
+	                        ),
+	                        _react2.default.createElement(
+	                            'h4',
+	                            null,
 	                            d.title
 	                        ),
 	                        _react2.default.createElement(
-	                            _reactRouter.Link,
-	                            { to: edit, activeStyle: active },
-	                            '编辑'
+	                            'p',
+	                            { className: 'text-muted' },
+	                            'Unparalleled convenience: consult Doctors via video'
 	                        )
 	                    );
 	                });
@@ -29174,24 +29181,25 @@
 
 	            return _react2.default.createElement(
 	                'section',
-	                { className: 'warp' },
+	                { className: 'warp index' },
 	                _react2.default.createElement(
 	                    'section',
-	                    { className: 'container' },
+	                    { className: 'container  pure-g' },
 	                    _react2.default.createElement(
 	                        'h3',
-	                        { className: 'jumbotron-heading' },
+	                        { className: 'jumbotron-heading pure-u-1' },
 	                        '文章管理'
 	                    )
 	                ),
 	                _react2.default.createElement(
 	                    'section',
-	                    { className: 'container' },
+	                    { className: 'container pure-g' },
 	                    _react2.default.createElement(
-	                        'ul',
-	                        null,
-	                        lists
-	                    )
+	                        'h3',
+	                        { className: 'jumbotron-heading pure-u-1' },
+	                        '这是首页'
+	                    ),
+	                    lists
 	                ),
 	                _react2.default.createElement(
 	                    _reactAddonsCssTransitionGroup2.default,
@@ -29375,6 +29383,10 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _classnames = __webpack_require__(236);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
 	var _Apicloud = __webpack_require__(250);
 
 	var _Apicloud2 = _interopRequireDefault(_Apicloud);
@@ -29393,6 +29405,8 @@
 	// import './page.less'
 
 
+	var swiper = void 0;
+
 	var Login = function (_React$Component) {
 	    _inherits(Login, _React$Component);
 
@@ -29406,7 +29420,8 @@
 	            style: {
 	                transform: 'translateY(0)'
 	            },
-	            pics: []
+	            pics: [],
+	            isshow: false
 	        };
 	        return _this;
 	    }
@@ -29453,34 +29468,88 @@
 	            var article = ConfigStore.get(articleId);
 	            if (article) {
 	                ConfigActions.update('title', article.title);
+	                ConfigActions.update('pics', article.pics);
 	                this.setState(article);
 	                setTimeout(function () {
 	                    ConfigActions.update('loading', 0);
 	                }, 1);
+	                this.swiperInit();
 	            } else {
 	                _Apicloud2.default.get(action, '', function (err, res) {
 	                    var article = JSON.parse(res.text);
 	                    ConfigActions.update(articleId, article);
 	                    ConfigActions.update('title', article.title);
+	                    ConfigActions.update('pics', article.pics);
 	                    this.setState(article);
 	                    console.log(article);
 	                    showload();
+	                    this.swiperInit();
 	                }.bind(this));
 	            }
+	        }
+	    }, {
+	        key: 'swiperInit',
+	        value: function swiperInit() {
+	            swiper = new Swiper('.swiper-container', {
+	                nextButton: '.swiper-button-next',
+	                prevButton: '.swiper-button-prev',
+	                pagination: '.swiper-pagination',
+	                paginationClickable: true,
+	                // Disable preloading of all images
+	                preloadImages: false,
+	                // Enable lazy loading
+	                lazyLoading: true
+	            });
+	        }
+	    }, {
+	        key: '_hide',
+	        value: function _hide() {
+	            this.setState({
+	                isshow: false
+	            });
+	        }
+	    }, {
+	        key: '_show',
+	        value: function _show(e) {
+	            e.stopPropagation();
+	            var no = e.currentTarget.id.split("-")[1];
+	            swiper.slideTo(no, 0, false);
+	            this.setState({
+	                isshow: true
+	            });
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
 	            var imgsrc = "http://www.day.com/img?w=1920&h=600&r=" + this.state.id;
 	            var thumbs = void 0;
+	            var pics = void 0;
 	            if (this.state.pics.length > 0) {
-	                var pics = JSON.parse(this.state.pics);
-	                thumbs = pics.map(function (file, index) {
-	                    return _react2.default.createElement(_Canvas2.default, { className: 'form-canva', src: file, key: index });
+	                var files = JSON.parse(this.state.pics);
+	                thumbs = files.map(function (file, index) {
+	                    var id = 'swiper-' + index;
+	                    return _react2.default.createElement(
+	                        'div',
+	                        { className: 'canvas', 'data-ids': id, id: id, onClick: this._show.bind(this) },
+	                        _react2.default.createElement(_Canvas2.default, { className: 'form-canva', src: file, width: 250, key: index })
+	                    );
+	                }.bind(this));
+	                pics = files.map(function (file, index) {
+	                    return _react2.default.createElement(
+	                        'div',
+	                        { className: 'swiper-slide', key: index },
+	                        _react2.default.createElement('img', { 'data-src': file, className: 'swiper-lazy' }),
+	                        _react2.default.createElement('div', { className: 'swiper-lazy-preloader swiper-lazy-preloader-white' })
+	                    );
 	                });
 	            } else {
 	                thumbs = '';
+	                pics = '';
 	            }
+	            var swiperClass = (0, _classnames2.default)({
+	                'swiper-container': true,
+	                'swiper-show': this.state.isshow
+	            });
 	            return _react2.default.createElement(
 	                'section',
 	                { className: 'warp page simditor' },
@@ -29520,6 +29589,18 @@
 	                            _react2.default.createElement('div', { dangerouslySetInnerHTML: { __html: this.state.content } })
 	                        )
 	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'section',
+	                    { className: swiperClass },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'swiper-wrapper', onClick: this._hide.bind(this) },
+	                        pics
+	                    ),
+	                    _react2.default.createElement('div', { className: 'swiper-pagination swiper-pagination-white' }),
+	                    _react2.default.createElement('div', { className: 'swiper-button-next swiper-button-white' }),
+	                    _react2.default.createElement('div', { className: 'swiper-button-prev swiper-button-white' })
 	                )
 	            );
 	        }
@@ -29559,26 +29640,32 @@
 	var Canvas = function (_React$Component) {
 	    _inherits(Canvas, _React$Component);
 
-	    function Canvas() {
+	    function Canvas(props) {
 	        _classCallCheck(this, Canvas);
 
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Canvas).apply(this, arguments));
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Canvas).call(this, props));
+
+	        _this.state = {
+	            width: props.width,
+	            height: props.height || props.width
+	        };
+	        return _this;
 	    }
 
 	    _createClass(Canvas, [{
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(_reactCanvas.Surface, {
-	                width: 200,
-	                height: 200,
-	                left: 0,
-	                top: 0
+	                width: this.state.width,
+	                height: this.state.height,
+	                top: 0,
+	                left: 0
 	            }, _react2.default.createElement(_reactCanvas.Image, {
 	                style: {
+	                    width: this.state.width,
+	                    height: this.state.height,
 	                    top: 0,
-	                    left: 0,
-	                    width: 200,
-	                    height: 200
+	                    left: 0
 	                },
 	                src: this.props.src
 	            }));
@@ -29589,6 +29676,11 @@
 	}(_react2.default.Component);
 
 	exports.default = Canvas;
+
+
+	Canvas.defaultProps = {
+	    width: 200
+	};
 
 /***/ },
 /* 254 */
