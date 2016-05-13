@@ -26,6 +26,7 @@ export default class Add extends React.Component {
     componentDidMount() {
         this._req()
     }
+
     _req() {
         let action = 'article'
         let {
@@ -46,7 +47,7 @@ export default class Add extends React.Component {
                     let article = JSON.parse(res.text)
                     article._method = 'PUT'
                     ConfigActions.update('title', article.title)
-                        // ConfigActions.update(article.id, article)
+                    console.log(article)
                     this.setState({
                         info: article,
                         action: action,
@@ -60,7 +61,7 @@ export default class Add extends React.Component {
                 action: action,
             })
         }
-        showload()
+        loadingHide()
     }
     _onChange(name, value) {
         let info = this.state.info
@@ -124,9 +125,10 @@ export default class Add extends React.Component {
                             />
                         <Range />
                         <Upload 
-                        name = 'pics' 
-                        value= {info.pics}
-                        onChange = {this._onChange.bind(this) } />
+                            name = 'pics' 
+                            value= {info.pics}
+                            onChange = {this._onChange.bind(this) } 
+                            />
                         <Button value="提交" />
                     </Form>
                 </section>

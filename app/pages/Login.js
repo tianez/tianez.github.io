@@ -14,6 +14,9 @@ export default class Login extends React.Component {
             info: {}
         }
     }
+    componentDidMount() {
+        loadingHide()
+    }
     _onChange(name, value) {
         let info = this.state.info
         info[name] = value

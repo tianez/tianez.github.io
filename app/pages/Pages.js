@@ -23,10 +23,10 @@ export default class Main extends React.Component {
         Apicloud.get('article', filter, function(err, res) {
             let data = JSON.parse(res.text)
             console.log(data)
+            loadingHide()
             this.setState({
                 info: data
             })
-            showload()
         }.bind(this))
     }
     render() {

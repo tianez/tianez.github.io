@@ -133,9 +133,6 @@
 	}, _react2.default.createElement(_reactRouter.IndexRoute, {
 	    component: _Index2.default
 	}), _react2.default.createElement(_reactRouter.Route, {
-	    path: "page",
-	    component: _Pages2.default
-	}), _react2.default.createElement(_reactRouter.Route, {
 	    path: "page/add",
 	    component: _Add2.default,
 	    onEnter: redirectToLogin
@@ -144,11 +141,7 @@
 	    component: _Add2.default,
 	    onEnter: redirectToLogin
 	}), _react2.default.createElement(_reactRouter.Route, {
-	    path: "page/:articleId",
-	    component: _Page2.default
-	}), _react2.default.createElement(_reactRouter.Route, {
-	    path: "page2",
-	    component: _Pages2.default
+	    path: "page"
 	}, _react2.default.createElement(_reactRouter.IndexRoute, {
 	    component: _Pages2.default
 	}), _react2.default.createElement(_reactRouter.Route, {
@@ -25213,9 +25206,9 @@
 	// import ConfigStore from './flux/ConfigStore'
 	window.ConfigStore = __webpack_require__(223);
 
-	window.showload = function () {
+	window.loadingHide = function () {
 		setTimeout(function () {
-			ConfigActions.update('loading', 0);
+			ConfigActions.update('loading', false);
 		}, 600);
 	};
 
@@ -25249,10 +25242,22 @@
 	        });
 	    },
 
-	    update: function update(id, text) {
+	    update: function update(id, data) {
 	        AppDispatcher.dispatch({
 	            id: id,
-	            text: text
+	            data: data
+	        });
+	    },
+	    updateAll: function updateAll(data) {
+	        AppDispatcher.dispatch({
+	            actionType: 'updateAll',
+	            data: data
+	        });
+	    },
+	    updateArticle: function updateArticle(data) {
+	        AppDispatcher.dispatch({
+	            actionType: 'updateArticle',
+	            data: data
 	        });
 	    }
 	};
@@ -25657,30 +25662,29 @@
 
 	// Register callback to handle all updates
 	AppDispatcher.register(function (action) {
-	    var text;
-	    if (_todos[action.id] == action.text) {
+	    var data = action.data;
+	    if (_todos[action.id] == data) {
 	        return;
 	    }
 	    switch (action.actionType) {
-	        case 'init':
-	            init(action.data);
-	            ConfigStore.emitChange();
-	            break;
-	        case 'updateText':
-	            text = action.text.trim();
-	            if (text !== '') {
-	                update(action.id, text);
-	                ConfigStore.emitChange();
+	        case 'updateAll':
+	            for (var key in data) {
+	                update(key, data[key]);
 	            }
 	            break;
+	        case 'updateArticle':
+	            update(data.id, data);
+	            update('title', data.title);
+	            break;
 	        default:
-	            _todos[action.id] = action.text;
-	            ConfigStore.emitChange();
+	            update(action.id, action.data);
+
 	    }
+	    ConfigStore.emitChange();
 	});
 
-	function init(data) {
-	    _todos[init] = data;
+	function update(id, data) {
+	    _todos[id] = data;
 	}
 
 /***/ },
@@ -26226,15 +26230,6 @@
 	                                Link,
 	                                { className: 'pure-menu-link', to: '/page', activeClassName: "active" },
 	                                '博文'
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            'li',
-	                            { className: 'pure-menu-item' },
-	                            _react2.default.createElement(
-	                                Link,
-	                                { className: 'pure-menu-link', to: '/page2', activeClassName: "active" },
-	                                '博文2'
 	                            )
 	                        ),
 	                        _react2.default.createElement(
@@ -29136,10 +29131,10 @@
 	            _Apicloud2.default.get('article', filter, function (err, res) {
 	                var data = JSON.parse(res.text);
 	                console.log(data);
+	                loadingHide();
 	                this.setState({
 	                    info: data
 	                });
-	                showload();
 	            }.bind(this));
 	        }
 	    }, {
@@ -29468,21 +29463,15 @@
 	            var article = ConfigStore.get(articleId);
 	            if (article) {
 	                ConfigActions.update('title', article.title);
-	                ConfigActions.update('pics', article.pics);
+	                loadingHide();
 	                this.setState(article);
-	                setTimeout(function () {
-	                    ConfigActions.update('loading', 0);
-	                }, 1);
 	                this.swiperInit();
 	            } else {
 	                _Apicloud2.default.get(action, '', function (err, res) {
-	                    var article = JSON.parse(res.text);
-	                    ConfigActions.update(articleId, article);
-	                    ConfigActions.update('title', article.title);
-	                    ConfigActions.update('pics', article.pics);
+	                    article = JSON.parse(res.text);
+	                    ConfigActions.updateArticle(article);
+	                    loadingHide();
 	                    this.setState(article);
-	                    console.log(article);
-	                    showload();
 	                    this.swiperInit();
 	                }.bind(this));
 	            }
@@ -29528,13 +29517,15 @@
 	                var files = JSON.parse(this.state.pics);
 	                thumbs = files.map(function (file, index) {
 	                    var id = 'swiper-' + index;
+	                    file += '-thumb';
 	                    return _react2.default.createElement(
 	                        'div',
-	                        { className: 'canvas', 'data-ids': id, id: id, onClick: this._show.bind(this) },
+	                        { className: 'canvas', id: id, onClick: this._show.bind(this) },
 	                        _react2.default.createElement(_Canvas2.default, { className: 'form-canva', src: file, width: 250, key: index })
 	                    );
 	                }.bind(this));
 	                pics = files.map(function (file, index) {
+	                    file += '-max';
 	                    return _react2.default.createElement(
 	                        'div',
 	                        { className: 'swiper-slide', key: index },
@@ -29547,7 +29538,7 @@
 	                pics = '';
 	            }
 	            var swiperClass = (0, _classnames2.default)({
-	                'swiper-container': true,
+	                'swiper-container swiper-container-horizontal': true,
 	                'swiper-show': this.state.isshow
 	            });
 	            return _react2.default.createElement(
@@ -35595,7 +35586,7 @@
 	                        var article = JSON.parse(res.text);
 	                        article._method = 'PUT';
 	                        ConfigActions.update('title', article.title);
-	                        // ConfigActions.update(article.id, article)
+	                        console.log(article);
 	                        this.setState({
 	                            info: article,
 	                            action: action,
@@ -35609,7 +35600,7 @@
 	                    action: action
 	                });
 	            }
-	            showload();
+	            loadingHide();
 	        }
 	    }, {
 	        key: '_onChange',
@@ -35690,7 +35681,8 @@
 	                        _react2.default.createElement(_index.Upload, {
 	                            name: 'pics',
 	                            value: info.pics,
-	                            onChange: this._onChange.bind(this) }),
+	                            onChange: this._onChange.bind(this)
+	                        }),
 	                        _react2.default.createElement(_index.Button, { value: '提交' })
 	                    )
 	                )
@@ -36798,6 +36790,7 @@
 	// var Surface = ReactCanvas.Surface;
 	// var Image = ReactCanvas.Image;
 	// var Text = ReactCanvas.Text;
+	var swiper2 = void 0;
 
 	var Upload = function (_React$Component) {
 	    _inherits(Upload, _React$Component);
@@ -36817,6 +36810,11 @@
 	    }
 
 	    _createClass(Upload, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            // this.swiperInit()
+	        }
+	    }, {
 	        key: 'componentWillReceiveProps',
 	        value: function componentWillReceiveProps(nextProps) {
 	            if (this.props.value == nextProps.value) {
@@ -36829,13 +36827,11 @@
 	                num: true
 	            });
 	            var thumbs = nextProps.value;
-	            console.log(thumbs);
 	            if (thumbs == '') {
 	                thumbs = [];
 	            } else {
 	                thumbs = JSON.parse(thumbs);
 	            }
-	            console.log(thumbs);
 	            var files = [];
 	            var count = thumbs.length;
 	            if (count == 0) {
@@ -36862,6 +36858,11 @@
 	                files: files,
 	                thumbs: thumbs
 	            });
+	        }
+	    }, {
+	        key: 'componentDidUpdate',
+	        value: function componentDidUpdate() {
+	            this.swiperInit();
 	        }
 	    }, {
 	        key: '_onChange',
@@ -36956,6 +36957,46 @@
 	            }
 	        }
 	    }, {
+	        key: 'swiperInit',
+	        value: function swiperInit() {
+	            if (this.props.multiple == false) {
+	                console.log(121212999);
+	                return;
+	            } else {
+	                console.log(121212);
+	                swiper2 = new Swiper('.swiper-upload', {
+	                    nextButton: '.swiper-button-next',
+	                    prevButton: '.swiper-button-prev',
+	                    pagination: '.swiper-pagination',
+	                    paginationClickable: true,
+	                    direction: 'horizontal',
+	                    // Disable preloading of all images
+	                    preloadImages: false,
+	                    // Enable lazy loading
+	                    lazyLoading: true
+	                });
+	            }
+	        }
+	    }, {
+	        key: '_hide',
+	        // loop: true
+	        value: function _hide() {
+	            this.setState({
+	                isshow: false
+	            });
+	        }
+	    }, {
+	        key: '_show',
+	        value: function _show(e) {
+	            e.stopPropagation();
+	            var no = e.currentTarget.id.split("-")[1];
+	            console.log(no);
+	            swiper2.slideTo(no, 0, false);
+	            this.setState({
+	                isshow: true
+	            });
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            var Class = (0, _classnames2.default)({
@@ -36965,6 +37006,7 @@
 	                'form-help': true
 	            });
 	            var thumbs = void 0;
+	            var pics = void 0;
 	            if (this.state.files.length > 0) {
 	                thumbs = this.state.files.map(function (file, index) {
 	                    var msg = void 0;
@@ -36992,10 +37034,16 @@
 	                        animationDelay: 50 * index + 'ms',
 	                        animationDuration: '500ms'
 	                    };
+	                    var thumb = file.thumb;
+	                    var patt1 = new RegExp("blob:http");
+	                    if (!patt1.test(thumb)) {
+	                        thumb += '-thumb';
+	                    }
+	                    var id = 'swiper-' + index;
 	                    return _react2.default.createElement(
 	                        'div',
-	                        { className: 'animated zoomIn', style: style, onClick: this._onClickd.bind(this) },
-	                        _react2.default.createElement(_Canvas2.default, { className: 'form-canva', src: file.thumb, key: index }),
+	                        { className: 'animated zoomIn', id: id, style: style, onClick: this._show.bind(this) },
+	                        _react2.default.createElement(_Canvas2.default, { className: 'form-canva', src: thumb, key: index }),
 	                        _react2.default.createElement(
 	                            'div',
 	                            null,
@@ -37003,9 +37051,27 @@
 	                        )
 	                    );
 	                }.bind(this));
+	                pics = this.state.files.map(function (file, index) {
+	                    var thumb = file.thumb;
+	                    var patt1 = new RegExp("blob:http");
+	                    if (!patt1.test(thumb)) {
+	                        thumb += '-max';
+	                    }
+	                    return _react2.default.createElement(
+	                        'div',
+	                        { className: 'swiper-slide', key: index },
+	                        _react2.default.createElement('img', { 'data-src': thumb, className: 'swiper-lazy' }),
+	                        _react2.default.createElement('div', { className: 'swiper-lazy-preloader swiper-lazy-preloader-white' })
+	                    );
+	                });
 	            } else {
 	                thumbs = '';
+	                pics = '';
 	            }
+	            var swiperClass = (0, _classnames2.default)({
+	                'swiper-container swiper-upload': true,
+	                'swiper-show': this.state.isshow
+	            });
 	            return _react2.default.createElement(
 	                'div',
 	                { className: Class },
@@ -37028,6 +37094,18 @@
 	                        { className: helpClass },
 	                        this.state.help
 	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'section',
+	                    { className: swiperClass },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'swiper-wrapper', onClick: this._hide.bind(this) },
+	                        pics
+	                    ),
+	                    _react2.default.createElement('div', { className: 'swiper-pagination swiper-pagination-white' }),
+	                    _react2.default.createElement('div', { className: 'swiper-button-next swiper-button-white' }),
+	                    _react2.default.createElement('div', { className: 'swiper-button-prev swiper-button-white' })
 	                )
 	            );
 	        }
@@ -37652,6 +37730,11 @@
 	    }
 
 	    _createClass(Login, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            loadingHide();
+	        }
+	    }, {
 	        key: '_onChange',
 	        value: function _onChange(name, value) {
 	            var info = this.state.info;

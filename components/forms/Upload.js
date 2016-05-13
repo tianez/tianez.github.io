@@ -14,7 +14,7 @@ import Canvas from './Canvas'
 // var Surface = ReactCanvas.Surface;
 // var Image = ReactCanvas.Image;
 // var Text = ReactCanvas.Text;
-
+let swiper2
 export default class Upload extends React.Component {
     constructor(props) {
         super(props)
@@ -24,6 +24,9 @@ export default class Upload extends React.Component {
             help: props.help,
             num: false
         }
+    }
+    componentDidMount() {
+        // this.swiperInit()
     }
     componentWillReceiveProps(nextProps) {
         if (this.props.value == nextProps.value) {
@@ -36,13 +39,11 @@ export default class Upload extends React.Component {
             num: true
         })
         let thumbs = nextProps.value
-        console.log(thumbs)
         if (thumbs == '') {
             thumbs = []
         } else {
             thumbs = JSON.parse(thumbs)
         }
-        console.log(thumbs)
         let files = []
         let count = thumbs.length
         if (count == 0) {
@@ -69,6 +70,9 @@ export default class Upload extends React.Component {
             files: files,
             thumbs: thumbs
         })
+    }
+    componentDidUpdate() {
+        this.swiperInit()
     }
     _onChange(e) {
         e.preventDefault()
@@ -153,6 +157,41 @@ export default class Upload extends React.Component {
             console.log(123)
         }
     }
+    swiperInit() {
+        if (this.props.multiple == false) {
+            console.log(121212999)
+            return
+        } else {
+            console.log(121212)
+            swiper2 = new Swiper('.swiper-upload', {
+                nextButton: '.swiper-button-next',
+                prevButton: '.swiper-button-prev',
+                pagination: '.swiper-pagination',
+                paginationClickable: true,
+                direction: 'horizontal',
+                // Disable preloading of all images
+                preloadImages: false,
+                // Enable lazy loading
+                lazyLoading: true,
+                // loop: true
+            })
+        }
+
+    }
+    _hide() {
+        this.setState({
+            isshow: false
+        })
+    }
+    _show(e) {
+        e.stopPropagation()
+        let no = e.currentTarget.id.split("-")[1]
+        console.log(no)
+        swiper2.slideTo(no, 0, false)
+        this.setState({
+            isshow: true
+        })
+    }
     render() {
         let Class = classNames({
             'form-group': true,
@@ -161,6 +200,7 @@ export default class Upload extends React.Component {
             'form-help': true,
         })
         let thumbs
+        let pics
         if (this.state.files.length > 0) {
             thumbs = this.state.files.map(function(file, index) {
                 let msg
@@ -188,16 +228,40 @@ export default class Upload extends React.Component {
                     animationDelay: 50 * index + 'ms',
                     animationDuration: '500ms',
                 }
+                let thumb = file.thumb
+                let patt1 = new RegExp("blob:http")
+                if (!patt1.test(thumb)) {
+                    thumb += '-thumb'
+                }
+                let id = 'swiper-' + index
                 return (
-                    <div className='animated zoomIn' style={style} onClick={this._onClickd.bind(this)}>
-                        <Canvas className='form-canva' src={file.thumb} key= {index} />
+                    <div className='animated zoomIn' id ={id} style={style} onClick= {this._show.bind(this)}>
+                        <Canvas className='form-canva' src={thumb} key= {index} />
                         <div>{msg}</div>
                     </div>
                 )
             }.bind(this))
+            pics = this.state.files.map(function(file, index) {
+                let thumb = file.thumb
+                let patt1 = new RegExp("blob:http")
+                if (!patt1.test(thumb)) {
+                    thumb += '-max'
+                }
+                return (
+                    <div className="swiper-slide" key= {index}>
+                        <img data-src={thumb} className="swiper-lazy" />
+                        <div className="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                    </div>
+                )
+            })
         } else {
             thumbs = ''
+            pics = ''
         }
+        let swiperClass = classNames({
+            'swiper-container swiper-upload': true,
+            'swiper-show': this.state.isshow
+        })
         return (
             <div className={Class}>
                 <label className="form-label">{this.props.title}</label>
@@ -208,6 +272,14 @@ export default class Upload extends React.Component {
                     </div>
                     <span className={helpClass}>{this.state.help}</span>
                 </div>
+                <section className={swiperClass}>
+                    <div className="swiper-wrapper" onClick={this._hide.bind(this) }>
+                        {pics}
+                    </div>
+                    <div className="swiper-pagination swiper-pagination-white"></div>
+                    <div className="swiper-button-next swiper-button-white"></div>
+                    <div className="swiper-button-prev swiper-button-white"></div>
+                </section>
             </div>
         )
     }

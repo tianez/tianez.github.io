@@ -14,9 +14,9 @@ window.ConfigActions = require('./flux/ConfigActions')
 // import ConfigStore from './flux/ConfigStore'
 window.ConfigStore = require('./flux/ConfigStore')
 
-window.showload = function() {
+window.loadingHide = function() {
 	setTimeout(function() {
-		ConfigActions.update('loading', 0)
+		ConfigActions.update('loading', false)
 	}, 600)
 }
 

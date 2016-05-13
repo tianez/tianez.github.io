@@ -57,10 +57,6 @@ ReactDom.render((
                     component: Index
                 }),
                 React.createElement(Route, {
-                    path: "page",
-                    component: Pages
-                }),
-                React.createElement(Route, {
                     path: "page/add",
                     component: Add,
                     onEnter: redirectToLogin
@@ -71,12 +67,7 @@ ReactDom.render((
                     onEnter: redirectToLogin
                 }),
                 React.createElement(Route, {
-                    path: "page/:articleId",
-                    component: Page
-                }),
-                React.createElement(Route, {
-                        path: "page2",
-                        component: Pages
+                        path: "page"
                     },
                     React.createElement(IndexRoute, {
                         component: Pages

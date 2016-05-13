@@ -55,28 +55,27 @@ module.exports = ConfigStore;
 
 // Register callback to handle all updates
 AppDispatcher.register(function(action) {
-    var text;
-    if (_todos[action.id] == action.text) {
+    let data = action.data
+    if (_todos[action.id] == data) {
         return
     }
     switch (action.actionType) {
-        case 'init':
-            init(action.data);
-            ConfigStore.emitChange();
-            break;
-        case 'updateText':
-            text = action.text.trim();
-            if (text !== '') {
-                update(action.id, text);
-                ConfigStore.emitChange();
+        case 'updateAll':
+            for (let key in data) {
+                update(key, data[key])
             }
             break;
+        case 'updateArticle':
+            update(data.id, data)
+            update('title', data.title)
+            break;
         default:
-            _todos[action.id] = action.text;
-            ConfigStore.emitChange();
-    }
-});
+            update(action.id, action.data)
 
-function init(data) {
-    _todos[init] = data;
+    }
+    ConfigStore.emitChange()
+})
+
+function update(id, data) {
+    _todos[id] = data
 }

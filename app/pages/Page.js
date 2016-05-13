@@ -42,21 +42,15 @@ export default class Login extends React.Component {
         let article = ConfigStore.get(articleId)
         if (article) {
             ConfigActions.update('title', article.title)
-            ConfigActions.update('pics', article.pics)
+            loadingHide()
             this.setState(article)
-            setTimeout(function() {
-                ConfigActions.update('loading', 0)
-            }, 1)
             this.swiperInit()
         } else {
             Apicloud.get(action, '', function(err, res) {
-                let article = JSON.parse(res.text)
-                ConfigActions.update(articleId, article)
-                ConfigActions.update('title', article.title)
-                ConfigActions.update('pics', article.pics)
+                article = JSON.parse(res.text)
+                ConfigActions.updateArticle(article)
+                loadingHide()
                 this.setState(article)
-                console.log(article)
-                showload()
                 this.swiperInit()
             }.bind(this))
         }
@@ -94,13 +88,15 @@ export default class Login extends React.Component {
             let files = JSON.parse(this.state.pics)
             thumbs = files.map(function(file, index) {
                 let id = 'swiper-' + index
+                file += '-thumb'
                 return (
-                    <div className='canvas' data-ids={id} id ={id} onClick= {this._show.bind(this)}>
+                    <div className='canvas' id ={id} onClick= {this._show.bind(this)}>
                         <Canvas className='form-canva' src={file} width= {250} key= {index} />
                     </div>
                 )
             }.bind(this))
             pics = files.map(function(file, index) {
+                file += '-max'
                 return (
                     <div className="swiper-slide" key= {index}>
                         <img data-src={file} className="swiper-lazy" />
@@ -113,7 +109,7 @@ export default class Login extends React.Component {
             pics = ''
         }
         let swiperClass = classNames({
-            'swiper-container': true,
+            'swiper-container swiper-container-horizontal': true,
             'swiper-show': this.state.isshow
         })
         return (
