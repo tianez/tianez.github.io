@@ -35661,6 +35661,12 @@
 	                            help: '内容',
 	                            onChange: this._onChange.bind(this)
 	                        }),
+	                        _react2.default.createElement(_index.Upload, {
+	                            name: 'thumb',
+	                            value: info.thumb,
+	                            multiple: false,
+	                            onChange: this._onChange.bind(this)
+	                        }),
 	                        _react2.default.createElement(_index.Editer, {
 	                            value: info.content,
 	                            onChange: this._onChange.bind(this)
@@ -36785,11 +36791,6 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	// var ReactCanvas = require('react-canvas');
-
-	// var Surface = ReactCanvas.Surface;
-	// var Image = ReactCanvas.Image;
-	// var Text = ReactCanvas.Text;
 	var swiper2 = void 0;
 
 	var Upload = function (_React$Component) {
@@ -36804,7 +36805,8 @@
 	            files: props.files,
 	            thumbs: props.thumbs,
 	            help: props.help,
-	            num: false
+	            num: false,
+	            multiple: props.multiple
 	        };
 	        return _this;
 	    }
@@ -36959,12 +36961,9 @@
 	    }, {
 	        key: 'swiperInit',
 	        value: function swiperInit() {
-	            if (this.props.multiple == false) {
-	                console.log(121212999);
-	                return;
-	            } else {
-	                console.log(121212);
-	                swiper2 = new Swiper('.swiper-upload', {
+	            var sw = '#swiper' + this.props.name;
+	            if (this.state.multiple) {
+	                swiper2 = new Swiper(sw, {
 	                    nextButton: '.swiper-button-next',
 	                    prevButton: '.swiper-button-prev',
 	                    pagination: '.swiper-pagination',
@@ -36975,7 +36974,20 @@
 	                    // Enable lazy loading
 	                    lazyLoading: true
 	                });
-	            }
+	            } else // loop: true
+	                {
+	                    new Swiper(sw, {
+	                        nextButton: '.swiper-button-next',
+	                        prevButton: '.swiper-button-prev',
+	                        pagination: '.swiper-pagination',
+	                        paginationClickable: true,
+	                        direction: 'horizontal',
+	                        // Disable preloading of all images
+	                        preloadImages: false,
+	                        // Enable lazy loading
+	                        lazyLoading: true
+	                    });
+	                }
 	        }
 	    }, {
 	        key: '_hide',
@@ -36991,7 +37003,9 @@
 	            e.stopPropagation();
 	            var no = e.currentTarget.id.split("-")[1];
 	            console.log(no);
-	            swiper2.slideTo(no, 0, false);
+	            if (this.state.multiple) {
+	                swiper2.slideTo(no, 0, false);
+	            }
 	            this.setState({
 	                isshow: true
 	            });
@@ -37068,6 +37082,7 @@
 	                thumbs = '';
 	                pics = '';
 	            }
+	            var sw = 'swiper' + this.props.name;
 	            var swiperClass = (0, _classnames2.default)({
 	                'swiper-container swiper-upload': true,
 	                'swiper-show': this.state.isshow
@@ -37097,7 +37112,7 @@
 	                ),
 	                _react2.default.createElement(
 	                    'section',
-	                    { className: swiperClass },
+	                    { id: sw, className: swiperClass },
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'swiper-wrapper', onClick: this._hide.bind(this) },

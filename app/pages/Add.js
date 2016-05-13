@@ -107,6 +107,12 @@ export default class Add extends React.Component {
                             help = '内容'
                             onChange = {this._onChange.bind(this) }
                             />
+                        <Upload 
+                            name = 'thumb' 
+                            value= {info.thumb}
+                            multiple = {false}
+                            onChange = {this._onChange.bind(this) } 
+                            />
                         <Editer 
                             value= {info.content}
                             onChange = {this._onChange.bind(this) }

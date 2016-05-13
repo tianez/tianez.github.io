@@ -8,13 +8,8 @@ import {
     getHash
 } from '../utils/Qiniu'
 import Canvas from './Canvas'
-
-// var ReactCanvas = require('react-canvas');
-
-// var Surface = ReactCanvas.Surface;
-// var Image = ReactCanvas.Image;
-// var Text = ReactCanvas.Text;
 let swiper2
+
 export default class Upload extends React.Component {
     constructor(props) {
         super(props)
@@ -22,7 +17,8 @@ export default class Upload extends React.Component {
             files: props.files,
             thumbs: props.thumbs,
             help: props.help,
-            num: false
+            num: false,
+            multiple: props.multiple
         }
     }
     componentDidMount() {
@@ -158,12 +154,22 @@ export default class Upload extends React.Component {
         }
     }
     swiperInit() {
-        if (this.props.multiple == false) {
-            console.log(121212999)
-            return
+        let sw = '#swiper' + this.props.name
+        if (this.state.multiple) {
+            swiper2 = new Swiper(sw, {
+                nextButton: '.swiper-button-next',
+                prevButton: '.swiper-button-prev',
+                pagination: '.swiper-pagination',
+                paginationClickable: true,
+                direction: 'horizontal',
+                // Disable preloading of all images
+                preloadImages: false,
+                // Enable lazy loading
+                lazyLoading: true,
+                // loop: true
+            })
         } else {
-            console.log(121212)
-            swiper2 = new Swiper('.swiper-upload', {
+            new Swiper(sw, {
                 nextButton: '.swiper-button-next',
                 prevButton: '.swiper-button-prev',
                 pagination: '.swiper-pagination',
@@ -177,6 +183,7 @@ export default class Upload extends React.Component {
             })
         }
 
+
     }
     _hide() {
         this.setState({
@@ -187,7 +194,9 @@ export default class Upload extends React.Component {
         e.stopPropagation()
         let no = e.currentTarget.id.split("-")[1]
         console.log(no)
-        swiper2.slideTo(no, 0, false)
+        if (this.state.multiple) {
+            swiper2.slideTo(no, 0, false)
+        }
         this.setState({
             isshow: true
         })
@@ -258,6 +267,7 @@ export default class Upload extends React.Component {
             thumbs = ''
             pics = ''
         }
+        let sw = 'swiper' + this.props.name
         let swiperClass = classNames({
             'swiper-container swiper-upload': true,
             'swiper-show': this.state.isshow
@@ -272,7 +282,7 @@ export default class Upload extends React.Component {
                     </div>
                     <span className={helpClass}>{this.state.help}</span>
                 </div>
-                <section className={swiperClass}>
+                <section id={sw} className={swiperClass}>
                     <div className="swiper-wrapper" onClick={this._hide.bind(this) }>
                         {pics}
                     </div>
