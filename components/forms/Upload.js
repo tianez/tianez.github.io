@@ -154,12 +154,15 @@ export default class Upload extends React.Component {
         }
     }
     swiperInit() {
-        let sw = '#swiper' + this.props.name
+        let swiper = '#swiper' + this.props.name
+        let nextButton = '.swiper-next-' + this.props.name
+        let prevButton = '.swiper-prev-' + this.props.name
+        let pagination = '.swiper-pagination-' + this.props.name
         if (this.state.multiple) {
-            swiper2 = new Swiper(sw, {
-                nextButton: '.swiper-button-next',
-                prevButton: '.swiper-button-prev',
-                pagination: '.swiper-pagination',
+            swiper2 = new Swiper(swiper, {
+                nextButton: nextButton,
+                prevButton: prevButton,
+                pagination: pagination,
                 paginationClickable: true,
                 direction: 'horizontal',
                 // Disable preloading of all images
@@ -169,10 +172,10 @@ export default class Upload extends React.Component {
                 // loop: true
             })
         } else {
-            new Swiper(sw, {
-                nextButton: '.swiper-button-next',
-                prevButton: '.swiper-button-prev',
-                pagination: '.swiper-pagination',
+            new Swiper(swiper, {
+                nextButton: nextButton,
+                prevButton: prevButton,
+                pagination: pagination,
                 paginationClickable: true,
                 direction: 'horizontal',
                 // Disable preloading of all images
@@ -267,7 +270,10 @@ export default class Upload extends React.Component {
             thumbs = ''
             pics = ''
         }
-        let sw = 'swiper' + this.props.name
+        let swiper = 'swiper' + this.props.name
+        let nextButton = 'swiper-button-next swiper-button-white swiper-next-' + this.props.name
+        let prevButton = 'swiper-button-prev swiper-button-white swiper-prev-' + this.props.name
+        let pagination = 'swiper-pagination swiper-pagination-white swiper-pagination-' + this.props.name
         let swiperClass = classNames({
             'swiper-container swiper-upload': true,
             'swiper-show': this.state.isshow
@@ -282,13 +288,13 @@ export default class Upload extends React.Component {
                     </div>
                     <span className={helpClass}>{this.state.help}</span>
                 </div>
-                <section id={sw} className={swiperClass}>
+                <section id={swiper} className={swiperClass}>
                     <div className="swiper-wrapper" onClick={this._hide.bind(this) }>
                         {pics}
                     </div>
-                    <div className="swiper-pagination swiper-pagination-white"></div>
-                    <div className="swiper-button-next swiper-button-white"></div>
-                    <div className="swiper-button-prev swiper-button-white"></div>
+                    <div className={pagination}></div>
+                    <div className={nextButton}></div>
+                    <div className={prevButton}></div>
                 </section>
             </div>
         )

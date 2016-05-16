@@ -36961,12 +36961,15 @@
 	    }, {
 	        key: 'swiperInit',
 	        value: function swiperInit() {
-	            var sw = '#swiper' + this.props.name;
+	            var swiper = '#swiper' + this.props.name;
+	            var nextButton = '.swiper-next-' + this.props.name;
+	            var prevButton = '.swiper-prev-' + this.props.name;
+	            var pagination = '.swiper-pagination-' + this.props.name;
 	            if (this.state.multiple) {
-	                swiper2 = new Swiper(sw, {
-	                    nextButton: '.swiper-button-next',
-	                    prevButton: '.swiper-button-prev',
-	                    pagination: '.swiper-pagination',
+	                swiper2 = new Swiper(swiper, {
+	                    nextButton: nextButton,
+	                    prevButton: prevButton,
+	                    pagination: pagination,
 	                    paginationClickable: true,
 	                    direction: 'horizontal',
 	                    // Disable preloading of all images
@@ -36976,10 +36979,10 @@
 	                });
 	            } else // loop: true
 	                {
-	                    new Swiper(sw, {
-	                        nextButton: '.swiper-button-next',
-	                        prevButton: '.swiper-button-prev',
-	                        pagination: '.swiper-pagination',
+	                    new Swiper(swiper, {
+	                        nextButton: nextButton,
+	                        prevButton: prevButton,
+	                        pagination: pagination,
 	                        paginationClickable: true,
 	                        direction: 'horizontal',
 	                        // Disable preloading of all images
@@ -37082,7 +37085,10 @@
 	                thumbs = '';
 	                pics = '';
 	            }
-	            var sw = 'swiper' + this.props.name;
+	            var swiper = 'swiper' + this.props.name;
+	            var nextButton = 'swiper-button-next swiper-button-white swiper-next-' + this.props.name;
+	            var prevButton = 'swiper-button-prev swiper-button-white swiper-prev-' + this.props.name;
+	            var pagination = 'swiper-pagination swiper-pagination-white swiper-pagination-' + this.props.name;
 	            var swiperClass = (0, _classnames2.default)({
 	                'swiper-container swiper-upload': true,
 	                'swiper-show': this.state.isshow
@@ -37112,15 +37118,15 @@
 	                ),
 	                _react2.default.createElement(
 	                    'section',
-	                    { id: sw, className: swiperClass },
+	                    { id: swiper, className: swiperClass },
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'swiper-wrapper', onClick: this._hide.bind(this) },
 	                        pics
 	                    ),
-	                    _react2.default.createElement('div', { className: 'swiper-pagination swiper-pagination-white' }),
-	                    _react2.default.createElement('div', { className: 'swiper-button-next swiper-button-white' }),
-	                    _react2.default.createElement('div', { className: 'swiper-button-prev swiper-button-white' })
+	                    _react2.default.createElement('div', { className: pagination }),
+	                    _react2.default.createElement('div', { className: nextButton }),
+	                    _react2.default.createElement('div', { className: prevButton })
 	                )
 	            );
 	        }
