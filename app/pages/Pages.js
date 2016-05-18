@@ -37,7 +37,6 @@ export default class Main extends React.Component {
         if (this.state.info.length > 0) {
             lists = this.state.info.map(function(d, index) {
                 let url = '/page/' + d.id
-                let edit = '/edit/' + d.id
                 let imgurl = "http://www.day.com/img?w=410&h=300&r=" + d.id
                 return (
                     <Link to={url} activeStyle={active} className="service-box pure-u-1-3" key={index}>

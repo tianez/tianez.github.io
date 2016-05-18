@@ -81,7 +81,11 @@ export default class Login extends React.Component {
         })
     }
     render() {
-        let imgsrc = "http://www.day.com/img?w=1920&h=600&r=" + this.state.id
+        let imgsrc = this.state.thumb ? JSON.parse(this.state.thumb)[0] + '-max' : "http://www.day.com/img?w=1920&h=600&r=" + this.state.id
+
+        let style = {
+            backgroundImage: 'url(' + imgsrc + ')'
+        }
         let thumbs
         let pics
         if (this.state.pics.length > 0) {
@@ -112,15 +116,16 @@ export default class Login extends React.Component {
             'swiper-container swiper-container-horizontal': true,
             'swiper-show': this.state.isshow
         })
+        let edit = '#/edit/' + this.state.id
         return (
             <section className='warp page simditor'>
                 <section className='banner' style={this.state.style}>
-                    <img src= {imgsrc} />
+                    <div className = 'banner_i' style={style}></div>
                 </section>
                 <section className = "contents">
                     <section className = "container">
                         <div className="header">
-                            <h1>{this.state.title}</h1>
+                            <h1>{this.state.title}--<a href={edit} target="_blank">编辑</a></h1>
                             <h2>{this.state.description}</h2>
                         </div>
                         <div className="content simditor-body">
