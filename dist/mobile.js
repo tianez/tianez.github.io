@@ -1,1 +1,103 @@
-webpackJsonp([2],[function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}function o(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function u(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function a(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}var l=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),c=n(33),f=r(c),i=n(35),s=r(i),p=n(56),d=r(p),b=function(e){function t(){return o(this,t),u(this,Object.getPrototypeOf(t).call(this))}return a(t,e),l(t,[{key:"render",value:function(){return f["default"].createElement("div",{className:"container"},f["default"].createElement("section",{className:"jumbotron"},f["default"].createElement("h3",{className:"jumbotron-heading"},"Search Github Users")),f["default"].createElement("h1",null,"Hello world222"),f["default"].createElement(d["default"],null))}}]),t}(f["default"].Component);s["default"].render(f["default"].createElement(b,null),document.getElementById("app"))}]);
+webpackJsonp([1],[
+/* 0 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	// import './css/style.min.css'
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(158);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _reactRouter = __webpack_require__(159);
+
+	__webpack_require__(216);
+
+	var _Layout = __webpack_require__(225);
+
+	var _Layout2 = _interopRequireDefault(_Layout);
+
+	var _Index = __webpack_require__(247);
+
+	var _Index2 = _interopRequireDefault(_Index);
+
+	var _Pages = __webpack_require__(248);
+
+	var _Pages2 = _interopRequireDefault(_Pages);
+
+	var _Pages3 = __webpack_require__(250);
+
+	var _Pages4 = _interopRequireDefault(_Pages3);
+
+	var _Page = __webpack_require__(251);
+
+	var _Page2 = _interopRequireDefault(_Page);
+
+	var _Login = __webpack_require__(308);
+
+	var _Login2 = _interopRequireDefault(_Login);
+
+	var _Logout = __webpack_require__(309);
+
+	var _Logout2 = _interopRequireDefault(_Logout);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function redirectToLogin(nextState, replace) {
+		var pathname = nextState.location.pathname;
+		console.log(pathname);
+		var user = localStorage.user ? true : false;
+		if (!user && pathname !== '/login') {
+			ConfigActions.update('msg', '你还没有登录，请先登录！');
+			replace({
+				pathname: '/login'
+			});
+		} else if (user && pathname == '/login') {
+			replace({
+				pathname: '/'
+			});
+		}
+	}
+
+	/** 
+	 * 路由
+	 */
+
+
+	_reactDom2.default.render(_react2.default.createElement(_reactRouter.Router, {
+		history: _reactRouter.hashHistory
+	}, _react2.default.createElement(_reactRouter.Route, {
+		path: "/",
+		component: _Layout2.default
+	}, _react2.default.createElement(_reactRouter.IndexRoute, {
+		component: _Index2.default
+	}), _react2.default.createElement(_reactRouter.Route, {
+		path: "page/add",
+		component: Add,
+		onEnter: redirectToLogin
+	}), _react2.default.createElement(_reactRouter.Route, {
+		path: "edit/:articleId",
+		component: Add,
+		onEnter: redirectToLogin
+	}), _react2.default.createElement(_reactRouter.Route, {
+		path: "page"
+	}, _react2.default.createElement(_reactRouter.IndexRoute, {
+		component: _Pages2.default
+	}), _react2.default.createElement(_reactRouter.Route, {
+		path: ":articleId",
+		component: _Page2.default
+	})), _react2.default.createElement(_reactRouter.Route, {
+		path: "login",
+		component: _Login2.default,
+		onEnter: redirectToLogin
+	}), _react2.default.createElement(_reactRouter.Route, {
+		path: "logout",
+		component: _Logout2.default
+	}))), document.getElementById('app'));
+
+/***/ }
+]);

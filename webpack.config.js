@@ -1,14 +1,24 @@
 var path = require('path')
 var webpack = require('webpack')
 var ExtractTextPlugin = require("extract-text-webpack-plugin")
+var node_modules_dir = path.resolve(__dirname, 'node_modules')
 module.exports = {
-    entry: [
-        path.resolve(__dirname, 'app/app.js')
-    ],
+    // entry: [
+    //     path.resolve(__dirname, 'app/app.js')
+    // ],
+    // output: {
+    //     // path: path.resolve(__dirname, '../build'),
+    //     path: __dirname,
+    //     filename: 'build/bundle.js'
+    // },
+    entry: {
+        app: path.resolve(__dirname, 'app/app.js'),
+        mobile: path.resolve(__dirname, 'app/mobile.js'),
+        vendors: ['react', 'react-dom']
+    },
     output: {
-        // path: path.resolve(__dirname, '../build'),
-        path: __dirname,
-        filename: 'build/bundle.js'
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'dist/[name].js'
     },
     module: {
         loaders: [{
@@ -39,6 +49,7 @@ module.exports = {
         }]
     },
     plugins: [
+        new webpack.optimize.CommonsChunkPlugin('vendors', 'dist/vendors.js'),
         new ExtractTextPlugin("app.css")
     ]
 }

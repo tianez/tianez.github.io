@@ -46,7 +46,7 @@ gulp.task('Sass', function() {
 })
 
 // 合并、压缩js文件
-gulp.task('js', function() {
+gulp.task('js_ext', function() {
     return gulp.src(
             [
                 'components/utils/SHA1.js',
@@ -59,12 +59,27 @@ gulp.task('js', function() {
             ]
         )
         .pipe(concat('ext.js'))
-        .pipe(gulp.dest('/'))
+        .pipe(gulp.dest('dist'))
         .pipe(rename({
             suffix: '.min'
         }))
         .pipe(uglify())
-        .pipe(gulp.dest(''))
+        .pipe(gulp.dest('dist'))
+})
+
+gulp.task('js_vendors', function() {
+    return gulp.src(
+            [
+                'dist/vendors.js',
+                'dist/app.js',
+                'dist/mobile.js'
+            ]
+        )
+        .pipe(rename({
+            suffix: '.min'
+        }))
+        .pipe(uglify())
+        .pipe(gulp.dest('dist'))
 })
 
 gulp.task("webpack", function() {
@@ -90,7 +105,7 @@ gulp.task('watch', function() {
             'app/**/*.js',
             // 'app/css/style.css',
             'components/**'
-        ], ['webpack']);
+        ], ['webpack', 'js_vendors']);
 });
 
 gulp.task('default', [
@@ -99,4 +114,9 @@ gulp.task('default', [
     'webpack',
     'webserver',
     'watch'
+])
+
+gulp.task('js', [
+    'js_ext',
+    'js_vendors'
 ])
