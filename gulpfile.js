@@ -59,7 +59,7 @@ gulp.task('js_ext', function() {
             ]
         )
         .pipe(concat('ext.js'))
-        .pipe(gulp.dest('dist'))
+        .pipe(gulp.dest('build'))
         .pipe(rename({
             suffix: '.min'
         }))
@@ -70,9 +70,9 @@ gulp.task('js_ext', function() {
 gulp.task('js_vendors', function() {
     return gulp.src(
             [
-                'dist/vendors.js',
-                'dist/app.js',
-                'dist/mobile.js'
+                'build/vendors.js',
+                'build/app.js',
+                'build/mobile.js'
             ]
         )
         .pipe(rename({
@@ -98,14 +98,15 @@ gulp.task('webserver', function() {
 
 gulp.task('watch', function() {
     // livereload.listen();
-    gulp.watch(['app/**/*.less'], ['Less']);
-    // gulp.watch(['app/sass/*.scss'], ['Sass']);
+    gulp.watch(['app/**/*.less'], ['Less'])
+        // gulp.watch(['app/sass/*.scss'], ['Sass']);
+    gulp.watch(['build/*.js'], ['js_vendors'])
     gulp.watch(
         ['app/*.js',
             'app/**/*.js',
             // 'app/css/style.css',
             'components/**'
-        ], ['webpack', 'js_vendors']);
+        ], ['webpack', 'js_vendors'])
 });
 
 gulp.task('default', [

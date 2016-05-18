@@ -18,7 +18,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'dist/[name].js'
+        filename: 'build/[name].js'
     },
     module: {
         loaders: [{
@@ -49,7 +49,7 @@ module.exports = {
         }]
     },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin('vendors', 'dist/vendors.js'),
+        new webpack.optimize.CommonsChunkPlugin('vendors', 'build/vendors.js'),
         new ExtractTextPlugin("app.css")
     ]
 }
