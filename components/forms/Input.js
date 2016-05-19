@@ -54,18 +54,22 @@ default class Input extends React.Component {
             warning: warning,
             success: success,
         })
-        if (success || !this.props.required && _onChange) {
+        if (_onChange) {
             if (this.props.onChange) {
                 this.props.onChange(this.props.name, value)
             }
         }
     }
-    componentWillReceiveProps(nextProps) {
-        this.setState({
-            value: nextProps.value,
-            length: nextProps.value.length,
-        })
-    }
+    shouldComponentUpdate(nextProps, nextState) {
+            return nextProps.value !== this.props.value
+        }
+        // componentWillReceiveProps(nextProps) {
+        //     console.log(123)
+        //     this.setState({
+        //         value: nextProps.value,
+        //         length: nextProps.value.length
+        //     })
+        // }
     _onChange(e) {
         let value = e.target.value.replace(/(^\s*)|(\s*$)/g, "")
         this.componentWillMount(value, true)

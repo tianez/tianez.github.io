@@ -25,6 +25,8 @@ import Pages from './pages/Pages'
 import Pages2 from './pages/Pages2'
 import Page from './pages/Page'
 import Add from './pages/Add'
+import List from './pages/List'
+import Detail from './pages/Detail'
 import Login from './pages/Login'
 import Logout from './pages/Logout'
 import NoMatch from './pages/NoMatch'
@@ -32,17 +34,17 @@ import NoMatch from './pages/NoMatch'
 function redirectToLogin(nextState, replace) {
     let pathname = nextState.location.pathname
     console.log(pathname)
-    let user = localStorage.user ? true : false
-    if (!user && pathname !== '/login') {
-        ConfigActions.update('msg', '你还没有登录，请先登录！')
-        replace({
-            pathname: '/login'
-        })
-    } else if (user && pathname == '/login') {
-        replace({
-            pathname: '/'
-        })
-    }
+        // let user = localStorage.user ? true : false
+        // if (!user && pathname !== '/login') {
+        //     ConfigActions.update('msg', '你还没有登录，请先登录！')
+        //     replace({
+        //         pathname: '/login'
+        //     })
+        // } else if (user && pathname == '/login') {
+        //     replace({
+        //         pathname: '/'
+        //     })
+        // }
 }
 
 ReactDom.render((
@@ -91,6 +93,17 @@ ReactDom.render((
                     component: Add,
                     onEnter: redirectToLogin
                 }),
+                React.createElement(Route, {
+                        path: ":list"
+                    },
+                    React.createElement(IndexRoute, {
+                        component: List
+                    }),
+                    React.createElement(Route, {
+                        path: ":id",
+                        component: Detail
+                    })
+                ),
                 React.createElement(Route, {
                     path: "*",
                     component: NoMatch

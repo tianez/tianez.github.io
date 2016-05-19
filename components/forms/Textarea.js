@@ -7,8 +7,7 @@ export default class Textarea extends React.Component {
         super(props)
         this.state = {
             value: props.value,
-            help: props.help,
-            num: false
+            help: props.help
         }
     }
     componentWillMount(value, _onChange) {
@@ -45,42 +44,29 @@ export default class Textarea extends React.Component {
             warning: warning,
             success: success,
         })
-        if (success || !this.props.required && _onChange) {
+        if (_onChange) {
             if (this.props.onChange) {
                 this.props.onChange(this.props.name, value)
             }
         }
     }
-    componentDidMount() {
-    }   
-    componentWillReceiveProps(nextProps) {
-        if (this.props.value == nextProps.value) {
-            return
-        }
-        if (this.state.num) {
-            return
-        }
-        this.setState({
-            num: true
-        })
-        this.setState({
-            value: nextProps.value,
-            length: nextProps.value.length,
-        })
+    componentDidMount() {}
+    shouldComponentUpdate(nextProps, nextState) {
+        return nextProps.value !== this.props.value
     }
     _onChange(e) {
         let value = e.target.value.replace(/(^\s*)|(\s*$)/, "")
         this.componentWillMount(value, true)
     }
-    onWheel(obj){
-        console.log(obj) 
+    onWheel(obj) {
+        console.log(obj)
         console.log(obj.currentTarget.offsetTop)
     }
-    onKeyPress(obj){
+    onKeyPress(obj) {
         console.log(obj)
         console.log(obj.nativeEvent.charCode)
     }
-    onCopy(obj){
+    onCopy(obj) {
         console.log(obj)
     }
     render() {
@@ -130,11 +116,11 @@ export default class Textarea extends React.Component {
 }
 
 Textarea.defaultProps = {
-    title: '邮箱地址',
-    type: 'email',
+    title: '字段名称',
+    type: 'text',
     value: '',
-    placeholder: '输入你的邮箱地址',
-    help: '输入你的邮箱地址!',
+    placeholder: '',
+    help: '',
     disabled: '',
     autocomplete: 'off',
     required: 'required',

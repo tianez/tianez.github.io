@@ -4,18 +4,15 @@ import classNames from 'classnames';
 
 export default class Checkbox extends React.Component {
     constructor(props) {
-        super(props)
-        this.state = {
-            value: props.value,
-            help: props.help,
+            super(props)
+            this.state = {
+                value: props.value,
+                help: props.help,
+            }
         }
-    }
-    componentWillMount(value, _onChange) {}
-    componentWillReceiveProps(nextProps) {
-        this.setState({
-            value: nextProps.value,
-        })
-    }
+        // shouldComponentUpdate(nextProps, nextState) {
+        //     return nextProps.value !== this.props.value
+        // }
     _onChange(e) {
         let type = this.props.type
         let v = parseInt(e.target.value)
@@ -38,8 +35,6 @@ export default class Checkbox extends React.Component {
         if (this.props.onChange) {
             this.props.onChange(this.props.name, value)
         }
-        // let value = e.target.value.replace(/(^\s*)|(\s*$)/, "")
-        // this.componentWillMount(value, true)
     }
     render() {
         let type = this.props.type
@@ -50,7 +45,7 @@ export default class Checkbox extends React.Component {
             if (type == 'radio' && value == d.value) {
                 checked = 'checked'
             } else if (type == 'checkbox') {
-                if (value.indexOf(d.value) > -1) {
+                if (value.indexOf(parseInt(d.value)) > -1) {
                     checked = 'checked'
                 }
             }

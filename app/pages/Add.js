@@ -17,16 +17,15 @@ export default class Add extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            info: {}
+            info: null
         }
     }
     componentWillMount() {
-        // this._req()
-    }
-    componentDidMount() {
         this._req()
     }
-
+    componentDidMount() {
+        // this._req()
+    }
     _req() {
         let action = 'article'
         let {
@@ -47,7 +46,6 @@ export default class Add extends React.Component {
                     let article = JSON.parse(res.text)
                     article._method = 'PUT'
                     ConfigActions.update('title', article.title)
-                    console.log(article)
                     this.setState({
                         info: article,
                         action: action,
@@ -66,7 +64,6 @@ export default class Add extends React.Component {
     _onChange(name, value) {
         let info = this.state.info
         info[name] = value
-        console.log(info)
         this.setState({
             info: info
         })
@@ -82,9 +79,10 @@ export default class Add extends React.Component {
         }
     }
     render() {
+        let render
         let info = this.state.info
-        return (
-            <section className='warp'>
+        if (info) {
+            render =
                 <section className = "container" >
                     <h3 className = "jumbotron-heading" >文章管理</h3>
                     <Form action = {this.state.action}
@@ -138,7 +136,7 @@ export default class Add extends React.Component {
                         <Button value="提交" />
                     </Form>
                 </section>
-            </section>
-        )
+        }
+        return (<section className='warp'>{render}</section>)
     }
 }

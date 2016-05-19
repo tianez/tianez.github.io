@@ -17,24 +17,11 @@ export default class Upload extends React.Component {
             files: props.files,
             thumbs: props.thumbs,
             help: props.help,
-            num: false,
             multiple: props.multiple
         }
     }
-    componentDidMount() {
-        // this.swiperInit()
-    }
-    componentWillReceiveProps(nextProps) {
-        if (this.props.value == nextProps.value) {
-            return
-        }
-        if (this.state.num) {
-            return
-        }
-        this.setState({
-            num: true
-        })
-        let thumbs = nextProps.value
+    componentWillMount() {
+        let thumbs = this.props.value
         if (thumbs == '') {
             thumbs = []
         } else {
@@ -185,8 +172,6 @@ export default class Upload extends React.Component {
                 // loop: true
             })
         }
-
-
     }
     _hide() {
         this.setState({
@@ -247,8 +232,8 @@ export default class Upload extends React.Component {
                 }
                 let id = 'swiper-' + index
                 return (
-                    <div className='animated zoomIn' id ={id} style={style} onClick= {this._show.bind(this)}>
-                        <Canvas className='form-canva' src={thumb} key= {index} />
+                    <div className='animated zoomIn' id ={id} key={index} style={style} onClick= {this._show.bind(this)}>
+                        <Canvas className='form-canva' src={thumb} />
                         <div>{msg}</div>
                     </div>
                 )

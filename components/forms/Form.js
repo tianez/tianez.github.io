@@ -15,11 +15,15 @@ export default class Form extends React.Component {
         if (this.props.locked) {
             return;
         }
-        Apicloud.post(this.props.action, this.props.info, function (err, res) {
-            let data = JSON.parse(res.text)
-            console.log(res)
-            this.props.onSubmit(data)
-        }.bind(this))
+        if (this.props.apiSubmit) {
+            Apicloud.post(this.props.action, this.props.info, function(err, res) {
+                let data = JSON.parse(res.text)
+                console.log(res)
+                this.props.onSubmit(data)
+            }.bind(this))
+        } else {
+            this.props.onSubmit(e)
+        }
     }
     render() {
         return (
@@ -34,4 +38,7 @@ export default class Form extends React.Component {
             </form>
         )
     }
+}
+Form.defaultProps = {
+    apiSubmit: true
 }

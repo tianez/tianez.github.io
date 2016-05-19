@@ -24,6 +24,10 @@ export default class Header extends React.Component {
                 <div className='container'>
                 <a href="#" className="pure-menu-heading pure-menu-link left">我的理想乡</a>
                 <ul className="pure-menu-list left">
+                    <li className="pure-menu-item"><Link className="pure-menu-link" to="/roles" activeClassName={"active"}>角色管理</Link></li>
+                    <li className="pure-menu-item"><Link className="pure-menu-link" to="/account" activeClassName={"active"}>用户管理</Link></li>
+                    <li className="pure-menu-item"><Link className="pure-menu-link" to="/permit" activeClassName={"active"}>权限管理</Link></li>
+                    <li className="pure-menu-item"><Link className="pure-menu-link" to="/fields" activeClassName={"active"}>字段管理</Link></li>
                     <li className="pure-menu-item"><Link className="pure-menu-link" to="/page" activeClassName={"active"}>博文</Link></li>
                     <li className="pure-menu-item"><Link className="pure-menu-link" to="/page/add" activeClassName={"active"}>新增文章</Link></li>
                 </ul>

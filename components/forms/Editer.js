@@ -15,8 +15,8 @@ export default class Editer extends React.Component {
         editor = new Simditor({
             textarea: $(editor_ID),
             toolbar: toolbar,
-            toolbarFloat:false,
-            toolbarFloatOffset:'100px'
+            toolbarFloat: false,
+            toolbarFloatOffset: '100px'
         })
         editor.on('valuechanged', function(event) {
                 let v = editor.getValue()
@@ -32,19 +32,16 @@ export default class Editer extends React.Component {
             //     editor.setValue(value)
             // }
     }
-    componentWillReceiveProps(nextProps) {
-        if (this.props.value == nextProps.value) {
-            return
-        }
-        if (this.state.num) {
-            return
-        }
-        this.setState({
-            num: true
-        })
-        editor.setValue(nextProps.value)
-            // this.componentDidMount(nextProps.value)
+    shouldComponentUpdate(nextProps, nextState) {
+        return nextProps.value !== this.props.value
     }
+    // componentWillReceiveProps(nextProps) {
+    //     if (this.props.value == nextProps.value) {
+    //         return
+    //     } else {
+    //         editor.setValue(nextProps.value)
+    //     }
+    // }
     _onChange(e) {
         return
     }

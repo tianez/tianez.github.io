@@ -16,6 +16,9 @@ export default class Range extends React.Component {
             help: help,
         })
     }
+    shouldComponentUpdate(nextProps, nextState) {
+        return nextProps.value !== this.props.value
+    }
     _onChange(e) {
         let value = e.target.value
         if (value == this.state.value) {
