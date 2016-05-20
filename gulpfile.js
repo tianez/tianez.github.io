@@ -50,8 +50,8 @@ gulp.task('js_ext', function() {
     return gulp.src(
             [
                 'components/utils/SHA1.js',
-                'components/storedb/storedb.js',
-                'bower_components/utils/CryptoJS.js',
+                'components/utils/CryptoJS.js',
+                'bower_components/storedb/storedb.js',
                 'bower_components/jquery/dist/jquery.min.js',
                 'bower_components/simditor/scripts/module.js',
                 'bower_components/simditor/scripts/hotkeys.js',

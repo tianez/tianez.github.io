@@ -27,17 +27,14 @@ export default class Layout extends React.Component {
             .end(function(err, res) {
                 if (err) throw err;
                 let data = JSON.parse(res.text)
-                localStorage.user = data;
-                console.log(data)
+                ConfigActions.update('user', data)
                 storedb('players').insert(data, function(err, result) {
-                        if (!err) {
-                            console.log(result)
-                        } else {
+                    if (!err) {
+                        console.log(result)
+                    } else {
 
-                        }
-                    })
-                    // data.head_img = JSON.parse(data.head_img)
-                    // this.setState(data);
+                    }
+                })
             }.bind(this));
         ConfigStore.addChangeListener(this._onChange.bind(this))
         window.onload = function() {
@@ -75,23 +72,21 @@ export default class Layout extends React.Component {
         ConfigActions.update('window_Y', window.scrollY)
             // console.log(document.body.scrollTop)
     }
-    onWheel(obj) {
-        // console.log(obj.target.offsetTop)
-    }
     onKeyPress() {
         console.log(32)
     }
     render() {
-        console.log(localStorage.user)
+        console.log(ConfigStore.get('user'))
         return (
-            <div className = "warper" 
-                onWheel = {this.onWheel.bind(this)} >
-                <Header />
-                <Main location = {this.props.location}>
-                    {this.props.children}
-                </Main>
-                <Footer />
-            </div>
+            React.createElement('div', {
+                    className: 'warper'
+                },
+                React.createElement(Header),
+                React.createElement(Main, {
+                    location: this.props.location
+                }, this.props.children),
+                React.createElement(Footer)
+            )
         )
     }
 }

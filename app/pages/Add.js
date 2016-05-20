@@ -21,10 +21,10 @@ export default class Add extends React.Component {
         }
     }
     componentWillMount() {
-        this._req()
+        // this._req()
     }
     componentDidMount() {
-        // this._req()
+        this._req()
     }
     _req() {
         let action = 'article'
