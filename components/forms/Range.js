@@ -1,6 +1,7 @@
 'use strict'
 import React from 'react'
-import classNames from 'classnames';
+import classNames from 'classnames'
+import FormGroup from './FormGroup'
 
 export default class Range extends React.Component {
     constructor(props) {
@@ -16,9 +17,6 @@ export default class Range extends React.Component {
             help: help,
         })
     }
-    shouldComponentUpdate(nextProps, nextState) {
-        return nextProps.value !== this.props.value
-    }
     _onChange(e) {
         let value = e.target.value
         if (value == this.state.value) {
@@ -29,37 +27,33 @@ export default class Range extends React.Component {
             value: value,
             help: help,
         })
-        console.log(value)
-            // this.props._onChange(this.props.k, value)
+        if (this.props.onChange) {
+            this.props.onChange(this.props.name, value)
+        }
     }
     render() {
-        let Class = classNames({
-            'form-group': true,
-        })
-        let helpClass = classNames({
-            'form-help': true,
-        })
         return (
-            <div className={Class}>
-                <label className="form-label">{this.props.title}</label>
-                <div className="form-control">
-                    <input
-                        className='form-range'
-                        type='range'
-                        max={this.props.max}
-                        min={this.props.min}
-                        disabled={this.props.disabled}
-                        value={this.state.value}
-                        onChange={this._onChange.bind(this) } />
-                    <span className={helpClass}>{this.state.help}</span>
-                </div>
-            </div>
+            React.createElement(FormGroup, {
+                    title: this.props.title,
+                    help: this.state.help
+                },
+                React.createElement('input', {
+                    className: 'form-range',
+                    type: this.props.type,
+                    max: this.props.max,
+                    min: this.props.min,
+                    disabled: this.props.disabled,
+                    value: this.state.value,
+                    onChange: this._onChange.bind(this)
+                })
+            )
         )
     }
 }
 
 Range.defaultProps = {
     title: '滑条',
+    type: 'range',
     value: '',
     help: '滑动滑条选择你的值！',
     disabled: '',

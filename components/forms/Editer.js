@@ -1,6 +1,8 @@
 'use strict'
 import React from 'react'
-import classNames from 'classnames';
+import classNames from 'classnames'
+import FormGroup from './FormGroup'
+
 let editor
 export default class Editer extends React.Component {
     constructor() {
@@ -19,53 +21,42 @@ export default class Editer extends React.Component {
             toolbarFloatOffset: '100px'
         })
         editor.on('valuechanged', function(event) {
-                let v = editor.getValue()
-                if (v == this.props.value) {
-                    return
-                }
-                if (this.props.onChange) {
-                    this.props.onChange(this.props.name, v)
-                }
-                event.preventDefault()
-            }.bind(this))
-            // if (value) {
-            //     editor.setValue(value)
-            // }
+            let v = editor.getValue()
+            if (v == this.props.value) {
+                return
+            }
+            if (this.props.onChange) {
+                this.props.onChange(this.props.name, v)
+            }
+            event.preventDefault()
+        }.bind(this))
     }
     shouldComponentUpdate(nextProps, nextState) {
         return nextProps.value !== this.props.value
     }
-    // componentWillReceiveProps(nextProps) {
-    //     if (this.props.value == nextProps.value) {
-    //         return
-    //     } else {
-    //         editor.setValue(nextProps.value)
-    //     }
-    // }
     _onChange(e) {
         return
     }
     render() {
-        let Class = classNames({
-            'form-group': true
-        })
-        let helpClass = classNames({
-            'form-help': true
-        })
+        let help = this.props.help || '请输入' + this.props.title
+        console.log(help)
+        let placeholder = this.props.help || '请输入' + this.props.title
         return (
-            <div className={Class}>
-                <label className="form-label">{this.props.title}</label>
-                <div className="form-control">
-                    <textarea id={this.props.name} 
-                        className="form-textarea"
-                        value={this.props.value}
-                        placeholder={this.props.placeholder}
-                        disabled={this.props.disabled}
-                        onChange={this._onChange.bind(this) }
-                        autofocus />
-                    <span className={helpClass}>{this.props.help}</span>
-                </div>
-            </div>
+            React.createElement(FormGroup, {
+                    title: this.props.title,
+                    help: help
+                },
+                React.createElement('textarea', {
+                    id: this.props.name,
+                    className: 'form-textarea',
+                    rows: this.props.rows,
+                    placeholder: placeholder,
+                    disabled: this.props.disabled,
+                    autoComplete: this.props.autoComplete,
+                    value: this.props.value,
+                    onChange: this._onChange.bind(this)
+                })
+            )
         )
     }
 }
@@ -74,8 +65,6 @@ Editer.defaultProps = {
     title: '项目名称',
     value: '',
     name: 'content',
-    placeholder: '输入你的邮箱地址',
-    help: '输入你的邮箱地址!',
     disabled: '',
     autocomplete: 'off',
     required: 'required',

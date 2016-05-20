@@ -11,16 +11,24 @@ export default class Botton extends React.Component {
             'form-group': true,
         })
         return (
-            <div className={Class}>
-                <div className="form-control">
-                    <input
-                        className="pure-button pure-button-primary"
-                        type= 'submit'
-                        disabled={this.props.disabled}
-                        value={this.props.value}
-                        />
-                </div>
-            </div>
+            React.createElement('div', {
+                    className: 'form-group'
+                },
+                React.createElement('div', {
+                        className: 'form-control'
+                    },
+                    React.createElement('input', {
+                        className: 'pure-button pure-button-primary',
+                        type: 'submit',
+                        disabled: this.props.disabled,
+                        value: this.props.value
+                    })
+                )
+            )
         )
     }
+}
+
+Botton.defaultProps = {
+    value: '保存'
 }

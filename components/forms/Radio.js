@@ -1,6 +1,7 @@
 'use strict'
 import React from 'react'
-import classNames from 'classnames';
+import classNames from 'classnames'
+import FormGroup from './FormGroup'
 
 export default class Checkbox extends React.Component {
     constructor(props) {
@@ -51,23 +52,38 @@ export default class Checkbox extends React.Component {
             }
             let typeClass = type == 'radio' ? 'radio' : 'checker'
             return (
-                <label className="form-radio" key={index}>
-                    <div className={typeClass}>
-                        <span className = {checked}>
-                            <input type={type} name={name} value={d.value} checked={checked} onChange ={this._onChange.bind(this) } />
-                        </span>
-                    </div>
-                    <span>{d.title}</span>
-                </label>
+                React.createElement('label', {
+                        key: index,
+                        className: 'form-radio',
+                        title: this.props.title,
+                        help: this.state.help
+                    },
+                    React.createElement('div', {
+                            className: typeClass
+                        },
+                        React.createElement('span', {
+                                className: checked
+                            },
+                            React.createElement('input', {
+                                type: type,
+                                name: name,
+                                value: d.value,
+                                checked: checked,
+                                onChange: this._onChange.bind(this)
+                            })
+                        )
+                    ),
+                    React.createElement('span', null, d.title)
+                )
             )
         }.bind(this))
         return (
-            <div className='form-group'>
-                <label className="form-label">{this.props.title}</label>
-                <div className="form-control">
-                    {options}
-                </div>
-            </div>
+            React.createElement(FormGroup, {
+                    title: this.props.title,
+                    help: this.state.help
+                },
+                options
+            )
         )
     }
 }

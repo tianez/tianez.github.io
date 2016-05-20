@@ -122,6 +122,24 @@
     }
 }
 
+.has-error {
+    .form-ico::before {
+        content: "\f12a";
+    }
+}
+
+.has-warning {
+    .form-ico::before {
+        content: "\f071";
+    }
+}
+
+.has-success {
+    .form-ico::before {
+        content: "\f00c";
+    }
+}
+
 .has-success {
     .form-input,.form-textarea {
         color: #3c763d;

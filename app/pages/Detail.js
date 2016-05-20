@@ -29,9 +29,23 @@ export default class Add extends React.Component {
             }
         }
     }
+    componentWillMount() {
+        let id = this.props.params.id
+        let url = '../' + this.props.params.list
+        switch (id) {
+            case "add":
+                url = url + '/' + id
+                break;
+            default:
+                url = url + '/detail/' + id
+                break;
+        }
+        this.setState({
+            url: url
+        })
+    }
     componentDidMount() {
-        let url = '../' + this.props.params.list + '/detail/' + this.props.params.id
-        request.get(url)
+        request.get(this.state.url)
             .query(this.state.query)
             .end(function(err, res) {
                 if (err) {
@@ -48,6 +62,7 @@ export default class Add extends React.Component {
                         return
                     }
                     ConfigActions.update('title', data.title)
+                    console.log(data)
                     this.setState({
                         mods: data.mods,
                         info: data.info,
@@ -60,6 +75,9 @@ export default class Add extends React.Component {
     }
     _onChange(name, value) {
         let info = this.state.info
+        if (info.length == 0) {
+            info = {}
+        }
         info[name] = value
         this.setState({
             info: info
@@ -95,16 +113,24 @@ export default class Add extends React.Component {
                     case "text":
                         return (React.createElement(Input, d))
                         break;
+                    case "password":
+                        return (React.createElement(Input, d))
+                        break;
+                    case "email":
+                        return (React.createElement(Input, d))
+                        break;
                     case "textarea":
                         return (React.createElement(Textarea, d))
+                        break;
+                    case "upload":
+                        return (React.createElement(Upload, d))
                         break;
                     case "image":
                         return (React.createElement(Upload, d))
                         break;
-                    case "select2":
+                    case "select":
                         let dd = {}
                         let options = []
-                        let isselected;
                         let ds = d.lists
                         for (let key in ds) {
                             let tab = {
@@ -125,6 +151,29 @@ export default class Add extends React.Component {
                         dd.onChange = onChange
                         return (React.createElement(Radio, dd))
                         break;
+                    case "select2":
+                        let dd2 = {}
+                        let options2 = []
+                        let ds2 = d.lists
+                        for (let key in ds2) {
+                            let tab2 = {
+                                title: ds2[key],
+                                value: key
+                            }
+                            options2.push(tab2)
+                        }
+                        dd2.options = options2
+                        dd2.type = 'radio'
+                        dd2.title = d.title
+                        dd2.value = d.value
+                        dd2.key = d.key
+                        dd2.k = d.key
+                        dd2.default = d.default
+                        dd2.lists = d.lists
+                        dd2.name = d.key
+                        dd2.onChange = onChange
+                        return (React.createElement(Radio, dd2))
+                        break;
                     default:
                         break;
                 }
@@ -132,18 +181,26 @@ export default class Add extends React.Component {
         }
         if (info) {
             render =
-                <section className = "container" >
-                    <h3 className = "jumbotron-heading" >{this.state.title}</h3>
-                    <Form action = {this.state.action}
-                        info = {info}
-                        legend = {this.state.title}
-                        apiSubmit = {false}
-                        onSubmit = {this._onSubmit.bind(this) }>
-                        {forms}
-                        <Button value="提交" />
-                    </Form>
-                </section>
+                React.createElement('section', {
+                        className: 'container'
+                    },
+                    React.createElement('h3', null, this.state.title),
+                    React.createElement(Form, {
+                            action: this.state.action,
+                            info: info,
+                            legend: this.state.title,
+                            apiSubmit: false,
+                            onSubmit: this._onSubmit.bind(this)
+                        },
+                        forms,
+                        React.createElement(Button)
+                    )
+                )
         }
-        return (<section className='warp'>{render}</section>)
+        return (
+            React.createElement('section', {
+                className: 'warp'
+            }, render)
+        )
     }
 }

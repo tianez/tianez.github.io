@@ -8,6 +8,8 @@ import {
     getHash
 } from '../utils/Qiniu'
 import Canvas from './Canvas'
+import FormGroup from './FormGroup'
+
 let swiper2
 
 export default class Upload extends React.Component {
@@ -190,12 +192,6 @@ export default class Upload extends React.Component {
         })
     }
     render() {
-        let Class = classNames({
-            'form-group': true,
-        })
-        let helpClass = classNames({
-            'form-help': true,
-        })
         let thumbs
         let pics
         if (this.state.files.length > 0) {
@@ -232,10 +228,19 @@ export default class Upload extends React.Component {
                 }
                 let id = 'swiper-' + index
                 return (
-                    <div className='animated zoomIn' id ={id} key={index} style={style} onClick= {this._show.bind(this)}>
-                        <Canvas className='form-canva' src={thumb} />
-                        <div>{msg}</div>
-                    </div>
+                    React.createElement('div', {
+                            key: index,
+                            className: 'animated zoomIn',
+                            id: id,
+                            style: style,
+                            onClick: this._show.bind(this)
+                        },
+                        React.createElement(Canvas, {
+                            className: 'form-canva',
+                            src: thumb
+                        }),
+                        React.createElement('div', null, msg)
+                    )
                 )
             }.bind(this))
             pics = this.state.files.map(function(file, index) {
@@ -245,12 +250,20 @@ export default class Upload extends React.Component {
                     thumb += '-max'
                 }
                 return (
-                    <div className="swiper-slide" key= {index}>
-                        <img data-src={thumb} className="swiper-lazy" />
-                        <div className="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                    </div>
+                    React.createElement('div', {
+                            key: index,
+                            className: 'swiper-slide'
+                        },
+                        React.createElement('img', {
+                            className: 'swiper-lazy',
+                            'data-src': thumb
+                        }),
+                        React.createElement('div', {
+                            className: 'swiper-lazy-preloader swiper-lazy-preloader-white'
+                        })
+                    )
                 )
-            })
+            }.bind(this))
         } else {
             thumbs = ''
             pics = ''
@@ -264,24 +277,42 @@ export default class Upload extends React.Component {
             'swiper-show': this.state.isshow
         })
         return (
-            <div className={Class}>
-                <label className="form-label">{this.props.title}</label>
-                <div className="form-control">
-                    <input id="file" name="file" onChange={this._onChange.bind(this) } multiple = "multiple" className="ipt" type="file" />
-                    <div className='form-canvas'>
-                    {thumbs}
-                    </div>
-                    <span className={helpClass}>{this.state.help}</span>
-                </div>
-                <section id={swiper} className={swiperClass}>
-                    <div className="swiper-wrapper" onClick={this._hide.bind(this) }>
-                        {pics}
-                    </div>
-                    <div className={pagination}></div>
-                    <div className={nextButton}></div>
-                    <div className={prevButton}></div>
-                </section>
-            </div>
+            React.createElement(FormGroup, {
+                    title: this.props.title
+                },
+                React.createElement('input', {
+                    id: 'file',
+                    name: 'file',
+                    className: 'ipt',
+                    type: 'file',
+                    multiple: 'multiple',
+                    onChange: this._onChange.bind(this)
+                }),
+                React.createElement('div', {
+                    className: 'form-canvas'
+                }, thumbs),
+                React.createElement('div', {
+                    className: 'clear'
+                }),
+                React.createElement('section', {
+                        id: swiper,
+                        className: swiperClass
+                    },
+                    React.createElement('div', {
+                        className: 'swiper-wrapper',
+                        onClick: this._hide.bind(this)
+                    }, pics),
+                    React.createElement('div', {
+                        className: pagination
+                    }),
+                    React.createElement('div', {
+                        className: nextButton
+                    }),
+                    React.createElement('div', {
+                        className: prevButton
+                    })
+                )
+            )
         )
     }
 }
@@ -292,9 +323,5 @@ Upload.defaultProps = {
     files: [],
     thumbs: [],
     multiple: true,
-    help: '滑动滑条选择你的值！',
-    disabled: '',
-    required: 'required',
-    max: 10,
-    min: 6,
+    help: '',
 }

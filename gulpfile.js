@@ -50,7 +50,8 @@ gulp.task('js_ext', function() {
     return gulp.src(
             [
                 'components/utils/SHA1.js',
-                'components/utils/CryptoJS.js',
+                'components/storedb/storedb.js',
+                'bower_components/utils/CryptoJS.js',
                 'bower_components/jquery/dist/jquery.min.js',
                 'bower_components/simditor/scripts/module.js',
                 'bower_components/simditor/scripts/hotkeys.js',
@@ -100,13 +101,13 @@ gulp.task('watch', function() {
     // livereload.listen();
     gulp.watch(['app/**/*.less'], ['Less'])
         // gulp.watch(['app/sass/*.scss'], ['Sass']);
-    gulp.watch(['build/*.js'], ['js_vendors'])
+        // gulp.watch(['build/*.js'], ['js_vendors'])
     gulp.watch(
         ['app/*.js',
             'app/**/*.js',
             // 'app/css/style.css',
             'components/**'
-        ], ['webpack', 'js_vendors'])
+        ], ['webpack'])
 });
 
 gulp.task('default', [

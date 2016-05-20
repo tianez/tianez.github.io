@@ -22,6 +22,7 @@
     "animate.css": "~3.5.0",
     "normalize-css": "~4.0.0",
     "jquery.uniform": "^2.2.0",
-    "simditor": "^2.3.6"
+    "simditor": "^2.3.6",
+    "storedb": "^0.1.2"
   }
 }

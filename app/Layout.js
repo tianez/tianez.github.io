@@ -1,6 +1,7 @@
 'use strict'
 
 import React from 'react'
+import request from 'superagent'
 
 import Header from './layout/Header'
 import Main from './layout/Main'
@@ -21,7 +22,23 @@ export default class Layout extends React.Component {
 
     }
     componentDidMount() {
-        // window.addEventListener('scroll', this.onScroll.bind(this))
+        let url = 'react/user';
+        request.get(url)
+            .end(function(err, res) {
+                if (err) throw err;
+                let data = JSON.parse(res.text)
+                localStorage.user = data;
+                console.log(data)
+                storedb('players').insert(data, function(err, result) {
+                        if (!err) {
+                            console.log(result)
+                        } else {
+
+                        }
+                    })
+                    // data.head_img = JSON.parse(data.head_img)
+                    // this.setState(data);
+            }.bind(this));
         ConfigStore.addChangeListener(this._onChange.bind(this))
         window.onload = function() {
             let load = document.getElementById('load')
@@ -65,6 +82,7 @@ export default class Layout extends React.Component {
         console.log(32)
     }
     render() {
+        console.log(localStorage.user)
         return (
             <div className = "warper" 
                 onWheel = {this.onWheel.bind(this)} >

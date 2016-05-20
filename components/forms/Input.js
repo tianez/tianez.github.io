@@ -2,7 +2,7 @@
 import React from 'react'
 import classNames from 'classnames'
 import Regs from '../utils/regs'
-import './input.scss'
+import FormGroup from './FormGroup'
 
 export
 default class Input extends React.Component {
@@ -13,36 +13,36 @@ default class Input extends React.Component {
             help: props.help,
         }
     }
-    componentWillMount(value, _onChange) {
-        let error = false
-        let warning = false
-        let success = false
-        if (!_onChange) {
-            value = this.props.value
-        }
+    componentWillMount() {
+        let length = this.props.value.length
+        let help = this.props.help || '请输入' + this.props.title
+        this.setState({
+            help: help,
+            length: length
+        })
+    }
+    shouldComponentUpdate(nextProps, nextState) {
+        return nextProps.value !== this.props.value
+    }
+    _onChange(e) {
+        let error
+        let warning
+        let success
+        let value = e.target.value.replace(/(^\s*)|(\s*$)/, "")
         let length = value.length
-        let help = this.props.help
-        if (value) {
-            let type = this.props.type
-            if (Regs[type] && !Regs[type].test(value)) {
-                if (Regs[type + '-help']) {
-                    help = Regs[type + '-help']
-                }
-                error = true
-            }
+        let help = this.props.help || '请输入' + this.props.title
+        if (length > 0) {
             if (this.props.min && length < this.props.min) {
                 help = '请输入至少' + this.props.min + '个字符！'
                 error = true
             } else if (this.props.max && length > this.props.max) {
                 help = '请输入至多' + this.props.max + '个字符！'
-                value = this.state.value
-                length = this.props.max
                 error = true
             }
             if (!error) {
                 success = true
             }
-        } else if (this.props.required && _onChange) {
+        } else if (this.props.required) {
             help = this.props.title + '必须填写！'
             warning = true
         }
@@ -54,29 +54,12 @@ default class Input extends React.Component {
             warning: warning,
             success: success,
         })
-        if (_onChange) {
-            if (this.props.onChange) {
-                this.props.onChange(this.props.name, value)
-            }
+        if (this.props.onChange) {
+            this.props.onChange(this.props.name, value)
         }
-    }
-    shouldComponentUpdate(nextProps, nextState) {
-            return nextProps.value !== this.props.value
-        }
-        // componentWillReceiveProps(nextProps) {
-        //     console.log(123)
-        //     this.setState({
-        //         value: nextProps.value,
-        //         length: nextProps.value.length
-        //     })
-        // }
-    _onChange(e) {
-        let value = e.target.value.replace(/(^\s*)|(\s*$)/g, "")
-        this.componentWillMount(value, true)
     }
     render() {
         let Class = classNames({
-            'form-group': true,
             'has-error': this.state.error,
             'has-warning': this.state.warning,
             'has-success': this.state.success
@@ -85,33 +68,25 @@ default class Input extends React.Component {
         if (this.props.max) {
             limit += ' / ' + this.props.max
         }
-        let limitClass = classNames({
-            'form-ico fa': true,
-            'fa-exclamation': this.state.error,
-            'fa-warning': this.state.warning,
-            'fa-check': this.state.success
-        })
-        let helpClass = classNames({
-            'form-help': true
-        })
         return (
-            <div className={Class}>
-                <label className="form-label">{this.props.title}</label>
-                <div className="form-control">
-                    <i className={limitClass}>{limit}</i>
-                    <input
-                        className="form-input"
-                        type={this.props.type}
-                        max={this.props.max}
-                        min={this.props.min}
-                        placeholder={this.props.placeholder}
-                        disabled={this.props.disabled}
-                        autoComplete={this.props.autocomplete}
-                        value={this.state.value}
-                        onChange={this._onChange.bind(this) } />
-                    <span className={helpClass}>{this.state.help}</span>
-                </div>
-            </div>
+            React.createElement(FormGroup, {
+                    class: Class,
+                    title: this.props.title,
+                    limit: limit,
+                    help: this.state.help
+                },
+                React.createElement('input', {
+                    className: 'form-input',
+                    type: this.props.type,
+                    max: this.props.max,
+                    min: this.props.min,
+                    placeholder: this.props.placeholder,
+                    disabled: this.props.disabled,
+                    autoComplete: this.props.autoComplete,
+                    value: this.state.value,
+                    onChange: this._onChange.bind(this)
+                })
+            )
         )
     }
 }
@@ -119,7 +94,6 @@ default class Input extends React.Component {
 Input.defaultProps = {
     type: 'text',
     value: '',
-    help: '',
     autocomplete: 'off',
     required: 'required',
 }

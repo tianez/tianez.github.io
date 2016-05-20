@@ -16,7 +16,7 @@ export default class Header extends React.Component {
                     info: data
                 })
             }.bind(this))
-        setInterval(this.api.bind(this), 20000)
+            // setInterval(this.api.bind(this), 20000)
     }
     api() {
         ApiStore.get('acman/zhaiyanapi/tcrand?fangfa=json', function(err, res) {

@@ -2,13 +2,12 @@
 import React from 'react'
 import Apicloud from '../utils/Apicloud'
 import classNames from 'classnames';
+import './Form.scss'
 
 export default class Form extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            info: {}
-        }
+        console.log(props.apiSubmit)
     }
     handleSubmit(e) {
         e.preventDefault();
@@ -27,15 +26,21 @@ export default class Form extends React.Component {
     }
     render() {
         return (
-            <form className="form-fields form-horizontal"
-                role = 'form'
-                encType= 'multipart/form-data'
-                onSubmit={this.handleSubmit.bind(this) } >
-                <fieldset className='form-fieldset'>
-                    <legend className='form-legend'>{this.props.legend}</legend>
-                    {this.props.children}
-                </fieldset>
-            </form>
+            React.createElement('form', {
+                    className: 'form-fields form-horizontal',
+                    role: 'form',
+                    encType: 'multipart/form-data',
+                    onSubmit: this.handleSubmit.bind(this)
+                },
+                React.createElement('fieldset', {
+                        className: 'form-fieldset'
+                    },
+                    React.createElement('legend', {
+                        className: 'form-legend'
+                    }, this.props.legend),
+                    this.props.children
+                )
+            )
         )
     }
 }
