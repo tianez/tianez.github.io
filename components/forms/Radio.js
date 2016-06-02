@@ -5,15 +5,12 @@ import FormGroup from './FormGroup'
 
 export default class Checkbox extends React.Component {
     constructor(props) {
-            super(props)
-            this.state = {
-                value: props.value,
-                help: props.help,
-            }
+        super(props)
+        this.state = {
+            value: props.value,
+            help: props.help,
         }
-        // shouldComponentUpdate(nextProps, nextState) {
-        //     return nextProps.value !== this.props.value
-        // }
+    }
     _onChange(e) {
         let type = this.props.type
         let v = parseInt(e.target.value)
