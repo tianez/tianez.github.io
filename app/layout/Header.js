@@ -1,9 +1,29 @@
 'use strict'
 import React from 'react'
-// import {Link} from 'react-router'
-var ReactRouter = require('react-router');
-var Link = ReactRouter.Link;
+import {
+    Link
+} from 'react-router'
 
+class A extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+    render() {
+        return (
+            React.createElement('li', {
+                    className: 'pure-menu-item'
+                },
+                React.createElement(Link, {
+                        className: 'pure-menu-link',
+                        to: this.props.to,
+                        activeClassName: 'active'
+                    },
+                    this.props.title
+                )
+            )
+        )
+    }
+}
 export default class Header extends React.Component {
     constructor(props) {
         super(props)
@@ -12,30 +32,64 @@ export default class Header extends React.Component {
         let user = storedb('user').find() ? true : false
         let islogin
         if (user) {
-            islogin = <li className="pure-menu-item"><Link className="pure-menu-link" to="/logout" activeClassName={"active"}>登出</Link></li>
+            islogin = React.createElement(A, {
+                to: '/logout',
+                title: '登出'
+            })
         } else {
-            islogin = <li className="pure-menu-item"><Link className="pure-menu-link" to="/login" activeClassName={"active"}>登录</Link></li>
-        }
-        let ACTIVE = {
-            color: 'red'
+            islogin = React.createElement(A, {
+                to: '/login',
+                title: '登录'
+            })
         }
         return (
-            <header id="header" className="pure-menu pure-menu-horizontal pure-menu-fixed">
-                <div className='container'>
-                <a href="#" className="pure-menu-heading pure-menu-link left">我的理想乡</a>
-                <ul className="pure-menu-list left">
-                    <li className="pure-menu-item"><Link className="pure-menu-link" to="/roles" activeClassName={"active"}>角色管理</Link></li>
-                    <li className="pure-menu-item"><Link className="pure-menu-link" to="/account" activeClassName={"active"}>用户管理</Link></li>
-                    <li className="pure-menu-item"><Link className="pure-menu-link" to="/permit" activeClassName={"active"}>权限管理</Link></li>
-                    <li className="pure-menu-item"><Link className="pure-menu-link" to="/fields" activeClassName={"active"}>字段管理</Link></li>
-                    <li className="pure-menu-item"><Link className="pure-menu-link" to="/page" activeClassName={"active"}>博文</Link></li>
-                    <li className="pure-menu-item"><Link className="pure-menu-link" to="/page/add" activeClassName={"active"}>新增文章</Link></li>
-                </ul>
-                <ul className="pure-menu-list right">
-                    {islogin}
-                </ul>
-                </div>
-            </header>
+            React.createElement('header', {
+                    id: 'header',
+                    className: 'pure-menu pure-menu-horizontal pure-menu-fixed'
+                },
+                React.createElement('div', {
+                        className: 'container'
+                    },
+                    React.createElement('a', {
+                            className: 'pure-menu-heading pure-menu-link left'
+                        },
+                        '我的理想乡'
+                    ),
+                    React.createElement('ul', {
+                            className: 'pure-menu-list left'
+                        },
+                        React.createElement(A, {
+                            to: '/roles',
+                            title: '角色管理'
+                        }),
+                        React.createElement(A, {
+                            to: '/account',
+                            title: '用户管理'
+                        }),
+                        React.createElement(A, {
+                            to: '/permit',
+                            title: '权限管理'
+                        }),
+                        React.createElement(A, {
+                            to: '/fields',
+                            title: '字段管理'
+                        }),
+                        React.createElement(A, {
+                            to: '/page',
+                            title: '博文'
+                        }),
+                        React.createElement(A, {
+                            to: '/page/add',
+                            title: '新增文章'
+                        })
+                    ),
+                    React.createElement('ul', {
+                            className: 'pure-menu-list right'
+                        },
+                        islogin
+                    )
+                )
+            )
         )
     }
 }
