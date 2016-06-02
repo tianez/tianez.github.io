@@ -32,12 +32,14 @@ export default class Add extends React.Component {
             articleId
         } = this.props.params
         Apicloud.get('model?filter={"where":{"model":"article"}}', '', function(err, res) {
+            let state = {}
             let model = JSON.parse(res.text)
             if (articleId) {
                 let article = ConfigStore.get(articleId)
                 if (article) {
                     article._method = 'PUT'
                     this.setState({
+                        model: model,
                         info: article,
                         action: action,
                         id: articleId
@@ -67,28 +69,6 @@ export default class Add extends React.Component {
                 })
             }
         }.bind(this))
-
-        // let article = ConfigStore.get(articleId)
-        // if (article) {
-        //     article._method = 'PUT'
-        //     this.setState({
-        //         info: article,
-        //         action: action,
-        //         id: articleId
-        //     })
-        // } else {
-        //     Apicloud.get(action, '', function(err, res) {
-        //         let article = JSON.parse(res.text)
-        //         article._method = 'PUT'
-        //         ConfigActions.update('title', article.title)
-        //         this.setState({
-        //             info: article,
-        //             action: action,
-        //             id: articleId,
-        //             ids: 'articleId',
-        //         })
-        //     }.bind(this))
-        // }
         loadingHide()
     }
     _onChange(name, value) {

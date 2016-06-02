@@ -19,19 +19,10 @@ export default class Login extends React.Component {
     }
     componentDidMount() {
         this._req()
-        window.addEventListener('scroll', this._scroll.bind(this), false)
-    }
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this._scroll.bind(this), false)
     }
     _scroll() {
         let style = _scroll(0.5)
         this.setState(style)
-            // this.setState({
-            //     style: {
-            //         transform: 'translateY(-' + h + 'px)'
-            //     }
-            // })
     }
     _req() {
         let action = 'article'
@@ -52,11 +43,6 @@ export default class Login extends React.Component {
                 loadingHide()
                 this.setState(article)
                 this.swiperInit()
-            }.bind(this))
-
-            Apicloud.get('user/570f1800ea2f8ffd6b4ba458', '', function(err, res) {
-                let user = JSON.parse(res.text)
-                console.log(user)
             }.bind(this))
         }
     }
