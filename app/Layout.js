@@ -22,20 +22,20 @@ export default class Layout extends React.Component {
 
     }
     componentDidMount() {
-        let url = 'react/user';
-        request.get(url)
-            .end(function(err, res) {
-                if (err) throw err;
-                let data = JSON.parse(res.text)
-                ConfigActions.update('user', data)
-                storedb('players').insert(data, function(err, result) {
-                    if (!err) {
-                        console.log(result)
-                    } else {
+        // let url = 'react/user';
+        // request.get(url)
+        //     .end(function(err, res) {
+        //         if (err) throw err;
+        //         let data = JSON.parse(res.text)
+        //         ConfigActions.update('user', data)
+        //         storedb('players').insert(data, function(err, result) {
+        //             if (!err) {
+        //                 console.log(result)
+        //             } else {
 
-                    }
-                })
-            }.bind(this));
+        //             }
+        //         })
+        //     }.bind(this));
         ConfigStore.addChangeListener(this._onChange.bind(this))
         window.onload = function() {
             let load = document.getElementById('load')
@@ -76,7 +76,7 @@ export default class Layout extends React.Component {
         console.log(32)
     }
     render() {
-        console.log(ConfigStore.get('user'))
+        // console.log(ConfigStore.get('user'))
         return (
             React.createElement('div', {
                     className: 'warper'

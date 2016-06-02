@@ -41,7 +41,8 @@ export default class Checkbox extends React.Component {
         let type = this.props.type
         let value = this.state.value
         let name = this.props.name
-        let options = this.props.options.map(function(d, index) {
+        let option = JSON.parse(this.props.options)
+        let options = option.map(function(d, index) {
             let checked = ''
             if (type == 'radio' && value == d.value) {
                 checked = 'checked'

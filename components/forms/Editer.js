@@ -39,7 +39,6 @@ export default class Editer extends React.Component {
     }
     render() {
         let help = this.props.help || '请输入' + this.props.title
-        console.log(help)
         let placeholder = this.props.help || '请输入' + this.props.title
         return (
             React.createElement(FormGroup, {

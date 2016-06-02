@@ -28,9 +28,14 @@ export default class Header extends React.Component {
     }
     render() {
         return (
-            <footer id="footer" className="footer fixed-bottom">
-                {this.state.info.taici}—— {this.state.info.source}
-            </footer>
+            React.createElement('footer', {
+                    id: 'footer',
+                    className: 'footer fixed-bottom'
+                },
+                this.state.info.taici,
+                '—— ',
+                this.state.info.source
+            )
         )
     }
 }

@@ -25,7 +25,7 @@ export default class Login extends React.Component {
         })
     }
     _onSubmit(data) {
-        localStorage.user = JSON.stringify(data)
+        storedb('user').insert(data)
         window.location.href = '/#/'
     }
     render() {

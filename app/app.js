@@ -34,17 +34,17 @@ import NoMatch from './pages/NoMatch'
 function redirectToLogin(nextState, replace) {
     let pathname = nextState.location.pathname
     console.log(pathname)
-        // let user = localStorage.user ? true : false
-        // if (!user && pathname !== '/login') {
-        //     ConfigActions.update('msg', '你还没有登录，请先登录！')
-        //     replace({
-        //         pathname: '/login'
-        //     })
-        // } else if (user && pathname == '/login') {
-        //     replace({
-        //         pathname: '/'
-        //     })
-        // }
+    let user = storedb('user').find() ? true : false
+    if (!user && pathname !== 'login') {
+        ConfigActions.update('msg', '你还没有登录，请先登录！')
+        replace({
+            pathname: '/login'
+        })
+    } else if (user && pathname == 'login') {
+        replace({
+            pathname: '/'
+        })
+    }
 }
 
 ReactDom.render((

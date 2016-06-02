@@ -53,6 +53,11 @@ export default class Login extends React.Component {
                 this.setState(article)
                 this.swiperInit()
             }.bind(this))
+
+            Apicloud.get('user/570f1800ea2f8ffd6b4ba458', '', function(err, res) {
+                let user = JSON.parse(res.text)
+                console.log(user)
+            }.bind(this))
         }
     }
     swiperInit() {
@@ -88,7 +93,7 @@ export default class Login extends React.Component {
         }
         let thumbs
         let pics
-        if (this.state.pics.length > 0) {
+        if (this.state.pics && this.state.pics.length > 0) {
             let files = JSON.parse(this.state.pics)
             thumbs = files.map(function(file, index) {
                 let id = 'swiper-' + index
@@ -125,7 +130,7 @@ export default class Login extends React.Component {
                 <section className = "contents">
                     <section className = "container">
                         <div className="header">
-                            <h1>{this.state.title}--<a href={edit} target="_blank">编辑</a></h1>
+                            <h1>{this.state.title}--<a href={edit}>编辑</a></h1>
                             <h2>{this.state.description}</h2>
                         </div>
                         <div className="content simditor-body">

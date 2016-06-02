@@ -24,10 +24,10 @@ export default class Upload extends React.Component {
     }
     componentWillMount() {
         let thumbs = this.props.value
-        if (thumbs == '') {
-            thumbs = []
-        } else {
+        if (thumbs) {
             thumbs = JSON.parse(thumbs)
+        } else {
+            thumbs = []
         }
         let files = []
         let count = thumbs.length

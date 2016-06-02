@@ -9,7 +9,7 @@ export default class Header extends React.Component {
         super(props)
     }
     render() {
-        let user = localStorage.user ? true : false
+        let user = storedb('user').find() ? true : false
         let islogin
         if (user) {
             islogin = <li className="pure-menu-item"><Link className="pure-menu-link" to="/logout" activeClassName={"active"}>登出</Link></li>

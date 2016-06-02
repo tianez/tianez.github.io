@@ -6,8 +6,7 @@ import './Form.scss'
 
 export default class Form extends React.Component {
     constructor(props) {
-        super(props);
-        console.log(props.apiSubmit)
+        super(props)
     }
     handleSubmit(e) {
         e.preventDefault();

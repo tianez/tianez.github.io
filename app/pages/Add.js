@@ -31,34 +31,64 @@ export default class Add extends React.Component {
         let {
             articleId
         } = this.props.params
-        if (articleId) {
-            action = action + '/' + articleId
-            let article = ConfigStore.get(articleId)
-            if (article) {
-                article._method = 'PUT'
-                this.setState({
-                    info: article,
-                    action: action,
-                    id: articleId
-                })
-            } else {
-                Apicloud.get(action, '', function(err, res) {
-                    let article = JSON.parse(res.text)
+        Apicloud.get('model?filter={"where":{"model":"article"}}', '', function(err, res) {
+            let model = JSON.parse(res.text)
+            if (articleId) {
+                let article = ConfigStore.get(articleId)
+                if (article) {
                     article._method = 'PUT'
-                    ConfigActions.update('title', article.title)
                     this.setState({
                         info: article,
                         action: action,
-                        id: articleId,
-                        ids: 'articleId',
+                        id: articleId
                     })
-                }.bind(this))
+                } else {
+                    action = action + '/' + articleId
+                    Apicloud.get(action, '', function(err, res) {
+                        let article = JSON.parse(res.text)
+                        article._method = 'PUT'
+                        ConfigActions.update('title', article.title)
+                        this.setState({
+                            model: model,
+                            info: article,
+                            action: action,
+                            id: articleId,
+                        })
+                    }.bind(this))
+                }
+            } else {
+                let userId = storedb('user').find()[0].userId
+                this.setState({
+                    model: model,
+                    action: action,
+                    info: {
+                        userId: userId
+                    },
+                })
             }
-        } else {
-            this.setState({
-                action: action,
-            })
-        }
+        }.bind(this))
+
+        // let article = ConfigStore.get(articleId)
+        // if (article) {
+        //     article._method = 'PUT'
+        //     this.setState({
+        //         info: article,
+        //         action: action,
+        //         id: articleId
+        //     })
+        // } else {
+        //     Apicloud.get(action, '', function(err, res) {
+        //         let article = JSON.parse(res.text)
+        //         article._method = 'PUT'
+        //         ConfigActions.update('title', article.title)
+        //         this.setState({
+        //             info: article,
+        //             action: action,
+        //             id: articleId,
+        //             ids: 'articleId',
+        //         })
+        //     }.bind(this))
+        // }
         loadingHide()
     }
     _onChange(name, value) {
@@ -73,70 +103,76 @@ export default class Add extends React.Component {
         ConfigActions.update(data.id, data)
         if (!this.state.id) {
             ConfigActions.update('msg', '发布成功！')
-            window.location.href = '/#/post/' + data.id
+            window.location.href = '/#/page/' + data.id
         } else {
             ConfigActions.update('msg', '保存成功！')
         }
     }
     render() {
         let render
+        let forms
         let info = this.state.info
+        let model = this.state.model
+        if (model) {
+            let onChange = this._onChange.bind(this)
+            forms = model.map(function(d, index) {
+                d.value = info[d.name] || d.default
+                d.key = d.name
+                d.onChange = onChange
+                switch (d.type) {
+                    case "text":
+                        return (React.createElement(Input, d))
+                        break;
+                    case "password":
+                        return (React.createElement(Input, d))
+                        break;
+                    case "email":
+                        return (React.createElement(Input, d))
+                        break;
+                    case "textarea":
+                        return (React.createElement(Textarea, d))
+                        break;
+                    case "upload":
+                        return (React.createElement(Upload, d))
+                        break;
+                    case "image":
+                        return (React.createElement(Upload, d))
+                        break;
+                    case "editer":
+                        return (React.createElement(Editer, d))
+                        break;
+                    case "radio":
+                        return (React.createElement(Radio, d))
+                        break;
+                    case "checkbox":
+                        return (React.createElement(Radio, d))
+                        break;
+                    default:
+                        break;
+                }
+            })
+        }
         if (info) {
             render =
-                <section className = "container" >
-                    <h3 className = "jumbotron-heading" >文章管理</h3>
-                    <Form action = {this.state.action}
-                        info = {info}
-                        legend = '新增文章'
-                        onSubmit = {this._onSubmit.bind(this) }>
-                        <Input
-                            title = '标题'
-                            name = 'title'
-                            value = {info.title}
-                            placeholder = '标题'
-                            help = '请输入标题名'
-                            onChange = {this._onChange.bind(this) }
-                            />
-                        <Textarea
-                            title = '内容'
-                            name = 'description'
-                            value = {info.description}
-                            placeholder = '内容'
-                            help = '内容'
-                            onChange = {this._onChange.bind(this) }
-                            />
-                        <Upload 
-                            name = 'thumb' 
-                            value= {info.thumb}
-                            multiple = {false}
-                            onChange = {this._onChange.bind(this) } 
-                            />
-                        <Editer 
-                            value= {info.content}
-                            onChange = {this._onChange.bind(this) }
-                            />
-                        <Radio />
-                        <Radio type='radio' value= {info.state}
-                            title='状态'
-                            options = {[{
-                                title: '正常',
-                                value: 0
-                            }, {
-                                title: '关闭',
-                                value: 1
-                            }]}
-                            onChange = {this._onChange.bind(this) }
-                            />
-                        <Range />
-                        <Upload 
-                            name = 'pics' 
-                            value= {info.pics}
-                            onChange = {this._onChange.bind(this) } 
-                            />
-                        <Button value="提交" />
-                    </Form>
-                </section>
+                React.createElement('section', {
+                        className: 'container'
+                    },
+                    React.createElement('h3', null, info.title),
+                    React.createElement(Form, {
+                            action: this.state.action,
+                            info: info,
+                            legend: info.title,
+                            onSubmit: this._onSubmit.bind(this)
+                        },
+                        forms,
+                        React.createElement(Button)
+                    )
+                )
         }
-        return (<section className='warp'>{render}</section>)
+        return (
+            React.createElement('section', {
+                className: 'warp'
+            }, render)
+        )
     }
 }

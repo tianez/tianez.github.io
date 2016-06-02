@@ -62,7 +62,6 @@ export default class Add extends React.Component {
                         return
                     }
                     ConfigActions.update('title', data.title)
-                    console.log(data)
                     this.setState({
                         mods: data.mods,
                         info: data.info,
