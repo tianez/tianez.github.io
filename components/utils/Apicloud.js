@@ -5,7 +5,7 @@ var get = function(url, filter, cb) {
     if (window.navigator.onLine == true) {
         let now = Date.now()
         let key = SHA1(AppId + 'UZ' + AppKey + 'UZ' + now) + "." + now
-        let token = storedb('user').find()[0].id
+        let token = storedb('user').find() ? storedb('user').find()[0].id : ''
         request
             .get(AppUrl + url)
             .set('X-APICloud-AppId', AppId)
@@ -25,7 +25,7 @@ var post = function(url, info, cb) {
     if (window.navigator.onLine == true) {
         let now = Date.now()
         let key = SHA1(AppId + 'UZ' + AppKey + 'UZ' + now) + "." + now
-        let token = storedb('user').find()[0].id
+        let token = storedb('user').find() ? storedb('user').find()[0].id : ''
         request
             .post(AppUrl + url)
             .set('X-APICloud-AppId', AppId)
