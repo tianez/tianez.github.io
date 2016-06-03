@@ -21,7 +21,6 @@ var get = function(url, filter, cb) {
 }
 
 var post = function(url, info, cb) {
-    console.log(window.navigator.onLine)
     if (window.navigator.onLine == true) {
         let now = Date.now()
         let key = SHA1(AppId + 'UZ' + AppKey + 'UZ' + now) + "." + now

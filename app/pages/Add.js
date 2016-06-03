@@ -34,6 +34,7 @@ export default class Add extends React.Component {
         Apicloud.get('model?filter={"where":{"model":"article"}}', '', function(err, res) {
             let state = {}
             let model = JSON.parse(res.text)
+            action = action + '/' + articleId
             if (articleId) {
                 let article = ConfigStore.get(articleId)
                 if (article) {
@@ -45,7 +46,6 @@ export default class Add extends React.Component {
                         id: articleId
                     })
                 } else {
-                    action = action + '/' + articleId
                     Apicloud.get(action, '', function(err, res) {
                         let article = JSON.parse(res.text)
                         article._method = 'PUT'

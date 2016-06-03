@@ -10,13 +10,23 @@ export default class Loading extends React.Component {
             'loading-hide': loading == 0
         })
         return (
-            <section className ={Class} >
-                <div className="spinner">
-                    <div className="bounce1"></div>
-                    <div className="bounce2"></div>
-                    <div className="bounce3"></div>
-                </div>
-            </section>
+            React.createElement('section', {
+                    className: Class
+                },
+                React.createElement('div', {
+                        className: 'spinner'
+                    },
+                    React.createElement('div', {
+                        className: 'bounce1'
+                    }),
+                    React.createElement('div', {
+                        className: 'bounce2'
+                    }),
+                    React.createElement('div', {
+                        className: 'bounce3'
+                    })
+                )
+            )
         )
     }
 }

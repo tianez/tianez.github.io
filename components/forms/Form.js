@@ -16,8 +16,11 @@ export default class Form extends React.Component {
         if (this.props.apiSubmit) {
             Apicloud.post(this.props.action, this.props.info, function(err, res) {
                 let data = JSON.parse(res.text)
-                console.log(res)
-                this.props.onSubmit(data)
+                if(data.error){
+                    ConfigActions.update('msg', data.error.message)
+                }else{
+                    this.props.onSubmit(data)
+                }
             }.bind(this))
         } else {
             this.props.onSubmit(e)
