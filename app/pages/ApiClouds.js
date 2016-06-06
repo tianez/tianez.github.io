@@ -51,12 +51,21 @@ export default class Header extends React.Component {
             lists = this.state.info.map(function(d, index) {
                 let curl = '/apicloud/' + this.props.params.clouds + '/' + d.id
                 return (
-                    React.createElement(Link, {
-                            to: curl,
-                            className: 'service-box pure-u-1',
+                    React.createElement('tr', {
+                            className: 'pure-table-odd',
                             key: index
                         },
-                        d.id
+                        React.createElement('td', {},
+                            React.createElement(Link, {
+                                    to: curl,
+                                    className: 'service-box pure-u-1'
+                                },
+                                d.id
+                            )
+                        ),
+                        React.createElement('td', {}, d.title),
+                        React.createElement('td', {}, 'Model'),
+                        React.createElement('td', {}, '#')
                     )
                 )
             }.bind(this))
@@ -80,7 +89,28 @@ export default class Header extends React.Component {
                         id: 'uid',
                         className: 'container  pure-g'
                     },
-                    lists
+                    React.createElement('div', {
+                            className: 'pure-u-1'
+                        },
+                        React.createElement('table', {
+                                className: 'pure-table',
+                                style: {
+                                    width: "100%"
+                                }
+                            },
+                            React.createElement('thead', {},
+                                React.createElement('tr', {},
+                                    React.createElement('th', {}, '#'),
+                                    React.createElement('th', {}, 'title'),
+                                    React.createElement('th', {}, 'Model'),
+                                    React.createElement('th', {}, '#')
+                                )
+                            ),
+                            React.createElement('tbody', {},
+                                lists
+                            )
+                        )
+                    )
                 )
             )
         )

@@ -67,7 +67,7 @@ export default class Layout extends React.Component {
     }
     onScroll() {
         // var obj = document.getElementById('app')
-        // console.log(obj.offsetTop) 
+        // console.log(obj.offsetTop)
         // console.log(window.scrollY)
         ConfigActions.update('window_Y', window.scrollY)
             // console.log(document.body.scrollTop)

@@ -67,9 +67,9 @@ export default class Header extends React.Component {
         if (this.state.menu) {
             menus = this.state.menu.map(function(d, index) {
                 return React.createElement(A, {
+                    key: index,
                     to: '/apicloud/' + d.link,
-                    title: d.title,
-                    key: index
+                    title: d.title
                 })
             })
         }
