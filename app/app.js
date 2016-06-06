@@ -16,13 +16,12 @@ from 'react-router'
 
 import './window'
 
-/** 
+/**
  * 路由
  */
 import Layout from './Layout'
 import Index from './pages/Index'
 import Pages from './pages/Pages'
-import Pages2 from './pages/Pages2'
 import Page from './pages/Page'
 import Add from './pages/Add'
 import List from './pages/List'
@@ -31,11 +30,13 @@ import Login from './pages/Login'
 import Logout from './pages/Logout'
 import NoMatch from './pages/NoMatch'
 
+import ApiCloudsIndex from './pages/ApiCloudsIndex'
+import ApiClouds from './pages/ApiClouds'
+import ApiCloud from './pages/ApiCloud'
+
 function redirectToLogin(nextState, replace) {
     let pathname = nextState.location.pathname
-    console.log(pathname)
     let user = storedb('user').find() ? true : false
-    console.log(user)
     if (!user && pathname !== 'login' && pathname !== '/login') {
         ConfigActions.update('msg', '你还没有登录，请先登录！')
         replace({
@@ -94,6 +95,27 @@ ReactDom.render((
                     component: Add,
                     onEnter: redirectToLogin
                 }),
+                React.createElement(Route, {
+                        path: "apicloud"
+                    },
+                    React.createElement(IndexRoute, {
+                        component: ApiCloudsIndex,
+                        onEnter: redirectToLogin
+                    }),
+                    React.createElement(Route, {
+                            path: ":clouds"
+                        },
+                        React.createElement(IndexRoute, {
+                            component: ApiClouds,
+                            onEnter: redirectToLogin
+                        }),
+                        React.createElement(Route, {
+                            path: ":articleId",
+                            component: ApiCloud,
+                            onEnter: redirectToLogin
+                        })
+                    )
+                ),
                 React.createElement(Route, {
                         path: ":list"
                     },

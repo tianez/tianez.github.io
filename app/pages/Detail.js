@@ -15,7 +15,7 @@ import {
 
 export default class Add extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             info: null,
             mods: null,

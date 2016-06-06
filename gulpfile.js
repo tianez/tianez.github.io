@@ -92,9 +92,9 @@ gulp.task("webpack", function() {
 
 gulp.task('webserver', function() {
     connect.server({
-        port: 3000,
+        port: 3111,
         livereload: true
-    });
+    })
 })
 
 gulp.task('watch', function() {

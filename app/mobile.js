@@ -16,13 +16,12 @@ from 'react-router'
 
 import './window'
 
-/** 
+/**
  * 路由
  */
 import Layout from './Layout'
 import Index from './pages/Index'
 import Pages from './pages/Pages'
-import Pages2 from './pages/Pages2'
 import Page from './pages/Page'
 import Login from './pages/Login'
 import Logout from './pages/Logout'
