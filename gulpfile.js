@@ -51,8 +51,10 @@ gulp.task('js_ext', function() {
             [
                 'components/utils/SHA1.js',
                 'components/utils/CryptoJS.js',
+                'components/utils/Sortable.js',
                 'bower_components/storedb/storedb.js',
                 'bower_components/jquery/dist/jquery.min.js',
+                'bower_components/swiper/js/swiper.min.js',
                 'bower_components/simditor/scripts/module.js',
                 'bower_components/simditor/scripts/hotkeys.js',
                 'bower_components/simditor/scripts/uploader.js',
