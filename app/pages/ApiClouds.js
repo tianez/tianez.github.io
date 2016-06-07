@@ -18,7 +18,15 @@ export default class Header extends React.Component {
         let id = this.props.params.clouds
     }
     componentDidMount() {
-        Apicloud.get(this.props.params.clouds, '', function(err, res) {
+        let filter = {
+            where: {
+                state: 1
+            }, 
+            order: ['order DESC', 'createdAt DESC'],
+            limit: $_GET['limit'] ? parseInt($_GET['limit']) : 20,
+            skip: $_GET['skip'] ? parseInt($_GET['skip']) : 0
+        }
+        Apicloud.get(this.props.params.clouds, filter, function(err, res) {
             if (err) {
                 ConfigActions.msg(res.status + 'error');
             } else {

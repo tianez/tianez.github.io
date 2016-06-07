@@ -21,41 +21,39 @@ export default class Component extends React.Component {
             info: null
         }
     }
-    componentWillMount() {
-        let action = this.props.params.clouds
-        let title = 'wenzhang'
+    componentDidMount() {
+        this._req(this.props)
+    }
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.location.pathname !== this.state.hash) {
+            this._req(nextProps)
+        }
+    }
+    _req(props) {
+        let action = props.params.clouds
+        let title
         switch (action) {
             case "article":
                 title = '文章'
                 break;
+            case "menu":
+                title = '菜单'
+                break;
             default:
-                title = '字段'
+                title = '田恩仲开发设计'
                 break;
         }
-        this.setState({
-            title: title
-        })
-    }
-    componentDidMount() {
-        let action = this.props.params.clouds
-        let actions = '"' + this.props.params.clouds + '"'
-        var arr = [
-            ['中', '国'],
-            ['啊', '的'],
-            ['哦', '的']
-        ];
-        console.log(arr);
-        arr.sort(function(x, y) {
-            return x[0].localeCompare(y[0]);
-        });
-        console.log(arr);
         let {
             articleId
-        } = this.props.params
+        } = props.params
         let filter = {
             where: {
-                model: this.props.params.clouds
-            }
+                model: props.params.clouds,
+                state: 1
+            },
+            order: ['order DESC', 'createdAt DESC'],
+            limit: $_GET['limit'] ? parseInt($_GET['limit']) : 10,
+            skip: $_GET['skip'] ? parseInt($_GET['skip']) : 0
         }
         Apicloud.get('model', filter, function(err, res) {
             let model = JSON.parse(res.text)
@@ -65,20 +63,22 @@ export default class Component extends React.Component {
                 if (article) {
                     article._method = 'PUT'
                     this.setState({
+                        hash: props.location.pathname,
                         model: model,
-                        title: '编辑' + this.state.title,
+                        title: '编辑' + title,
                         info: article,
                         action: action,
                         id: articleId
                     })
                 } else {
-                    Apicloud.get(this.props.params.clouds + '/' + articleId, '', function(err, res) {
+                    Apicloud.get(props.params.clouds + '/' + articleId, '', function(err, res) {
                         let article = JSON.parse(res.text)
                         article._method = 'PUT'
                         ConfigActions.update('title', article.title)
                         this.setState({
+                            hash: props.location.pathname,
                             model: model,
-                            title: '编辑' + this.state.title,
+                            title: '编辑' + title,
                             info: article,
                             action: action,
                             id: articleId,
@@ -88,8 +88,9 @@ export default class Component extends React.Component {
             } else {
                 let userId = storedb('user').find()[0].userId
                 this.setState({
+                    hash: props.location.pathname,
                     model: model,
-                    title: '新增' + this.state.title,
+                    title: '新增' + title,
                     action: action,
                     info: {
                         userId: userId
@@ -124,7 +125,7 @@ export default class Component extends React.Component {
         if (model) {
             let onChange = this._onChange.bind(this)
             forms = model.map(function(d, index) {
-                d.value = info[d.name] || ''
+                d.value = info[d.name] || d.default || ''
                 d.key = d.name
                 d.onChange = onChange
                 switch (d.type) {
@@ -156,8 +157,8 @@ export default class Component extends React.Component {
                         return (React.createElement(Radio, d))
                         break;
                     case "hidden":
-                            return (React.createElement(Hidden, d))
-                            break;
+                        return (React.createElement(Hidden, d))
+                        break;
                     default:
                         break;
                 }

@@ -1,6 +1,5 @@
 'use strict'
 import request from 'superagent'
-
 var get = function(url, filter, cb) {
     if (window.navigator.onLine == true) {
         let now = Date.now()

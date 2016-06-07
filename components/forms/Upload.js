@@ -92,7 +92,7 @@ export default class Upload extends React.Component {
         }
     }
     uploadFile(files, id) {
-        let qnurl = 'https://7xj11y.com1.z0.glb.clouddn.com'
+        let qnurl = 'http://7xj11y.com1.z0.glb.clouddn.com'
         let token = getUpToken()
         let file = files[id]
         return ajaxUpload({

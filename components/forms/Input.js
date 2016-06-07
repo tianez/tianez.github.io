@@ -14,7 +14,7 @@ default class Input extends React.Component {
         }
     }
     componentWillMount() {
-        let length = this.props.value.length
+        let length = this.props.value.length || 0
         let help = this.props.help || '请输入' + this.props.title
         this.setState({
             help: help,

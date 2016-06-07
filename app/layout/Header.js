@@ -33,7 +33,14 @@ export default class Header extends React.Component {
         }
     }
     componentDidMount() {
-        let filter = {}
+        let filter = {
+            where: {
+                state: 1
+            },
+            order: ['order DESC', 'createdAt DESC'],
+            limit: $_GET['limit'] ? parseInt($_GET['limit']) : 20,
+            skip: $_GET['skip'] ? parseInt($_GET['skip']) : 0
+        }
         Apicloud.get('menu', filter, function(err, res) {
             let menu = JSON.parse(res.text)
             this.setState({
@@ -68,7 +75,7 @@ export default class Header extends React.Component {
             menus = this.state.menu.map(function(d, index) {
                 return React.createElement(A, {
                     key: index,
-                    to: '/apicloud/' + d.link,
+                    to: d.link,
                     title: d.title
                 })
             })
@@ -90,29 +97,17 @@ export default class Header extends React.Component {
                             id: 'ul',
                             className: 'pure-menu-list left'
                         },
-                        React.createElement(A, {
-                            to: '/roles',
-                            title: '角色管理'
-                        }),
-                        React.createElement(A, {
-                            to: '/account',
-                            title: '用户管理'
-                        }),
-                        React.createElement(A, {
-                            to: '/permit',
-                            title: '权限管理'
-                        }),
-                        React.createElement(A, {
-                            to: '/fields',
-                            title: '字段管理'
-                        }),
+                        // React.createElement(A, {
+                        //     to: '/permit',
+                        //     title: '权限管理'
+                        // }),
+                        // React.createElement(A, {
+                        //     to: '/fields',
+                        //     title: '字段管理'
+                        // }),
                         React.createElement(A, {
                             to: '/page',
                             title: '博文'
-                        }),
-                        React.createElement(A, {
-                            to: '/apicloud/article/add',
-                            title: '新增文章'
                         }),
                         menus
                     ),
