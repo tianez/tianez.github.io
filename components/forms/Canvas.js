@@ -21,7 +21,7 @@ export default class Canvas extends React.Component {
                         width: this.state.width,
                         height: this.state.height
                     }
-                },
+                }, 
                 React.createElement('img', {
                     style: {
                         width: this.state.width,

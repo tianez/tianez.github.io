@@ -55,6 +55,9 @@ export default class Upload extends React.Component {
             thumbs: thumbs
         })
     }
+    componentDidMount() {
+        this.swiperInit()
+    }
     componentDidUpdate() {
         this.swiperInit()
     }
@@ -182,9 +185,8 @@ export default class Upload extends React.Component {
     _show(e) {
         e.stopPropagation()
         let no = e.currentTarget.id.split("-")[1]
-        console.log(no)
         if (this.state.multiple) {
-            swiper2.slideTo(no, 0, false)
+            swiper2.slideTo(no, 1, false)
         }
         this.setState({
             isshow: true
@@ -219,6 +221,7 @@ export default class Upload extends React.Component {
                     float: 'left',
                     animationDelay: 50 * index + 'ms',
                     animationDuration: '500ms',
+                    paddingRight:'5px'
                 }
                 let thumb = file.thumb
                 let patt1 = new RegExp("blob:http")
