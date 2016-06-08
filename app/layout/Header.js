@@ -1,5 +1,5 @@
 'use strict'
-import React from 'react'
+
 import {
     Link
 } from 'react-router'
@@ -16,7 +16,7 @@ class A extends React.Component {
                 },
                 React.createElement(Link, {
                         className: 'pure-menu-link',
-                        to: this.props.to,
+                        to: '/' + this.props.to,
                         activeClassName: 'active'
                     },
                     this.props.title
@@ -38,8 +38,7 @@ export default class Header extends React.Component {
                 state: 1
             },
             order: ['order DESC', 'createdAt DESC'],
-            limit: $_GET['limit'] ? parseInt($_GET['limit']) : 20,
-            skip: $_GET['skip'] ? parseInt($_GET['skip']) : 0
+            limit: 20
         }
         Apicloud.get('menu', filter, function(err, res) {
             let menu = JSON.parse(res.text)

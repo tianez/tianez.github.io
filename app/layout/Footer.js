@@ -1,5 +1,5 @@
 'use strict'
-import React from 'react'
+
 import ApiStore from '../../components/utils/ApiStore'
 
 export default class Header extends React.Component {

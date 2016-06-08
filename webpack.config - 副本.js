@@ -2,31 +2,28 @@ var path = require('path')
 var webpack = require('webpack')
 var ExtractTextPlugin = require("extract-text-webpack-plugin")
 var node_modules_dir = path.resolve(__dirname, 'node_modules')
-
-var ignoreFiles = new webpack.IgnorePlugin(/react$/);
 module.exports = {
     // entry: {
     //     mobile: path.resolve(__dirname, 'app/mobile.js')
-    //     // vendor: ['react', 'react-dom','react-router']
     // },
     // output: {
     //     path: path.resolve(__dirname, 'dist'),
     //     filename: 'build/[name].js'
     // },
-
     entry: {
         app: path.resolve(__dirname, 'app/app.js'),
-        mobile: path.resolve(__dirname, 'app/mobile.js'),
-        // vendors: ['react', 'react-dom']
+        // mobile: path.resolve(__dirname, 'app/mobile.js'),
+        vendors: ['react', 'react-dom']
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'build/[name].js'
     },
-    externals: {
-        'react': 'React',
-        'react-dom': 'ReactDOM'
-    },
+    // externals: {
+    //     'react': 'React',
+    //     // 'react-dom': 'ReactDom',
+    //     'react-router': 'ReactRouter'
+    // },
     module: {
         loaders: [{
             test: /\.jsx?$/, // 用正则来匹配文件路径，这段意思是匹配 js 或者 jsx
@@ -56,8 +53,7 @@ module.exports = {
         }]
     },
     plugins: [
-        // new webpack.optimize.CommonsChunkPlugin('vendors', 'build/vendors.js'),
-        // new webpack.optimize.CommonsChunkPlugin('vendor', 'build/vendor.js'),
+        new webpack.optimize.CommonsChunkPlugin('vendors', 'build/vendors.js'),
         new ExtractTextPlugin("app.css")
     ]
 }

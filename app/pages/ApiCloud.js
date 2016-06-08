@@ -1,5 +1,5 @@
 'use strict';
-import React from 'react';
+
 import request from 'superagent'
 import Apicloud from '../../components/utils/Apicloud'
 import {
@@ -31,29 +31,24 @@ export default class Component extends React.Component {
     }
     _req(props) {
         let action = props.params.clouds
-        let title
-        switch (action) {
-            case "article":
-                title = '文章'
-                break;
-            case "menu":
-                title = '菜单'
-                break;
-            default:
-                title = '田恩仲开发设计'
-                break;
-        }
+        let title = this.props[action] ? this.props[action] : '田恩仲开发设计'
         let {
             articleId
         } = props.params
+        let where = {
+            state: 1
+        }
+        let $_GET = get(props.location.search)
+        extend(where, $_GET)
+        delete where['_k']
+        let rep = {
+            model: props.params.clouds
+        }
+        extend(where, rep, true)
         let filter = {
-            where: {
-                model: props.params.clouds,
-                state: 1
-            },
+            where: where,
             order: ['order DESC', 'createdAt DESC'],
-            limit: $_GET['limit'] ? parseInt($_GET['limit']) : 10,
-            skip: $_GET['skip'] ? parseInt($_GET['skip']) : 0
+            limit: $_GET['limit'] ? parseInt($_GET['limit']) : 100
         }
         Apicloud.get('model', filter, function(err, res) {
             let model = JSON.parse(res.text)
@@ -62,6 +57,7 @@ export default class Component extends React.Component {
                 let article = ConfigStore.get(articleId)
                 if (article) {
                     article._method = 'PUT'
+                    ConfigActions.update('title', article.title + '-编辑' + title)
                     this.setState({
                         hash: props.location.pathname,
                         model: model,
@@ -74,7 +70,7 @@ export default class Component extends React.Component {
                     Apicloud.get(props.params.clouds + '/' + articleId, '', function(err, res) {
                         let article = JSON.parse(res.text)
                         article._method = 'PUT'
-                        ConfigActions.update('title', article.title)
+                        ConfigActions.update('title', article.title + '-编辑' + title)
                         this.setState({
                             hash: props.location.pathname,
                             model: model,
@@ -87,6 +83,7 @@ export default class Component extends React.Component {
                 }
             } else {
                 let userId = storedb('user').find()[0].userId
+                ConfigActions.update('title', '新增' + title)
                 this.setState({
                     hash: props.location.pathname,
                     model: model,
@@ -190,7 +187,7 @@ export default class Component extends React.Component {
 }
 
 Component.defaultProps = {
-    title: {
-        article: 'sdsds'
-    }
+    article: '文章',
+    menu: '菜单',
+    model: '字段'
 }

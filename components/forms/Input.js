@@ -1,5 +1,4 @@
 'use strict'
-import React from 'react'
 import classNames from 'classnames'
 import Regs from '../utils/regs'
 import FormGroup from './FormGroup'

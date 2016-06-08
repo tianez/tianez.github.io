@@ -1,5 +1,5 @@
 'use strict'
-import React from 'react'
+
 import Apicloud from '../utils/Apicloud'
 import classNames from 'classnames';
 import './Form.scss'

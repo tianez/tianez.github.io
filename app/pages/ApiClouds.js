@@ -1,12 +1,11 @@
 'use strict'
 
-import React from 'react';
 import request from 'superagent'
 import {
     Link
 } from 'react-router'
 import Apicloud from '../../components/utils/Apicloud'
-export default class Header extends React.Component {
+export default class ApiClouds extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -15,18 +14,34 @@ export default class Header extends React.Component {
         }
     }
     componentWillMount() {
-        let id = this.props.params.clouds
+        let clouds = this.props.params.clouds
+        this.setState(this.props[clouds])
     }
-    componentDidMount() {
+    componentDidMount(nextProps) {
+        this._req(this.props)
+    }
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.location.search !== this.state.hash) {
+            this._req(nextProps)
+        }
+    }
+    _req(props) {
+        let action = props.params.clouds
+        let title = this.props[action] ? this.props[action].title : '田恩仲开发设计'
+        ConfigActions.update('title', title)
+        let where = {}
+        let $_GET = get(props.location.search)
+        extend(where, $_GET)
+        delete where['_k']
+        let rep = {}
+        extend(where, rep, true)
         let filter = {
-            where: {
-                state: 1
-            }, 
-            order: ['order DESC', 'createdAt DESC'],
+            where: where,
+            order: ['model DESC', 'order DESC', 'createdAt DESC'],
             limit: $_GET['limit'] ? parseInt($_GET['limit']) : 20,
             skip: $_GET['skip'] ? parseInt($_GET['skip']) : 0
         }
-        Apicloud.get(this.props.params.clouds, filter, function(err, res) {
+        Apicloud.get(props.params.clouds, filter, function(err, res) {
             if (err) {
                 ConfigActions.msg(res.status + 'error');
             } else {
@@ -34,12 +49,13 @@ export default class Header extends React.Component {
                 if (data.res == 404) {
                     ConfigActions.update('title', data.msg)
                     this.setState({
-                        title: data.msg,
+                        hash: props.location.search,
+                        title: data.msg
                     });
                     return
                 }
-                console.log(data)
                 this.setState({
+                    hash: props.location.search,
                     info: data
                 })
             }
@@ -54,31 +70,39 @@ export default class Header extends React.Component {
         loadingHide()
     }
     render() {
+        let thead
+        if (this.state.thead) {
+            thead = this.state.thead.map(function(d, index) {
+                return React.createElement('th', {
+                    key: index
+                }, d)
+            })
+        }
         let lists
         if (this.state.info) {
             lists = this.state.info.map(function(d, index) {
                 let curl = '/apicloud/' + this.props.params.clouds + '/' + d.id
                 return (
                     React.createElement('tr', {
-                            className: 'pure-table-odd',
+                            className: (index % 2 == 0) ? 'pure-table-odd' : '',
                             key: index
                         },
+                        React.createElement('td', {}, '#'),
+                        this.state.tbody.map(function(t, i) {
+                            return React.createElement('td', {
+                                key: i
+                            }, d[t])
+                        }),
                         React.createElement('td', {},
                             React.createElement(Link, {
-                                    to: curl,
-                                    className: 'service-box pure-u-1'
+                                    to: curl
                                 },
-                                d.id
+                                '编辑'
                             )
-                        ),
-                        React.createElement('td', {}, d.title),
-                        React.createElement('td', {}, 'Model'),
-                        React.createElement('td', {}, '#')
+                        )
                     )
                 )
             }.bind(this))
-        } else {
-            lists = ''
         }
         return (
             React.createElement('section', {
@@ -91,10 +115,45 @@ export default class Header extends React.Component {
                             className: 'pure-u-1'
                         },
                         this.state.title
+                    ),
+                    React.createElement('div', {
+                            className: 'pure-u-1 pure-menu pure-menu-open pure-menu-horizontal'
+                        },
+                        React.createElement('a', {
+                                className: 'pure-menu-heading'
+                            },
+                            '筛选'
+                        ),
+                        React.createElement('ul', {
+                                className: 'pure-menu-list'
+                            },
+                            React.createElement('li', {
+                                    className: 'pure-menu-item'
+                                },
+                                React.createElement(Link, {
+                                        to: '/apicloud/' + this.props.params.clouds,
+                                        className: 'pure-menu-link'
+                                    },
+                                    '全部'
+                                )
+                            ),
+                            React.createElement('li', {
+                                    className: 'pure-menu-item'
+                                },
+                                React.createElement(Link, {
+                                        to: '/apicloud/' + this.props.params.clouds,
+                                        className: 'pure-menu-link',
+                                        query: {
+                                            state: 1
+                                        }
+                                    },
+                                    '正常'
+                                )
+                            )
+                        )
                     )
                 ),
                 React.createElement('section', {
-                        id: 'uid',
                         className: 'container  pure-g'
                     },
                     React.createElement('div', {
@@ -108,13 +167,12 @@ export default class Header extends React.Component {
                             },
                             React.createElement('thead', {},
                                 React.createElement('tr', {},
-                                    React.createElement('th', {}, '#'),
-                                    React.createElement('th', {}, 'title'),
-                                    React.createElement('th', {}, 'Model'),
-                                    React.createElement('th', {}, '#')
+                                    thead
                                 )
                             ),
-                            React.createElement('tbody', {},
+                            React.createElement('tbody', {
+                                    id: 'uid'
+                                },
                                 lists
                             )
                         )
@@ -122,5 +180,23 @@ export default class Header extends React.Component {
                 )
             )
         )
+    }
+}
+
+ApiClouds.defaultProps = {
+    article: {
+        title: '文章管理',
+        thead: ['id', '标题', '状态', '操作'],
+        tbody: ['title', 'state']
+    },
+    menu: {
+        title: '菜单管理',
+        thead: ['id', '菜单名称', '排序', '状态', '操作'],
+        tbody: ['title', 'order', 'state']
+    },
+    model: {
+        title: '模块字段管理',
+        thead: ['id', '菜单名称', '所属模块', '排序', '状态', '操作'],
+        tbody: ['title', 'model', 'order', 'state']
     }
 }

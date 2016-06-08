@@ -1,6 +1,6 @@
 'use strict'
-import React from 'react'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+
+// import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import classNames from 'classnames';
 import Loading from './Loading'
 import Msg from './Msg'
@@ -24,9 +24,10 @@ export default class Main extends React.Component {
             <main id='main' className = "main">
                 <Loading />
                 <Msg />
-                <ReactCSSTransitionGroup component="div" className={Class} transitionName="swap" transitionEnterTimeout={500} transitionLeaveTimeout={500}>
-                    {React.cloneElement(this.props.children || <div />, { key: key }) }
-                </ReactCSSTransitionGroup>
+                {this.props.children}
+                // <ReactCSSTransitionGroup component="div" className={Class} transitionName="swap" transitionEnterTimeout={500} transitionLeaveTimeout={500}>
+                //     {React.cloneElement(this.props.children || <div />, { key: key }) }
+                // </ReactCSSTransitionGroup>
             </main>
         )
     }

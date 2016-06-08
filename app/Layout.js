@@ -1,6 +1,5 @@
 'use strict'
 
-import React from 'react'
 import request from 'superagent'
 
 import Header from './layout/Header'

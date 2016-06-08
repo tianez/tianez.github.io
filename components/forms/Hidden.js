@@ -1,5 +1,4 @@
 'use strict'
-import React from 'react'
 
 export default class Hidden extends React.Component {
     constructor() {

@@ -1,5 +1,5 @@
 'use strict';
-import React from 'react';
+
 import classNames from 'classnames'
 import Apicloud from '../../components/utils/Apicloud'
 // import './page.less'
@@ -72,7 +72,7 @@ export default class Login extends React.Component {
         })
     }
     render() {
-        let imgsrc = this.state.thumb ? JSON.parse(this.state.thumb)[0] + '-max' : "http://www.day.com/img?w=1920&h=600&r=" + this.state.id
+        let imgsrc = this.state.thumb ? JSON.parse(this.state.thumb)[0] + '-max' : "http://www.day.com/img?w=1920&h=400&r=" + this.state.id
 
         let style = {
             backgroundImage: 'url(' + imgsrc + ')'

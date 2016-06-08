@@ -1,6 +1,5 @@
 'use strict'
 
-import React from 'react'
 import request from 'superagent'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import {

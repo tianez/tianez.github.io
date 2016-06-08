@@ -1,6 +1,5 @@
 'use strict'
 
-import React from 'react'
 import classNames from 'classnames';
 import ajaxUpload from '../utils/AjaxUpload'
 import {

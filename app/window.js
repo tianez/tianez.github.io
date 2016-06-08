@@ -45,8 +45,11 @@ window._scroll = function() {
     return style
 }
 
-window.$_GET = (function() {
-    var url = window.document.location.href.toString();
+//获取url参数数组
+window.get = function(url) {
+    if (!url) {
+        var url = window.document.location.href.toString();
+    }
     var u = url.split("?");
     if (typeof(u[1]) == "string") {
         u = u[1].split("&");
@@ -59,4 +62,10 @@ window.$_GET = (function() {
     } else {
         return {};
     }
-})();
+}
+
+//2个对象合并
+window.extend = function(o, n, override) {
+    for (var p in n)
+        if (n.hasOwnProperty(p) && (!o.hasOwnProperty(p) || override)) o[p] = n[p];
+}

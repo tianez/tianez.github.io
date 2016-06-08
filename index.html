@@ -12,9 +12,8 @@
     <!--[if gt IE 8]><!-->
     <link rel="stylesheet" href="http://wpbo.qiniudn.com/bower_components/pure/grids-responsive-min.css">
     <!--<![endif]-->
-    <!-- <link rel="stylesheet" href="http://wpbo.qiniudn.com/app.css"> -->
     <link rel="stylesheet" href="bower_components/swiper/css/swiper.min.css">
-    <link rel="stylesheet" href="app/css/style.min.css">
+    <link rel="stylesheet" href="app/css/style.css">
 </head>
 <style>
     html {
@@ -42,18 +41,18 @@
   width: 60px;
   height: 60px;
   background-color: #67CF22;
- 
+
   margin: 100px auto;
   -webkit-animation: rotateplane 1.2s infinite ease-in-out;
   animation: rotateplane 1.2s infinite ease-in-out;
 }
- 
+
 @-webkit-keyframes rotateplane {
   0% { -webkit-transform: perspective(120px) }
   50% { -webkit-transform: perspective(120px) rotateY(180deg) }
   100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
 }
- 
+
 @keyframes rotateplane {
   0% {
     transform: perspective(120px) rotateX(0deg) rotateY(0deg);
@@ -74,9 +73,14 @@
     </div>
     <div id="app" class="app"></div>
     <script src="dist/ext.min.js"></script>
-    <script src="bower_components/swiper/js/swiper.min.js"></script>
-    <script src="dist/vendors.min.js"></script>
-    <script src="dist/app.min.js"></script>
+    <!-- <script src="bower_components/swiper/js/swiper.min.js"></script> -->
+    <!-- <script src="dist/vendors.min.js"></script>
+    <script src="dist/app.min.js"></script> -->
+    <script src="//cdn.bootcss.com/react/15.1.0/react.js"></script>
+    <script src="//cdn.bootcss.com/react/15.1.0/react-dom.js"></script>
+    <script src="//cdn.bootcss.com/react-router/2.4.1/ReactRouter.js"></script>
+    <script src="build/vendors.js"></script>
+    <script src="build/app.js"></script>
 </body>
 
 </html>

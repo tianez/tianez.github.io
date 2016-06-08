@@ -1,6 +1,5 @@
 'use strict'
 
-import React from 'react'
 import request from 'superagent'
 import Apicloud from '../../components/utils/Apicloud'
 // import './index.less'
@@ -22,7 +21,7 @@ export default class Main extends React.Component {
         setTimeout(function() {
             ConfigActions.update('loading', 0)
         }, 1)
-        
+
     }
     render() {
         return ( < section className = 'warp index' >

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta property="og:image" content="/st/og-image.png"/>
+	<title>Sortable. No jQuery.</title>
+</head>
+<body>
+<ul id="items">
+    <li>item 1</li>
+    <li>item 2</li>
+    <li>item 3</li>
+</ul>
+	<script src="Sortable.js"></script>
+    <script>
+        var el = document.getElementById('items');
+var sortable = Sortable.create(el,{
+    onStart: function (/**Event*/evt) {
+        evt.oldIndex;  // element index within parent
+        console.log(evt.oldIndex);
+    },
+});
+    </script>
+</body>
+</html>

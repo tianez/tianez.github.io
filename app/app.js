@@ -1,18 +1,25 @@
 'use strict'
 // import './css/style.min.css'
+// import React from 'react'
+// import ReactDom from 'react-dom'
+// import {
+//     Router,
+//     Route,
+//     IndexRoute,
+//     Redirect,
+//     hashHistory,
+//     browserHistory,
+//     Link
+// }
+// from 'react-router'
 
-import React from 'react';
-import ReactDom from 'react-dom'
-import {
-    Router,
-    Route,
-    IndexRoute,
-    Redirect,
-    hashHistory,
-    browserHistory,
-    Link
-}
-from 'react-router'
+let Router = ReactRouter.Router
+let Route = ReactRouter.Route
+let IndexRoute = ReactRouter.IndexRoute
+let Redirect = ReactRouter.Redirect
+let hashHistory = ReactRouter.hashHistory
+let browserHistory = ReactRouter.browserHistory
+let Link = ReactRouter.Link
 
 import './window'
 
@@ -49,7 +56,7 @@ function redirectToLogin(nextState, replace) {
     }
 }
 
-ReactDom.render((
+ReactDOM.render((
         React.createElement(Router, {
                 history: hashHistory
             },
@@ -117,22 +124,29 @@ ReactDom.render((
                     )
                 ),
                 React.createElement(Route, {
-                        path: ":list"
+                        path: "day"
                     },
                     React.createElement(IndexRoute, {
-                        component: List
+                        component: ApiCloudsIndex,
+                        onEnter: redirectToLogin
                     }),
                     React.createElement(Route, {
-                        path: ":id",
-                        component: Detail
-                    })
+                            path: ":list"
+                        },
+                        React.createElement(IndexRoute, {
+                            component: List
+                        }),
+                        React.createElement(Route, {
+                            path: ":id",
+                            component: Detail
+                        })
+                    )
                 ),
                 React.createElement(Route, {
                     path: "*",
                     component: NoMatch
                 })
             )
-        )
-    ),
+        )),
     document.getElementById('app')
 )
