@@ -2,7 +2,6 @@
 
 import classNames from 'classnames'
 import Apicloud from '../../components/utils/Apicloud'
-// import './page.less'
 import Canvas from '../../components/forms/Canvas'
 let swiper
 export default class Login extends React.Component {

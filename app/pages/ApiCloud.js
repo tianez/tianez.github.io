@@ -1,6 +1,4 @@
 'use strict';
-
-import request from 'superagent'
 import Apicloud from '../../components/utils/Apicloud'
 import {
     Form,

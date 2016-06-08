@@ -16,7 +16,7 @@ module.exports = {
 
     entry: {
         app: path.resolve(__dirname, 'app/app.js'),
-        mobile: path.resolve(__dirname, 'app/mobile.js'),
+        // mobile: path.resolve(__dirname, 'app/mobile.js'),
         // vendors: ['react', 'react-dom']
     },
     output: {

@@ -1,9 +1,6 @@
 'use strict'
 
-import request from 'superagent'
-import {
-    Link
-} from 'react-router'
+let Link = ReactRouter.Link
 import Apicloud from '../../components/utils/Apicloud'
 export default class ApiClouds extends React.Component {
     constructor(props) {

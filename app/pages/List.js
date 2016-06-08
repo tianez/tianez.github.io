@@ -1,10 +1,7 @@
 'use strict'
 
 import request from 'superagent'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import {
-    Link
-} from 'react-router'
+let Link = ReactRouter.Link 
 import Apicloud from '../../components/utils/Apicloud'
 
 export default class Main extends React.Component {

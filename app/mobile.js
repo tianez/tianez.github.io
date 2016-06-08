@@ -1,16 +1,4 @@
 'use strict'
-// import React from 'react'
-// import ReactDom from 'react-dom'
-// import {
-// 	Router,
-// 	Route,
-// 	IndexRoute,
-// 	Redirect,
-// 	hashHistory,
-// 	browserHistory,
-// 	Link
-// }
-// from 'react-router'
 
 let Router = ReactRouter.Router
 let Route = ReactRouter.Route

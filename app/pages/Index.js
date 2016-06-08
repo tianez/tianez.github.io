@@ -2,21 +2,12 @@
 
 import request from 'superagent'
 import Apicloud from '../../components/utils/Apicloud'
-// import './index.less'
 
 export default class Main extends React.Component {
     constructor(props) {
         super(props)
     }
     componentDidMount() {
-        // let url = 'http://www.day.com/roles/detail/39?t=roles';
-        // request.get(url)
-        //     .end(function(err, res) {
-        //         if (err) throw err;
-        //         let data = JSON.parse(res.text)
-        //         console.log(data)
-        //         this.setState(data)
-        //     }.bind(this));
         ConfigActions.update('title', '这是首页')
         setTimeout(function() {
             ConfigActions.update('loading', 0)

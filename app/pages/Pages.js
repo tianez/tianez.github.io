@@ -1,9 +1,6 @@
 'use strict'
 
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import {
-    Link
-} from 'react-router'
+let Link = ReactRouter.Link 
 import Apicloud from '../../components/utils/Apicloud'
 
 export default class Main extends React.Component {
@@ -62,11 +59,7 @@ export default class Main extends React.Component {
                     <h3 className = "jumbotron-heading pure-u-1" >这是首页</h3>
                     {lists}
                 </section>
-                <ReactCSSTransitionGroup
-                    component="section" className='container' transitionName="swap"
-                    transitionEnterTimeout={500} transitionLeaveTimeout={500} >
-                    {React.cloneElement(this.props.children || <div/>, { key: pathname }) }
-                </ReactCSSTransitionGroup>
+                {this.props.children}
             </section>
         )
     }

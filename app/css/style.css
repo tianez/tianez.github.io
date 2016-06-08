@@ -83,7 +83,7 @@ a {
   position: relative;
   width: 100%;
   left: 0;
-  top: 10rem;
+  top: 4rem;
   transition: all 0.5s ease-in;
   padding-bottom: 6rem;
 }
@@ -219,7 +219,7 @@ a {
 }
 .page .banner {
   position: fixed;
-  top: 10rem;
+  top: 4rem;
   left: 0;
   z-index: 1;
   height: 400px;

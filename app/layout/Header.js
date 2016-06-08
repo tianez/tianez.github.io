@@ -1,8 +1,6 @@
 'use strict'
 
-import {
-    Link
-} from 'react-router'
+let Link = ReactRouter.Link
 import Apicloud from '../../components/utils/Apicloud'
 
 class A extends React.Component {
@@ -96,16 +94,8 @@ export default class Header extends React.Component {
                             id: 'ul',
                             className: 'pure-menu-list left'
                         },
-                        // React.createElement(A, {
-                        //     to: '/permit',
-                        //     title: '权限管理'
-                        // }),
-                        // React.createElement(A, {
-                        //     to: '/fields',
-                        //     title: '字段管理'
-                        // }),
                         React.createElement(A, {
-                            to: '/page',
+                            to: 'page',
                             title: '博文'
                         }),
                         menus

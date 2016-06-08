@@ -5,7 +5,6 @@ import {
     Input,
     Button
 } from '../../components/forms/index'
-// import './Login.less'
 
 export default class Login extends React.Component {
     constructor(props) {
