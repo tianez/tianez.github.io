@@ -18,7 +18,7 @@ export default class ApiClouds extends React.Component {
         this._req(this.props)
     }
     componentWillReceiveProps(nextProps) {
-        if (nextProps.location.search !== this.state.hash) {
+        if (nextProps.location.pathname !== this.state.hash) {
             this._req(nextProps)
         }
     }
@@ -52,7 +52,7 @@ export default class ApiClouds extends React.Component {
                     return
                 }
                 this.setState({
-                    hash: props.location.search,
+                    hash: props.location.pathname,
                     info: data
                 })
             }

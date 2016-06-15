@@ -6,6 +6,7 @@ import Editer from './Editer'
 import Canvas from './Canvas'
 import Upload from './Upload'
 import Radio from './Radio'
+import Checkbox from './Checkbox'
 import Range from './Range'
 import Button from './Button'
 import Hidden from './Hidden'
@@ -17,6 +18,7 @@ var Forms = {
     Canvas: Canvas,
     Upload: Upload,
     Radio: Radio,
+    Checkbox: Checkbox,
     Range: Range,
     Button: Button,
     Hidden: Hidden,

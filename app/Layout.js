@@ -1,12 +1,11 @@
 'use strict'
 
 import request from 'superagent'
+import Apicloud from '../components/utils/Apicloud'
 
 import Header from './layout/Header'
 import Main from './layout/Main'
 import Footer from './layout/Footer'
-
-// import './app.css'
 
 export default class Layout extends React.Component {
     constructor() {
@@ -35,6 +34,17 @@ export default class Layout extends React.Component {
         //             }
         //         })
         //     }.bind(this));
+        let filter = {
+            where: {
+                state: 1
+            },
+            order: ['order DESC', 'createdAt DESC'],
+            limit: 100
+        }
+        Apicloud.get('role', filter, function(err, res) {
+            let roles = JSON.parse(res.text)
+            ConfigActions.update('roles', roles)
+        })
         ConfigStore.addChangeListener(this._onChange.bind(this))
         window.onload = function() {
             let load = document.getElementById('load')

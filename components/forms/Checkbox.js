@@ -3,7 +3,7 @@
 import classNames from 'classnames'
 import FormGroup from './FormGroup'
 
-export default class Radio extends React.Component {
+export default class Checkbox extends React.Component {
     constructor(props) {
         super(props)
         let option
@@ -21,17 +21,32 @@ export default class Radio extends React.Component {
             default:
                 option = JSON.parse(props.options)
         }
+        let value = props.value
+        if (value) {
+            value = JSON.parse(value)
+        } else {
+            value = []
+        }
         this.state = {
-            value: props.value,
+            value: value,
             help: props.help,
             option: option
         }
     }
     _onChange(e) {
-        let value = e.target.value
+        let type = this.props.type
+        let v = e.target.value
+        let value = this.state.value
+        let index = value.indexOf(v)
+        if (index == -1) {
+            value.push(v)
+        } else {
+            value.splice(index, 1)
+        }
         this.setState({
             value: value
         })
+        value = JSON.stringify(value)
         if (this.props.onChange) {
             this.props.onChange(this.props.name, value)
         }
@@ -39,15 +54,14 @@ export default class Radio extends React.Component {
     render() {
         let value = this.state.value
         let name = this.props.name
-
-        // let option = JSON.parse(this.props.options)
-        // let option = this.props.options
+            // let option = JSON.parse(this.props.options)
+            // let option = this.props.options
         let options = this.state.option.map(function(d, index) {
             let checked = ''
-            if (value == d.value) {
+            if (value.indexOf(d.value) > -1) {
                 checked = 'checked'
             }
-            let typeClass = 'radio'
+            let typeClass = 'checker'
             return (
                 React.createElement('label', {
                         key: index,
@@ -62,7 +76,7 @@ export default class Radio extends React.Component {
                                 className: checked
                             },
                             React.createElement('input', {
-                                type: 'radio',
+                                type: 'checkbox',
                                 name: name,
                                 value: d.value,
                                 checked: checked,
@@ -85,10 +99,10 @@ export default class Radio extends React.Component {
     }
 }
 
-Radio.defaultProps = {
-    title: '单选框',
-    type: 'radio',
-    value: 2,
+Checkbox.defaultProps = {
+    title: '多选框',
+    type: 'checkbox',
+    value: [2],
     options: [{
         title: '选项1',
         value: 1

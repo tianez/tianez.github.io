@@ -23,6 +23,11 @@ default class Input extends React.Component {
     shouldComponentUpdate(nextProps, nextState) {
         return nextProps.value !== this.props.value
     }
+    componentWillReceiveProps(nextProps){
+        this.state = {
+            value: nextProps.value
+        }
+    }
     _onChange(e) {
         let error
         let warning

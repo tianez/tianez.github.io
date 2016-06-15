@@ -7,12 +7,14 @@ window.AppUrl = 'https://d.apicloud.com/mcm/api/'
  */
 // import ConfigActions from './flux/ConfigActions'
 window.ConfigActions = require('./flux/ConfigActions')
+window.SetupActions = require('./flux/SetupActions')
 
 /**
  * store
  */
 // import ConfigStore from './flux/ConfigStore'
 window.ConfigStore = require('./flux/ConfigStore')
+window.SetupStore = require('./flux/SetupStore')
 
 window.loadingHide = function() {
     setTimeout(function() {

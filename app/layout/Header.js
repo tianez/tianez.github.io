@@ -57,12 +57,12 @@ export default class Header extends React.Component {
         let islogin
         if (user) {
             islogin = React.createElement(A, {
-                to: '/logout',
+                to: 'logout',
                 title: '登出'
             })
         } else {
             islogin = React.createElement(A, {
-                to: '/login',
+                to: 'login',
                 title: '登录'
             })
         }

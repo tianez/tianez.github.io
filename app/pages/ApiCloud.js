@@ -6,6 +6,7 @@ import {
     Textarea,
     Editer,
     Radio,
+    Checkbox,
     Upload,
     Range,
     Button,
@@ -81,15 +82,16 @@ export default class Component extends React.Component {
                 }
             } else {
                 let userId = storedb('user').find()[0].userId
+                let info = {
+                    userId: userId
+                }
                 ConfigActions.update('title', '新增' + title)
                 this.setState({
                     hash: props.location.pathname,
                     model: model,
                     title: '新增' + title,
                     action: action,
-                    info: {
-                        userId: userId
-                    },
+                    info: info
                 })
             }
         }.bind(this))
@@ -149,7 +151,7 @@ export default class Component extends React.Component {
                         return (React.createElement(Radio, d))
                         break;
                     case "checkbox":
-                        return (React.createElement(Radio, d))
+                        return (React.createElement(Checkbox, d))
                         break;
                     case "hidden":
                         return (React.createElement(Hidden, d))
