@@ -6996,7 +6996,9 @@
 	        key: 'componentWillMount',
 	        value: function componentWillMount() {
 	            var clouds = this.props.params.clouds;
-	            this.setState(this.props[clouds]);
+	            this.setState({
+	                table: this.props[clouds]
+	            });
 	        }
 	    }, {
 	        key: 'componentDidMount',
@@ -7037,13 +7039,15 @@
 	                        ConfigActions.update('title', data.msg);
 	                        this.setState({
 	                            hash: props.location.search,
-	                            title: data.msg
+	                            title: data.msg,
+	                            table: props[action]
 	                        });
 	                        return;
 	                    }
 	                    this.setState({
 	                        hash: props.location.pathname,
-	                        info: data
+	                        info: data,
+	                        table: props[action]
 	                    });
 	                }
 	            }.bind(this));
@@ -7060,8 +7064,8 @@
 	        key: 'render',
 	        value: function render() {
 	            var thead = void 0;
-	            if (this.state.thead) {
-	                thead = this.state.thead.map(function (d, index) {
+	            if (this.state.table.thead) {
+	                thead = this.state.table.thead.map(function (d, index) {
 	                    return React.createElement('th', {
 	                        key: index
 	                    }, d);
@@ -7074,7 +7078,7 @@
 	                    return React.createElement('tr', {
 	                        className: index % 2 == 0 ? 'pure-table-odd' : '',
 	                        key: index
-	                    }, React.createElement('td', {}, '#'), this.state.tbody.map(function (t, i) {
+	                    }, React.createElement('td', {}, '#'), this.state.table.tbody.map(function (t, i) {
 	                        return React.createElement('td', {
 	                            key: i
 	                        }, d[t]);
@@ -7089,7 +7093,7 @@
 	                className: 'container  pure-g'
 	            }, React.createElement('h3', {
 	                className: 'pure-u-1'
-	            }, this.state.title), React.createElement('div', {
+	            }, this.state.table.title), React.createElement('div', {
 	                className: 'pure-u-1 pure-menu pure-menu-open pure-menu-horizontal'
 	            }, React.createElement('a', {
 	                className: 'pure-menu-heading'

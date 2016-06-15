@@ -12,7 +12,9 @@ export default class ApiClouds extends React.Component {
     }
     componentWillMount() {
         let clouds = this.props.params.clouds
-        this.setState(this.props[clouds])
+        this.setState({
+            table: this.props[clouds]
+        })
     }
     componentDidMount(nextProps) {
         this._req(this.props)
@@ -47,13 +49,15 @@ export default class ApiClouds extends React.Component {
                     ConfigActions.update('title', data.msg)
                     this.setState({
                         hash: props.location.search,
-                        title: data.msg
+                        title: data.msg,
+                        table: props[action]
                     });
                     return
                 }
                 this.setState({
                     hash: props.location.pathname,
-                    info: data
+                    info: data,
+                    table: props[action]
                 })
             }
         }.bind(this))
@@ -68,8 +72,8 @@ export default class ApiClouds extends React.Component {
     }
     render() {
         let thead
-        if (this.state.thead) {
-            thead = this.state.thead.map(function(d, index) {
+        if (this.state.table.thead) {
+            thead = this.state.table.thead.map(function(d, index) {
                 return React.createElement('th', {
                     key: index
                 }, d)
@@ -85,7 +89,7 @@ export default class ApiClouds extends React.Component {
                             key: index
                         },
                         React.createElement('td', {}, '#'),
-                        this.state.tbody.map(function(t, i) {
+                        this.state.table.tbody.map(function(t, i) {
                             return React.createElement('td', {
                                 key: i
                             }, d[t])
@@ -111,7 +115,7 @@ export default class ApiClouds extends React.Component {
                     React.createElement('h3', {
                             className: 'pure-u-1'
                         },
-                        this.state.title
+                        this.state.table.title
                     ),
                     React.createElement('div', {
                             className: 'pure-u-1 pure-menu pure-menu-open pure-menu-horizontal'
