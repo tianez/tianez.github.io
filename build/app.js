@@ -3069,13 +3069,13 @@
 	                    menu: menu
 	                });
 	            }.bind(this));
-	            var el = document.getElementById('ul');
-	            var sortable = Sortable.create(el, {
-	                onStart: function onStart( /**Event*/evt) {
-	                    evt.oldIndex; // element index within parent
-	                    console.log(evt.oldIndex);
-	                }
-	            });
+	            // var el = document.getElementById('ul')
+	            // var sortable = Sortable.create(el, {
+	            //     onStart: function( /**Event*/ evt) {
+	            //         evt.oldIndex; // element index within parent
+	            //         console.log(evt.oldIndex);
+	            //     },
+	            // })
 	        }
 	    }, {
 	        key: 'render',
@@ -7008,7 +7008,7 @@
 	    }, {
 	        key: 'componentWillReceiveProps',
 	        value: function componentWillReceiveProps(nextProps) {
-	            if (nextProps.location.pathname !== this.state.hash) {
+	            if (nextProps.location.pathname !== this.state.hash || nextProps.location.search !== this.state.search) {
 	                this._req(nextProps);
 	            }
 	        }
@@ -7038,7 +7038,8 @@
 	                    if (data.res == 404) {
 	                        ConfigActions.update('title', data.msg);
 	                        this.setState({
-	                            hash: props.location.search,
+	                            hash: props.location.pathname,
+	                            search: props.location.search,
 	                            title: data.msg,
 	                            table: props[action]
 	                        });
@@ -7046,18 +7047,19 @@
 	                    }
 	                    this.setState({
 	                        hash: props.location.pathname,
+	                        search: props.location.search,
 	                        info: data,
 	                        table: props[action]
 	                    });
 	                }
 	            }.bind(this));
-	            var el = document.getElementById('uid');
-	            var sortable = Sortable.create(el, {
-	                onStart: function onStart( /**Event*/evt) {
-	                    evt.oldIndex; // element index within parent
-	                    console.log(evt.oldIndex);
-	                }
-	            });
+	            // var el = document.getElementById('uid')
+	            // var sortable = Sortable.create(el, {
+	            //     onStart: function( /**Event*/ evt) {
+	            //         evt.oldIndex; // element index within parent
+	            //         console.log(evt.oldIndex);
+	            //     },
+	            // })
 	            loadingHide();
 	        }
 	    }, {

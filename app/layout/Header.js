@@ -44,13 +44,13 @@ export default class Header extends React.Component {
                 menu: menu
             })
         }.bind(this))
-        var el = document.getElementById('ul')
-        var sortable = Sortable.create(el, {
-            onStart: function( /**Event*/ evt) {
-                evt.oldIndex; // element index within parent
-                console.log(evt.oldIndex);
-            },
-        })
+        // var el = document.getElementById('ul')
+        // var sortable = Sortable.create(el, {
+        //     onStart: function( /**Event*/ evt) {
+        //         evt.oldIndex; // element index within parent
+        //         console.log(evt.oldIndex);
+        //     },
+        // })
     }
     render() {
         let user = storedb('user').find() ? true : false

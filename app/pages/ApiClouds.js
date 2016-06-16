@@ -20,7 +20,7 @@ export default class ApiClouds extends React.Component {
         this._req(this.props)
     }
     componentWillReceiveProps(nextProps) {
-        if (nextProps.location.pathname !== this.state.hash) {
+        if ((nextProps.location.pathname !== this.state.hash) || (nextProps.location.search !== this.state.search)) {
             this._req(nextProps)
         }
     }
@@ -41,33 +41,35 @@ export default class ApiClouds extends React.Component {
             skip: $_GET['skip'] ? parseInt($_GET['skip']) : 0
         }
         Apicloud.get(props.params.clouds, filter, function(err, res) {
-            if (err) {
-                ConfigActions.msg(res.status + 'error');
-            } else {
-                let data = JSON.parse(res.text)
-                if (data.res == 404) {
-                    ConfigActions.update('title', data.msg)
+                if (err) {
+                    ConfigActions.msg(res.status + 'error');
+                } else {
+                    let data = JSON.parse(res.text)
+                    if (data.res == 404) {
+                        ConfigActions.update('title', data.msg)
+                        this.setState({
+                            hash: props.location.pathname,
+                            search: props.location.search,
+                            title: data.msg,
+                            table: props[action]
+                        });
+                        return
+                    }
                     this.setState({
-                        hash: props.location.search,
-                        title: data.msg,
+                        hash: props.location.pathname,
+                        search: props.location.search,
+                        info: data,
                         table: props[action]
-                    });
-                    return
+                    })
                 }
-                this.setState({
-                    hash: props.location.pathname,
-                    info: data,
-                    table: props[action]
-                })
-            }
-        }.bind(this))
-        var el = document.getElementById('uid')
-        var sortable = Sortable.create(el, {
-            onStart: function( /**Event*/ evt) {
-                evt.oldIndex; // element index within parent
-                console.log(evt.oldIndex);
-            },
-        })
+            }.bind(this))
+            // var el = document.getElementById('uid')
+            // var sortable = Sortable.create(el, {
+            //     onStart: function( /**Event*/ evt) {
+            //         evt.oldIndex; // element index within parent
+            //         console.log(evt.oldIndex);
+            //     },
+            // })
         loadingHide()
     }
     render() {
