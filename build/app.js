@@ -5471,7 +5471,7 @@
 	            var prevButton = '.swiper-prev-' + this.props.name;
 	            var pagination = '.swiper-pagination-' + this.props.name;
 	            if (this.state.multiple) {
-	                swiper2 = new Swiper(swiper, {
+	                this.swipers = new Swiper(swiper, {
 	                    nextButton: nextButton,
 	                    prevButton: prevButton,
 	                    pagination: pagination,
@@ -5511,7 +5511,7 @@
 	            e.stopPropagation();
 	            var no = e.currentTarget.id.split("-")[1];
 	            if (this.state.multiple) {
-	                swiper2.slideTo(no, 1, false);
+	                this.swipers.slideTo(no, 1, false);
 	            }
 	            this.setState({
 	                isshow: true
@@ -7002,7 +7002,7 @@
 	        }
 	    }, {
 	        key: 'componentDidMount',
-	        value: function componentDidMount(nextProps) {
+	        value: function componentDidMount() {
 	            this._req(this.props);
 	        }
 	    }, {

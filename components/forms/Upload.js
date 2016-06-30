@@ -150,7 +150,7 @@ export default class Upload extends React.Component {
         let prevButton = '.swiper-prev-' + this.props.name
         let pagination = '.swiper-pagination-' + this.props.name
         if (this.state.multiple) {
-            swiper2 = new Swiper(swiper, {
+            this.swipers = new Swiper(swiper, {
                 nextButton: nextButton,
                 prevButton: prevButton,
                 pagination: pagination,
@@ -186,7 +186,7 @@ export default class Upload extends React.Component {
         e.stopPropagation()
         let no = e.currentTarget.id.split("-")[1]
         if (this.state.multiple) {
-            swiper2.slideTo(no, 1, false)
+            this.swipers.slideTo(no, 1, false)
         }
         this.setState({
             isshow: true

@@ -16,7 +16,7 @@ export default class ApiClouds extends React.Component {
             table: this.props[clouds]
         })
     }
-    componentDidMount(nextProps) {
+    componentDidMount() {
         this._req(this.props)
     }
     componentWillReceiveProps(nextProps) {
